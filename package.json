@@ -64,6 +64,7 @@
     "react-spring": "^8.0.22",
     "react-use": "^9.4.0",
     "resize-observer-polyfill": "^1.5.1",
+    "retoggle": "^0.4.0",
     "styled-components": "^4.3.1",
     "styled-normalize": "^8.0.6",
     "styled-system": "^4.2.2",
@@ -124,6 +125,6 @@
     "nodemon": "^1.19.1",
     "prettier": "^1.17.1",
     "ts-node": "^8.2.0",
-    "typescript": "3.5.0"
+    "typescript": "^3.5.1"
   }
 }

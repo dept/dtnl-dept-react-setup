@@ -5,18 +5,26 @@ name: Button
 import { Playground, Props } from 'docz'
 import { Button, Box } from '../atoms'
 import Knobs from 'docz-knobs'
+import { useSelectKnob, useTextKnob, Inspector } from 'retoggle'
 
 # Button
 
 ## Basic usage
 
 <Playground>
-  <Knobs
-    options={{
-      variant: ["primary", "secondary", "outline"],
-    }}
-  >
-    <Button>Hello</Button>
-  </Knobs>
+
+{() => {
+
+    const [text] = useTextKnob('Text', 'Click me')
+    const [variant] = useSelectKnob('Variant', ["primary", "secondary", "outline", 'disabled'])
+
+    return (
+      <React.Fragment>
+        <Inspector usePortal={true} />
+        <Button variant={variant}>{text}</Button>
+      </React.Fragment>
+    )
+
+}}
 
 </Playground>
