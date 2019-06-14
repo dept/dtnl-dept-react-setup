@@ -1,0 +1,11 @@
+# Dept React Setup
+
+## Initialize the project
+
+- Copy `.env.example` to `.env` and fill in the required variables
+- Run `yarn` to install the dependencies
+
+## To start the server
+
+- Run `yarn dev` to start the dev server
+- Run `yarn build && yarn start` to start the production server

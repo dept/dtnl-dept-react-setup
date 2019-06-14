@@ -1,0 +1,38 @@
+{
+  "presets": [[
+    "next/babel",
+      {
+        "preset-env": {
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "last 2 versions",
+              "Firefox ESR",
+              "ie >= 11"
+            ]
+          },
+        },
+      }
+    ], "@zeit/next-typescript/babel"],
+  "plugins": [
+    ["babel-plugin-styled-components"],
+    ["inline-react-svg", {
+      "svgo": {
+        "plugins": [
+          {
+            "convertColors": {
+              "currentColor": true
+            }
+          }
+        ]
+      }
+    }],
+    [
+      "import", {
+        "libraryName": "react-use",
+        "libraryDirectory": "lib",
+        "camel2DashComponentName": false
+      }
+    ]
+  ]
+}

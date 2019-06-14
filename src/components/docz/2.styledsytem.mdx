@@ -1,0 +1,117 @@
+---
+name: 2. Design System
+---
+
+import { Playground, Props } from 'docz'
+import {
+  Box,
+  BoxDocz,
+  Card,
+  Flex,
+  FlexDocz,
+  Heading,
+  Text,
+  TextDocz,
+} from '../atoms'
+
+# Design System
+
+This project uses [styled-system](https://styled-system.com/) by Brent Jackson. The implementation
+is similar to that of [rebass](https://rebassjs.org/getting-started) (also by Brent Jackson) but
+with better configuration and typescript support.
+
+> Styled System lets you quickly build custom UI components with constraint-based style props based on your own design system tokens.
+
+```jsx
+<Box
+  fontSize={4}
+  fontWeight="bold"
+  p={3}
+  mb={[4, 5]}
+  color="white"
+  bg="primary">
+  Hello
+</Box>
+```
+
+---
+
+## Box
+
+Responsive box-model layout component.
+
+<Playground>
+  <Box p={50} bg="red" color="white">
+    Some text
+  </Box>
+</Playground>
+
+<Props of={BoxDocz} />
+
+---
+
+## Card
+
+Layout component with additional style props for background, borders and box shadows. Extends Box.
+
+<Playground>
+  <Card border="4px dashed red" p={30}>
+    Some text
+  </Card>
+</Playground>
+
+<Props of={FlexDocz} />
+
+---
+
+## Flex
+
+Responsive flexbox layout component. Extends: Box.
+
+<Playground>
+  <Flex justifyContent="space-between">
+    <Box bg="blue" px={20}>
+      1
+    </Box>
+    <Box bg="red" px={20}>
+      2
+    </Box>
+    <Box bg="yellow" px={20}>
+      2
+    </Box>
+  </Flex>
+</Playground>
+
+<Props of={FlexDocz} />
+
+---
+
+## Text
+
+Responsive typographic component. Extends Box.
+
+<Playground>
+  <Text as="p" color="green" mb={20}>
+    This is a paragraph
+  </Text>
+  <Text as="strong" color="blue" mb={20}>
+    This is a strong
+  </Text>
+</Playground>
+
+<Props of={TextDocz} />
+
+---
+
+## Heading
+
+Extension of the Text component for headings.
+
+<Playground>
+  <Heading as="h1">Heading 1</Heading>
+  <Heading as="h2">Heading 2</Heading>
+  <Heading as="h3">Heading 3</Heading>
+  <Heading as="h4">Heading 4</Heading>
+</Playground>
+
+---

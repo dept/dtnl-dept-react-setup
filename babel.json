@@ -1,0 +1,16 @@
+{
+  "presets": [],
+  "plugins": [
+    ["inline-react-svg", {
+      "svgo": {
+        "plugins": [
+          {
+            "convertColors": {
+              "currentColor": true
+            }
+          }
+        ]
+      }
+    }]
+  ]
+}

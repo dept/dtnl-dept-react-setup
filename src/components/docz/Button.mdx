@@ -1,0 +1,22 @@
+---
+name: Button
+---
+
+import { Playground, Props } from 'docz'
+import { Button, Box } from '../atoms'
+import Knobs from 'docz-knobs'
+
+# Button
+
+## Basic usage
+
+<Playground>
+  <Knobs
+    options={{
+      variant: ["primary", "secondary", "outline"],
+    }}
+  >
+    <Button>Hello</Button>
+  </Knobs>
+
+</Playground>

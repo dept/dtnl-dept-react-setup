@@ -1,0 +1,47 @@
+import NextSeo from 'next-seo'
+import App, { Container, NextAppContext } from 'next/app'
+import { ThemeProvider } from 'styled-components'
+
+import { ContextProvider } from '@/context/ContextProvider'
+import { GlobalStyle } from '@/theme/GlobalStyle'
+import { theme } from '@/theme/theme'
+
+export interface AppProps {
+  label: string
+}
+
+class MyApp extends App<AppProps> {
+  public static async getInitialProps({ Component, ctx }: NextAppContext) {
+    let pageProps = {}
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
+    return { pageProps }
+  }
+
+  public render() {
+    const { Component, pageProps, label } = this.props
+
+    return (
+      <Container>
+        <NextSeo
+          config={{
+            titleTemplate: `%s | Dept`,
+          }}
+        />
+        <ContextProvider>
+          <ThemeProvider theme={theme}>
+            <>
+              <GlobalStyle />
+              <Component {...pageProps} label={label} />
+            </>
+          </ThemeProvider>
+        </ContextProvider>
+      </Container>
+    )
+  }
+}
+
+export default MyApp
