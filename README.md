@@ -9,3 +9,52 @@
 
 - Run `yarn dev` to start the dev server
 - Run `yarn build && yarn start` to start the production server
+
+## Next.js
+
+This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are *routing* and *server side data fetching*. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
+
+```javascript
+if (process.browser) {
+  window.addEventListener(fn)
+}
+```
+
+### Routing
+
+To create a new route add a new page to the `./pages` folder. You can easily create a new page by running `yarn generate page name-of-the-page`. Your newly created page will server from `http://localhost:3000/name-of-the-page`. Because the filename will be the same as the slug name has to be in kebab-case [http://wiki.c2.com/?KebabCase](http://wiki.c2.com/?KebabCase). If you need the page to be dynamic, add it to `./server/routes.ts`. The slug should be formatted to be used with [https://github.com/pillarjs/path-to-regexp](https://github.com/pillarjs/path-to-regexp)
+
+1. Create new page with `yarn generate page about`
+2. Add route to `./server/routes.ts`
+3. Serve the page from `http://localhost:3000/about`
+
+### Server side data fetching
+
+Next.js adds a static function to each page called `getInitialProps`. The object returned from this function will be available as props in the render function.
+
+## Typescript
+
+This project is written to typescript. If you aren't that familiar with typescript this [cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet) is a great resource to get familiar.
+
+## Documentation
+
+Documentation for this project is present in docz. Run `yarn docz` to start up the documentation.
+
+## Design system
+
+This project uses [styled-components](https://www.styled-components.com/) and [styled-system](https://github.com/styled-system/styled-system) to create the ui library, but using *css*, *css modules* and *sass* are still supported.
+
+## Atomic design structure
+
+The component archicture is set up following the atomic design methodology.
+
+![Atomic Design](http://atomicdesign.bradfrost.com/images/content/atomic-design-molecules.png)
+
+
+
+
+
+
+
+
+
