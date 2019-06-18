@@ -1,3 +1,4 @@
+import { hideVisually } from 'polished'
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
@@ -50,6 +51,8 @@ const LabelPosition = styled(Box)`
 `
 
 const HiddenInput = styled.input`
+  ${hideVisually()};
+
   &:checked ~ ${SwitchBackground} {
     background-color: ${colors.grey.dark};
     ${SwitchBall} {
@@ -73,7 +76,7 @@ export const Switch = ({ label, ...props }: SwitchProps) => {
   return (
     <Label>
       <Flex alignItems="center">
-        <HiddenInput className="sr-only" type="checkbox" {...props} />
+        <HiddenInput type="checkbox" {...props} />
         <SwitchBackground>
           <SwitchBall />
         </SwitchBackground>
