@@ -1,3 +1,4 @@
+import { hideVisually } from 'polished'
 import { HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -17,7 +18,9 @@ export interface CheckBoxProps extends HTMLAttributes<HTMLInputElement> {
   disabled?: boolean
 }
 
-const HiddenInput = styled.input``
+const HiddenInput = styled.input`
+  ${hideVisually()};
+`
 
 const Check = styled.div<{ hasError: boolean }>`
   height: 25px;
@@ -55,7 +58,6 @@ export const Checkbox: React.FC<CheckBoxProps> = ({
   <Label>
     <Flex opacity={rest.disabled ? 0.2 : 1}>
       <HiddenInput
-        className="sr-only"
         type="checkbox"
         onFocus={onFocus}
         onBlur={onBlur}

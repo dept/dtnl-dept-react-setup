@@ -1,3 +1,4 @@
+import { hideVisually } from 'polished'
 import { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
@@ -13,7 +14,9 @@ export interface RadioProps extends HTMLAttributes<HTMLInputElement> {
   value?: string
 }
 
-const HiddenInput = styled.input``
+const HiddenInput = styled.input`
+  ${hideVisually()};
+`
 
 const Circle = styled.div`
   height: 25px;
@@ -39,7 +42,7 @@ export const Radio: React.FC<RadioProps> = ({ children, ...rest }) => {
   return (
     <Label style={{ cursor: 'pointer' }}>
       <Flex>
-        <HiddenInput className="sr-only" type="radio" {...rest} />
+        <HiddenInput type="radio" {...rest} />
         <Circle />
         <Text>{children}</Text>
       </Flex>
