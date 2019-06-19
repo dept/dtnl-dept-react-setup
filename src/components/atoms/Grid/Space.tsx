@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { SpaceProps, space } from 'styled-system'
+import { space,SpaceProps } from 'styled-system'
 
 const classnames = (...args: any[]) => args.join(' ')
 const getClassName = (el: any) => (el.props && el.props.className) || ''

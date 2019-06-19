@@ -1,4 +1,4 @@
-import { CheckBoxProps, Checkbox, Column, Row } from '@/components/atoms'
+import { Checkbox, CheckBoxProps, Column, Row } from '@/components/atoms'
 
 interface Option {
   value: string

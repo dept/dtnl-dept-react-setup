@@ -1,14 +1,15 @@
 {
-  "extends": "./tsconfig",
+  "extends": "../tsconfig",
   "compilerOptions": {
     "module": "commonjs",
     "noEmit": false,
-    "outDir": ".next/server",
+    "outDir": "../.next/server",
     "target": "es2017",
     "lib": [
       "es2017"
-    ]
+    ],
+    "paths": {}
   },
-  "include": ["server/**/*.ts"],
-  "exclude": [".next"]
+  "include": ["**/*.ts"],
+  "exclude": []
 }

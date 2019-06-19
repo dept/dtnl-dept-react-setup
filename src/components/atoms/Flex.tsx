@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import {
-  AlignItemsProps,
-  FlexDirectionProps,
-  FlexWrapProps,
-  JustifyContentProps,
   alignItems,
+  AlignItemsProps,
   flexDirection,
+  FlexDirectionProps,
   flexWrap,
+  FlexWrapProps,
   justifyContent,
+  JustifyContentProps,
 } from 'styled-system'
 
 import { Box, BoxProps } from './Box'

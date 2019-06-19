@@ -4,12 +4,12 @@ import {
   AlignItemsProps,
   FlexDirectionProps,
   FlexProps,
+  flexWrap,
   FlexWrapProps,
   JustifyContentProps,
   SpaceProps,
-  WidthProps,
-  flexWrap,
   style,
+  WidthProps,
 } from 'styled-system'
 
 import { grid } from '@/theme/grid'

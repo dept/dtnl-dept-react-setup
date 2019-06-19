@@ -1,12 +1,12 @@
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import {
-  LetterSpacingProps,
-  LineHeightProps,
-  TextAlignProps,
   fontFamily,
   letterSpacing,
+  LetterSpacingProps,
   lineHeight,
+  LineHeightProps,
+  TextAlignProps,
 } from 'styled-system'
 
 import { Box, BoxProps } from './Box'

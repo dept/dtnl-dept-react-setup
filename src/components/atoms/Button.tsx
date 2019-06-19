@@ -1,7 +1,7 @@
 import { darken } from 'polished'
 import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
-import styled, { DefaultTheme, StyledComponent, css } from 'styled-components'
+import styled, { css,DefaultTheme, StyledComponent } from 'styled-components'
 
 import { Loader } from '@/components/molecules/Loader'
 import { colors } from '@/theme/colors'

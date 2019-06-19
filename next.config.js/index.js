@@ -1,5 +1,4 @@
 const webpack = require('webpack')
-const CircularDependencyPlugin = require('circular-dependency-plugin')
 const withPlugins = require('next-compose-plugins')
 
 const { plugins } = require('./plugins')
@@ -14,13 +13,16 @@ module.exports = withPlugins(plugins, {
   publicRuntimeConfig,
   serverRuntimeConfig,
   webpack(config, options) {
-    if (options.isServer) {
+    if (!options.isServer) {
+      const CircularDependencyPlugin = require('circular-dependency-plugin')
+
       config.module.rules.push({
         test: /\.(tsx?|gql|graphql)$/,
         loader: 'eslint-loader',
         exclude: ['/node_modules/', '/.next/'],
         enforce: 'pre',
       })
+
       config.plugins.push(
         new CircularDependencyPlugin({
           exclude: /a\.js|node_modules/,

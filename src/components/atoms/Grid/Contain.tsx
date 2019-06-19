@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { DisplayProps, HeightProps, display, height } from 'styled-system'
+import { display, DisplayProps, height,HeightProps } from 'styled-system'
 
 import { grid } from '@/theme/grid'
 import { media } from '@/utils/media'
