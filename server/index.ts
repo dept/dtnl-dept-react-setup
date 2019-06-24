@@ -37,7 +37,7 @@ function getRouteParams(route: RouteItem, req: express.Request) {
 function createRoute(server: express.Express, route: RouteItem) {
   server.get(route.slug, (req, res) => {
     const params = getRouteParams(route, req)
-    app.render(req, res, route.actualPage, params)
+    app.render(req, res, route.actualPage, { ...req.query, ...params })
   })
 }
 
