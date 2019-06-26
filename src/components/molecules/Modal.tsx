@@ -41,11 +41,6 @@ const Content = styled(DialogContent)`
     max-width: 90%;
   }
 `
-if (process.browser) {
-  window.addEventListener('keydown', function(event) {
-    console.log(event.key)
-  })
-}
 
 const AnimatedContent = animated(Content)
 
