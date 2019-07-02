@@ -1,6 +1,8 @@
 // import original module declarations
 import 'styled-components'
 
+import { ThemeGrid } from '@tpdewolf/styled-primitives'
+
 import { Colors } from '@/theme/colors'
 
 interface SizeLadder {
@@ -30,6 +32,6 @@ declare module 'styled-components' {
       small: string
       large: string
     }
-    grid: any
+    grid: ThemeGrid
   }
 }
