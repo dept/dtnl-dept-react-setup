@@ -32,6 +32,7 @@ export default function withAuth() {
 
     Authenticated.getInitialProps = async (ctx: NextContext<{}>) => {
       const pageProps = AuthComponent.getInitialProps && (await AuthComponent.getInitialProps(ctx))
+
       return { ...pageProps }
     }
 
