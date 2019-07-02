@@ -2399,9 +2399,9 @@
     prop-types "^15.6.2"
     tippy.js "^4.3.0"
 
-"@tpdewolf/styled-system@https://github.com/tpdewolf/styled-system":
+"@tpdewolf/styled-system@tpdewolf/styled-system#master":
   version "0.1.0"
-  resolved "https://github.com/tpdewolf/styled-system#765b00c714a521a43e6a56e509f06eeb23bed418"
+  resolved "https://codeload.github.com/tpdewolf/styled-system/tar.gz/f5c1cfedcc11b89d3c727f4203ac21a94367d3e2"
   dependencies:
     styled-components "^4.3.2"
     styled-system "^5.0.12"
@@ -13169,6 +13169,14 @@ styled-jsx@3.2.1:
     string-hash "1.1.3"
     stylis "3.5.4"
     stylis-rule-sheet "0.0.10"
+
+styled-system@^4.2.2:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-4.2.4.tgz#8909f91396c30b92295b4eddec5f7b89f8c8d767"
+  integrity sha512-44X7n09gDvwx7yjquEXsjiNALK0dxGgAJdpO5cb/PdL+D4mhSLKWig4/EhH4vHJLbwu/kumURHyvKxygaBfg0A==
+  dependencies:
+    "@babel/runtime" "^7.4.2"
+    prop-types "^15.7.2"
 
 styled-system@^5.0.12:
   version "5.0.12"

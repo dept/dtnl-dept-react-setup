@@ -29,7 +29,7 @@
   "dependencies": {
     "@reach/dialog": "^0.2.9",
     "@sentry/browser": "^5.4.0",
-    "@tpdewolf/styled-system": "https://github.com/tpdewolf/styled-system",
+    "@tpdewolf/styled-system": "tpdewolf/styled-system#master",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
