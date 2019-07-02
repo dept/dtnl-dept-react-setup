@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@tpdewolf/styled-system'
+import { Box, Flex, Heading, Text } from '@tpdewolf/styled-primitives'
 
 import { useModal } from '@/context/ModalContext'
 

@@ -1,4 +1,4 @@
-import { Box, Column, Row, Text } from '@tpdewolf/styled-system'
+import { Box, Column, Row, Text } from '@tpdewolf/styled-primitives'
 import { format, parse } from 'date-fns'
 import { useEffect, useState } from 'react'
 

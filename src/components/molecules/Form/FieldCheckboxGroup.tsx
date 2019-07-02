@@ -1,4 +1,4 @@
-import { Column,Row } from '@tpdewolf/styled-system'
+import { Column,Row } from '@tpdewolf/styled-primitives'
 
 import { Checkbox, CheckBoxProps } from '@/components/atoms'
 

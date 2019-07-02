@@ -1,4 +1,4 @@
-import { Box } from '@tpdewolf/styled-system'
+import { Box } from '@tpdewolf/styled-primitives'
 import { format, isValid, parse } from 'date-fns'
 import { Omit } from 'next/router'
 import { useEffect, useRef, useState } from 'react'

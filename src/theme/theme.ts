@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'styled-components'
 
 import { colors } from './colors'
+import { grid } from './grid'
 
 export const theme: DefaultTheme = {
   breakpoints: ['40em', '52em', '64em', '80em'],
@@ -34,4 +35,5 @@ export const theme: DefaultTheme = {
   },
   outline: `5px auto #5E9ED6`,
   colors,
+  grid,
 }

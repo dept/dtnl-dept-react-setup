@@ -1,4 +1,4 @@
-import { Box,BoxProps } from '@tpdewolf/styled-system'
+import { Box,BoxProps } from '@tpdewolf/styled-primitives'
 import { darken } from 'polished'
 import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'

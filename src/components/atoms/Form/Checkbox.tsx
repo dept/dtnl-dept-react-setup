@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@tpdewolf/styled-system'
+import { Box, Flex, Text } from '@tpdewolf/styled-primitives'
 import { hideVisually } from 'polished'
 import { HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'

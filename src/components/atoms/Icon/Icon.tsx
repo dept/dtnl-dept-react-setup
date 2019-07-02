@@ -1,4 +1,4 @@
-import { Box,BoxProps } from '@tpdewolf/styled-system'
+import { Box,BoxProps } from '@tpdewolf/styled-primitives'
 import { Omit } from 'next/router'
 import React, { FC } from 'react'
 import styled from 'styled-components'

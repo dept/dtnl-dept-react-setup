@@ -30,5 +30,6 @@ declare module 'styled-components' {
       small: string
       large: string
     }
+    grid: any
   }
 }

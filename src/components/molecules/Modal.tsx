@@ -1,7 +1,7 @@
 import '@reach/dialog/styles.css'
 
 import { DialogContent, DialogOverlay } from '@reach/dialog'
-import { Box } from '@tpdewolf/styled-system'
+import { Box } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
 import { animated, useSpring, useTransition } from 'react-spring/web.cjs'
 import styled from 'styled-components'

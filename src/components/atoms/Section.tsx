@@ -1,4 +1,4 @@
-import { Box } from '@tpdewolf/styled-system'
+import { Box } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
 import { InView } from 'react-intersection-observer'
 import styled from 'styled-components'

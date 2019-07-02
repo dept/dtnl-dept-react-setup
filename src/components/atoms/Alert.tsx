@@ -1,4 +1,4 @@
-import { Box, BoxProps, Column, Contain, Row, Text } from '@tpdewolf/styled-system'
+import { Box, BoxProps, Column, Contain, Row, Text } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 

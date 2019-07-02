@@ -1,4 +1,4 @@
-import { Box, Text } from '@tpdewolf/styled-system'
+import { Box, Text } from '@tpdewolf/styled-primitives'
 import { ErrorMessage } from 'formik'
 
 import { colors } from '@/theme/colors'

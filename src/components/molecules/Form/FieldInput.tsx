@@ -1,4 +1,4 @@
-import { Box } from '@tpdewolf/styled-system'
+import { Box } from '@tpdewolf/styled-primitives'
 import React from 'react'
 import styled from 'styled-components'
 

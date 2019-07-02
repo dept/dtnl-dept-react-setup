@@ -1,4 +1,4 @@
-import { Box, Column, Contain, Heading, Row, Text } from '@tpdewolf/styled-system'
+import { Box, Column, Contain, Heading, Row, Text } from '@tpdewolf/styled-primitives'
 import { FC } from 'react'
 
 import { Button } from '@/components/atoms'

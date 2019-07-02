@@ -1,4 +1,4 @@
-import { Box } from '@tpdewolf/styled-system'
+import { Box } from '@tpdewolf/styled-primitives'
 import { useEffect, useRef, useState } from 'react'
 import useClickAway from 'react-use/lib/useClickAway'
 import styled from 'styled-components'

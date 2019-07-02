@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@tpdewolf/styled-system'
+import { Box, Flex, Text } from '@tpdewolf/styled-primitives'
 import { useRef, useState } from 'react'
 import { Manager, Popper, PopperProps, Reference } from 'react-popper'
 import useClickAway from 'react-use/lib/useClickAway'

@@ -1,4 +1,4 @@
-import { Box } from '@tpdewolf/styled-system'
+import { Box } from '@tpdewolf/styled-primitives'
 import { InputHTMLAttributes, useState } from 'react'
 import styled, { css } from 'styled-components'
 

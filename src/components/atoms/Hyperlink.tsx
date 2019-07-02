@@ -1,4 +1,4 @@
-import { Box, BoxProps, Flex } from '@tpdewolf/styled-system'
+import { Box, BoxProps, Flex } from '@tpdewolf/styled-primitives'
 import React from 'react'
 import styled from 'styled-components'
 
