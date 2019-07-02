@@ -1,4 +1,5 @@
-import { Box, Flex, Heading, Text } from '@/components/atoms'
+import { Box, Flex, Heading, Text } from '@tpdewolf/styled-system'
+
 import { useModal } from '@/context/ModalContext'
 
 import { Modal } from '../molecules'

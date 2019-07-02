@@ -1,8 +1,7 @@
+import { Box, BoxProps, Flex } from '@tpdewolf/styled-system'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Box, BoxProps } from './Box'
-import { Flex } from './Flex'
 import { Icon, IconOption } from './Icon'
 
 type HyperlinkProps = BoxProps & {

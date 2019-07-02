@@ -1,4 +1,5 @@
-import { Box } from '@/components/atoms/Box'
+import { Box } from '@tpdewolf/styled-system'
+
 import { colors } from '@/theme/colors'
 
 interface LoaderProps {

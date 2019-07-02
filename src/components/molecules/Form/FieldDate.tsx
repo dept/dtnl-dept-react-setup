@@ -1,3 +1,4 @@
+import { Box } from '@tpdewolf/styled-system'
 import { format, isValid, parse } from 'date-fns'
 import { Omit } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
@@ -5,7 +6,6 @@ import Calendar, { OnChangeDateCallback } from 'react-calendar/dist/entry.nostyl
 import useClickAway from 'react-use/lib/useClickAway'
 import styled from 'styled-components'
 
-import { Box } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
 import { FieldInput, FieldInputProps } from './FieldInput'

@@ -1,7 +1,8 @@
+import { Box } from '@tpdewolf/styled-system'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Box, Input, InputProps, Label } from '@/components/atoms'
+import { Input, InputProps, Label } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
 export type FieldInputProps = InputProps & {

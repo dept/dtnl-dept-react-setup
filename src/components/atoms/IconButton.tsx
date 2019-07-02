@@ -1,9 +1,9 @@
+import { Box, BoxProps } from '@tpdewolf/styled-system'
 import React, { FC, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Box, BoxProps } from './Box'
 import { Icon, IconOption } from './Icon'
 
 type ButtonElements = 'button' | 'a' | 'span'

@@ -1,8 +1,8 @@
+import { Box,BoxProps } from '@tpdewolf/styled-system'
 import { Omit } from 'next/router'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-import { Box, BoxProps } from '../Box'
 import arrow from './svgs/arrow.svg'
 import badge from './svgs/badge.svg'
 import calender from './svgs/calender.svg'

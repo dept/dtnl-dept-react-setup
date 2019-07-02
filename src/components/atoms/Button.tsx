@@ -1,13 +1,13 @@
+import { Box,BoxProps } from '@tpdewolf/styled-system'
 import { darken } from 'polished'
 import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
-import styled, { css,DefaultTheme, StyledComponent } from 'styled-components'
+import styled, { css, DefaultTheme, StyledComponent } from 'styled-components'
 
 import { Loader } from '@/components/molecules/Loader'
 import { colors } from '@/theme/colors'
 import { media } from '@/utils/media'
 
-import { Box, BoxProps } from './Box'
 import { Icon, IconOption } from './Icon'
 
 type ButtonElements = 'button' | 'a'

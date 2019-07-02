@@ -1,9 +1,9 @@
+import { Box } from '@tpdewolf/styled-system'
 import { InputHTMLAttributes, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Box } from '../Box'
 import { IconButton } from '../IconButton'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

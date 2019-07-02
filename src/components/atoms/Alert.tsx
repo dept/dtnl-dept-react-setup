@@ -1,13 +1,8 @@
+import { Box, BoxProps, Column, Contain, Row, Text } from '@tpdewolf/styled-system'
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
-
-import { Box, BoxProps } from './Box'
-import { Column } from './Grid/Column'
-import { Contain } from './Grid/Contain'
-import { Row } from './Grid/Row'
-import { Text } from './Text'
 
 type AlertProps = BoxProps & {
   type?: 'succes' | 'warning' | 'neutral'

@@ -1,4 +1,6 @@
-import { Column, Radio, RadioProps, Row } from '@/components/atoms'
+import { Column,Row } from '@tpdewolf/styled-system'
+
+import { Radio, RadioProps } from '@/components/atoms'
 
 interface Option {
   value: string

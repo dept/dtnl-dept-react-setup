@@ -1,13 +1,11 @@
+import { Box, Flex, Text } from '@tpdewolf/styled-system'
 import { hideVisually } from 'polished'
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Box } from './Box'
-import { Flex } from './Flex'
 import { Label } from './Form/Label'
-import { Text } from './Text'
 
 const TOGGLE_HEIGHT = '25px'
 

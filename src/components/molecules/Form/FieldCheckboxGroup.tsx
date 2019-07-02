@@ -1,4 +1,6 @@
-import { Checkbox, CheckBoxProps, Column, Row } from '@/components/atoms'
+import { Column,Row } from '@tpdewolf/styled-system'
+
+import { Checkbox, CheckBoxProps } from '@/components/atoms'
 
 interface Option {
   value: string

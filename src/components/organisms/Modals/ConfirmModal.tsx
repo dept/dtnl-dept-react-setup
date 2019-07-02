@@ -1,6 +1,7 @@
+import { Box, Column, Contain, Heading, Row, Text } from '@tpdewolf/styled-system'
 import { FC } from 'react'
 
-import { Box, Button, Column, Contain, Heading, Row, Text } from '@/components/atoms'
+import { Button } from '@/components/atoms'
 import { Modal } from '@/components/molecules/Modal'
 import { useModal } from '@/context/ModalContext'
 

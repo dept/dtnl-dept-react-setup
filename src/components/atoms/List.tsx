@@ -1,7 +1,6 @@
+import { Box } from '@tpdewolf/styled-system'
 import { FC } from 'react'
 import styled from 'styled-components'
-
-import { Box } from './Box'
 
 const StyledUl = styled.ul`
   list-style: none;

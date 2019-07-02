@@ -1,11 +1,10 @@
+import { Box } from '@tpdewolf/styled-system'
 import React, { FC } from 'react'
 import { InView } from 'react-intersection-observer'
 import styled from 'styled-components'
 import { BackgroundProps, SpaceProps } from 'styled-system'
 
 import { colors } from '@/theme/colors'
-
-import { Box } from './Box'
 
 interface Props {
   id?: string

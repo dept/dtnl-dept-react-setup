@@ -1,6 +1,6 @@
+import { Box, Text } from '@tpdewolf/styled-system'
 import { ErrorMessage } from 'formik'
 
-import { Box, Text } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
 interface FormikErrorProps {

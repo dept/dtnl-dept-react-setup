@@ -1,13 +1,10 @@
+import { Box, Flex, Text } from '@tpdewolf/styled-system'
 import { useRef, useState } from 'react'
 import { Manager, Popper, PopperProps, Reference } from 'react-popper'
 import useClickAway from 'react-use/lib/useClickAway'
 import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
-
-import { Box } from './Box'
-import { Flex } from './Flex'
-import { Text } from './Text'
 
 interface TooltipProps {
   placement?: PopperProps['placement']

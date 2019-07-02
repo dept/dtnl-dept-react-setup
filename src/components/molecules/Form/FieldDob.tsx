@@ -1,7 +1,8 @@
+import { Box, Column, Row, Text } from '@tpdewolf/styled-system'
 import { format, parse } from 'date-fns'
 import { useEffect, useState } from 'react'
 
-import { Box, Column, Label, Row, Text } from '@/components/atoms'
+import { Label } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
 import { FieldInput } from './FieldInput'

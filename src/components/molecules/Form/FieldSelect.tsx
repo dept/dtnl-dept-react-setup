@@ -1,9 +1,10 @@
+import { Box } from '@tpdewolf/styled-system'
 import React, { FocusEventHandler } from 'react'
 import Select from 'react-select'
 import { ValueType } from 'react-select/lib/types'
 import styled from 'styled-components'
 
-import { Box, IconButton } from '@/components/atoms'
+import { IconButton } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
 interface Option {
