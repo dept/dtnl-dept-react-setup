@@ -1,6 +1,6 @@
 import { FastField } from 'formik'
 
-import { Checkbox,CheckBoxProps } from '@/components/atoms'
+import { Checkbox, CheckBoxProps } from '@/components/atoms'
 
 import { FormikError } from './FormikError'
 

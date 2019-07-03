@@ -1,4 +1,4 @@
-import { Column,Row } from '@tpdewolf/styled-primitives'
+import { Column, Row } from '@tpdewolf/styled-primitives'
 
 import { Radio, RadioProps } from '@/components/atoms'
 

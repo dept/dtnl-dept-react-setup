@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { display,DisplayProps } from 'styled-system'
+import { display, DisplayProps } from 'styled-system'
 
 type HideProps = DisplayProps
 
