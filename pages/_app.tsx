@@ -6,9 +6,7 @@ import { ContextProvider } from '@/context/ContextProvider'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
 
-export interface AppProps {
-  label: string
-}
+export interface AppProps {}
 
 class MyApp extends App<AppProps> {
   public static async getInitialProps({ Component, ctx }: NextAppContext) {
@@ -22,7 +20,7 @@ class MyApp extends App<AppProps> {
   }
 
   public render() {
-    const { Component, pageProps, label } = this.props
+    const { Component, pageProps } = this.props
 
     return (
       <Container>
@@ -35,7 +33,7 @@ class MyApp extends App<AppProps> {
           <ThemeProvider theme={theme}>
             <>
               <GlobalStyle />
-              <Component {...pageProps} label={label} />
+              <Component {...pageProps} />
             </>
           </ThemeProvider>
         </ContextProvider>
