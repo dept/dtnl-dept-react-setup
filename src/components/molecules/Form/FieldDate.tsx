@@ -1,5 +1,5 @@
 import { Box } from '@tpdewolf/styled-primitives'
-import { format, isValid, parse } from 'date-fns'
+import { format, isValid, parse, parseISO } from 'date-fns'
 import { Omit } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import Calendar, { OnChangeDateCallback } from 'react-calendar/dist/entry.nostyle'
@@ -21,10 +21,10 @@ const CalendarWrapper = styled(Box)`
 `
 
 export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, ...props }) => {
-  const outputFormat = 'YYYY-MM-DD'
-  const inputFormat = 'DD-MM-YYYY'
+  const outputFormat = 'yyyy-MM-dd'
+  const inputFormat = 'dd-MM-yyyy'
 
-  const [date, setDate] = useState<Date | undefined>(value ? parse(value) : undefined)
+  const [date, setDate] = useState<Date | undefined>(value ? parseISO(value) : undefined)
   const [outputDate, setOutputDate] = useState(date ? format(date, outputFormat) : '')
   const [inputDate, setInputDate] = useState(date ? format(date, inputFormat) : '')
   const [isOpen, setIsOpen] = useState(false)
@@ -55,7 +55,7 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
     const inputValue = e.currentTarget.value
     setInputDate(inputValue)
 
-    const parsedDate = parse(inputValue)
+    const parsedDate = parse(inputValue, 'dd-MM-yyyy', new Date())
 
     if (isValid(parsedDate)) {
       setOutputDate(format(parsedDate, outputFormat))

@@ -1,5 +1,5 @@
 import { Box, Column, Row, Text } from '@tpdewolf/styled-primitives'
-import { format, parse } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { useEffect, useState } from 'react'
 
 import { Label } from '@/components/atoms'
@@ -15,7 +15,7 @@ export interface FieldDobProps {
 }
 
 export const FieldDob: React.FC<FieldDobProps> = ({ value, onChange, label, onBlur }) => {
-  const initialDate = value && format(parse(value), 'YYYY-MM-DD')
+  const initialDate = value && format(parseISO(value), 'YYYY-MM-DD')
   const [initialYear, initialMonth, initialDay] = (initialDate && initialDate.split('-')) || ''
 
   const [date, setDate] = useState<string>(initialDate || '')
