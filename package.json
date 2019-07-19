@@ -25,6 +25,9 @@
       "email": "robby.uitbeijerse@deptagency.com"
     }
   ],
+  "resolutions": {
+    "docz/**/webpack": "4.28.4"
+  },
   "license": "ISC",
   "dependencies": {
     "@reach/dialog": "^0.2.9",

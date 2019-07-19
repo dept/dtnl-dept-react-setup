@@ -1,5 +1,5 @@
 const path = require('path')
-const { setAliasConfig } = require('./next.config.js/alias')
+const { setAliasConfig } = require('./config/alias')
 
 module.exports = {
   title: 'Dept Next',
