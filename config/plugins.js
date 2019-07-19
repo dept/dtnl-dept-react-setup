@@ -3,7 +3,6 @@ const withCSS = require('@zeit/next-css')
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
 
 const plugins = [
-  withTypescript,
   withCSS,
   [
     withBundleAnalyzer,

@@ -1,4 +1,4 @@
-import { NextContext } from 'next'
+import { NextPageContext } from 'next'
 import React from 'react'
 
 interface ErrorProps {
@@ -6,7 +6,7 @@ interface ErrorProps {
 }
 
 class MyError extends React.Component<ErrorProps> {
-  static getInitialProps({ res, err }: NextContext) {
+  static getInitialProps({ res, err }: NextPageContext) {
     // @ts-ignore
     const statusCode = res ? res.statusCode : err ? err.statusCode : null
     return { statusCode }

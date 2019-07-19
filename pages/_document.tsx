@@ -1,4 +1,4 @@
-import Document, { Head, Html, Main, NextDocumentContext, NextScript } from 'next/document'
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import * as React from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
     }
   }
 
-  public static async getInitialProps(ctx: NextDocumentContext) {
+  public static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
@@ -26,12 +26,12 @@ export default class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx)
       return {
         ...initialProps,
-        styles: (
-          <>
+        styles: [
+          <React.Fragment key="styles">
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>
-        ),
+          </React.Fragment>,
+        ],
       }
     } finally {
       sheet.seal()

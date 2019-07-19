@@ -1,5 +1,5 @@
 import NextSeo from 'next-seo'
-import App, { Container, NextAppContext } from 'next/app'
+import App, { AppContext,Container } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 
 import { ContextProvider } from '@/context/ContextProvider'
@@ -9,7 +9,7 @@ import { theme } from '@/theme/theme'
 export interface AppProps {}
 
 class MyApp extends App<AppProps> {
-  public static async getInitialProps({ Component, ctx }: NextAppContext) {
+  public static async getInitialProps({ Component, ctx }: AppContext) {
     let pageProps = {}
 
     if (Component.getInitialProps) {

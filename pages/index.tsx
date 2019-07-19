@@ -1,8 +1,8 @@
-import { NextFC } from 'next'
+import { NextPage } from 'next'
 
 import { BaseLayout } from '@/components/templates'
 
-const Page: NextFC = () => {
+const Page: NextPage = () => {
   return <BaseLayout>Index page</BaseLayout>
 }
 

@@ -1,10 +1,9 @@
-const webpack = require('webpack')
 const withPlugins = require('next-compose-plugins')
 
-const { plugins } = require('./plugins')
-const { exportPathMap } = require('./staticPages')
-const { publicRuntimeConfig, serverRuntimeConfig } = require('./runtimeConfig')
-const { setAliasConfig } = require('./alias')
+const { plugins } = require('./config/plugins')
+const { exportPathMap } = require('./config/staticPages')
+const { publicRuntimeConfig, serverRuntimeConfig } = require('./config/runtimeConfig')
+const { setAliasConfig } = require('./config/alias')
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -46,9 +45,6 @@ module.exports = withPlugins(plugins, {
     }
 
     setAliasConfig(config)
-
-    // Overcome webpack referencing `window` in chunks
-    // config.output.globalObject = `(typeof self !== 'undefined' ? self : this)`
 
     return config
   },

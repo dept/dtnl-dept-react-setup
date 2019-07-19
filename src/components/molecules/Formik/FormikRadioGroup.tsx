@@ -1,5 +1,6 @@
 import { FastField } from 'formik'
-import { Omit } from 'next/router'
+
+import { Omit } from '@/utils/types'
 
 import { FieldRadioGroup, FieldRadioGroupProps } from '../Form/FieldRadioGroup'
 import { FormikError } from './FormikError'

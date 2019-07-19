@@ -9,6 +9,6 @@
     { "language": "typescriptreact", "autoFix": true }
   ],
   "json.format.enable": true,
-  "prettier.eslintIntegration": true,
+  "prettier.eslintIntegration": false,
   "prettier.stylelintIntegration": true,
 }

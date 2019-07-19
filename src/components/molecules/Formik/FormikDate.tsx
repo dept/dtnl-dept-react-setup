@@ -1,5 +1,6 @@
 import { FastField } from 'formik'
-import { Omit } from 'next/router'
+
+import { Omit } from '@/utils/types'
 
 import { FieldDate, FieldDateProps } from '../Form/FieldDate'
 import { FormikError } from './FormikError'

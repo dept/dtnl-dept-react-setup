@@ -13,7 +13,7 @@
           },
         },
       }
-    ], "@zeit/next-typescript/babel"],
+    ]],
   "plugins": [
     ["babel-plugin-styled-components"],
     ["inline-react-svg", {

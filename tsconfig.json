@@ -6,8 +6,8 @@
     "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "noEmit": true,
-    "experimentalDecorators": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
@@ -19,6 +19,8 @@
     "target": "esnext",
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "paths": {
       "@static/*": ["./static/*"],
       "@pages/*": ["./pages/*"],

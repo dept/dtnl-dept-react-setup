@@ -1,5 +1,5 @@
 import { FastField } from 'formik'
-import { Omit } from 'next/router'
+import { Omit } from '@/utils/types'
 
 import { FieldCheckBoxGroup, FieldCheckBoxGroupProps } from '../Form/FieldCheckboxGroup'
 import { FormikError } from './FormikError'
