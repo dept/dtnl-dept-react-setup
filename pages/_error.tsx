@@ -7,7 +7,6 @@ interface ErrorProps {
 
 class MyError extends React.Component<ErrorProps> {
   static getInitialProps({ res, err }: NextPageContext) {
-    // @ts-ignore
     const statusCode = res ? res.statusCode : err ? err.statusCode : null
     return { statusCode }
   }
