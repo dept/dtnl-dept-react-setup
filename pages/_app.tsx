@@ -1,5 +1,5 @@
-import NextSeo from 'next-seo'
-import App, { AppContext,Container } from 'next/app'
+import { DefaultSeo } from 'next-seo'
+import App, { AppContext, Container } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 
 import { ContextProvider } from '@/context/ContextProvider'
@@ -24,11 +24,7 @@ class MyApp extends App<AppProps> {
 
     return (
       <Container>
-        <NextSeo
-          config={{
-            titleTemplate: `%s | Dept`,
-          }}
-        />
+        <DefaultSeo titleTemplate={`%s | Dept`} />
         <ContextProvider>
           <ThemeProvider theme={theme}>
             <>
