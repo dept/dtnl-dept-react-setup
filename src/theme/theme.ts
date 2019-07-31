@@ -1,7 +1,38 @@
+import { ThemeGrid } from '@tpdewolf/styled-primitives'
 import { DefaultTheme } from 'styled-components'
+
+import { Colors } from '@/theme/colors'
 
 import { colors } from './colors'
 import { grid } from './grid'
+
+interface SizeLadder {
+  xxxs: number
+  xxs: number
+  xs: number
+  s: number
+  m: number
+  l: number
+  xl: number
+  xxl: number
+}
+
+export interface CustomTheme {
+  breakpoints: string[]
+  fontSizes: SizeLadder
+  colors: Colors
+  space: SizeLadder
+  fonts: {
+    primary: string
+    secondary: string
+  }
+  outline?: string
+  shadows: {
+    small: string
+    large: string
+  }
+  grid: ThemeGrid
+}
 
 export const theme: DefaultTheme = {
   breakpoints: ['40em', '52em', '64em', '80em'],
