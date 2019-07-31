@@ -1,4 +1,5 @@
 import { FastField } from 'formik'
+
 import { Omit } from '@/utils/types'
 
 import { FieldCheckBoxGroup, FieldCheckBoxGroupProps } from '../Form/FieldCheckboxGroup'

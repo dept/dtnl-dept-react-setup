@@ -2406,10 +2406,10 @@
     prop-types "^15.6.2"
     tippy.js "^4.3.4"
 
-"@tpdewolf/styled-primitives@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@tpdewolf/styled-primitives/-/styled-primitives-2.0.4.tgz#00397378b1bedaa56b2f9e046297e9f509260ecc"
-  integrity sha512-nyR+IUgGbzgXGMzSEkR5VaDeDxRhP2mJjXa8gp+UC+jQw0NMBgN0Fz9L8PRoiPCXLF4O0Jzv64NuF8kHHzbIuw==
+"@tpdewolf/styled-primitives@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@tpdewolf/styled-primitives/-/styled-primitives-2.0.5.tgz#84fee0b1cdd59ce97242337d2e853d31285f5d31"
+  integrity sha512-KCHFQsqJ/RCQT/mghb4jUcQ2abxwzfRmiD8tCCm41gfF4LqEuD81MzksRNhcAnLIrneNflunxpm+XI4JuSPq8A==
 
 "@types/body-parser@*":
   version "1.17.0"

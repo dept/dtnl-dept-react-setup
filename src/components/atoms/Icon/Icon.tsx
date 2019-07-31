@@ -31,7 +31,7 @@ import trash from './svgs/trash.svg'
 
 export type IconOption = keyof typeof icons
 
-const icons = {
+export const icons = {
   arrow,
   badge,
   calender,
@@ -87,7 +87,8 @@ export const Icon: FC<IconProps> = ({ size, icon, ...props }) => {
         style={{
           fill: 'currentColor',
         }}
-        width={'100%'}
+        width="100%"
+        height="100%"
       />
     </StyledIconWrapper>
   )

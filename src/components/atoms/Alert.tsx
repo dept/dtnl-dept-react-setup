@@ -1,6 +1,6 @@
 import { Box, BoxProps, Column, Contain, Row, Text } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
@@ -9,7 +9,11 @@ type AlertProps = BoxProps & {
 }
 
 const StyledAlertBox = styled(Box)<AlertProps>`
-  ${({ type }) => (type ? `background-color: ${colors[type]}` : '')};
+  ${({ type }) =>
+    type &&
+    css`
+      background-color: ${colors[type]};
+    `};
 `
 
 export const Alert: FC<AlertProps> = props => (
