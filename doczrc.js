@@ -6,8 +6,8 @@ module.exports = {
   showPlaygroundEditor: false,
   typescript: true,
   port: 3001,
-  menu: ['home', 'components'],
-
+  // menu: ['home', 'components'],
+  wrapper: 'docz/wrapper.jsx',
   modifyBundlerConfig: config => {
     setAliasConfig(config)
     return config
