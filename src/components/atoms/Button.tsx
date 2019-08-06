@@ -5,7 +5,6 @@ import Ink from 'react-ink'
 import styled, { css, DefaultTheme, StyledComponent } from 'styled-components'
 
 import { Loader } from '@/components/molecules/Loader'
-import { colors } from '@/theme/colors'
 import { media } from '@/utils/media'
 
 import { Icon, IconOption } from './Icon'
@@ -88,45 +87,49 @@ const ButtonBase: ButtonBaseType<B> = styled(Box)<ButtonProps>`
 `
 
 ButtonBase.primary = styled(ButtonBase)`
-  color: ${colors.white};
-  background-color: ${colors.primary};
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.primary};
 
   &:hover,
   &:focus {
-    background-color: ${darken(0.2, colors.primary)};
+    background-color: ${darken(0.2, props => props.theme.colors.primary)};
   }
 `
 
 ButtonBase.outline = styled(ButtonBase)`
-  background-color: ${props => (props.selected ? colors.grey.dark : 'transparent')};
-  border: 1px solid ${colors.grey.medium};
-  color: ${props => (props.selected ? colors.white : colors.grey.dark)};
+  background-color: ${props =>
+    props.selected ? props => props.theme.colors.grey.dark : 'transparent'};
+  border: 1px solid ${props => props.theme.colors.grey.medium};
+  color: ${props =>
+    props.selected ? props => props.theme.colors.white : props => props.theme.colors.grey.dark};
 
   ${props =>
-    !props.selected
-      ? `
-        &:hover,&:focus {
-          background-color: transparent;
-          color: ${colors.black};
-          border: 1px solid ${colors.black};
-        }`
-      : ''};
+    !props.selected &&
+    css`
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: ${props.theme.colors.black};
+        border: 1px solid ${props.theme.colors.black};
+      }
+    `}
 `
 
 ButtonBase.secondary = styled(ButtonBase)`
-  background-color: ${props => (props.selected ? colors.grey.dark : 'transparent')};
-  border: 1px solid ${colors.grey.medium};
-  color: ${props => (props.selected ? colors.white : colors.grey.dark)};
+  background-color: ${props => (props.selected ? props.theme.colors.grey.dark : 'transparent')};
+  border: 1px solid ${props => props.theme.colors.grey.medium};
+  color: ${props => (props.selected ? props.theme.colors.white : props.theme.colors.grey.dark)};
 
   ${props =>
-    !props.selected
-      ? `
-        &:hover,&:focus {
-          background-color: transparent;
-          color: ${colors.black};
-          border: 1px solid ${colors.black};
-        }`
-      : ''};
+    !props.selected &&
+    css`
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: ${props.theme.colors.black};
+        border: 1px solid ${props.theme.colors.black};
+      }
+    `}
 `
 
 ButtonBase.clear = styled(ButtonBase)`
@@ -140,9 +143,9 @@ ButtonBase.clear = styled(ButtonBase)`
 `
 
 ButtonBase.disabled = styled(ButtonBase)`
-  background-color: ${colors.grey.lighter};
+  background-color: ${props => props.theme.colors.grey.lighter};
   cursor: not-allowed;
-  color: ${colors.grey.medium};
+  color: ${props => props.theme.colors.grey.medium};
 `
 
 const StyledButtonLabel = styled.span<ButtonProps>`
