@@ -17,6 +17,10 @@ const SectionHeader: React.FC = props => (
   </Card>
 )
 
+const GridExampleBox: React.FC = props => (
+  <Box bg="primary" color="white" p={10} py="l" fontSize={14} {...props} />
+)
+
 const Page: NextPage = () => {
   const modalStore = useModal()
   return (
@@ -26,19 +30,13 @@ const Page: NextPage = () => {
           <SectionHeader>Grid</SectionHeader>
           <Row>
             <Column col={[12, 4]}>
-              <Box bg="primary" color="white" p={10}>
-                1
-              </Box>
+              <GridExampleBox>1</GridExampleBox>
             </Column>
             <Column col={[12, 4]}>
-              <Box bg="primary" color="white" p={10}>
-                2
-              </Box>
+              <GridExampleBox>2</GridExampleBox>
             </Column>
             <Column col={[12, 4]}>
-              <Box bg="primary" color="white" p={10}>
-                3
-              </Box>
+              <GridExampleBox>3</GridExampleBox>
             </Column>
           </Row>
         </Section>

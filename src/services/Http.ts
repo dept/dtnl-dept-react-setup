@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch'
 import qs from 'qs'
 
+import { config } from '@/utils/config'
+
 import { HttpError } from './Errors'
 
 class HttpService {
@@ -9,6 +11,8 @@ class HttpService {
       'Content-Type': 'application/json',
     },
   }
+
+  private baseUrl = config.API_URL
 
   public get = <T = any, I = any>(url: string, params?: I, config?: RequestInit) => {
     let getUrl = url
@@ -48,6 +52,10 @@ class HttpService {
 
     this.setAuthenticationHeaders(options)
 
+    if (!(url.includes('http://') || url.includes('https://'))) {
+      url = this.baseUrl + url
+    }
+
     return fetch(url, options)
       .then(this.handleErrors)
       .then(res => res.json())
@@ -73,7 +81,7 @@ class HttpService {
 
       throw new HttpError({
         message: response.statusText,
-        status: response.status,
+        statusCode: response.status,
         response,
         body,
       })

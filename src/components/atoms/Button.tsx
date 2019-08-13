@@ -92,7 +92,7 @@ ButtonBase.primary = styled(ButtonBase)`
 
   &:hover,
   &:focus {
-    background-color: ${darken(0.2, props => props.theme.colors.primary)};
+    background-color: ${props => darken(0.2, props.theme.colors.primary)};
   }
 `
 
