@@ -1,5 +1,5 @@
 import { Box } from '@tpdewolf/styled-primitives'
-import { InputHTMLAttributes, useState } from 'react'
+import React, { InputHTMLAttributes, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { colors } from '@/theme/colors'

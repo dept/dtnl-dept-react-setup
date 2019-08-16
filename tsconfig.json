@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
     "lib": ["dom", "es2017"],
@@ -38,6 +38,6 @@
       "node_modules",
       "**/*.spec.ts",
       ".next",
-      "server/**/*.*"
+      "server/**/*.*",
   ]
 }

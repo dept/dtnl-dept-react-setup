@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@tpdewolf/styled-primitives'
 import { hideVisually } from 'polished'
-import { HTMLAttributes } from 'react'
+import React, { HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import { colors } from '@/theme/colors'

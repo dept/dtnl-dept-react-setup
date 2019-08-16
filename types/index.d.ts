@@ -24,8 +24,6 @@ declare module '@reach/dialog' {
   export const DialogContent: React.SFC<IDialogContentProps>
 }
 
-declare module 'styled-is'
-
 declare module '*.json' {
   const value: any
   export default value

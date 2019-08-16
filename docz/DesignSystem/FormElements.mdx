@@ -1,0 +1,279 @@
+---
+name: Form Elements
+menu: Design System
+---
+
+import { Playground, Props } from 'docz'
+import { Button } from '@/components/atoms/Button'
+import {
+  FormikCheckBoxGroup,
+  FormikDate,
+  FormikInput,
+  FormikRadioGroup,
+  FormikSelect,
+} from '@/components/molecules/Formik'
+import { Row, Column } from '@tpdewolf/styled-primitives'
+import { Field, Form, Formik } from 'formik'
+
+# Form Elements
+
+This project uses [Formik](https://jaredpalmer.com/formik/) for forms by Jared Palmer.
+This is an example form:
+
+```jsx
+<Formik
+  initialValues={{
+    name: '',
+  }}
+  onSubmit={values => {
+    // same shape as initial values
+    console.log(values)
+  }}>
+  {({ isValid, handleSubmit }) => {
+    return (
+      <Form>
+        <Field name="name" />
+        <Button
+          ml="auto"
+          mr="0px"
+          onClick={() => handleSubmit()}
+          disabled={!isValid}>
+          submit
+        </Button>
+      </Form>
+    )
+  }}
+</Formik>
+```
+
+---
+
+## Input
+
+A form input field
+
+<Playground>
+  <div>
+    <Formik
+      initialValues={{ email: '', name: '' }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+      render={({ isValid, handleSubmit }) => (
+        <Form>
+          <FormikInput
+            type="email"
+            name="email"
+            label="Emailaddress:"
+            placeholder="Email"
+          />
+          <FormikInput
+            type="text"
+            name="name"
+            label="Name:"
+            placeholder="Name here..."
+          />
+          <Button
+            variant="primary"
+            ml="auto"
+            mr="0px"
+            onClick={() => handleSubmit()}
+            disabled={!isValid}>
+            submit
+          </Button>
+        </Form>
+      )}
+    />
+  </div>
+</Playground>
+
+---
+
+## Date Input
+
+A form date input field
+
+<Playground>
+  <div>
+    <Formik
+      initialValues={{ name: '' }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+      render={({ isValid, handleSubmit }) => (
+        <Form>
+          <FormikDate name="name" label="Name:" placeholder="Name here..." />
+          <Button
+            variant="primary"
+            ml="auto"
+            mr="0px"
+            onClick={() => handleSubmit()}
+            disabled={!isValid}>
+            submit
+          </Button>
+        </Form>
+      )}
+    />
+  </div>
+</Playground>
+
+---
+
+## Select
+
+A form select box
+
+<Playground>
+  <div>
+    <Formik
+      initialValues={{ name: '' }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+      render={({ isValid, handleSubmit }) => (
+        <Form>
+          <FormikSelect
+            name="name"
+            options={[
+              { value: 'one', label: 'one' },
+              { value: 'two', label: 'two' },
+              { value: 'three', label: 'three' },
+              { value: 'four', label: 'four' },
+              { value: 'five', label: 'five' },
+            ]}
+          />
+          <Button
+            variant="primary"
+            ml="auto"
+            mr="0px"
+            onClick={() => handleSubmit()}
+            disabled={!isValid}>
+            submit
+          </Button>
+        </Form>
+      )}
+    />
+  </div>
+</Playground>
+
+---
+
+## Radio Buttons
+
+radio buttons for form
+
+<Playground>
+  <div>
+    <Formik
+      initialValues={{ vertical: '', horizontal: '' }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+      render={({ isValid, handleSubmit }) => (
+        <Form>
+          <Row>
+            <Column col={[6]}>
+              <FormikRadioGroup
+                name="vertical"
+                direction="vertical"
+                options={[
+                  { value: 'one', label: 'one' },
+                  { value: 'two', label: 'two' },
+                ]}
+              />
+            </Column>
+            <Column col={[6]}>
+              <FormikRadioGroup
+                name="horizontal"
+                direction="horizontal"
+                options={[
+                  { value: 'three', label: 'three' },
+                  { value: 'four', label: 'four' },
+                ]}
+              />
+            </Column>
+          </Row>
+          <Button
+            variant="primary"
+            ml="auto"
+            mr="0px"
+            onClick={() => handleSubmit()}
+            disabled={!isValid}>
+            submit
+          </Button>
+        </Form>
+      )}
+    />
+  </div>
+</Playground>
+
+---
+
+## Checkboxes
+
+checkboxes for form
+
+<Playground>
+  <div>
+    <Formik
+      initialValues={{
+        horizontal: [],
+        vertical: [],
+      }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+      render={({ handleSubmit, isValid }) => (
+        <Form>
+          <Row>
+            <Column col={[6]}>
+              <FormikCheckBoxGroup
+                name="vertical"
+                direction="vertical"
+                options={[
+                  { value: 'one', label: 'One' },
+                  { value: 'two', label: 'Two' },
+                ]}
+              />
+            </Column>
+            <Column col={[6]}>
+              <FormikCheckBoxGroup
+                name="horizontal"
+                direction="horizontal"
+                options={[
+                  { value: 'three', label: 'Three' },
+                  { value: 'four', label: 'Four' },
+                ]}
+              />
+            </Column>
+          </Row>
+          <Button
+            variant="primary"
+            ml="auto"
+            mr="0px"
+            onClick={handleSubmit}
+            disabled={!isValid}>
+            submit
+          </Button>
+        </Form>
+      )}
+    />
+  </div>
+</Playground>
+
+---
