@@ -1,7 +1,7 @@
 import { Column, Row } from '@tpdewolf/styled-primitives'
-import React from 'react'
+import React, { FC } from 'react'
 
-import { Checkbox, CheckBoxProps } from '@/components/atoms'
+import { Checkbox, CheckBoxProps } from '../../atoms'
 
 interface Option {
   value: string
@@ -13,10 +13,10 @@ export type FieldCheckBoxGroupProps = CheckBoxProps & {
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
   name: string
   direction?: 'horizontal' | 'vertical'
-  value: string | undefined
+  value: string[]
 }
 
-export const FieldCheckBoxGroup: React.FC<FieldCheckBoxGroupProps> = ({
+export const FieldCheckBoxGroup: FC<FieldCheckBoxGroupProps> = ({
   options,
   value,
   direction = 'vertical',
@@ -29,9 +29,9 @@ export const FieldCheckBoxGroup: React.FC<FieldCheckBoxGroupProps> = ({
         return (
           <Column key={index} my={5}>
             <Checkbox
-              name={`${name}[]`}
+              name={name}
               value={option.value}
-              checked={value === option.value}
+              checked={value.includes(option.value)}
               onChange={onChange}
               {...props}>
               {option.label}

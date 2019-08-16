@@ -1,19 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="21px" height="19px" viewBox="0 0 21 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
-    <title>icon / badge</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="modul-/-desktop-/-candidates-list" transform="translate(-484.000000, -100.000000)" stroke="#000000">
-            <g id="icon-/-badge">
-                <g transform="translate(484.000000, 100.000000)">
-                    <path d="M11.875,9.65451389 L15.625,9.65451389" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M11.875,13.4149306 L15.625,13.4149306" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M5.69166667,3.38715278 L1.89166667,3.38715278 C1.19210598,3.38715278 0.625,3.99767357 0.625,4.75078914 L0.625,17.0235164 C0.625,17.776632 1.19210598,18.3871528 1.89166667,18.3871528 L18.3583333,18.3871528 C19.057894,18.3871528 19.625,17.776632 19.625,17.0235164 L19.625,4.75078914 C19.625,3.99767357 19.057894,3.38715278 18.3583333,3.38715278 L14.5583333,3.38715278" id="Path" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <rect id="Rectangle" stroke-linecap="round" stroke-linejoin="round" x="4.375" y="9.65451389" width="4" height="4"></rect>
-                    <path d="M8.5,5.5 L11.5,5.5 L11.5,1.8 C11.5,1.09446239 10.8394862,0.5 10,0.5 C9.16051376,0.5 8.5,1.09446239 8.5,1.8 L8.5,5.5 Z" id="Path"></path>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg width="21" height="19"
+  xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#000" fill="none" fill-rule="evenodd">
+    <path d="M11.875 9.655h3.75M11.875 13.415h3.75M5.692 3.387h-3.8c-.7 0-1.267.61-1.267 1.364v12.273c0 .753.567 1.363 1.267 1.363h16.466c.7 0 1.267-.61 1.267-1.363V4.75c0-.753-.567-1.364-1.267-1.364h-3.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.375 9.655h4v4h-4z"/>
+    <path d="M8.5 5.5h3V1.8c0-.706-.66-1.3-1.5-1.3s-1.5.594-1.5 1.3v3.7z"/>
+  </g>
 </svg>

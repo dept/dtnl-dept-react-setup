@@ -18,7 +18,7 @@ module.exports = {
     config.module.rules.splice(index, 1)
 
     config.module.rules.push({
-      test: /\\.(svg)(\\?.*)?$/,
+      test: /\.svg$/,
       use: [
         'babel-loader',
         {

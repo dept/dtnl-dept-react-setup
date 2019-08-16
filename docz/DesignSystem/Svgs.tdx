@@ -1,0 +1,31 @@
+---
+name: Svgs
+menu: Design System
+---
+
+import { Playground, Props } from 'docz'
+import { Box, Flex, Text } from '@tpdewolf/styled-primitives'
+import { Icon, icons } from '@/components/atoms/Icon'
+
+# Button
+
+## Basic usage
+
+<Playground>
+
+    <Flex>
+        {Object.keys(icons).filter(icon => !icon.includes('__')).map((key, i) => {
+            return (
+                <Box key={`${key}-${i}`} height={110} width={100}>
+                    <Flex flexDirection="column" alignItems="center">
+                    <Icon size={24} icon={key} color="black" />
+                        <Text as="span" style={{ fontSize: '1.4rem', marginTop: 5, display: 'block' }}>
+                            {key}
+                        </Text>
+                    </Flex>
+                </Box>
+            )
+        })}
+    </Flex>
+
+</Playground>
