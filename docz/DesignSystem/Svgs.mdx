@@ -13,7 +13,7 @@ import { Icon, icons } from '@/components/atoms/Icon'
 
 <Playground>
 
-    <Flex>
+    <Flex flexWrap="wrap">
         {Object.keys(icons).filter(icon => !icon.includes('__')).map((key, i) => {
             return (
                 <Box key={`${key}-${i}`} height={110} width={100}>
