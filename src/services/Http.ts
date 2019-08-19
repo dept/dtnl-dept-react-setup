@@ -58,7 +58,7 @@ class HttpService {
 
     return fetch(url, options)
       .then(this.handleErrors)
-      .then(res => res.json())
+      .then(res => (res.status === 204 ? res : res.json()))
       .catch((err: HttpError) => {
         throw err
       })
