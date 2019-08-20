@@ -1,16 +1,15 @@
 import { Box, BoxProps } from '@tpdewolf/styled-primitives'
-import { darken } from 'polished'
 import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
-import styled, { css, DefaultTheme, StyledComponent } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Loader } from '@/components/molecules/Loader'
+import { buttons } from '@/theme'
 import { media } from '@/utils/media'
 
 import { Icon, IconOption } from './Icon'
 
 type ButtonElements = 'button' | 'a'
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'clear' | 'disabled'
 
 interface ConditionalProps {
   as: ButtonElements
@@ -20,7 +19,7 @@ interface ConditionalProps {
 export type ButtonProps = BoxProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     as?: ButtonElements
-    variant?: ButtonVariant
+    variant?: keyof typeof buttons
     size?: 'small' | 'normal'
     disabled?: boolean
     iconReverse?: boolean
@@ -60,16 +59,11 @@ const sizeStyles: StyleFunction = props => `
   }
 `
 
-type B = StyledComponent<'div', DefaultTheme, ButtonProps, never>
-
-type ButtonBaseType<T> = T & { [key in ButtonVariant]?: T }
-
-const ButtonBase: ButtonBaseType<B> = styled(Box)<ButtonProps>`
+const ButtonBase = styled(Box)<ButtonProps>`
   display: inline-flex;
   justify-content: center;
   cursor: pointer;
   border: none;
-  padding: 0 20px;
   position: relative;
   user-select: none;
 
@@ -84,68 +78,6 @@ const ButtonBase: ButtonBaseType<B> = styled(Box)<ButtonProps>`
   ${props => sizeStyles(props)}
   ${props => (props.inline ? 'display: inline-flex' : '')};
   ${props => (props.block ? 'display: block; width: 100%;' : '')};
-`
-
-ButtonBase.primary = styled(ButtonBase)`
-  color: ${props => props.theme.colors.white};
-  background-color: ${props => props.theme.colors.primary};
-
-  &:hover,
-  &:focus {
-    background-color: ${props => darken(0.2, props.theme.colors.primary)};
-  }
-`
-
-ButtonBase.outline = styled(ButtonBase)`
-  background-color: ${props =>
-    props.selected ? props => props.theme.colors.grey.dark : 'transparent'};
-  border: 1px solid ${props => props.theme.colors.grey.medium};
-  color: ${props =>
-    props.selected ? props => props.theme.colors.white : props => props.theme.colors.grey.dark};
-
-  ${props =>
-    !props.selected &&
-    css`
-      &:hover,
-      &:focus {
-        background-color: transparent;
-        color: ${props.theme.colors.black};
-        border: 1px solid ${props.theme.colors.black};
-      }
-    `}
-`
-
-ButtonBase.secondary = styled(ButtonBase)`
-  background-color: ${props => (props.selected ? props.theme.colors.grey.dark : 'transparent')};
-  border: 1px solid ${props => props.theme.colors.grey.medium};
-  color: ${props => (props.selected ? props.theme.colors.white : props.theme.colors.grey.dark)};
-
-  ${props =>
-    !props.selected &&
-    css`
-      &:hover,
-      &:focus {
-        background-color: transparent;
-        color: ${props.theme.colors.black};
-        border: 1px solid ${props.theme.colors.black};
-      }
-    `}
-`
-
-ButtonBase.clear = styled(ButtonBase)`
-  padding: 0;
-  height: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  width: inherit;
-  background-color: transparent;
-  color: #000;
-`
-
-ButtonBase.disabled = styled(ButtonBase)`
-  background-color: ${props => props.theme.colors.grey.lighter};
-  cursor: not-allowed;
-  color: ${props => props.theme.colors.grey.medium};
 `
 
 const StyledButtonLabel = styled.span<ButtonProps>`
@@ -175,14 +107,8 @@ export const Button: React.FC<ButtonProps> = ({
     conditionalProps.type = type
   }
 
-  if (disabled) {
-    variant = 'disabled'
-  }
-
-  const ButtonComponent = ButtonBase[variant]!
-
   return (
-    <ButtonComponent
+    <ButtonBase
       {...conditionalProps}
       variant={variant}
       fontWeight="bold"
@@ -210,6 +136,6 @@ export const Button: React.FC<ButtonProps> = ({
           </StyledButtonLabel>
         </>
       )}
-    </ButtonComponent>
+    </ButtonBase>
   )
 }
