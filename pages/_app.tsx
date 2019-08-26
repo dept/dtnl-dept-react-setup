@@ -1,5 +1,5 @@
 import { DefaultSeo } from 'next-seo'
-import App, { AppContext, Container } from 'next/app'
+import App, { AppContext } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 
 import { ContextProvider } from '@/context/ContextProvider'
@@ -23,7 +23,7 @@ class MyApp extends App<AppProps> {
     const { Component, pageProps } = this.props
 
     return (
-      <Container>
+      <>
         <DefaultSeo titleTemplate={`%s | Dept`} />
         <ContextProvider>
           <ThemeProvider theme={theme}>
@@ -33,7 +33,7 @@ class MyApp extends App<AppProps> {
             </>
           </ThemeProvider>
         </ContextProvider>
-      </Container>
+      </>
     )
   }
 }

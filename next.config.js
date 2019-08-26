@@ -11,16 +11,10 @@ module.exports = withPlugins(plugins, {
   exportPathMap,
   publicRuntimeConfig,
   serverRuntimeConfig,
+  compression: false, // true to enable gzipping
   webpack(config, options) {
     if (!options.isServer) {
       const CircularDependencyPlugin = require('circular-dependency-plugin')
-
-      config.module.rules.push({
-        test: /\.(tsx?|gql|graphql)$/,
-        loader: 'eslint-loader',
-        exclude: ['/node_modules/', '/.next/'],
-        enforce: 'pre',
-      })
 
       config.plugins.push(
         new CircularDependencyPlugin({

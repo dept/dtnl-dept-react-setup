@@ -63,20 +63,23 @@ const StyledHyperlinkLabel = styled.span<HyperlinkProps>`
       : ''}
 `
 
-export const Hyperlink: React.FC<HyperlinkProps> = props => {
-  const { children, icon, color, href, iconColor, underline } = props
-  return (
-    <StyledHyperlink as="a" href={href} {...props}>
-      <StyledHyperlinkLabel color={color} underline={underline}>
-        <Flex alignItems="center" height="100%" as="span">
-          {icon && (
-            <Box pr={'xxs'} as="span">
-              <Icon size={16} icon={icon} color={iconColor} />
-            </Box>
-          )}
-          {children}
-        </Flex>
-      </StyledHyperlinkLabel>
-    </StyledHyperlink>
-  )
+// this is a class component because Hyperlinks often need a ref, and function components require React.forwardRef to forward refs
+export class Hyperlink extends React.Component<HyperlinkProps> {
+  render() {
+    const { children, icon, color, href, iconColor, underline, ...props } = this.props
+    return (
+      <StyledHyperlink as="a" href={href} {...props}>
+        <StyledHyperlinkLabel color={color} underline={underline}>
+          <Flex alignItems="center" height="100%" as="span">
+            {icon && (
+              <Box pr={'xxs'} as="span">
+                <Icon size={16} icon={icon} color={iconColor} />
+              </Box>
+            )}
+            {children}
+          </Flex>
+        </StyledHyperlinkLabel>
+      </StyledHyperlink>
+    )
+  }
 }

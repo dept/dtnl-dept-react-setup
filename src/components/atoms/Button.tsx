@@ -89,53 +89,59 @@ const StyledButtonLabel = styled.span<ButtonProps>`
   ${props => props.iconReverse && 'flex-direction: row-reverse;'}
 `
 
-export const Button: React.FC<ButtonProps> = ({
-  as = 'button',
-  icon,
-  children,
-  variant = 'primary',
-  justify = 'center',
-  size = 'normal',
-  type = 'button',
-  ripple = true,
-  loading,
-  disabled,
-  ...props
-}) => {
-  const conditionalProps: ConditionalProps = { as }
-  if (as === 'button') {
-    conditionalProps.type = type
-  }
+// this is a class component because Buttons often need a ref, and function components require React.forwardRef to forward refs
+export class Button extends React.Component<ButtonProps> {
+  render() {
+    const {
+      as = 'button',
+      icon,
+      children,
+      variant = 'primary',
+      justify = 'center',
+      size = 'normal',
+      type = 'button',
+      ripple = true,
+      loading,
+      disabled,
+      ...props
+    } = this.props
 
-  return (
-    <ButtonBase
-      {...conditionalProps}
-      variant={variant}
-      fontWeight="bold"
-      disabled={disabled || loading}
-      size={size}
-      {...props}>
-      {variant === 'clear' ? (
-        children
-      ) : (
-        <>
-          {ripple && <Ink />}
-          <StyledButtonLabel size={size} justify={justify}>
-            {loading ? (
-              <Loader color={'white'} size={50} />
-            ) : (
-              <>
-                <span>{children}</span>
-                {icon && (
-                  <Box pl="xxs">
-                    <Icon size={18} icon={icon} />
-                  </Box>
-                )}
-              </>
-            )}
-          </StyledButtonLabel>
-        </>
-      )}
-    </ButtonBase>
-  )
+    const conditionalProps: ConditionalProps = { as }
+
+    if (as === 'button') {
+      conditionalProps.type = type
+    }
+
+    return (
+      <ButtonBase
+        {...conditionalProps}
+        variant={variant}
+        fontWeight="bold"
+        disabled={disabled || loading}
+        size={size}
+        {...props}>
+        {variant === 'clear' ? (
+          children
+        ) : (
+          <>
+            {ripple && <Ink />}
+            <StyledButtonLabel size={size} justify={justify}>
+              {loading ? (
+                <Loader color={'white'} size={50} />
+              ) : (
+                <>
+                  <span>{children}</span>
+                  {icon && (
+                    <Box pl="xxs">
+                      <Icon size={18} icon={icon} />
+                    </Box>
+                  )}
+                </>
+              )}
+            </StyledButtonLabel>
+          </>
+        )}
+      </ButtonBase>
+    )
+  }
 }
