@@ -120,9 +120,7 @@ const Page: NextPage = () => {
 
           <Button onClick={() => modalStore.show('uniqueModalId')}>Open modal</Button>
 
-          <Modal
-            isOpen={modalStore.isShown('uniqueModalId')}
-            onDismiss={() => modalStore.hide('uniqueModalId')}>
+          <Modal id="uniqueModalId">
             <Box p={50}>This is a modal</Box>
           </Modal>
         </Section>

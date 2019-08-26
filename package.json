@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon",
     "build": "next build",
-    "build:server": "tsc --project tsconfig.server.json --outDir ./",
     "export": "next export",
     "postbuild": "tsc --project tsconfig.server.json",
     "type-check": "tsc --noEmit",
