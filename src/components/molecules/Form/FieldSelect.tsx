@@ -1,7 +1,7 @@
 import { Box } from '@tpdewolf/styled-primitives'
 import React, { FocusEventHandler } from 'react'
 import Select from 'react-select'
-import { ValueType } from 'react-select/lib/types'
+import { ValueType } from 'react-select/src/types'
 import styled from 'styled-components'
 
 import { IconButton } from '@/components/atoms'
@@ -132,8 +132,8 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({
         classNamePrefix="reactselect"
         isDisabled={disabled}
         isSearchable
-        placeholder={placeholder || label || 'Selecteer'}
-        noOptionsMessage={() => 'Geen opties'}
+        placeholder={placeholder || label || 'Select'}
+        noOptionsMessage={() => 'No options'}
         isClearable={isClearable}
         value={options.find(item => item.value === value)}
         options={options}

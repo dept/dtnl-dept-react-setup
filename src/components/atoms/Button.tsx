@@ -1,11 +1,10 @@
 import { Box, BoxProps } from '@tpdewolf/styled-primitives'
 import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { Loader } from '@/components/molecules/Loader'
 import { buttons } from '@/theme'
-import { media } from '@/utils/media'
 
 import { Icon, IconOption } from './Icon'
 
@@ -38,7 +37,7 @@ type StyleFunction = (props: ButtonProps) => string
 const sizeStyles: StyleFunction = props => `
   ${
     props.size === 'small'
-      ? css`
+      ? `
           height: 50px;
           font-size: 16px;
         `
@@ -47,13 +46,9 @@ const sizeStyles: StyleFunction = props => `
 
   ${
     props.size === 'normal'
-      ? css`
+      ? `
           height: 50px;
           font-size: 16px;
-
-          ${media.min('tablet')} {
-            font-size: 20px;
-          }
         `
       : ''
   }
@@ -75,7 +70,7 @@ const ButtonBase = styled(Box)<ButtonProps>`
     cursor: not-allowed;
   }
 
-  ${props => sizeStyles(props)}
+  ${sizeStyles}
   ${props => (props.inline ? 'display: inline-flex' : '')};
   ${props => (props.block ? 'display: block; width: 100%;' : '')};
 `
