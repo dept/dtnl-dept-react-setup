@@ -58,35 +58,43 @@ class HttpService {
 
     return fetch(url, options)
       .then(this.handleErrors)
-      .then(res => (res.status === 204 ? res : res.json()))
+      .then(res => {
+        if (res.status === 204 || res.status === 201) {
+          return res
+        }
+
+        return res.json()
+      })
       .catch((err: HttpError) => {
         throw err
       })
   }
 
   private async handleErrors(response: Response) {
-    if (!response.ok) {
-      if (response.status === 401) {
-        // logout
-      }
-
-      const responseBody = await response.text()
-      let body: any = response
-
-      try {
-        body = JSON.parse(responseBody)
-      } catch {
-        body = responseBody
-      }
-
-      throw new HttpError({
-        message: response.statusText,
-        statusCode: response.status,
-        response,
-        body,
-      })
+    if (response.ok) {
+      return response
     }
-    return response
+
+    if (response.status === 401) {
+      // User is not authenticated
+      // logout
+    }
+
+    const responseBody = await response.text()
+    let body: any = response
+
+    try {
+      body = JSON.parse(responseBody)
+    } catch {
+      body = responseBody
+    }
+
+    throw new HttpError({
+      message: response.statusText,
+      statusCode: response.status,
+      response,
+      body,
+    })
   }
 }
 
