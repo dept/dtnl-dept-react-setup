@@ -1,7 +1,7 @@
 import { DialogContent, DialogOverlay } from '@reach/dialog'
 import { Box, Heading } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
-import { animated, useSpring, useTransition } from 'react-spring/web.cjs'
+import { animated, useTransition } from 'react-spring/web.cjs'
 import styled from 'styled-components'
 
 import { Button, IconButton } from '@/components/atoms'
@@ -42,11 +42,18 @@ const Content = styled(DialogContent)`
 `
 
 export const Modal: FC<ModalProps> = ({ children, id }) => {
+  const transitionDuration = 200
+
   const modalStore = useModal()
   const modal = modalStore.getModal(id)
 
-  const contentTransition = useSpring({
-    transform: modal && modal.isShown ? 'translate3d(0, 0px, 0)' : 'translate3d(0, 40px, 0)',
+  const contentTransitions = useTransition(modal && modal.isShown, null, {
+    from: { transform: 'translate3d(0, 40px, 0)' },
+    enter: { transform: 'translate3d(0, 0, 0)' },
+    leave: { transform: 'translate3d(0, 40px, 0)' },
+    config: {
+      duration: transitionDuration,
+    },
   })
 
   const overlayTransitions = useTransition(modal && modal.isShown, null, {
@@ -54,7 +61,7 @@ export const Modal: FC<ModalProps> = ({ children, id }) => {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
     config: {
-      duration: 200,
+      duration: transitionDuration,
     },
   })
 
@@ -74,33 +81,46 @@ export const Modal: FC<ModalProps> = ({ children, id }) => {
     <>
       {modal &&
         overlayTransitions.map(
-          ({ item, key, props }) =>
-            item && (
-              <AnimatedOverlay style={props} key={key} onDismiss={onDismiss}>
-                <animated.div style={contentTransition}>
-                  <Content>
-                    {modal.isClosable && (
-                      <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
-                        <IconButton
-                          aria-label="Close"
-                          onClick={onDismiss}
-                          size={25}
-                          icon="closeLight"
-                        />
-                      </Box>
-                    )}
+          overlayTransition =>
+            overlayTransition.item && (
+              <AnimatedOverlay
+                style={overlayTransition.props}
+                key={overlayTransition.key}
+                onDismiss={onDismiss}>
+                {contentTransitions.map(
+                  contentTransition =>
+                    contentTransition.item && (
+                      <animated.div style={contentTransition.props} key={contentTransition.key}>
+                        <Content>
+                          {modal.isClosable && (
+                            <Box
+                              top={0}
+                              right={0}
+                              zIndex={99}
+                              position="absolute"
+                              p={['xs', 'xs', 's']}>
+                              <IconButton
+                                aria-label="Close"
+                                onClick={onDismiss}
+                                size={25}
+                                icon="closeLight"
+                              />
+                            </Box>
+                          )}
 
-                    {modal.title && <Heading>{modal.title}</Heading>}
+                          {modal.title && <Heading>{modal.title}</Heading>}
 
-                    {modal.content}
+                          {modal.content}
 
-                    {children}
+                          {children}
 
-                    {modal.callback && modal.callbackLabel && (
-                      <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
-                    )}
-                  </Content>
-                </animated.div>
+                          {modal.callback && modal.callbackLabel && (
+                            <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
+                          )}
+                        </Content>
+                      </animated.div>
+                    ),
+                )}
               </AnimatedOverlay>
             ),
         )}
