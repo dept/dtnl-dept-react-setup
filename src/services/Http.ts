@@ -25,6 +25,7 @@ export class HttpError extends Error {
 }
 
 type RequestFn<T = any, I = any> = (url: string, data?: I, config?: RequestInit) => Promise<T>
+type UnauthenticatedHandler = () => any
 
 class HttpService {
   private defaultOptions: RequestInit = {
@@ -34,6 +35,7 @@ class HttpService {
   }
 
   private baseUrl = config.API_URL
+  private unauthenticatedHandler: UnauthenticatedHandler = () => {}
 
   public get: RequestFn = (url, params, config) => {
     let getUrl = url
@@ -73,6 +75,9 @@ class HttpService {
     return options
   }
 
+  public setUnauthenticatedHandler = (handler: UnauthenticatedHandler) =>
+    (this.unauthenticatedHandler = handler)
+
   public request<T>(url: string, opts: RequestInit = {}): Promise<T> {
     const options: RequestInit = {
       ...this.defaultOptions,
@@ -101,8 +106,7 @@ class HttpService {
     }
 
     if (response.status === 401) {
-      // User is not authenticated
-      // logout
+      this.unauthenticatedHandler()
     }
 
     const responseBody = await response.text()
