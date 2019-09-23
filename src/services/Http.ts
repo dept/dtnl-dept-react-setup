@@ -3,7 +3,28 @@ import qs from 'qs'
 
 import { config } from '@/utils/config'
 
-import { HttpError } from './Errors'
+export interface HttpErrorInput {
+  message: string
+  statusCode: number
+  response?: Response
+  body?: any
+}
+
+export class HttpError extends Error {
+  statusCode: number
+  response?: Response
+  body?: any
+
+  constructor(input: HttpErrorInput) {
+    super(input.message)
+    this.response = input.response
+    this.statusCode = input.statusCode
+    this.body = input.body
+    this.name = 'HttpError'
+  }
+}
+
+type RequestFn<T = any, I = any> = (url: string, data?: I, config?: RequestInit) => Promise<T>
 
 class HttpService {
   private defaultOptions: RequestInit = {
@@ -14,28 +35,37 @@ class HttpService {
 
   private baseUrl = config.API_URL
 
-  public get = <T = any, I = any>(url: string, params?: I, config?: RequestInit) => {
+  public get: RequestFn = (url, params, config) => {
     let getUrl = url
     if (params) {
       getUrl = url + '?' + qs.stringify(params)
     }
 
-    return this.request<T>('GET', getUrl, config)
+    return this.request(getUrl, {
+      ...config,
+      method: 'GET',
+    })
   }
-  public post = <T = any, I = any>(url: string, data: I, config?: RequestInit) =>
-    this.request<T>('POST', url, {
-      body: JSON.stringify(data),
+
+  public post: RequestFn = (url, data, config) =>
+    this.request(url, {
       ...config,
+      method: 'POST',
+      body: JSON.stringify(data),
     })
-  public put = <T = any, I = any>(url: string, data: I, config?: RequestInit) =>
-    this.request<T>('PUT', url, {
-      body: JSON.stringify(data),
+
+  public put: RequestFn = (url, data, config) =>
+    this.request(url, {
       ...config,
+      method: 'PUT',
+      body: JSON.stringify(data),
     })
-  public delete = <T = any, I = any>(url: string, data?: I, config?: RequestInit) =>
-    this.request<T>('DELETE', url, {
-      body: JSON.stringify(data),
+
+  public delete: RequestFn = (url, data, config) =>
+    this.request(url, {
       ...config,
+      method: 'DELETE',
+      body: JSON.stringify(data),
     })
 
   public setAuthenticationHeaders(options: RequestInit) {
@@ -43,9 +73,8 @@ class HttpService {
     return options
   }
 
-  private request<T>(method: string, url: string, opts: RequestInit = {}): Promise<T> {
+  public request<T>(url: string, opts: RequestInit = {}): Promise<T> {
     const options: RequestInit = {
-      method,
       ...this.defaultOptions,
       ...opts,
     }
@@ -62,11 +91,7 @@ class HttpService {
         if (res.status === 204 || res.status === 201) {
           return res
         }
-
         return res.json()
-      })
-      .catch((err: HttpError) => {
-        throw err
       })
   }
 
@@ -89,12 +114,14 @@ class HttpService {
       body = responseBody
     }
 
-    throw new HttpError({
-      message: response.statusText,
+    const error = {
+      message: `HttpError: ${response.status} - ${response.statusText}`,
       statusCode: response.status,
       response,
       body,
-    })
+    }
+    console.error(error)
+    throw new HttpError(error)
   }
 }
 
