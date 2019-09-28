@@ -24,8 +24,10 @@ export class HttpError extends Error {
   }
 }
 
-type RequestFn<T = any, I = any> = (url: string, data?: I, config?: RequestInit) => Promise<T>
+type RequestOptions = RequestInit & { json?: boolean }
+type RequestFn = <T = any, I = any>(url: string, data?: I, config?: RequestOptions) => Promise<T>
 type UnauthenticatedHandler = () => any
+type Token = string | undefined
 
 class HttpService {
   private defaultOptions: RequestInit = {
@@ -36,6 +38,7 @@ class HttpService {
 
   private baseUrl = config.API_URL
   private unauthenticatedHandler: UnauthenticatedHandler = () => {}
+  private token: Token = undefined
 
   public get: RequestFn = (url, params, config) => {
     let getUrl = url
@@ -70,15 +73,24 @@ class HttpService {
       body: JSON.stringify(data),
     })
 
-  public setAuthenticationHeaders(options: RequestInit) {
+  private setAuthenticationHeaders(options: RequestInit) {
     // if authenticated set bearer token
+    if (this.token) {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${this.token}`,
+      }
+    }
+
     return options
   }
+
+  public setToken = (token: Token) => (this.token = token)
 
   public setUnauthenticatedHandler = (handler: UnauthenticatedHandler) =>
     (this.unauthenticatedHandler = handler)
 
-  public request<T>(url: string, opts: RequestInit = {}): Promise<T> {
+  public request<T>(url: string, opts: RequestOptions = {}): Promise<T> {
     const options: RequestInit = {
       ...this.defaultOptions,
       ...opts,
@@ -94,6 +106,9 @@ class HttpService {
       .then(this.handleErrors)
       .then(res => {
         if (res.status === 204 || res.status === 201) {
+          return res
+        }
+        if (opts.json === false) {
           return res
         }
         return res.json()
