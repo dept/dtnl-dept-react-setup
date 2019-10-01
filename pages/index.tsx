@@ -3,11 +3,13 @@ import { Form, Formik } from 'formik'
 import { NextPage } from 'next'
 import * as Yup from 'yup'
 
-import { Button, Icon, icons } from '@/components/atoms'
+import { Button, Icon, icons, Link } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput, FormikSelect } from '@/components/molecules/Formik'
 import { BaseLayout } from '@/components/templates'
 import { useModal } from '@/context/ModalContext'
+
+import { Hyperlink } from '../src/components/atoms/Hyperlink'
 
 const Section: React.FC = props => <Box p={30} {...props} />
 
@@ -15,6 +17,10 @@ const SectionHeader: React.FC = props => (
   <Card borderBottom="1px solid" borderColor="primary" mb={30}>
     <Heading {...props} />
   </Card>
+)
+
+const GridExampleBox: React.FC = props => (
+  <Box bg="primary" color="white" p={10} py="l" fontSize={14} {...props} />
 )
 
 const Page: NextPage = () => {
@@ -26,19 +32,13 @@ const Page: NextPage = () => {
           <SectionHeader>Grid</SectionHeader>
           <Row>
             <Column col={[12, 4]}>
-              <Box bg="primary" color="white" p={10}>
-                1
-              </Box>
+              <GridExampleBox>1</GridExampleBox>
             </Column>
             <Column col={[12, 4]}>
-              <Box bg="primary" color="white" p={10}>
-                2
-              </Box>
+              <GridExampleBox>2</GridExampleBox>
             </Column>
             <Column col={[12, 4]}>
-              <Box bg="primary" color="white" p={10}>
-                3
-              </Box>
+              <GridExampleBox>3</GridExampleBox>
             </Column>
           </Row>
         </Section>
@@ -122,9 +122,7 @@ const Page: NextPage = () => {
 
           <Button onClick={() => modalStore.show('uniqueModalId')}>Open modal</Button>
 
-          <Modal
-            isOpen={modalStore.isShown('uniqueModalId')}
-            onDismiss={() => modalStore.hide('uniqueModalId')}>
+          <Modal id="uniqueModalId">
             <Box p={50}>This is a modal</Box>
           </Modal>
         </Section>
@@ -139,6 +137,12 @@ const Page: NextPage = () => {
               </Box>
             ))}
           </Flex>
+        </Section>
+
+        <Section>
+          <Link href="/about" passHref>
+            <Hyperlink>This is a link</Hyperlink>
+          </Link>
         </Section>
       </Contain>
     </BaseLayout>

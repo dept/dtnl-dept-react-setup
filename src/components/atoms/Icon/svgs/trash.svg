@@ -1,19 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="15px" height="18px" viewBox="0 0 15 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
-    <title>icon / trash</title>
-    <desc>Created with Sketch.</desc>
-    <g id="B.1.2a-Job-Detail-(UX✅-/-VD✅))" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="B.1.2a-Job-Detail" transform="translate(-79.000000, -2005.000000)" stroke="#E84810">
-            <g id="icon-/-trash" transform="translate(79.000000, 2004.000000)">
-                <g>
-                    <path d="M0.566981733,5.5 L2.2056372,18.5 L12.7943628,18.5 L14.4330183,5.5 L0.566981733,5.5 Z" id="Rectangle"></path>
-                    <rect id="Rectangle" fill="#D8D8D8" x="0.5" y="3.5" width="14" height="1"></rect>
-                    <rect id="Rectangle-Copy-2" fill="#D8D8D8" x="4.5" y="1.5" width="6" height="1"></rect>
-                    <rect id="Rectangle-Copy-15" fill="#D8D8D8" x="4.5" y="1.5" width="1" height="1"></rect>
-                    <rect id="Rectangle-Copy-16" fill="#D8D8D8" x="10.5" y="1.5" width="1" height="1"></rect>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg width="15" height="18" viewBox="0 0 15 18"
+  xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#E84810" fill="none" fill-rule="evenodd">
+    <path d="M.567 4.5l1.639 13h10.588l1.639-13H.567z"/>
+    <path fill="#D8D8D8" d="M.5 2.5h14v1H.5zM4.5.5h6v1h-6z"/>
+    <path fill="#D8D8D8" d="M4.5.5h1v1h-1zM10.5.5h1v1h-1z"/>
+  </g>
 </svg>

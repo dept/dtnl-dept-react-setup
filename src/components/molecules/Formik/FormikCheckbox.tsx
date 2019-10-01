@@ -1,4 +1,5 @@
 import { FastField } from 'formik'
+import React from 'react'
 
 import { Checkbox, CheckBoxProps } from '@/components/atoms'
 

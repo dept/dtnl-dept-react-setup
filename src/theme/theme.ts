@@ -1,70 +1,80 @@
 import { ThemeGrid } from '@tpdewolf/styled-primitives'
+import { darken } from 'polished'
 import { DefaultTheme } from 'styled-components'
-
-import { Colors } from '@/theme/colors'
 
 import { colors } from './colors'
 import { grid } from './grid'
 
-interface SizeLadder {
-  xxxs: number
-  xxs: number
-  xs: number
-  s: number
-  m: number
-  l: number
-  xl: number
-  xxl: number
+const fontSizes = {
+  xxxs: 12,
+  xxs: 16,
+  xs: 20,
+  s: 30,
+  m: 40,
+  l: 60,
+  xl: 80,
+  xxl: 100,
+}
+
+const space = {
+  xxxs: 8,
+  xxs: 10,
+  xs: 20,
+  s: 40,
+  m: 60,
+  l: 80,
+  xl: 100,
+  xxl: 120,
+}
+
+export const buttons = {
+  primary: {
+    padding: '0 20px',
+    backgroundColor: colors.primary,
+    color: colors.white,
+    ['&:hover, &:focus']: {
+      backgroundColor: darken(0.2, colors.primary),
+    },
+  },
+  secondary: {
+    padding: '0 20px',
+    border: '1px solid',
+    borderColor: colors.primary,
+    color: colors.black,
+  },
+  clear: {},
+}
+
+const fonts = {
+  primary: 'Work Sans, sans-serif',
+  secondary: 'Helvetica',
+}
+
+const shadows = {
+  small: '0 0 4px rgba(0, 0, 0, .125)',
+  large: '0 0 24px rgba(0, 0, 0, .125)',
 }
 
 export interface CustomTheme {
   breakpoints: string[]
-  fontSizes: SizeLadder
-  colors: Colors
-  space: SizeLadder
-  fonts: {
-    primary: string
-    secondary: string
-  }
+  fontSizes: typeof fontSizes
+  colors: typeof colors
+  space: typeof space
+  fonts: typeof fonts
+  shadows: typeof shadows
+  buttons: typeof buttons
   outline?: string
-  shadows: {
-    small: string
-    large: string
-  }
   grid: ThemeGrid
 }
 
 export const theme: DefaultTheme = {
   breakpoints: ['40em', '52em', '64em', '80em'],
-  fontSizes: {
-    xxxs: 12,
-    xxs: 16,
-    xs: 20,
-    s: 30,
-    m: 40,
-    l: 60,
-    xl: 80,
-    xxl: 100,
-  },
-  space: {
-    xxxs: 8,
-    xxs: 10,
-    xs: 20,
-    s: 40,
-    m: 60,
-    l: 80,
-    xl: 100,
-    xxl: 120,
-  },
-  fonts: {
-    primary: 'Work Sans, sans-serif',
-    secondary: 'Helvetica',
-  },
-  shadows: {
-    small: '0 0 4px rgba(0, 0, 0, .125)',
-    large: '0 0 24px rgba(0, 0, 0, .125)',
-  },
+  fontSizes,
+  space,
+  fonts,
+  shadows,
   outline: `5px auto #5E9ED6`,
   colors,
+  buttons,
   grid,
 }

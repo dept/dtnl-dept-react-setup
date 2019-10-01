@@ -1,4 +1,5 @@
 import { FastField } from 'formik'
+import React, { FC } from 'react'
 
 import { Omit } from '@/utils/types'
 
@@ -7,7 +8,7 @@ import { FormikError } from './FormikError'
 
 type FormikCheckBoxGroupProps = Omit<FieldCheckBoxGroupProps, 'onChange' | 'value'>
 
-export const FormikCheckBoxGroup: React.FC<FormikCheckBoxGroupProps> = ({ name, ...props }) => {
+export const FormikCheckBoxGroup: FC<FormikCheckBoxGroupProps> = ({ name, ...props }) => {
   return (
     <>
       <FastField
@@ -18,8 +19,7 @@ export const FormikCheckBoxGroup: React.FC<FormikCheckBoxGroupProps> = ({ name, 
             {...field}
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
               const target = e.currentTarget
-              const newValue = [...field.values[name]] || []
-
+              const newValue = [...field.value] || []
               if (target.checked) {
                 newValue.push(target.value)
               } else {

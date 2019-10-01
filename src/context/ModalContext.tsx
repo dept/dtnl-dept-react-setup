@@ -1,19 +1,23 @@
 import React, { useContext, useMemo, useState } from 'react'
 
-interface ModalStatus {
+interface ModalOptions {
   isShown?: boolean
+  isClosable?: boolean
+  title?: any
+  content?: any
+  callback?: () => void
+  callbackLabel?: string
 }
 
 interface ModalsState {
-  [key: string]: ModalStatus
+  [key: string]: ModalOptions
 }
 
 export interface ModalContextStore {
   hide: (key: string) => void
-  show: (key: string, bool?: boolean) => void
-  setContent: (content: any) => void
+  show: (key: string, options?: ModalOptions) => void
   isShown: (key: string) => boolean
-  content: any
+  getModal: (key: string) => ModalOptions
 }
 
 export const ModalContext = React.createContext({} as ModalContextStore)
@@ -22,13 +26,8 @@ export const useModal = () => useContext(ModalContext)
 
 export const ModalContextProvider: React.FC = props => {
   const [modals, setModals] = useState<ModalsState>({})
-  const [content, setContent] = useState<any>()
 
-  function hide(key: string) {
-    show(key, false)
-  }
-
-  function show(key: string, bool: boolean = true) {
+  function changeModals(key: string, show: boolean, options?: ModalOptions) {
     // copy current state
     const copy = {
       ...modals,
@@ -36,22 +35,29 @@ export const ModalContextProvider: React.FC = props => {
 
     // set all modals to false
     Object.keys(copy).forEach(modalKey => (copy[modalKey].isShown = false))
-    copy[key] = { isShown: bool }
+    copy[key] = { isShown: show, isClosable: true, ...options }
 
     setModals(copy)
   }
 
-  function isShown(key: string) {
-    return Boolean(modals[key] && modals[key].isShown)
+  const hide: ModalContextStore['hide'] = key => {
+    changeModals(key, false)
   }
+
+  const show: ModalContextStore['show'] = (key, options = {}) => {
+    changeModals(key, true, options)
+  }
+
+  const isShown: ModalContextStore['isShown'] = key => Boolean(modals[key] && modals[key].isShown)
+
+  const getModal: ModalContextStore['getModal'] = key => modals[key]
 
   const store: ModalContextStore = useMemo(() => {
     return {
       hide,
       show,
-      setContent,
+      getModal,
       isShown,
-      content,
     }
   }, [modals])
 

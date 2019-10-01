@@ -1,5 +1,6 @@
 import { Box, Text } from '@tpdewolf/styled-primitives'
 import { ErrorMessage } from 'formik'
+import React from 'react'
 
 import { colors } from '@/theme/colors'
 

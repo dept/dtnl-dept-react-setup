@@ -1,19 +1,19 @@
 export interface HttpErrorInput {
   message: string
-  response: Response
-  status: number
-  body: any
+  statusCode: number
+  response?: Response
+  body?: any
 }
 
 export class HttpError extends Error {
-  response: Response
-  status: number
-  body: any
+  statusCode: number
+  response?: Response
+  body?: any
 
   constructor(input: HttpErrorInput) {
     super(input.message)
     this.response = input.response
-    this.status = input.status
+    this.statusCode = input.statusCode
     this.body = input.body
     this.name = 'HttpError'
   }

@@ -1,0 +1,33 @@
+---
+name: Colors
+menu: Design System
+---
+
+import { colors } from '@/theme/colors'
+import { Contain, Box, Flex, Text } from '@tpdewolf/styled-primitives'
+
+import { Playground } from 'docz'
+
+# Colors (in progress)
+
+<Playground>
+  <Flex flexWrap="wrap" justifyContent="flex-start" alignItems="center">
+    {Object.keys(colors).filter(color => !color.includes('__')).map((color, i) => {
+      if (typeof colors[color] !== 'string') {
+        return;
+      }
+
+      return (
+        <Box key={`${color}-${i}`} height={110} width={100}>
+          <Flex flexDirection="column" alignItems="center">
+            <Box bg={color} height={70} width={70} />
+            <Text as="span" style={{ fontSize: '1.4rem', marginTop: 5, display: 'block' }}>
+              {color}
+            </Text>
+          </Flex>
+        </Box>
+      )
+    })}
+
+  </Flex>
+</Playground>

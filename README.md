@@ -10,6 +10,20 @@
 - Run `yarn dev` to start the dev server
 - Run `yarn build && yarn start` to start the production server
 
+## To deploy and build this project on a test environment or production server using a CI tool
+
+- Run `yarn build` to make a production build
+- Run `yarn build:server` to build files to the root (required by CI tooling)
+- Run `rm -rf node_modules` to remove devDependencies
+- Run `yarn --prod` to build only production dependencies
+- Create `web.config` file in the root where you fill in a bunch or stuff and run node index.js:
+```
+<handlers>
+    <add name=“iisnode” path=“index.js” verb=“*” modules=“iisnode”/>
+</handler
+```
+- For questions: wesley.ronda@deptagency.com
+
 ## Next.js
 
 This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are *routing* and *server side data fetching*. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example

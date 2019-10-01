@@ -38,6 +38,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'simple-import-sort/sort': 'warn',
     'import/named': 'off',
+    'import/namespace': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     // 'react-hooks/rules-of-hooks': 'error',
     // 'react-hooks/exhaustive-deps': 'warn',
