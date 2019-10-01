@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Alert } from '../'
+import { Alert } from '../Alert'
 
 export default { title: 'Alert' }
 

@@ -1,5 +1,8 @@
 import { configure, addDecorator } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
+import { ThemeProvider } from 'styled-components'
+
+import { theme } from '@/theme'
 
 addDecorator(
   withInfo({
@@ -8,4 +11,7 @@ addDecorator(
     propTables: false,
   }),
 )
+
+addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
+
 configure(require.context('../src', true, /\.stories\.tsx$/), module)
