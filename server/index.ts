@@ -1,8 +1,6 @@
 import express from 'express'
 import next from 'next'
 
-import { createRoutes } from './router'
-
 const port = process.env.PORT || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -13,10 +11,7 @@ app
   .then(() => {
     const server = express()
 
-    server.use(createRoutes(app))
-
     server.get('*', (req, res) => handle(req, res))
-
     server.listen(port, (err?: Error) => {
       if (err) {
         throw err
