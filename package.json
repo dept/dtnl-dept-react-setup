@@ -12,7 +12,7 @@
     "lint-fix": "eslint src/ pages/ server/ --ext .ts,.tsx --fix",
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "generate": "hygen generator",
-    "docz": "docz dev"
+    "storybook": "start-storybook"
   },
   "author": "Dept",
   "contributors": [
@@ -25,9 +25,6 @@
       "email": "robby.uitbeijerse@deptagency.com"
     }
   ],
-  "resolutions": {
-    "docz/**/webpack": "4.28.4"
-  },
   "license": "ISC",
   "dependencies": {
     "@reach/dialog": "^0.2.9",
@@ -111,9 +108,6 @@
     "babel-preset-react-app": "^9.0.1",
     "circular-dependency-plugin": "^5.2.0",
     "cross-env": "^5.2.0",
-    "docz": "^1.2.0",
-    "docz-knobs": "^0.1.1",
-    "docz-theme-default": "^1.2.0",
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-import": "^2.18.2",
@@ -126,6 +120,7 @@
     "nodemon": "^1.19.1",
     "opn": "^6.0.0",
     "prettier": "^1.18.2",
+    "react-docgen-typescript-loader": "^3.3.0",
     "react-svg-loader": "^3.0.3",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
