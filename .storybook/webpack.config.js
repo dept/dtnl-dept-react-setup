@@ -1,5 +1,4 @@
 const { setAliasConfig } = require('../config/alias')
-const path = require('path')
 
 module.exports = ({ config }) => {
   config.module.rules.push({
@@ -15,11 +14,6 @@ module.exports = ({ config }) => {
         loader: require.resolve('react-docgen-typescript-loader'),
         options: {
           propFilter: props => {
-            if (!props.parent) {
-              console.log(props)
-              return true
-            }
-
             if (props.parent) {
               if (props.parent.fileName.includes('styled-system')) {
                 return false
@@ -30,7 +24,6 @@ module.exports = ({ config }) => {
               if (props.parent.name === 'HTMLAttributes') return false
             }
 
-            if (props) console.log(props)
             return true
           },
         },
