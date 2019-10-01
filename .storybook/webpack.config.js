@@ -1,4 +1,4 @@
-const { setAliasConfig } = require('../next.config.js/alias')
+const { setAliasConfig } = require('../config/alias')
 
 module.exports = ({ config }) => {
   config.module.rules.push({
