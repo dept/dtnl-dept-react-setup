@@ -1,5 +1,5 @@
 ---
-to: pages/<%= name %>.tsx
+to: src/pages/<%= name %>.tsx
 ---
 <% classified = h.inflection.classify(name) -%>
 import { NextPage, NextPageContext } from 'next'

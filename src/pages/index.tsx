@@ -3,13 +3,12 @@ import { Form, Formik } from 'formik'
 import { NextPage } from 'next'
 import * as Yup from 'yup'
 
-import { Button, Icon, icons, Link } from '@/components/atoms'
+import { Button, Hyperlink, Icon, icons, Link } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput, FormikSelect } from '@/components/molecules/Formik'
+import { RichTextEditor } from '@/components/organisms/RichTextEditor'
 import { BaseLayout } from '@/components/templates'
 import { useModal } from '@/context/ModalContext'
-
-import { Hyperlink } from '../src/components/atoms/Hyperlink'
 
 const Section: React.FC = props => <Box p={30} {...props} />
 
@@ -143,6 +142,11 @@ const Page: NextPage = () => {
           <Link href="/about" passHref>
             <Hyperlink>This is a link</Hyperlink>
           </Link>
+        </Section>
+
+        <Section>
+          <SectionHeader>Rich Text Editor</SectionHeader>
+          <RichTextEditor></RichTextEditor>
         </Section>
       </Contain>
     </BaseLayout>
