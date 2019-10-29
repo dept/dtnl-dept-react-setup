@@ -12,22 +12,22 @@ type FormikCheckboxProps = CheckBoxProps & {
 export const FormikCheckbox: React.FC<FormikCheckboxProps> = ({ name, children, ...props }) => {
   return (
     <>
-      <FastField
-        name={name}
-        render={({ field, form: { touched, errors, values, setFieldValue } }: any) => {
+      <FastField name={name}>
+        {({ field, form: { touched, errors, values, setFieldValue } }) => {
           return (
             <Checkbox
               {...props}
               {...field}
               hasError={touched[name] && errors[name]}
-              value={true}
+              value={'true'}
               checked={values[name]}
               onChange={e => setFieldValue(name, e.currentTarget.checked)}>
               {children}
             </Checkbox>
           )
         }}
-      />
+      </FastField>
+
       <FormikError name={name} />
     </>
   )

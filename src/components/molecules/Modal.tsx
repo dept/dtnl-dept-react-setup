@@ -91,7 +91,7 @@ export const Modal: FC<ModalProps> = ({ children, id }) => {
                   contentTransition =>
                     contentTransition.item && (
                       <animated.div style={contentTransition.props} key={contentTransition.key}>
-                        <Content>
+                        <Content aria-label={modal.title || 'Dialog'}>
                           {modal.isClosable && (
                             <Box
                               top={0}

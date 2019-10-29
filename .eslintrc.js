@@ -30,6 +30,7 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
     'prettier/prettier': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',

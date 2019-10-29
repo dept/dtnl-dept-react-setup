@@ -11,22 +11,22 @@ type FormikInput = FieldInputProps & {
 export const FormikInput: React.FC<FormikInput> = ({ name, ...props }) => {
   return (
     <>
-      <FastField
-        name={name}
-        render={({ field, form: { touched, errors, setFieldValue } }: any) => {
+      <FastField name={name}>
+        {({ field, form: { touched, errors, setFieldValue } }) => {
           return (
             <FieldInput
               {...props}
               {...field}
-              hasError={touched[name] && errors[name]}
+              hasError={Boolean(touched[name] && errors[name])}
               onClear={() => {
                 setFieldValue(name, '')
-                field.onBlur()
+                field.onBlur(undefined)
               }}
             />
           )
         }}
-      />
+      </FastField>
+
       <FormikError name={name} />
     </>
   )

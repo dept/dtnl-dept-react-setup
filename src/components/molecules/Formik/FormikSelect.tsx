@@ -11,21 +11,23 @@ type FormikSelectProps = FieldSelectProps & {
 export const FormikSelect: React.FC<FormikSelectProps> = ({ name, ...props }) => {
   return (
     <>
-      <FastField
-        name={name}
-        render={({ field, form: { touched, errors, setFieldValue, setFieldTouched } }: any) => (
-          <FieldSelect
-            {...props}
-            {...field}
-            onBlur={() => setFieldTouched(name, true)}
-            onChange={option => {
-              // @ts-ignore
-              setFieldValue(name, option && !Array.isArray(option) && option.value)
-            }}
-            hasError={touched[name] && errors[name]}
-          />
-        )}
-      />
+      <FastField name={name}>
+        {({ field, form: { touched, errors, setFieldValue, setFieldTouched } }) => {
+          return (
+            <FieldSelect
+              {...props}
+              {...field}
+              onBlur={() => setFieldTouched(name, true)}
+              onChange={option => {
+                // @ts-ignore
+                setFieldValue(name, option && !Array.isArray(option) && option.value)
+              }}
+              hasError={Boolean(touched[name] && errors[name])}
+            />
+          )
+        }}
+      </FastField>
+
       <FormikError name={name} />
     </>
   )
