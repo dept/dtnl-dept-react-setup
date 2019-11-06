@@ -50,7 +50,9 @@ const StyledInput = styled.input<InputProps>`
     `};
 `
 
-const InputWrapper = styled.div<InputProps & { hasFocus: boolean }>`
+type InputWrapperProps = InputProps & { hasFocus: boolean }
+
+const InputWrapper = styled.div<InputWrapperProps>`
   color: ${props => props.color || 'black'};
   border: 1px solid ${colors.grey.light};
   border-radius: 4px;
@@ -62,7 +64,8 @@ const InputWrapper = styled.div<InputProps & { hasFocus: boolean }>`
   ${props =>
     props.hasFocus &&
     css`
-      outline: ${props => props.theme.outline || 'inherit'};
+      outline: none;
+      box-shadow: ${props.theme.shadows.outline || 'inherit'};
       border-color: ${colors.grey.medium};
     `};
 

@@ -63,7 +63,8 @@ const ButtonBase = styled(Box)<ButtonProps>`
   user-select: none;
 
   &:focus {
-    outline: ${props => props.theme.outline || 'inherit'};
+    outline: none;
+    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
 
   &:disabled {
