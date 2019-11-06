@@ -1,3 +1,5 @@
+import '@static/fonts/fonts.css'
+
 import { DefaultSeo } from 'next-seo'
 import App, { AppContext } from 'next/app'
 import { ThemeProvider } from 'styled-components'

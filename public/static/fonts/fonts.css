@@ -1,0 +1,11 @@
+@font-face {
+	font-family: Work Sans;
+	src: url("/static/fonts/work-sans-v4-latin-regular.eot"), url("/static/fonts/work-sans-v4-latin-regular.woff2"), url("/static/fonts/work-sans-v4-latin-regular.woff"), url("/static/fonts/work-sans-v4-latin-regular.ttf"), url("/static/fonts/work-sans-v4-latin-regular.svg");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Work Sans;
+	src: url("/static/fonts/work-sans-v4-latin-500.eot"), url("/static/fonts/work-sans-v4-latin-500.woff2"), url("/static/fonts/work-sans-v4-latin-500.woff"), url("/static/fonts/work-sans-v4-latin-500.ttf"), url("/static/fonts/work-sans-v4-latin-500.svg");
+	font-weight: bold;
+}
