@@ -28,7 +28,7 @@ const Page: NextPage = () => {
     <BaseLayout>
       <Contain>
         <Section>
-          <SectionHeader>Grid</SectionHeader>
+          <SectionHeader>HMR works!!!</SectionHeader>
           <Row>
             <Column col={[12, 4]}>
               <GridExampleBox>1</GridExampleBox>

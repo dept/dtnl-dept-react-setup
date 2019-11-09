@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Alert } from '../Alert'
+import { Alert } from '.'
 
-export default { title: 'Alert' }
+export default { title: 'Atoms|Alert', component: Alert }
 
 export const withSuccess = () => <Alert type="succes">Succes alert</Alert>
 export const withWarning = () => <Alert type="warning">Succes warning</Alert>

@@ -2,7 +2,7 @@ import { Box, BoxProps, Flex } from '@tpdewolf/styled-primitives'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Icon, IconOption } from './Icon'
+import { Icon, IconOption } from '../Icon'
 
 type HyperlinkProps = BoxProps & {
   icon?: IconOption

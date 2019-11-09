@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Label } from './Form/Label'
+import { Label } from '../Form/Label'
 
 const TOGGLE_HEIGHT = '25px'
 

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Icon, IconOption } from './Icon'
+import { Icon, IconOption } from '../Icon'
 
 type ButtonElements = 'button' | 'a' | 'span'
 

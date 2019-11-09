@@ -3,10 +3,10 @@ import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
 import styled from 'styled-components'
 
-import { Loader } from '@/components/molecules/Loader'
 import { buttons } from '@/theme'
 
-import { Icon, IconOption } from './Icon'
+import { Icon, IconOption } from '../Icon'
+import { Loader } from '../Loader'
 
 type ButtonElements = 'button' | 'a'
 

@@ -41,16 +41,7 @@ interface Props {
 }
 
 export class Skeleton extends Component<Props> {
-  public static defaultProps = {
-    count: 1,
-    duration: 1.2,
-    width: null,
-    wrapper: null,
-    height: null,
-    circle: false,
-  }
-
-  public render() {
+  render() {
     const { count = 1 } = this.props
 
     const elements = []
@@ -86,4 +77,14 @@ export class Skeleton extends Component<Props> {
       </span>
     )
   }
+}
+
+// @ts-ignore
+Skeleton.defaultProps = {
+  count: 1,
+  duration: 1.2,
+  width: null,
+  wrapper: null,
+  height: null,
+  circle: false,
 }
