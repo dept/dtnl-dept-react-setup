@@ -1,14 +1,12 @@
 import { NextPage } from 'next'
 import React from 'react'
 
-import { BaseLayout } from '@/components/templates'
-
 interface PageProps {
   postId: string
 }
 
 const Page: NextPage<PageProps> = ({ postId }) => {
-  return <BaseLayout>Blog post with id {postId}</BaseLayout>
+  return <div>Blog post with id {postId}</div>
 }
 
 Page.getInitialProps = async ctx => {

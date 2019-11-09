@@ -4,6 +4,7 @@ import { DefaultSeo } from 'next-seo'
 import App, { AppContext } from 'next/app'
 import { ThemeProvider } from 'styled-components'
 
+import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
@@ -31,7 +32,9 @@ class MyApp extends App<AppProps> {
           <ThemeProvider theme={theme}>
             <>
               <GlobalStyle />
-              <Component {...pageProps} />
+              <BaseLayout>
+                <Component {...pageProps} />
+              </BaseLayout>
             </>
           </ThemeProvider>
         </ContextProvider>
