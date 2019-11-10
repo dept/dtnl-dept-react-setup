@@ -23,7 +23,7 @@ const SectionHeader: React.FC = props => (
 )
 
 const GridExampleBox: React.FC = props => (
-  <Box bg="primary" color="white" p={10} py="l" my={5} fontSize={14} {...props} />
+  <Box bg="primary" color="white" p={15} my={5} fontSize={14} {...props} />
 )
 
 const Page: NextPage = () => {
