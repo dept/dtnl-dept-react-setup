@@ -17,7 +17,7 @@ const TooltipElement = styled(Box)`
   padding: 15px;
   transform: translateX(-50%);
   max-width: 250px;
-  margin-bottom: 10px;
+  margin: 10px 0;
   transition: opacity 0.2s linear;
   pointer-events: none;
 `
@@ -31,6 +31,7 @@ const Trigger = styled.button`
   outline: none;
   padding: 0;
   vertical-align: middle;
+  position: relative;
 `
 
 export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, trigger }) => {
@@ -45,7 +46,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, t
     <Manager>
       <Reference>
         {({ ref }) => (
-          <div
+          <span
             role="presentation"
             ref={ref}
             onClick={() => setActive(!active)}
@@ -60,7 +61,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, t
                 </Flex>
               </Trigger>
             )}
-          </div>
+          </span>
         )}
       </Reference>
       <Popper placement={placement}>

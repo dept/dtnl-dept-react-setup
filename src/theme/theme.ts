@@ -42,7 +42,11 @@ export const buttons = {
     borderColor: colors.primary,
     color: colors.black,
   },
-  clear: {},
+  clear: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    padding: 0,
+  },
 }
 
 const fonts = {

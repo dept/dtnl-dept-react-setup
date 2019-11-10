@@ -5,7 +5,7 @@ import { Switch } from '.'
 
 export default { title: 'Atoms|Switch', decorators: [withKnobs] }
 
-export const component = () => {
+export const example = () => {
   return (
     <Switch
       label={{

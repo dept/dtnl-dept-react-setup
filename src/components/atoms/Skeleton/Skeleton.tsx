@@ -64,6 +64,7 @@ export class Skeleton extends Component<Props> {
     }
 
     const Wrapper: any = this.props.wrapper
+
     return (
       <span>
         {Wrapper

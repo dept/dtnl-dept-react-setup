@@ -10,19 +10,19 @@ export type FieldInputProps = InputProps & {
   name: string
 }
 
-const InputWrapper = styled(Box)`
+const FieldInputWrapper = styled(Box)`
   position: relative;
 `
 
 export const FieldInput: React.FC<FieldInputProps> = ({ label, ...props }) => {
   return (
-    <InputWrapper>
+    <FieldInputWrapper>
       {label && (
         <Label htmlFor={props.name} color={props.color || colors.grey.medium}>
           {label}
         </Label>
       )}
       <Input {...props} id={props.name} />
-    </InputWrapper>
+    </FieldInputWrapper>
   )
 }

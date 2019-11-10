@@ -4,8 +4,8 @@ unless_exists: true
 ---
 import React from 'react'
 
-import { <%= Name %> } from '.'
+import { <%= Name %> } from './<%= Name %>'
 
 export default { title: '<%= h.capitalize(h.inflection.pluralize(kind)) %>|<%= Name %>', component: <%= Name %> }
 
-export const example = () => <<%= Name %> />
+export const example = () => <<%= Name %>></<%= Name %>>

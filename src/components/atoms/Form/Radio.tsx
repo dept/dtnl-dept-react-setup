@@ -33,7 +33,8 @@ const Circle = styled.div`
     border-width: 6px;
   }
   input:focus + & {
-    outline: ${props => props.theme.outline || 'inherit'};
+    outline: none;
+    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
 `
 
