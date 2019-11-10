@@ -66,7 +66,8 @@ const HiddenInput = styled.input`
   }
 
   &:focus ~ ${SwitchBackground} {
-    outline: -webkit-focus-ring-color auto 5px;
+    outline: none;
+    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
 `
 

@@ -47,7 +47,8 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
   cursor: pointer;
 
   &:focus {
-    outline: ${props => props.theme.outline || 'inherit'};
+    outline: none;
+    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
 `
 
