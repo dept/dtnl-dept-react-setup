@@ -22,7 +22,8 @@ export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
   }
 
   const defaultStyle = {
-    transition: `opacity ${duration}ms 100ms, height ${duration}ms ease-out`,
+    transition: `opacity ${duration}ms 100ms, height ${duration}ms`,
+    'transition-timing-function': 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
   }
 
   return (

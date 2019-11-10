@@ -25,6 +25,7 @@ const Overlay = styled(DialogOverlay)<{ isShown: boolean }>`
   overflow: auto;
   z-index: 99;
   transition: opacity ${duration}ms 50ms;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   opacity: ${props => (props.isShown ? 1 : 0)};
 `
 
@@ -37,6 +38,7 @@ const Content = styled(DialogContent)`
   position: absolute;
   bottom: 0;
   transition: opacity ${duration}ms, transform ${duration}ms;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
 
   ${media.min('tablet')} {
     position: relative;
