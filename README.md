@@ -37,6 +37,7 @@ if (process.browser) {
 ## Generator
 
 The project includes generators for components en context provider. Simply run either:
+
 - `yarn generate page about`
 - `yarn generate component Slider`
 - `yarn generate context User`
