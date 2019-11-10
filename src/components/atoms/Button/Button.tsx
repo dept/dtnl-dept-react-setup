@@ -58,7 +58,6 @@ const ButtonBase = styled(Box)<ButtonProps>`
   display: inline-flex;
   justify-content: center;
   cursor: pointer;
-  border: none;
   position: relative;
   user-select: none;
 
