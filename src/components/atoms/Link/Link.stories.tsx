@@ -1,13 +1,12 @@
 import React from 'react'
 
-import { Hyperlink } from '../Hyperlink'
 import { Link } from './Link'
 
 export default { title: 'Atoms|Link', component: Link }
 
 export const example = () => (
   <Link href="/">
-    <Hyperlink underline>Go to page</Hyperlink>
+    <a>Go to page</a>
   </Link>
 )
 
