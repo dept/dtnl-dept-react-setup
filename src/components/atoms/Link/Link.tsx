@@ -2,7 +2,7 @@ import { default as NextLink, LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-export const Link: React.FC<LinkProps> = props => <NextLink passHref {...props} />
+export const Link = NextLink
 
 type ActiveLinkProps = LinkProps & {
   activeClassName?: string
