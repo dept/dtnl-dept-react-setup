@@ -30,6 +30,7 @@ export type ButtonProps = BoxProps &
     selected?: boolean
     ripple?: boolean
     href?: string
+    target?: string
   }
 
 type StyleFunction = (props: ButtonProps) => string
@@ -111,7 +112,6 @@ export class Button extends React.Component<ButtonProps> {
       <ButtonBase
         {...conditionalProps}
         variant={variant}
-        fontWeight="bold"
         disabled={disabled || loading}
         size={size}
         {...props}>

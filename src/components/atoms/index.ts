@@ -13,4 +13,4 @@ export * from './Switch'
 export * from './Tooltip'
 export * from './Image'
 export * from './Reveal'
-
+export * from './ButtonLink'
