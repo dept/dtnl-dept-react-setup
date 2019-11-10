@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
-import { Hyperlink, Link } from '@/components/atoms'
+import { Hyperlink } from '@/components/atoms'
 
 interface PageProps {}
 
@@ -38,9 +38,9 @@ const Page: NextPage<PageProps> = () => {
           {blogPosts.map(item => {
             return (
               <li key={item.id}>
-                <Link href="/blog/[postId]" as={`/blog/${item.id}`}>
-                  <Hyperlink>{item.title}</Hyperlink>
-                </Link>
+                <Hyperlink href="/blog/[postId]" as={`/blog/${item.id}`}>
+                  {item.title}
+                </Hyperlink>
               </li>
             )
           })}

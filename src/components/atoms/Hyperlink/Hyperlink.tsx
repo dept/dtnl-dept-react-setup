@@ -1,12 +1,13 @@
 import { Box, BoxProps, Flex } from '@tpdewolf/styled-primitives'
+import { LinkProps } from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 
 import { Icon, IconOption } from '../Icon'
+import { Link } from '../Link'
 
-type HyperlinkProps = BoxProps & {
+interface HyperLinkElementProps {
   icon?: IconOption
-  href?: string
   underline?: boolean
   iconColor?: string
   color?: string
@@ -14,13 +15,15 @@ type HyperlinkProps = BoxProps & {
   block?: boolean
 }
 
-const StyledHyperlink = styled(Box)<HyperlinkProps>`
+type HyperlinkProps = BoxProps & Pick<LinkProps, 'href' | 'as' | 'prefetch'> & HyperLinkElementProps
+
+const HyperlinkWrapper = styled(Box)<HyperLinkElementProps>`
   display: inline-block;
   text-decoration: none;
   ${({ block }) => (block ? 'display: block;' : '')}
 `
 
-const StyledHyperlinkLabel = styled.span<HyperlinkProps>`
+const HyperlinkLabel = styled.span<HyperLinkElementProps>`
   color: ${({ color, theme }) => color || theme.colors.primary};
 
   &:hover {
@@ -66,20 +69,22 @@ const StyledHyperlinkLabel = styled.span<HyperlinkProps>`
 // this is a class component because Hyperlinks often need a ref, and function components require React.forwardRef to forward refs
 export class Hyperlink extends React.Component<HyperlinkProps> {
   render() {
-    const { children, icon, color, href, iconColor, underline, ...props } = this.props
+    const { children, icon, color, href, as, iconColor, underline, ...props } = this.props
     return (
-      <StyledHyperlink as="a" href={href} {...props}>
-        <StyledHyperlinkLabel color={color} underline={underline}>
-          <Flex alignItems="center" height="100%" as="span">
-            {icon && (
-              <Box pr={'xxs'} as="span">
-                <Icon size={16} icon={icon} color={iconColor} />
-              </Box>
-            )}
-            {children}
-          </Flex>
-        </StyledHyperlinkLabel>
-      </StyledHyperlink>
+      <Link href={href} as={as} passHref>
+        <HyperlinkWrapper as="a" {...props}>
+          <HyperlinkLabel color={color} underline={underline}>
+            <Flex alignItems="center" height="100%" as="span">
+              {icon && (
+                <Box pr={'xxs'} as="span">
+                  <Icon size={16} icon={icon} color={iconColor} />
+                </Box>
+              )}
+              {children}
+            </Flex>
+          </HyperlinkLabel>
+        </HyperlinkWrapper>
+      </Link>
     )
   }
 }
