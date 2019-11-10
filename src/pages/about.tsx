@@ -1,12 +1,22 @@
+import { Box, Heading, Text } from '@tpdewolf/styled-primitives'
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import React from 'react'
-
-import { BaseLayout } from '@/components/templates'
 
 interface PageProps {}
 
 const Page: NextPage<PageProps> = () => {
-  return <BaseLayout>About</BaseLayout>
+  return (
+    <>
+      <NextSeo title="About" />
+      <Box>
+        <Heading as="h1" color="primary">
+          About
+        </Heading>
+        <Text as="p">This is the about page</Text>
+      </Box>
+    </>
+  )
 }
 
 Page.getInitialProps = async () => {

@@ -56,6 +56,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
   color: ${props => props.color || 'black'};
   border: 1px solid ${colors.grey.light};
   border-radius: 4px;
+  position: relative;
 
   &:hover {
     border-color: ${colors.grey.medium};
@@ -75,6 +76,10 @@ const InputWrapper = styled.div<InputWrapperProps>`
       color: ${colors.error};
       border-color: ${colors.error} !important;
     `};
+`
+
+const ClearableWrapper = styled(Box)`
+  transform: translateY(-50%);
 `
 
 export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props }) => {
@@ -99,7 +104,7 @@ export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props
         }}
       />
       {clearable && props.value && (
-        <Box position="absolute" right={0} top={24}>
+        <ClearableWrapper position="absolute" right={10} top="50%">
           <IconButton
             type="button"
             aria-label="Wissen"
@@ -108,7 +113,7 @@ export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props
             size={15}
             onClick={onClear}
           />
-        </Box>
+        </ClearableWrapper>
       )}
     </InputWrapper>
   )

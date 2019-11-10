@@ -35,7 +35,8 @@ const Check = styled.div<{ hasError: boolean }>`
     background-color: ${colors.black};
   }
   input:focus + & {
-    outline: ${props => props.theme.outline || 'inherit'};
+    outline: none;
+    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
 
   ${props =>

@@ -11,7 +11,7 @@ import { Omit } from '@/utils/types'
 import { FieldInput, FieldInputProps } from './FieldInput'
 
 export type FieldDateProps = Omit<FieldInputProps, 'onChange' | 'value'> & {
-  value: string | undefined
+  value?: string | undefined
   onChange: (date: string) => void
   onClose?: () => void
 }

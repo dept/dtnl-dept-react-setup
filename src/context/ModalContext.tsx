@@ -24,7 +24,7 @@ export const ModalContext = React.createContext({} as ModalContextStore)
 export const ModalContextConsumer = ModalContext.Consumer
 export const useModal = () => useContext(ModalContext)
 
-export const ModalContextProvider: React.FC = props => {
+export const ModalContextProvider: React.FC = ({ children }) => {
   const [modals, setModals] = useState<ModalsState>({})
 
   function changeModals(key: string, show: boolean, options?: ModalOptions) {
@@ -61,5 +61,5 @@ export const ModalContextProvider: React.FC = props => {
     }
   }, [modals])
 
-  return <ModalContext.Provider {...props} value={store} />
+  return <ModalContext.Provider value={store}>{children}</ModalContext.Provider>
 }

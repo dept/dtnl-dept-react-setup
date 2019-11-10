@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@tpdewolf/styled-primitives'
+import { Box, Contain, Flex, Heading, Text } from '@tpdewolf/styled-primitives'
 
 import { Modal } from '../molecules'
 import { Footer, Header } from '../organisms'
@@ -10,15 +10,16 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
     <Flex flexDirection="column" height="100vh">
       <Header />
       <Box as="main" flex={'1 0 auto'} display="block">
-        {children}
+        <Contain>{children}</Contain>
       </Box>
+      <Footer />
+
       <Modal id="error">
         <Box p={60}>
-          <Heading mb={30}>Er is iets misgegaan!</Heading>
-          <Text>Er ging iets mis met je verzoek. Probeer het opnieuw op ververs de pagina.</Text>
+          <Heading mb={30}>Oops!</Heading>
+          <Text>Somethign went wrong. Try to refresh the page</Text>
         </Box>
       </Modal>
-      <Footer />
     </Flex>
   )
 }
