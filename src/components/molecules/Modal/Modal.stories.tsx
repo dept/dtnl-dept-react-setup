@@ -13,7 +13,7 @@ export default {
     (storyFn: any) => {
       return (
         <>
-          <ModalButton />
+          <ModalButton>Open modal</ModalButton>
           {storyFn()}
         </>
       )
@@ -22,9 +22,9 @@ export default {
   component: Modal,
 }
 
-const ModalButton = () => {
+const ModalButton: React.FC = ({ children }) => {
   const modalStore = useModal()
-  return <Button onClick={() => modalStore.show('storybook')}>Open modal</Button>
+  return <Button onClick={() => modalStore.show('storybook')}>{children}</Button>
 }
 
 export const component = () => {
