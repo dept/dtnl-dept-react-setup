@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@tpdewolf/styled-primitives'
-import React, { ButtonHTMLAttributes } from 'react'
+import React, { ButtonHTMLAttributes, Component } from 'react'
 import Ink from 'react-ink'
 import styled from 'styled-components'
 
@@ -85,7 +85,7 @@ const StyledButtonLabel = styled.span<ButtonProps>`
 `
 
 // this is a class component because Buttons often need a ref, and function components require React.forwardRef to forward refs
-export class Button extends React.Component<ButtonProps> {
+export class Button extends Component<ButtonProps> {
   render() {
     const {
       as = 'button',

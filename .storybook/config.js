@@ -9,6 +9,7 @@ import { Box } from '@tpdewolf/styled-primitives'
 
 addDecorator(
   withInfo({
+    source: false,
     inline: true,
     header: false, // Global configuration for the info addon across all of your stories.
   }),

@@ -55,7 +55,6 @@ const Content = styled(DialogContent)`
     opacity: 1;
     transform: translateY(0);
   }
-
   &.modal-exit {
     opacity: 1;
     transform: translateY(0);
@@ -88,20 +87,29 @@ export const Modal: FC<ModalProps> = ({ children, id }) => {
         <Overlay onDismiss={onDismiss} isShown={Boolean(modal && modal.isShown)}>
           <CSSTransition in={modal && modal.isShown} appear timeout={duration} classNames="modal">
             <Content aria-label={(modal && modal.title) || 'Dialog'}>
-              {modal && modal.isClosable && (
-                <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
-                  <IconButton aria-label="Close" onClick={onDismiss} size={25} icon="closeLight" />
-                </Box>
-              )}
+              {modal && (
+                <>
+                  {modal.isClosable && (
+                    <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
+                      <IconButton
+                        aria-label="Close"
+                        onClick={onDismiss}
+                        size={25}
+                        icon="closeLight"
+                      />
+                    </Box>
+                  )}
 
-              {modal && modal.title && <Heading>{modal.title}</Heading>}
+                  {modal.title && <Heading>{modal.title}</Heading>}
 
-              {modal && modal.content}
+                  {modal.content}
 
-              {children}
+                  {children}
 
-              {modal && modal.callback && modal.callbackLabel && (
-                <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
+                  {modal.callback && modal.callbackLabel && (
+                    <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
+                  )}
+                </>
               )}
             </Content>
           </CSSTransition>

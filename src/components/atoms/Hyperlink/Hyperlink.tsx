@@ -1,5 +1,5 @@
 import { Box, BoxProps, Flex } from '@tpdewolf/styled-primitives'
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import { Icon, IconOption } from '../Icon'
@@ -64,7 +64,7 @@ const StyledHyperlinkLabel = styled.span<HyperlinkProps>`
 `
 
 // this is a class component because Hyperlinks often need a ref, and function components require React.forwardRef to forward refs
-export class Hyperlink extends React.Component<HyperlinkProps> {
+export class Hyperlink extends Component<HyperlinkProps> {
   render() {
     const { children, icon, color, href, iconColor, underline, ...props } = this.props
     return (
