@@ -42,6 +42,15 @@ The project includes generators for components en context provider. Simply run e
 - `yarn generate component Slider`
 - `yarn generate context User`
 
+## Generate favicons / app icons
+
+To generate the favicons:
+
+- Overwrite `/public/logo.png`. Make sure the resolution is as big as possible.
+- Define the configuration in `/config/favicons.js`
+- Run `yarn favicons`
+- The meta tags are automatically inserted in `_documents.tsx`
+
 ### Routing
 
 To create a new route add a new page to the `./pages` folder. You can easily create a new page by running `yarn generate page name-of-the-page`. Your newly created page will server from `http://localhost:3000/name-of-the-page`. Because the filename will be the same as the slug name has to be in kebab-case [http://wiki.c2.com/?KebabCase](http://wiki.c2.com/?KebabCase). If you need the page to be dynamic, create a page with brackets. For example: `product/[productId].tsx`. `http://localhost:3000/product/100` will serve the page with `{ productId: '100' }` in its `ctx.query` object. More info [https://github.com/zeit/next.js#dynamic-routing](https://github.com/zeit/next.js#dynamic-routing)
