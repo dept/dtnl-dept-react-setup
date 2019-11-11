@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
-import { Link } from '@/components/atoms'
+import { Hyperlink } from '@/components/atoms'
 
 import { BlogPost, blogPosts } from '.'
 
@@ -14,16 +14,14 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({ post }) => {
   return (
     <>
-      <NextSeo title={post.title} />
+      <NextSeo title={post.title} description={post.content} />
       <Box>
         <Heading as="h1" color="primary">
           {post.title}
         </Heading>
         <Text as="p">{post.content}</Text>
 
-        <Link href="/blog">
-          <a>Go back</a>
-        </Link>
+        <Hyperlink href="/blog">Go back</Hyperlink>
       </Box>
     </>
   )

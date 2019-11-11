@@ -8,7 +8,7 @@ interface PageProps {}
 const Page: NextPage<PageProps> = () => {
   return (
     <>
-      <NextSeo title="Homepage" />
+      <NextSeo title="Homepage" description="This is the homepage" />
       <Box>
         <Heading as="h1" color="primary">
           Homepage

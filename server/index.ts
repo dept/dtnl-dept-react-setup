@@ -11,6 +11,9 @@ app
   .then(() => {
     const server = express()
 
+    // serve favicon folder on root
+    server.use(express.static('public/favicon'))
+
     server.get('*', (req, res) => handle(req, res))
     server.listen(port, (err?: Error) => {
       if (err) {

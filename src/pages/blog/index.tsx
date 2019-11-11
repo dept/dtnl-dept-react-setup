@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
 const Page: NextPage<PageProps> = () => {
   return (
     <>
-      <NextSeo title="Blog" />
+      <NextSeo title="Blog" description="An overview of our blog posts" />
       <Box>
         <Heading as="h1" color="primary">
           Blogs
