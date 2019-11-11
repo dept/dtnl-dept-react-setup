@@ -29,6 +29,7 @@ const space = {
 
 export const buttons = {
   primary: {
+    fontWeight: 'bold',
     padding: '0 20px',
     backgroundColor: colors.primary,
     color: colors.white,
@@ -37,6 +38,7 @@ export const buttons = {
     },
   },
   secondary: {
+    fontWeight: 'bold',
     padding: '0 20px',
     border: '1px solid',
     borderColor: colors.primary,

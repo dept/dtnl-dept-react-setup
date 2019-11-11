@@ -1,6 +1,5 @@
 ---
 to: "<%= withStorybook ? `src/components/${h.inflection.pluralize(kind)}/${Name}/${Name}.stories.tsx` : null %>"
-unless_exists: true
 ---
 import React from 'react'
 

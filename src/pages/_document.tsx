@@ -2,6 +2,8 @@ import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/do
 import * as React from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
+import { FaviconsMeta } from '../../public/favicon/FaviconsMeta'
+
 export default class MyDocument extends Document {
   constructor(props: any) {
     super(props)
@@ -41,7 +43,9 @@ export default class MyDocument extends Document {
   public render() {
     return (
       <Html lang="nl">
-        <Head />
+        <Head>
+          <FaviconsMeta />
+        </Head>
         <body>
           <Main />
           <NextScript />

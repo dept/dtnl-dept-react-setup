@@ -37,7 +37,7 @@ const Navigation: React.FC = () => {
       {items.map(item => {
         return (
           <Box key={item.title}>
-            <ActiveLink href={item.href}>
+            <ActiveLink href={item.href} passHref>
               <NavigationLink as="a" px={15} mx={10}>
                 {item.title}
               </NavigationLink>

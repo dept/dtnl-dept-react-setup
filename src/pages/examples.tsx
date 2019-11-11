@@ -30,7 +30,7 @@ const Page: NextPage = () => {
   const modalStore = useModal()
   return (
     <>
-      <NextSeo title="Examples" />
+      <NextSeo title="Examples" description="Examples of the components in this setup" />
       <Section>
         <SectionHeader>Grid</SectionHeader>
         <Row>
