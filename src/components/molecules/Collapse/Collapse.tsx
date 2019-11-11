@@ -15,6 +15,8 @@ const CollapseWrapper = styled.div<{ height: number }>`
   overflow: hidden;
   transition: opacity ${duration}ms 100ms, height ${duration}ms;
   transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  opacity: 0;
+  height: 0px;
 
   &.collapse-enter {
     opacity: 0;
