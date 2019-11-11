@@ -9,7 +9,12 @@ interface PageProps {}
 
 <% if(componentType === 'f'){ -%>
 const Page: NextPage<PageProps> = (props) => {
-  return <div></div>
+  return (
+    <>
+      <NextSeo title="Page title" description="Page description" />
+      <div><%= name %></div>
+    </>
+  )
 }
 
 Page.getInitialProps = async (ctx: NextPageContext) => {
