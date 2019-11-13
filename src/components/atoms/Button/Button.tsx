@@ -33,28 +33,6 @@ export type ButtonProps = BoxProps &
     target?: string
   }
 
-type StyleFunction = (props: ButtonProps) => string
-
-const sizeStyles: StyleFunction = props => `
-  ${
-    props.size === 'small'
-      ? `
-          height: 50px;
-          font-size: 16px;
-        `
-      : ''
-  }
-
-  ${
-    props.size === 'normal'
-      ? `
-          height: 50px;
-          font-size: 16px;
-        `
-      : ''
-  }
-`
-
 const ButtonBase = styled(Box)<ButtonProps>`
   display: inline-flex;
   justify-content: center;
@@ -71,9 +49,9 @@ const ButtonBase = styled(Box)<ButtonProps>`
     cursor: not-allowed;
   }
 
-  ${sizeStyles}
   ${props => (props.inline ? 'display: inline-flex' : '')};
   ${props => (props.block ? 'display: block; width: 100%;' : '')};
+  ${props => (props.variant !== 'clear' ? 'height: 50px;' : '')}
 `
 
 const StyledButtonLabel = styled.span<ButtonProps>`
@@ -81,8 +59,11 @@ const StyledButtonLabel = styled.span<ButtonProps>`
   width: 100%;
   align-items: center;
   justify-content: ${props => props.justify};
+  flex-direction: ${props => (props.iconReverse ? 'row-reverse' : 'row')};
+`
 
-  ${props => props.iconReverse && 'flex-direction: row-reverse;'}
+const IconWrapper = styled.span<ButtonProps>`
+  margin: ${props => (!props.iconReverse ? '0 0 0 12px' : '0 12px 0 0')};
 `
 
 // this is a class component because Buttons often need a ref, and function components require React.forwardRef to forward refs
@@ -120,16 +101,16 @@ export class Button extends Component<ButtonProps> {
         ) : (
           <>
             {ripple && <Ink />}
-            <StyledButtonLabel size={size} justify={justify}>
+            <StyledButtonLabel size={size} justify={justify} {...props}>
               {loading ? (
                 <Loader color={'white'} size={50} />
               ) : (
                 <>
                   <span>{children}</span>
                   {icon && (
-                    <Box pl="xxs">
+                    <IconWrapper>
                       <Icon size={18} icon={icon} />
-                    </Box>
+                    </IconWrapper>
                   )}
                 </>
               )}

@@ -2518,10 +2518,10 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@tpdewolf/styled-primitives@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@tpdewolf/styled-primitives/-/styled-primitives-2.0.8.tgz#78a557743b7dad3df7c8d8d695b7f84a92a52bfd"
-  integrity sha512-bJyIZPbw0n0f4PU4LE6UPGCnvPaoO8oCIK9/QFl+yFSX3s5GFH6wWnO12uoIHhz2HGBvq4RoT9qNJykSamyYcg==
+"@tpdewolf/styled-primitives@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@tpdewolf/styled-primitives/-/styled-primitives-2.1.0.tgz#9d1084e56be82a3955afb5df2b96697503d4cbdb"
+  integrity sha512-Ei54ZZHNZexo1UHHGmEXyUTcwPTR2R3GAeVuxGE2A1CzazzUstHgohPXkfnaxtnoLZh4ZRkmCn6BtBI9kaNYTw==
 
 "@types/body-parser@*":
   version "1.17.0"

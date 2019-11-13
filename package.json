@@ -30,7 +30,7 @@
   "dependencies": {
     "@reach/dialog": "^0.5.4",
     "@sentry/browser": "^5.7.1",
-    "@tpdewolf/styled-primitives": "^2.0.8",
+    "@tpdewolf/styled-primitives": "^2.1.0",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "abortcontroller-polyfill": "^1.4.0",

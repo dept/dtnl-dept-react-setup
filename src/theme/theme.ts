@@ -27,27 +27,34 @@ const space = {
   xxl: 120,
 }
 
+const buttonBase = {
+  fontWeight: 'bold',
+  border: '1px solid',
+  borderColor: 'primary',
+  padding: '0 20px',
+  height: 50,
+  borderRadius: 50,
+}
+
 export const buttons = {
   primary: {
-    fontWeight: 'bold',
-    padding: '0 20px',
-    backgroundColor: colors.primary,
-    color: colors.white,
+    ...buttonBase,
+    bg: 'primary',
+    color: 'white',
     ['&:hover, &:focus']: {
       backgroundColor: darken(0.2, colors.primary),
     },
   },
   secondary: {
-    fontWeight: 'bold',
-    padding: '0 20px',
-    border: '1px solid',
-    borderColor: colors.primary,
-    color: colors.black,
+    ...buttonBase,
+
+    color: 'black',
   },
   clear: {
     backgroundColor: 'transparent',
     border: 'none',
-    padding: 0,
+    padding: '0',
+    height: 'auto',
   },
 }
 
