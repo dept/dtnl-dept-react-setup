@@ -4,11 +4,18 @@
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    { "language": "vue", "autoFix": true },
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptreact", "autoFix": true }
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
   ],
   "json.format.enable": true,
-  "prettier.eslintIntegration": false,
-  "prettier.stylelintIntegration": true,
 }
