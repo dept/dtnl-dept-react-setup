@@ -1,4 +1,4 @@
-import { FastField } from 'formik'
+import { FastField, FastFieldProps } from 'formik'
 import React from 'react'
 
 import { Omit } from '@/utils/types'
@@ -14,15 +14,15 @@ export const FormikDate: React.FC<FormikDate> = ({ name, ...props }) => {
   return (
     <>
       <FastField name={name}>
-        {({ field, form: { touched, errors, setFieldValue, setFieldTouched } }) => {
+        {({ field, form, meta }: FastFieldProps) => {
           return (
             <FieldDate
               {...props}
               {...field}
               onBlur={undefined}
-              onClose={() => setFieldTouched(name, true)}
-              onChange={date => setFieldValue(name, date)}
-              hasError={Boolean(touched[name] && errors[name])}
+              onClose={() => form.setFieldTouched(name, true)}
+              onChange={date => form.setFieldValue(name, date)}
+              hasError={Boolean(meta.touched && meta.error)}
             />
           )
         }}

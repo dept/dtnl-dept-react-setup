@@ -1,4 +1,4 @@
-import { FastField } from 'formik'
+import { FastField, FastFieldProps } from 'formik'
 import React from 'react'
 
 import { Omit } from '@/utils/types'
@@ -12,13 +12,13 @@ export const FormikRadioGroup: React.FC<FormikRadioGroupProps> = ({ name, ...pro
   return (
     <>
       <FastField name={name}>
-        {({ field, form: { setFieldValue } }) => {
+        {({ field, form }: FastFieldProps) => {
           return (
             <FieldRadioGroup
               {...props}
               {...field}
               onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                setFieldValue(name, e.currentTarget.value)
+                form.setFieldValue(name, e.currentTarget.value)
               }
             />
           )

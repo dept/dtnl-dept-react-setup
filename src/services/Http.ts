@@ -35,6 +35,9 @@ type RequestConfig = RequestInit & {
   onUnauthenticated?: UnauthenticatedHandler
 }
 
+/**
+ * Wrapper around fetch
+ */
 export class HttpClient {
   private defaultConfig: RequestConfig = {
     returnType: 'json',
@@ -153,6 +156,10 @@ export class HttpClient {
     throw err
   }
 
+  /**
+   * Handles the errors if the fetch request fails and throws a HttpError
+   * @param response
+   */
   private async handleError(response: Response) {
     if (response.ok) {
       return response

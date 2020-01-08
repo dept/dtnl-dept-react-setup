@@ -1,4 +1,4 @@
-import { FastField } from 'formik'
+import { FastField, FastFieldProps } from 'formik'
 import React from 'react'
 
 import { FieldInput, FieldInputProps } from '../Form/FieldInput'
@@ -12,14 +12,14 @@ export const FormikInput: React.FC<FormikInput> = ({ name, ...props }) => {
   return (
     <>
       <FastField name={name}>
-        {({ field, form: { touched, errors, setFieldValue } }) => {
+        {({ field, form, meta }: FastFieldProps) => {
           return (
             <FieldInput
               {...props}
               {...field}
-              hasError={Boolean(touched[name] && errors[name])}
+              hasError={Boolean(meta.touched && meta.error)}
               onClear={() => {
-                setFieldValue(name, '')
+                form.setFieldValue(name, '')
                 field.onBlur(undefined)
               }}
             />
