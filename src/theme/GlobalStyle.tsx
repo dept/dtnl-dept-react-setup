@@ -18,10 +18,4 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-
-  :root {
-    --reach-dialog: 1;
-  }
-
-
 `
