@@ -12,9 +12,12 @@ const duration = 300
 
 interface ModalProps {
   id: string
+  onClose?: () => void
+  width?: string
+  height?: string
 }
 
-const ModalStyles = createGlobalStyle`
+const ModalStyles = createGlobalStyle<any>`
   .ReactModal__Overlay {
     background: rgba(0, 0, 0, 0.33);
     position: fixed;
@@ -41,7 +44,7 @@ const ModalStyles = createGlobalStyle`
     background: ${colors.white};
     outline: none;
     padding: 0px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     transition: opacity ${duration}ms, transform ${duration}ms;
     transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
@@ -50,8 +53,9 @@ const ModalStyles = createGlobalStyle`
 
     ${media.min('tablet')} {
       position: relative;
-      margin: 100px auto 10vh;
-      width: 1024px;
+      width: ${props => props.width};
+      height: ${props => props.height};
+      margin: 100px auto 100px;
       max-width: 90%;
     }
 
@@ -65,15 +69,24 @@ const ModalStyles = createGlobalStyle`
       transform: translateY(40px);
     }
   }
-
 `
 
-export const Modal: FC<ModalProps> = ({ children, id }) => {
+export const Modal: FC<ModalProps> = ({
+  children,
+  id,
+  onClose,
+  width = '500px',
+  height = 'auto',
+}) => {
   const modalStore = useModal()
   const modal = modalStore.getModal(id)
 
   const onDismiss = () => {
     modalStore.hide(id)
+
+    if (onClose) {
+      setTimeout(onClose, duration)
+    }
   }
 
   const onConfirm = () => {
@@ -86,7 +99,7 @@ export const Modal: FC<ModalProps> = ({ children, id }) => {
 
   return (
     <>
-      <ModalStyles></ModalStyles>
+      <ModalStyles width={width} height={height}></ModalStyles>
       <ReactModal
         className="c-modal__content"
         overlayClassName="c-modal__overlay"
@@ -98,7 +111,7 @@ export const Modal: FC<ModalProps> = ({ children, id }) => {
           <>
             {modal.isClosable && (
               <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
-                <IconButton aria-label="Close" onClick={onDismiss} size={25} icon="closeLight" />
+                <IconButton aria-label="Close" onClick={onDismiss} size={22} icon="closeLight" />
               </Box>
             )}
 
