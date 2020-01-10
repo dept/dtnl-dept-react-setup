@@ -64,7 +64,7 @@ export const Checkbox: React.FC<CheckBoxProps> = ({
         {...rest}
       />
       <Check hasError={hasError}>
-        <Icon icon="closeNormal" size={13} color="white" />
+        <Icon icon="CloseNormal" size={13} color="white" />
       </Check>
       <Box>
         <Text color={colors.grey.medium} fontSize={14}>

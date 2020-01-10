@@ -109,7 +109,7 @@ export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props
             type="button"
             aria-label="Wissen"
             color={props.color}
-            icon="closeLight"
+            icon="CloseLight"
             size={15}
             onClick={onClear}
           />

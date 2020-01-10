@@ -11,7 +11,7 @@ export const withUnderline = () => (
   </Hyperlink>
 )
 export const withIcon = () => (
-  <Hyperlink href="https://www.google.nl" icon="clock">
+  <Hyperlink href="https://www.google.nl" icon="Clock">
     Go to a page
   </Hyperlink>
 )

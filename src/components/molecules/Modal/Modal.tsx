@@ -112,7 +112,7 @@ export const Modal: FC<ModalProps> = ({
           <>
             {modal.isClosable && (
               <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
-                <IconButton aria-label="Close" onClick={onDismiss} size={22} icon="closeLight" />
+                <IconButton aria-label="Close" onClick={onDismiss} size={22} icon="CloseLight" />
               </Box>
             )}
 
