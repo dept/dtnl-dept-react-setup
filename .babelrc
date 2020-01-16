@@ -15,9 +15,7 @@
       }
     ]],
   "plugins": [
-    ["babel-plugin-styled-components", {
-      "ssr": true
-    }],
+    ["babel-plugin-styled-components"],
     ["inline-react-svg", {
       "svgo": {
         "plugins": [
