@@ -1,5 +1,3 @@
-import './styles.css'
-
 import { Delta, Sources } from 'quill'
 import ReactQuill from 'react-quill'
 
