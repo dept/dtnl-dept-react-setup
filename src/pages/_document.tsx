@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
 
     const page = renderPage(App => props =>
       sheet.collectStyles(
-        <StyleSheetManager>
+        <StyleSheetManager sheet={sheet.instance}>
           <App {...props} />
         </StyleSheetManager>,
       ),

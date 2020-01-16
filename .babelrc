@@ -10,8 +10,8 @@
               "Firefox ESR",
               "ie >= 11"
             ]
-          },
-        },
+          }
+        }
       }
     ]],
   "plugins": [
