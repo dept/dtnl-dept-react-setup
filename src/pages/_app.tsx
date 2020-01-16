@@ -10,6 +10,7 @@ import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
+import { withCookies } from '@/utils/withCookies'
 
 ReactModal.setAppElement('#__next')
 
@@ -47,4 +48,4 @@ class MyApp extends App<AppProps> {
   }
 }
 
-export default MyApp
+export default withCookies(MyApp)
