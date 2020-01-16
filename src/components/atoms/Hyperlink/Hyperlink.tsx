@@ -3,7 +3,9 @@ import { LinkProps } from 'next/link'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import { Icon, IconOption } from '../Icon'
+import { IconOption } from '@/theme'
+
+import { Icon } from '../Icon'
 import { Link } from '../Link'
 
 interface HyperLinkElementProps {

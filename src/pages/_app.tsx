@@ -3,12 +3,15 @@ import '@/components/organisms/RichTextEditor/styles.css'
 
 import { DefaultSeo } from 'next-seo'
 import App, { AppContext } from 'next/app'
+import ReactModal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
 
 import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
+
+ReactModal.setAppElement('#__next')
 
 export interface AppProps {}
 

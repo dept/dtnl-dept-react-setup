@@ -4,11 +4,12 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import * as Yup from 'yup'
 
-import { Button, Hyperlink, Icon, icons, Reveal } from '@/components/atoms'
+import { Button, Hyperlink, Icon, Reveal } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput, FormikSelect } from '@/components/molecules/Formik'
 import { RichTextEditor } from '@/components/organisms/RichTextEditor'
 import { useModal } from '@/context/ModalContext'
+import { icons } from '@/theme'
 
 const Section: React.FC = props => (
   <Reveal>
