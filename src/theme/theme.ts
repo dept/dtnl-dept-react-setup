@@ -2,6 +2,7 @@ import { ThemeGrid } from '@tpdewolf/styled-primitives'
 import { darken } from 'polished'
 import { DefaultTheme } from 'styled-components'
 
+import * as iconComponents from '../../public/static/icons/components'
 import { colors } from './colors'
 import { grid } from './grid'
 
@@ -68,6 +69,10 @@ const shadows = {
   large: '0 0 24px rgba(0, 0, 0, .125)',
   outline: '0px 0px 0px 4px rgba(0, 0, 0, 0.1);',
 }
+
+export const icons = iconComponents
+
+export type IconOption = keyof typeof icons
 
 export interface CustomTheme {
   breakpoints: string[]

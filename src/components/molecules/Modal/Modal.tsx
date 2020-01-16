@@ -19,7 +19,7 @@ interface ModalProps {
 
 const ModalStyles = createGlobalStyle<any>`
   .ReactModal__Overlay {
-    background: rgba(0, 0, 0, 0.33);
+    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
     right: 0;
@@ -28,6 +28,7 @@ const ModalStyles = createGlobalStyle<any>`
     overflow: auto;
     transition: opacity ${duration}ms 50ms;
     transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 99;
 
     &--after-open {
       opacity: 1;
@@ -111,7 +112,7 @@ export const Modal: FC<ModalProps> = ({
           <>
             {modal.isClosable && (
               <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
-                <IconButton aria-label="Close" onClick={onDismiss} size={22} icon="closeLight" />
+                <IconButton aria-label="Close" onClick={onDismiss} size={22} icon="CloseLight" />
               </Box>
             )}
 

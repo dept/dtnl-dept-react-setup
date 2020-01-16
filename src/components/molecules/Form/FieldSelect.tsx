@@ -107,7 +107,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({
                 <IconButton
                   tabIndex={-1}
                   aria-label={'Uitklappen'}
-                  icon={'chevron'}
+                  icon={'Chevron'}
                   size={18}
                   padding={0}
                   rotate={ddProps.selectProps.menuIsOpen ? -180 : 0}
@@ -120,7 +120,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({
               <IconButton
                 aria-label={'Wissen'}
                 onClick={clearProps.clearValue}
-                icon={'closeLight'}
+                icon={'CloseLight'}
                 rotate={-180}
                 size={14}
                 padding={0}

@@ -1,7 +1,8 @@
 import { number, select, withKnobs } from '@storybook/addon-knobs'
 import React from 'react'
 
-import { IconOption, icons } from '../Icon'
+import { IconOption,icons } from '@/theme'
+
 import { IconButton } from '.'
 
 export default { title: 'Atoms|IconButton', component: IconButton, decorators: [withKnobs] }
