@@ -42,6 +42,18 @@ The project includes generators for components en context provider. Simply run e
 - `yarn generate component Slider`
 - `yarn generate context User`
 
+## Generate icons from svg
+
+Place all your icons in `/public/static/icons`. Run `yarn svgr`. This generates jsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.
+
+Example:
+
+calendar.svg -> Calendar.tsx
+
+Usage:
+
+`<Icon icon="Calendar" color="magenta" />`
+
 ## Generate favicons / app icons
 
 To generate the favicons:
