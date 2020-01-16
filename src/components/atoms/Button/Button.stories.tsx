@@ -8,5 +8,5 @@ export const primary = () => <Button variant="primary">Button</Button>
 export const secondary = () => <Button variant="secondary">Button</Button>
 export const disabled = () => <Button disabled>Button</Button>
 export const loading = () => <Button loading>Button</Button>
-export const withIcon = () => <Button icon="clock">Button</Button>
+export const withIcon = () => <Button icon="Clock">Button</Button>
 export const blockLevel = () => <Button block>Button</Button>

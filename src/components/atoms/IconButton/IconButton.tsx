@@ -2,9 +2,10 @@ import { Box, BoxProps } from '@tpdewolf/styled-primitives'
 import React, { FC, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
+import { IconOption } from '@/theme'
 import { colors } from '@/theme/colors'
 
-import { Icon, IconOption } from '../Icon'
+import { Icon } from '../Icon'
 
 type ButtonElements = 'button' | 'a' | 'span'
 

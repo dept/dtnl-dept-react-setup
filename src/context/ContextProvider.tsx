@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { AuthContextProvider } from './AuthContext'
 import { ModalContextProvider } from './ModalContext'
 
@@ -17,7 +19,7 @@ const providers = [AuthContextProvider, ModalContextProvider]
 export const ContextProvider: React.FC = ({ children }) => (
   <>
     {providers.reduceRight((children, provider) => {
-      return provider({ children })
+      return React.createElement(provider, null, children)
     }, children)}
   </>
 )
