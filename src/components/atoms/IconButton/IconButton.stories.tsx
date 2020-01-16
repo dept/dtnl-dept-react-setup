@@ -1,7 +1,7 @@
 import { number, select, withKnobs } from '@storybook/addon-knobs'
 import React from 'react'
 
-import { IconOption,icons } from '@/theme'
+import { IconOption, icons } from '@/theme'
 
 import { IconButton } from '.'
 
@@ -10,6 +10,6 @@ export default { title: 'Atoms|IconButton', component: IconButton, decorators: [
 export const example = () => (
   <IconButton
     aria-label="Icon button"
-    icon={select('Icon', Object.keys(icons), 'clock') as IconOption}
+    icon={select('Icon', Object.keys(icons), 'Clock') as IconOption}
     size={number('Size', 50)}></IconButton>
 )

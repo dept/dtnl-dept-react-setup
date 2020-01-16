@@ -3,11 +3,7 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 
 import { IconOption, icons } from '@/theme'
-
 import { Omit } from '@/utils/types'
-
-
-
 
 type IconProps = Omit<BoxProps, 'width' | 'height'> & {
   icon: IconOption
