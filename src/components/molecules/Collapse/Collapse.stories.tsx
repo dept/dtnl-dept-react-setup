@@ -8,7 +8,7 @@ import { Collapse } from '.'
 
 export default { title: 'Molecules|Collapse', decorators: [withKnobs], component: Collapse }
 
-export const component = () => {
+export const Component = () => {
   const [open, setOpen] = useState(true)
 
   return (
