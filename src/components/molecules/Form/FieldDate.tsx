@@ -49,7 +49,7 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
 
   useEffect(() => {
     onChange(outputDate)
-  }, [outputDate])
+  }, [onChange, outputDate])
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.currentTarget.value

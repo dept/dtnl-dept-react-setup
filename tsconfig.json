@@ -41,7 +41,6 @@
   },
   "include": [
     "src/**/*",
-    "stories/**/*",
     "types/**/*",
   ],
   "exclude": [
