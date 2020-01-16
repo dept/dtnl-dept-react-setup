@@ -13,7 +13,6 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
   replace,
   scroll,
   shallow,
-  passHref,
   children,
   ...props
 }) => {
