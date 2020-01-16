@@ -1,4 +1,5 @@
 import '@static/fonts/fonts.css'
+import '@/components/organisms/RichTextEditor/styles.css'
 
 import { DefaultSeo } from 'next-seo'
 import App, { AppContext } from 'next/app'
