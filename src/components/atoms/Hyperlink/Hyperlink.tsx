@@ -71,7 +71,7 @@ const HyperlinkLabel = styled.span<HyperLinkElementProps>`
 // this is a class component because Hyperlinks often need a ref, and function components require React.forwardRef to forward refs
 export class Hyperlink extends Component<HyperlinkProps> {
   render() {
-    const { children, icon, color, href, as, iconColor, underline, ...props } = this.props
+    const { children, icon, color, href, as, iconColor, underline = true, ...props } = this.props
     return (
       <Link href={href} as={as} passHref>
         <HyperlinkWrapper as="a" {...props}>

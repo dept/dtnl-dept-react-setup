@@ -48,7 +48,6 @@ export const buttons = {
   },
   secondary: {
     ...buttonBase,
-
     color: 'black',
   },
   clear: {
