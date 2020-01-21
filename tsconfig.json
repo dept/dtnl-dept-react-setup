@@ -36,17 +36,18 @@
       ],
       "@/*": [
         "./src/*"
-      ],
+      ]
     }
   },
   "include": [
     "src/**/*",
-    "types/**/*",
+    "config/**/*",
+    "types/**/*"
   ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
     ".next",
-    "server/**/*.*",
+    "server/**/*.*"
   ]
 }
