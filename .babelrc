@@ -10,23 +10,12 @@
               "Firefox ESR",
               "ie >= 11"
             ]
-          },
-        },
+          }
+        }
       }
     ]],
   "plugins": [
     ["babel-plugin-styled-components"],
-    ["inline-react-svg", {
-      "svgo": {
-        "plugins": [
-          {
-            "convertColors": {
-              "currentColor": true
-            }
-          }
-        ]
-      }
-    }],
     [
       "import", {
         "libraryName": "react-use",

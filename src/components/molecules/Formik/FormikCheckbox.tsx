@@ -1,4 +1,4 @@
-import { FastField } from 'formik'
+import { FastField, FastFieldProps } from 'formik'
 import React from 'react'
 
 import { Checkbox, CheckBoxProps } from '@/components/atoms'
@@ -13,15 +13,15 @@ export const FormikCheckbox: React.FC<FormikCheckboxProps> = ({ name, children, 
   return (
     <>
       <FastField name={name}>
-        {({ field, form: { touched, errors, values, setFieldValue } }) => {
+        {({ field, form, meta }: FastFieldProps) => {
           return (
             <Checkbox
               {...props}
               {...field}
-              hasError={touched[name] && errors[name]}
+              hasError={meta.touched && meta.error}
               value={'true'}
-              checked={values[name]}
-              onChange={e => setFieldValue(name, e.currentTarget.checked)}>
+              checked={meta.value}
+              onChange={e => form.setFieldValue(name, e.currentTarget.checked)}>
               {children}
             </Checkbox>
           )

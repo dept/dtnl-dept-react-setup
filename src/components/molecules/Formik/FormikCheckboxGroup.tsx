@@ -1,4 +1,4 @@
-import { FastField } from 'formik'
+import { FastField, FastFieldProps } from 'formik'
 import React, { FC } from 'react'
 
 import { Omit } from '@/utils/types'
@@ -12,7 +12,7 @@ export const FormikCheckBoxGroup: FC<FormikCheckBoxGroupProps> = ({ name, ...pro
   return (
     <>
       <FastField name={name}>
-        {({ field, form: { touched, errors, setFieldValue } }) => {
+        {({ field, form, meta }: FastFieldProps) => {
           return (
             <FieldCheckBoxGroup
               {...props}
@@ -23,11 +23,14 @@ export const FormikCheckBoxGroup: FC<FormikCheckBoxGroupProps> = ({ name, ...pro
                 if (target.checked) {
                   newValue.push(target.value)
                 } else {
-                  newValue.splice(newValue.findIndex(item => item === target.value), 1)
+                  newValue.splice(
+                    newValue.findIndex(item => item === target.value),
+                    1,
+                  )
                 }
-                setFieldValue(name, newValue)
+                form.setFieldValue(name, newValue)
               }}
-              hasError={touched[name] && errors[name]}
+              hasError={meta.touched && meta.error}
             />
           )
         }}

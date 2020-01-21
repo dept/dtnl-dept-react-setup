@@ -1,4 +1,4 @@
-import { configure, addDecorator } from '@storybook/react'
+import { addDecorator } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { ThemeProvider } from 'styled-components'
 
@@ -25,5 +25,3 @@ addDecorator(story => (
 ))
 
 addDecorator(story => <ContextProvider>{story()}</ContextProvider>)
-
-configure(require.context('../src', true, /\.stories\.tsx$/), module)

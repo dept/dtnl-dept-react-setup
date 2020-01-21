@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { AuthContextProvider } from './AuthContext'
 import { ModalContextProvider } from './ModalContext'
 
@@ -12,12 +14,12 @@ import { ModalContextProvider } from './ModalContext'
  * </AuthContextProvider>
  * ```
  */
-const providers = [AuthContextProvider, ModalContextProvider].reverse()
+const providers = [AuthContextProvider, ModalContextProvider]
 
 export const ContextProvider: React.FC = ({ children }) => (
   <>
-    {providers.reduce((children, provider) => {
-      return provider({ children })
+    {providers.reduceRight((children, provider) => {
+      return React.createElement(provider, null, children)
     }, children)}
   </>
 )

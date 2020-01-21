@@ -1,5 +1,8 @@
 {
-  "watch": ["server", "static"],
+  "watch": [
+    "server",
+    "static"
+  ],
   "ext": "ts js",
-  "exec": "NODE_ICU_DATA=node_modules/full-icu ts-node --project tsconfig.server.json server/index.ts"
+  "exec": "ts-node --project tsconfig.server.json server/index.ts"
 }

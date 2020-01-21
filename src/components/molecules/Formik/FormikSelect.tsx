@@ -1,4 +1,4 @@
-import { FastField } from 'formik'
+import { FastField, FastFieldProps } from 'formik'
 import React from 'react'
 
 import { FieldSelect, FieldSelectProps } from '../Form/FieldSelect'
@@ -12,17 +12,17 @@ export const FormikSelect: React.FC<FormikSelectProps> = ({ name, ...props }) =>
   return (
     <>
       <FastField name={name}>
-        {({ field, form: { touched, errors, setFieldValue, setFieldTouched } }) => {
+        {({ field, form, meta }: FastFieldProps) => {
           return (
             <FieldSelect
               {...props}
               {...field}
-              onBlur={() => setFieldTouched(name, true)}
+              onBlur={() => form.setFieldTouched(name, true)}
               onChange={option => {
                 // @ts-ignore
-                setFieldValue(name, option && !Array.isArray(option) && option.value)
+                form.setFieldValue(name, option && !Array.isArray(option) && option.value)
               }}
-              hasError={Boolean(touched[name] && errors[name])}
+              hasError={Boolean(meta.touched && meta.error)}
             />
           )
         }}
