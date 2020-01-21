@@ -6,8 +6,7 @@ import * as Yup from 'yup'
 
 import { Button, Hyperlink, Icon, Reveal } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
-import { FormikDate, FormikInput, FormikSelect } from '@/components/molecules/Formik'
-import { RichTextEditor } from '@/components/organisms/RichTextEditor'
+import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModal } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
@@ -101,7 +100,7 @@ const Page: NextPage = () => {
                 placeholder="This is a number field"
               />
               <FormikDate name="date" label="Date field" placeholder="This is a date field" />
-              <FormikSelect
+              {/* <FormikSelect
                 name="select"
                 options={[
                   {
@@ -113,7 +112,7 @@ const Page: NextPage = () => {
                     value: 2,
                   },
                 ]}
-              />
+              /> */}
 
               <Button type="submit">Submit</Button>
             </Form>
@@ -145,11 +144,6 @@ const Page: NextPage = () => {
 
       <Section>
         <Hyperlink href="/about">This is a link</Hyperlink>
-      </Section>
-
-      <Section>
-        <SectionHeader>Rich Text Editor</SectionHeader>
-        <RichTextEditor></RichTextEditor>
       </Section>
     </>
   )

@@ -1,4 +1,5 @@
-import React, { useContext, useMemo, useState } from 'react'
+import { default as produce } from 'immer'
+import React, { useContext, useState } from 'react'
 
 interface ModalOptions {
   isShown?: boolean
@@ -20,46 +21,35 @@ export interface ModalContextStore {
   getModal: (key: string) => ModalOptions
 }
 
-export const ModalContext = React.createContext({} as ModalContextStore)
-export const ModalContextConsumer = ModalContext.Consumer
+const ModalContext = React.createContext({} as ModalContextStore)
+
 export const useModal = () => useContext(ModalContext)
 
+export const ModalContextConsumer = ModalContext.Consumer
+
 export const ModalContextProvider: React.FC = ({ children }) => {
-  const [modals, setModals] = useState<ModalsState>({})
+  const [modals, setState] = useState<ModalsState>({})
 
-  const store: ModalContextStore = useMemo(() => {
-    function changeModals(key: string, show: boolean, options?: ModalOptions) {
-      // copy current state
-      const copy = {
-        ...modals,
-      }
+  function changeModals(key: string, show: boolean, options?: ModalOptions) {
+    setState(
+      produce(modals, nextState => {
+        Object.keys(nextState).forEach(modalKey => (nextState[modalKey].isShown = false))
+        nextState[key] = { isShown: show, isClosable: true, ...options }
+      }),
+    )
+  }
 
-      // set all modals to false
-      Object.keys(copy).forEach(modalKey => (copy[modalKey].isShown = false))
-      copy[key] = { isShown: show, isClosable: true, ...options }
+  const hide: ModalContextStore['hide'] = key => changeModals(key, false)
+  const show: ModalContextStore['show'] = (key, options = {}) => changeModals(key, true, options)
+  const isShown: ModalContextStore['isShown'] = key => Boolean(modals[key] && modals[key].isShown)
+  const getModal: ModalContextStore['getModal'] = key => modals[key]
 
-      setModals(copy)
-    }
-
-    const hide: ModalContextStore['hide'] = key => {
-      changeModals(key, false)
-    }
-
-    const show: ModalContextStore['show'] = (key, options = {}) => {
-      changeModals(key, true, options)
-    }
-
-    const isShown: ModalContextStore['isShown'] = key => Boolean(modals[key] && modals[key].isShown)
-
-    const getModal: ModalContextStore['getModal'] = key => modals[key]
-
-    return {
-      hide,
-      show,
-      getModal,
-      isShown,
-    }
-  }, [modals])
+  const store: ModalContextStore = {
+    hide,
+    show,
+    getModal,
+    isShown,
+  }
 
   return <ModalContext.Provider value={store}>{children}</ModalContext.Provider>
 }
