@@ -8,7 +8,7 @@ import { IconButton } from '../IconButton'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel'
-  color?: 'white' | 'black'
+  color?: string
   clearable?: boolean
   hasError?: boolean
   readonly?: boolean
@@ -50,9 +50,9 @@ const StyledInput = styled.input<InputProps>`
     `};
 `
 
-type InputWrapperProps = InputProps & { hasFocus: boolean }
+type InputWrapperProps = InputProps & { hasFocus?: boolean }
 
-const InputWrapper = styled.div<InputWrapperProps>`
+export const InputWrapper = styled.div<InputWrapperProps>`
   color: ${props => props.color || 'black'};
   border: 1px solid ${colors.grey.light};
   border-radius: 4px;
@@ -84,22 +84,23 @@ const ClearableWrapper = styled(Box)`
 
 export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props }) => {
   const [hasFocus, setHasFocus] = useState(false)
+  const { color, hasError, onBlur, onFocus } = props
 
   return (
-    <InputWrapper color={props.color} hasFocus={hasFocus} hasError={props.hasError}>
+    <InputWrapper color={color} hasFocus={hasFocus} hasError={hasError}>
       <StyledInput
         type={type}
         {...props}
         onBlur={e => {
           setHasFocus(false)
-          if (props.onBlur) {
-            props.onBlur(e)
+          if (onBlur) {
+            onBlur(e)
           }
         }}
         onFocus={e => {
           setHasFocus(true)
-          if (props.onFocus) {
-            props.onFocus(e)
+          if (onFocus) {
+            onFocus(e)
           }
         }}
       />

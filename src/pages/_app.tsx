@@ -2,7 +2,7 @@ import '@static/fonts/fonts.css'
 import '@/components/organisms/RichTextEditor/styles.css'
 
 import { DefaultSeo } from 'next-seo'
-import App, { AppContext } from 'next/app'
+import App from 'next/app'
 import ReactModal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
 
@@ -17,15 +17,15 @@ ReactModal.setAppElement('#__next')
 export interface AppProps {}
 
 class MyApp extends App<AppProps> {
-  public static async getInitialProps({ Component, ctx }: AppContext) {
-    let pageProps = {}
+  // public static async getInitialProps({ Component, ctx }: AppContext) {
+  //   let pageProps = {}
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
+  //   if (Component.getInitialProps) {
+  //     pageProps = await Component.getInitialProps(ctx)
+  //   }
 
-    return { pageProps }
-  }
+  //   return { pageProps }
+  // }
 
   public render() {
     const { Component, pageProps } = this.props

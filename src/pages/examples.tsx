@@ -10,6 +10,8 @@ import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModal } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
+import { FieldSelect2 } from '../components/molecules/Form/FieldSelect2'
+
 const Section: React.FC = props => (
   <Reveal>
     <Box p={30} {...props} />
@@ -31,6 +33,7 @@ const Page: NextPage = () => {
   return (
     <>
       <NextSeo title="Examples" description="Examples of the components in this setup" />
+      <Section></Section>
       <Section>
         <SectionHeader>Grid</SectionHeader>
         <Row>
@@ -113,6 +116,26 @@ const Page: NextPage = () => {
                   },
                 ]}
               /> */}
+
+              <FieldSelect2
+                name="select"
+                native
+                label="Dingen"
+                items={[
+                  {
+                    value: 1,
+                    label: 'Test 1',
+                  },
+                  {
+                    value: 2,
+                    label: 'Test 2',
+                  },
+                  {
+                    value: 3,
+                    label: 'Test 3',
+                  },
+                ]}
+              />
 
               <Button type="submit">Submit</Button>
             </Form>
