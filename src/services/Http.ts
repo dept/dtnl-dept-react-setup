@@ -170,7 +170,7 @@ export class HttpClient {
 
     try {
       body = JSON.parse(responseBody)
-    } catch {
+    } catch (err) {
       body = responseBody
     }
 
