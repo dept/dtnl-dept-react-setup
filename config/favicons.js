@@ -1,5 +1,6 @@
 const favicons = require('favicons')
 const fs = require('fs')
+const prettier = require('prettier')
 
 const folder = 'public/favicon'
 const source = 'public/logo.png' // Source image(s). `string`, `buffer` or array of `string`
@@ -68,7 +69,7 @@ const callback = function(error, response) {
 
   fs.writeFileSync(
     `${folder}/FaviconsMeta.tsx`,
-    `
+    prettier.format(`
     export const FaviconsMeta: React.FC = () => {
       return (
         <>
@@ -76,7 +77,7 @@ const callback = function(error, response) {
         </>
       )
     }
-    `,
+    `),
   )
 }
 

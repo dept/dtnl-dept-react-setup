@@ -9,12 +9,13 @@
     "export": "next export",
     "postbuild": "tsc --project tsconfig.server.json",
     "type-check": "tsc --noEmit",
-    "lint-fix": "eslint src/ server/ --ext .ts,.tsx --fix",
+    "lint-fix": "eslint src/ server/ --ext .ts,.tsx --fix && format",
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "generate": "hygen generator",
     "storybook": "start-storybook",
     "favicons": "node config/favicons",
-    "svgr": "npx @svgr/cli ./public/static/icons --template ./public/static/icons/svgrtemplate.js --ext tsx --out-dir ./public/static/icons/components"
+    "svgr": "npx @svgr/cli ./public/static/icons --template ./public/static/icons/svgrtemplate.js --ext tsx --out-dir ./public/static/icons/components",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx}'"
   },
   "author": "Dept",
   "contributors": [
