@@ -24,6 +24,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang="nl">
         <Head>
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="disabled-adaptations" content="watch" />
           <FaviconsMeta />
         </Head>
         <body>
