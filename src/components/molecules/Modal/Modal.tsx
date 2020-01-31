@@ -4,9 +4,11 @@ import ReactModal from 'react-modal'
 import { createGlobalStyle } from 'styled-components'
 
 import { Button, IconButton } from '@/components/atoms'
-import { useModal } from '@/context/ModalContext'
+import { useModalActions } from '@/context/ModalContext'
 import { colors } from '@/theme/colors'
 import { media } from '@/utils/media'
+
+import { useModalState } from '../../../context/ModalContext'
 
 const duration = 300
 
@@ -79,11 +81,13 @@ export const Modal: FC<ModalProps> = ({
   width = '500px',
   height = 'auto',
 }) => {
-  const modalStore = useModal()
-  const modal = modalStore.getModal(id)
+  const modalActions = useModalActions()
+  const modalState = useModalState()
+
+  const modal = modalState.getModal(id)
 
   const onDismiss = () => {
-    modalStore.hide(id)
+    modalActions.hide(id)
 
     if (onClose) {
       setTimeout(onClose, duration)

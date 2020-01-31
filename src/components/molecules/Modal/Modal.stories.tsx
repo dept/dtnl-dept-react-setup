@@ -2,7 +2,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { Box } from '@tpdewolf/styled-primitives'
 
 import { Button } from '@/components/atoms'
-import { useModal } from '@/context/ModalContext'
+import { useModalActions } from '@/context/ModalContext'
 
 import { Modal } from '.'
 
@@ -23,8 +23,8 @@ export default {
 }
 
 const ModalButton: React.FC = ({ children }) => {
-  const modalStore = useModal()
-  return <Button onClick={() => modalStore.show('storybook')}>{children}</Button>
+  const modalActions = useModalActions()
+  return <Button onClick={() => modalActions.show('storybook')}>{children}</Button>
 }
 
 export const component = () => {
