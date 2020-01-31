@@ -1,5 +1,5 @@
 import { default as produce } from 'immer'
-import React, { useContext, useState } from 'react'
+import React from 'react'
 
 interface ModalOptions {
   isShown?: boolean
@@ -10,46 +10,89 @@ interface ModalOptions {
   callbackLabel?: string
 }
 
-interface ModalsState {
+interface State {
   [key: string]: ModalOptions
 }
 
-export interface ModalContextStore {
-  hide: (key: string) => void
-  show: (key: string, options?: ModalOptions) => void
-  isShown: (key: string) => boolean
-  getModal: (key: string) => ModalOptions
+type Action =
+  | { type: 'show'; key: string; options?: ModalOptions }
+  | { type: 'hide'; key: string; options?: ModalOptions }
+type Dispatch = (action: Action) => void
+
+const ModalContextState = React.createContext({} as State)
+const ModalContextDispatch = React.createContext({} as Dispatch)
+
+function modalReducer(state: State, action: Action) {
+  function changeModals(key: string, show: boolean, options?: ModalOptions) {
+    return produce(state, nextState => {
+      Object.keys(nextState).forEach(modalKey => (nextState[modalKey].isShown = false))
+      nextState[key] = { isShown: show, isClosable: true, ...options }
+    })
+  }
+
+  switch (action.type) {
+    case 'show': {
+      return changeModals(action.key, true, action.options)
+    }
+    case 'hide': {
+      return changeModals(action.key, false, action.options)
+    }
+    default: {
+      throw new Error(`Unhandled action`)
+    }
+  }
 }
 
-const ModalContext = React.createContext({} as ModalContextStore)
+export function useModalState() {
+  const state = React.useContext(ModalContextState)
 
-export const useModal = () => useContext(ModalContext)
-
-export const ModalContextConsumer = ModalContext.Consumer
-
-export const ModalContextProvider: React.FC = ({ children }) => {
-  const [modals, setState] = useState<ModalsState>({})
-
-  function changeModals(key: string, show: boolean, options?: ModalOptions) {
-    setState(
-      produce(modals, nextState => {
-        Object.keys(nextState).forEach(modalKey => (nextState[modalKey].isShown = false))
-        nextState[key] = { isShown: show, isClosable: true, ...options }
-      }),
-    )
+  if (state === undefined) {
+    throw new Error('useModalState must be used within a ModalContextProvider')
   }
 
-  const hide: ModalContextStore['hide'] = key => changeModals(key, false)
-  const show: ModalContextStore['show'] = (key, options = {}) => changeModals(key, true, options)
-  const isShown: ModalContextStore['isShown'] = key => Boolean(modals[key] && modals[key].isShown)
-  const getModal: ModalContextStore['getModal'] = key => modals[key]
+  const isShown = (key: string) => Boolean(state[key] && state[key].isShown)
+  const getModal = (key: string) => state[key]
 
-  const store: ModalContextStore = {
+  return {
+    state,
+    isShown,
+    getModal,
+  }
+}
+
+export function useModalActions() {
+  const dispatch = React.useContext(ModalContextDispatch)
+  if (dispatch === undefined) {
+    throw new Error('useModalActions must be used within a ModalContextProvider')
+  }
+
+  const hide = (key: string) => {
+    dispatch({
+      type: 'hide',
+      key,
+    })
+  }
+
+  const show = (key: string) => {
+    dispatch({
+      type: 'show',
+      key,
+    })
+  }
+
+  return {
+    dispatch,
     hide,
     show,
-    getModal,
-    isShown,
   }
+}
 
-  return <ModalContext.Provider value={store}>{children}</ModalContext.Provider>
+export const ModalContextProvider: React.FC = ({ children }) => {
+  const [state, dispatch] = React.useReducer(modalReducer, {})
+
+  return (
+    <ModalContextState.Provider value={state}>
+      <ModalContextDispatch.Provider value={dispatch}>{children}</ModalContextDispatch.Provider>
+    </ModalContextState.Provider>
+  )
 }

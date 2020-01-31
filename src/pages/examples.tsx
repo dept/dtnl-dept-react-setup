@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 import { Button, Hyperlink, Icon, Reveal } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput } from '@/components/molecules/Formik'
-import { useModal } from '@/context/ModalContext'
+import { useModalActions } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
 const Section: React.FC = props => (
@@ -27,7 +27,8 @@ const GridExampleBox: React.FC = props => (
 )
 
 const Page: NextPage = () => {
-  const modalStore = useModal()
+  const modalActions = useModalActions()
+
   return (
     <>
       <NextSeo title="Examples" description="Examples of the components in this setup" />
@@ -123,7 +124,7 @@ const Page: NextPage = () => {
       <Section>
         <SectionHeader>Modal</SectionHeader>
 
-        <Button onClick={() => modalStore.show('uniqueModalId')}>Open modal</Button>
+        <Button onClick={() => modalActions.show('uniqueModalId')}>Open modal</Button>
 
         <Modal id="uniqueModalId">
           <Box p={50}>This is a modal</Box>

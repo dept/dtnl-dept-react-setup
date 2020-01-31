@@ -1,23 +1,32 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+import { ServerStyleSheet } from 'styled-components'
 
 import { FaviconsMeta } from '../../public/favicon/FaviconsMeta'
 
 export default class MyDocument extends Document {
-  public static async getInitialProps({ renderPage }: DocumentContext) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
 
-    const page = renderPage(App => props =>
-      sheet.collectStyles(
-        <StyleSheetManager sheet={sheet.instance}>
-          <App {...props} />
-        </StyleSheetManager>,
-      ),
-    )
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        })
 
-    const styleTags = sheet.getStyleElement()
-
-    return { ...page, styleTags }
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
   }
 
   public render() {
