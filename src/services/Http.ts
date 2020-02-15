@@ -26,15 +26,15 @@ export type AbortFunction = () => void
 type Token = string | undefined
 type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
 type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
-type UnauthenticatedHandler = <T = any>(requestFn: Promise<T>) => any
 type BeforeHook = (client: HttpClient) => Promise<void> | void
 type ErrorHook = <T = any>(err: HttpError, request: Promise<T>) => any
 type HttpClientInit = RequestInit & {
   baseUrl?: string
   returnType?: 'json' | 'text' | 'blob'
+  /**  This function is called before every request. This is where you would check if your token is still valid */
   beforeHook?: BeforeHook
+  /** Function that is called if an error occurs */
   onError?: ErrorHook
-  onUnauthenticated?: UnauthenticatedHandler
 }
 type RequestConfig = HttpClientInit & {
   createAbort?: (abortFunction: AbortFunction) => void
@@ -64,7 +64,7 @@ export class HttpClient {
   private createRequest(method: 'GET'): RequestGetFn
   private createRequest(method: string): RequestFn
   private createRequest(method: 'GET' | string): RequestFn {
-    const fn: RequestFn = (url, data, config) => {
+    return (url, data, config) => {
       if (method === 'GET') {
         let getUrl = url
         if (data) {
@@ -75,26 +75,26 @@ export class HttpClient {
           ...config,
           method: 'GET',
         })
-      } else {
-        const isFormData =
-          (config?.headers as any)['Content-type'] === 'application/x-www-form-urlencoded'
-
-        return this.request(url, {
-          ...config,
-          method,
-          body: isFormData ? qs.stringify(data) : JSON.stringify(data),
-        })
       }
-    }
 
-    return fn
+      const isFormData =
+        (config?.headers as any)['Content-type'] === 'application/x-www-form-urlencoded'
+
+      return this.request(url, {
+        ...config,
+        method,
+        body: isFormData ? qs.stringify(data) : JSON.stringify(data),
+      })
+    }
   }
 
   public get = this.createRequest('GET')
   public post = this.createRequest('POST')
   public put = this.createRequest('PUT')
   public patch = this.createRequest('PATCH')
-  public delete: RequestFn = this.createRequest('DELETE')
+  public delete = this.createRequest('DELETE')
+
+  public setToken = (token: Token) => (this.token = token)
 
   private setAuthenticationHeaders(config: RequestConfig) {
     // if authenticated set bearer token
@@ -105,11 +105,6 @@ export class HttpClient {
       }
     }
   }
-
-  public setToken = (token: Token) => (this.token = token)
-
-  public setUnauthenticatedHandler = (handler: UnauthenticatedHandler) =>
-    (this.config.onUnauthenticated = handler)
 
   private setAbortController = (config: RequestConfig) => {
     const { createAbort } = config
