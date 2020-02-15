@@ -22,17 +22,22 @@ export class HttpError extends Error {
   }
 }
 
-type AbortFunction = () => void
+export type AbortFunction = () => void
 type Token = string | undefined
 type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
 type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
 type UnauthenticatedHandler = <T = any>(requestFn: Promise<T>) => any
-type RequestConfig = RequestInit & {
+type BeforeHook = (client: HttpClient) => Promise<void> | void
+type ErrorHook = <T = any>(err: HttpError, request: Promise<T>) => any
+type HttpClientInit = RequestInit & {
   baseUrl?: string
-  token?: Token
   returnType?: 'json' | 'text' | 'blob'
-  createAbort?: (abortFunction: AbortFunction | undefined) => void
+  beforeHook?: BeforeHook
+  onError?: ErrorHook
   onUnauthenticated?: UnauthenticatedHandler
+}
+type RequestConfig = HttpClientInit & {
+  createAbort?: (abortFunction: AbortFunction) => void
 }
 
 /**
@@ -47,8 +52,9 @@ export class HttpClient {
   }
 
   private config: RequestConfig = {}
+  private token: Token
 
-  constructor(config: RequestConfig = {}) {
+  constructor(config: HttpClientInit = {}) {
     this.config = {
       ...this.defaultConfig,
       ...config,
@@ -70,10 +76,13 @@ export class HttpClient {
           method: 'GET',
         })
       } else {
+        const isFormData =
+          (config?.headers as any)['Content-type'] === 'application/x-www-form-urlencoded'
+
         return this.request(url, {
           ...config,
           method,
-          body: JSON.stringify(data),
+          body: isFormData ? qs.stringify(data) : JSON.stringify(data),
         })
       }
     }
@@ -88,18 +97,16 @@ export class HttpClient {
   public delete: RequestFn = this.createRequest('DELETE')
 
   private setAuthenticationHeaders(config: RequestConfig) {
-    const { token } = config
-
     // if authenticated set bearer token
-    if (token) {
+    if (this.token) {
       config.headers = {
         ...config.headers,
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${this.token}`,
       }
     }
   }
 
-  public setToken = (token: Token) => (this.config.token = token)
+  public setToken = (token: Token) => (this.token = token)
 
   public setUnauthenticatedHandler = (handler: UnauthenticatedHandler) =>
     (this.config.onUnauthenticated = handler)
@@ -112,11 +119,15 @@ export class HttpClient {
         const { signal } = controller
         config.signal = signal
         createAbort(controller.abort.bind(controller))
+      } else {
+        createAbort(() => console.log('The AbortController api isnt available in your browser'))
       }
     }
   }
 
-  public request<T>(url: string, requestConfig: RequestConfig = {}): Promise<T> {
+  public async request<T>(url: string, requestConfig: RequestConfig = {}): Promise<T> {
+    const { beforeHook } = this.config
+
     const config: RequestConfig = {
       ...this.config,
       ...requestConfig,
@@ -124,14 +135,19 @@ export class HttpClient {
 
     const { baseUrl = '' } = config
 
-    this.setAuthenticationHeaders(config)
     this.setAbortController(config)
+
+    if (beforeHook) {
+      await beforeHook(this)
+    }
+
+    this.setAuthenticationHeaders(config)
 
     const requestFn = fetch(baseUrl + url, config)
       .then(this.handleError)
       .then(res => this.handleSuccess(res, config)) as Promise<T>
 
-    return requestFn.catch(err => this.handleUnauthenticated<T>(err, requestFn))
+    return requestFn.catch(err => this.onError<T>(err, requestFn))
   }
 
   private handleSuccess(res: Response, config: RequestConfig) {
@@ -144,13 +160,11 @@ export class HttpClient {
     return res[returnType]()
   }
 
-  private handleUnauthenticated<T = any>(err: HttpError, requestFn: Promise<T>) {
-    const { onUnauthenticated } = this.config
+  private async onError<T = any>(err: HttpError, requestFn: Promise<T>) {
+    const { onError } = this.config
 
-    if (err instanceof HttpError) {
-      if (err.statusCode === 401 && onUnauthenticated) {
-        return onUnauthenticated(requestFn)
-      }
+    if (onError) {
+      return onError(err, requestFn)
     }
 
     throw err
