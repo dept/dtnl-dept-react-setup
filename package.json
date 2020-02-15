@@ -44,7 +44,6 @@
     "immer": "^5.3.2",
     "intersection-observer": "^0.7.0",
     "isomorphic-fetch": "^2.2.1",
-    "lazysizes": "^5.2.0",
     "lodash.throttle": "^4.1.1",
     "next": "^9.2.0",
     "next-compose-plugins": "^2.2.0",
