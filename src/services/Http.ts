@@ -80,7 +80,7 @@ export class HttpClient {
       return this.request(url, {
         ...config,
         method,
-        body: this.createBody(data, (config?.headers as any)['Content-type']),
+        body: this.createBody(data, (config?.headers as any)['Content-Type']),
       })
     }
   }
