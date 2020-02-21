@@ -77,13 +77,10 @@ export class HttpClient {
         })
       }
 
-      const isFormData =
-        (config?.headers as any)['Content-type'] === 'application/x-www-form-urlencoded'
-
       return this.request(url, {
         ...config,
         method,
-        body: isFormData ? qs.stringify(data) : JSON.stringify(data),
+        body: this.createBody(data, (config?.headers as any)['Content-type']),
       })
     }
   }
@@ -163,6 +160,23 @@ export class HttpClient {
     }
 
     throw err
+  }
+
+  /**
+   * createBody is responsible for creating a body based on the content type
+   *
+   * @param body The body
+   * @param contentType The content type
+   */
+  private createBody(body: any, contentType: string): any {
+    switch (contentType) {
+      case 'application/json':
+        return JSON.stringify(body)
+      case 'application/x-www-form-urlencoded':
+        return qs.stringify(body)
+      default:
+        return JSON.stringify(body)
+    }
   }
 
   /**
