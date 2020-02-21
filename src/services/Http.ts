@@ -77,10 +77,12 @@ export class HttpClient {
         })
       }
 
+      const contentType = config && config.headers && (config.headers as any)['Content-Type']
+
       return this.request(url, {
         ...config,
         method,
-        body: this.createBody(data, (config?.headers as any)['Content-Type']),
+        body: this.createBody(data, contentType),
       })
     }
   }
