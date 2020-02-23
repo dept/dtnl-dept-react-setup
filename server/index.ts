@@ -13,6 +13,7 @@ app
 
     // serve favicon folder on root
     server.use(express.static('public/favicon'))
+    server.use('/service-worker.js', express.static('.next/service-worker.js'))
 
     server.get('*', (req, res) => handle(req, res))
     server.listen(port, (err?: Error) => {
