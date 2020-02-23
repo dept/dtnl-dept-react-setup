@@ -27,7 +27,7 @@ export const FieldCheckBoxGroup: FC<FieldCheckBoxGroupProps> = ({
     <Row flexDirection={direction === 'horizontal' ? 'row' : 'column'} flexWrap="wrap">
       {options.map((option, index) => {
         return (
-          <Column key={index} my={5}>
+          <Column key={index}>
             <Checkbox
               name={name}
               value={option.value}
