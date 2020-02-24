@@ -19,8 +19,8 @@ type Action =
   | { type: 'hide'; key: string; options?: ModalOptions }
 type Dispatch = (action: Action) => void
 
-const ModalContextState = React.createContext({} as State)
-const ModalContextDispatch = React.createContext({} as Dispatch)
+const ModalContextState = React.createContext({} as ReturnType<typeof createState>)
+const ModalContextDispatch = React.createContext({} as ReturnType<typeof createActions>)
 
 function modalReducer(state: State, action: Action) {
   function changeModals(key: string, show: boolean, options?: ModalOptions) {
@@ -50,22 +50,20 @@ export function useModalState() {
     throw new Error('useModalState must be used within a ModalContextProvider')
   }
 
-  const isShown = (key: string) => Boolean(state[key] && state[key].isShown)
-  const getModal = (key: string) => state[key]
-
-  return {
-    state,
-    isShown,
-    getModal,
-  }
+  return state
 }
 
 export function useModalActions() {
-  const dispatch = React.useContext(ModalContextDispatch)
-  if (dispatch === undefined) {
+  const actions = React.useContext(ModalContextDispatch)
+
+  if (actions === undefined) {
     throw new Error('useModalActions must be used within a ModalContextProvider')
   }
 
+  return actions
+}
+
+function createActions(dispatch: Dispatch) {
   const hide = (key: string) => {
     dispatch({
       type: 'hide',
@@ -81,18 +79,31 @@ export function useModalActions() {
   }
 
   return {
-    dispatch,
     hide,
     show,
+  }
+}
+
+function createState(state: State) {
+  const isShown = (key: string) => Boolean(state[key] && state[key].isShown)
+  const getModal = (key: string) => state[key]
+
+  return {
+    state,
+    isShown,
+    getModal,
   }
 }
 
 export const ModalContextProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(modalReducer, {})
 
+  const actions = React.useMemo(() => createActions(dispatch), [dispatch])
+  const store = createState(state)
+
   return (
-    <ModalContextState.Provider value={state}>
-      <ModalContextDispatch.Provider value={dispatch}>{children}</ModalContextDispatch.Provider>
+    <ModalContextState.Provider value={store}>
+      <ModalContextDispatch.Provider value={actions}>{children}</ModalContextDispatch.Provider>
     </ModalContextState.Provider>
   )
 }
