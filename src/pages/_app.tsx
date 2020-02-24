@@ -12,6 +12,11 @@ import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
 import { withCookies } from '@/utils/withCookies'
 
+if (process.browser) {
+  require('@/utils/detectTouch')
+  require('@/utils/detectKeyboardFocus')
+}
+
 ReactModal.setAppElement('#__next')
 
 export interface AppProps {}
