@@ -87,5 +87,4 @@ const callback = function(error, response) {
   })
 }
 
-// @ts-ignore
 favicons(source, configuration, callback)

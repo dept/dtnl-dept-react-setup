@@ -13,7 +13,6 @@ module.exports = withPlugins(plugins, {
   serverRuntimeConfig,
   reactStrictMode: true,
   compression: true, // true to enable gzipping
-  workboxOpts: {},
   webpack(config, options) {
     if (!options.isServer) {
       const CircularDependencyPlugin = require('circular-dependency-plugin')
