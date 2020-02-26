@@ -34,7 +34,6 @@ const Page: NextPage = () => {
   return (
     <>
       <NextSeo title="Examples" description="Examples of the components in this setup" />
-      <Section></Section>
       <Section>
         <SectionHeader>Grid</SectionHeader>
         <Row>
