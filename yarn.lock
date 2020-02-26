@@ -2918,10 +2918,10 @@
     "@testing-library/dom" "^6.11.0"
     "@types/testing-library__react" "^9.1.2"
 
-"@tpdewolf/styled-primitives@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@tpdewolf/styled-primitives/-/styled-primitives-3.0.0.tgz#088a0f1372e1665a78d3372501b5de22cbe1f879"
-  integrity sha512-1WLftPgTH3LOVdL7vunhuClzS2UwsRGAVp3shDOWmxMtBz70lkdJe7kRoWPij4DbZY9yOunqG2TW+YxCH+OM7Q==
+"@tpdewolf/styled-primitives@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@tpdewolf/styled-primitives/-/styled-primitives-3.0.1.tgz#c1bf56c6f4bb289c58554fa78e91c35bf8f152a5"
+  integrity sha512-DlI31JUK7ll+hH6tiC6kcN/Z1cNCiL3yoMxOy8RU/gFJKi6g/72FN3XK1QhNloExN+cK0+HEdpRnBrcKGm4G4Q==
 
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.7"
