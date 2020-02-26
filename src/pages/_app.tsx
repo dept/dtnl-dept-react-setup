@@ -10,23 +10,17 @@ import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
-import { withCookies } from '@/utils/withCookies'
+
+if (process.browser) {
+  require('@/utils/detectTouch')
+  require('@/utils/detectKeyboardFocus')
+}
 
 ReactModal.setAppElement('#__next')
 
 export interface AppProps {}
 
 class MyApp extends App<AppProps> {
-  // public static async getInitialProps({ Component, ctx }: AppContext) {
-  //   let pageProps = {}
-
-  //   if (Component.getInitialProps) {
-  //     pageProps = await Component.getInitialProps(ctx)
-  //   }
-
-  //   return { pageProps }
-  // }
-
   public render() {
     const { Component, pageProps } = this.props
 
@@ -48,4 +42,4 @@ class MyApp extends App<AppProps> {
   }
 }
 
-export default withCookies(MyApp)
+export default MyApp

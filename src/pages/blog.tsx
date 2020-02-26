@@ -50,8 +50,4 @@ const Page: NextPage<PageProps> = () => {
   )
 }
 
-Page.getInitialProps = async () => {
-  return {}
-}
-
 export default Page

@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from '@tpdewolf/styled-primitives'
+import { Box, Heading, Paragraph } from '@tpdewolf/styled-primitives'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
@@ -13,14 +13,12 @@ const Page: NextPage<PageProps> = () => {
         <Heading as="h1" color="primary">
           Homepage
         </Heading>
-        <Text as="p">Run `yarn storybook`</Text>
+        <Paragraph>Run `yarn storybook` to view all components</Paragraph>
+        <Paragraph>Run `yarn generate page [name]` to create a page</Paragraph>
+        <Paragraph>Run `yarn generate component [name]` to create a component</Paragraph>
       </Box>
     </>
   )
-}
-
-Page.getInitialProps = async () => {
-  return {}
 }
 
 export default Page

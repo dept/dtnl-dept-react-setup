@@ -1,5 +1,6 @@
 const favicons = require('favicons')
 const fs = require('fs')
+const prettier = require('prettier')
 
 const folder = 'public/favicon'
 const source = 'public/logo.png' // Source image(s). `string`, `buffer` or array of `string`
@@ -66,19 +67,24 @@ const callback = function(error, response) {
     })
     .join('\n')
 
-  fs.writeFileSync(
-    `${folder}/FaviconsMeta.tsx`,
-    `
-    export const FaviconsMeta: React.FC = () => {
-      return (
-        <>
-          ${metaTags}
-        </>
+  prettier.resolveConfigFile().then(filePath => {
+    prettier.resolveConfig(filePath).then(options => {
+      const formatted = prettier.format(
+        `
+      export const FaviconsMeta: React.FC = () => {
+        return (
+          <>
+            ${metaTags}
+          </>
+        )
+      }
+      `,
+        options,
       )
-    }
-    `,
-  )
+
+      fs.writeFileSync(`${folder}/FaviconsMeta.tsx`, formatted)
+    })
+  })
 }
 
-// @ts-ignore
 favicons(source, configuration, callback)

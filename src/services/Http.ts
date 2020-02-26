@@ -22,17 +22,22 @@ export class HttpError extends Error {
   }
 }
 
-type AbortFunction = () => void
+export type AbortFunction = () => void
 type Token = string | undefined
 type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
 type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
-type UnauthenticatedHandler = <T = any>(requestFn: Promise<T>) => any
-type RequestConfig = RequestInit & {
+type BeforeHook = (client: HttpClient) => Promise<void> | void
+type ErrorHook = <T = any>(err: HttpError, request: Promise<T>) => any
+type HttpClientInit = RequestInit & {
   baseUrl?: string
-  token?: Token
   returnType?: 'json' | 'text' | 'blob'
-  createAbort?: (abortFunction: AbortFunction | undefined) => void
-  onUnauthenticated?: UnauthenticatedHandler
+  /**  This function is called before every request. This is where you would check if your token is still valid */
+  beforeHook?: BeforeHook
+  /** Function that is called if an error occurs */
+  onError?: ErrorHook
+}
+type RequestConfig = HttpClientInit & {
+  createAbort?: (abortFunction: AbortFunction) => void
 }
 
 /**
@@ -47,8 +52,9 @@ export class HttpClient {
   }
 
   private config: RequestConfig = {}
+  private token: Token
 
-  constructor(config: RequestConfig = {}) {
+  constructor(config: HttpClientInit = {}) {
     this.config = {
       ...this.defaultConfig,
       ...config,
@@ -58,7 +64,7 @@ export class HttpClient {
   private createRequest(method: 'GET'): RequestGetFn
   private createRequest(method: string): RequestFn
   private createRequest(method: 'GET' | string): RequestFn {
-    const fn: RequestFn = (url, data, config) => {
+    return (url, data, config) => {
       if (method === 'GET') {
         let getUrl = url
         if (data) {
@@ -69,40 +75,35 @@ export class HttpClient {
           ...config,
           method: 'GET',
         })
-      } else {
-        return this.request(url, {
-          ...config,
-          method,
-          body: JSON.stringify(data),
-        })
       }
-    }
 
-    return fn
+      const contentType = config && config.headers && (config.headers as any)['Content-Type']
+
+      return this.request(url, {
+        ...config,
+        method,
+        body: this.createBody(data, contentType),
+      })
+    }
   }
 
   public get = this.createRequest('GET')
   public post = this.createRequest('POST')
   public put = this.createRequest('PUT')
   public patch = this.createRequest('PATCH')
-  public delete: RequestFn = this.createRequest('DELETE')
+  public delete = this.createRequest('DELETE')
+
+  public setToken = (token: Token) => (this.token = token)
 
   private setAuthenticationHeaders(config: RequestConfig) {
-    const { token } = config
-
     // if authenticated set bearer token
-    if (token) {
+    if (this.token) {
       config.headers = {
         ...config.headers,
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${this.token}`,
       }
     }
   }
-
-  public setToken = (token: Token) => (this.config.token = token)
-
-  public setUnauthenticatedHandler = (handler: UnauthenticatedHandler) =>
-    (this.config.onUnauthenticated = handler)
 
   private setAbortController = (config: RequestConfig) => {
     const { createAbort } = config
@@ -112,11 +113,15 @@ export class HttpClient {
         const { signal } = controller
         config.signal = signal
         createAbort(controller.abort.bind(controller))
+      } else {
+        createAbort(() => console.log('The AbortController api isnt available in your browser'))
       }
     }
   }
 
-  public request<T>(url: string, requestConfig: RequestConfig = {}): Promise<T> {
+  public async request<T>(url: string, requestConfig: RequestConfig = {}): Promise<T> {
+    const { beforeHook } = this.config
+
     const config: RequestConfig = {
       ...this.config,
       ...requestConfig,
@@ -124,14 +129,19 @@ export class HttpClient {
 
     const { baseUrl = '' } = config
 
-    this.setAuthenticationHeaders(config)
     this.setAbortController(config)
+
+    if (beforeHook) {
+      await beforeHook(this)
+    }
+
+    this.setAuthenticationHeaders(config)
 
     const requestFn = fetch(baseUrl + url, config)
       .then(this.handleError)
       .then(res => this.handleSuccess(res, config)) as Promise<T>
 
-    return requestFn.catch(err => this.handleUnauthenticated<T>(err, requestFn))
+    return requestFn.catch(err => this.onError<T>(err, requestFn))
   }
 
   private handleSuccess(res: Response, config: RequestConfig) {
@@ -144,16 +154,31 @@ export class HttpClient {
     return res[returnType]()
   }
 
-  private handleUnauthenticated<T = any>(err: HttpError, requestFn: Promise<T>) {
-    const { onUnauthenticated } = this.config
+  private async onError<T = any>(err: HttpError, requestFn: Promise<T>) {
+    const { onError } = this.config
 
-    if (err instanceof HttpError) {
-      if (err.statusCode === 401 && onUnauthenticated) {
-        return onUnauthenticated(requestFn)
-      }
+    if (onError) {
+      return onError(err, requestFn)
     }
 
     throw err
+  }
+
+  /**
+   * createBody is responsible for creating a body based on the content type
+   *
+   * @param body The body
+   * @param contentType The content type
+   */
+  private createBody(body: any, contentType: string): any {
+    switch (contentType) {
+      case 'application/json':
+        return JSON.stringify(body)
+      case 'application/x-www-form-urlencoded':
+        return qs.stringify(body)
+      default:
+        return JSON.stringify(body)
+    }
   }
 
   /**

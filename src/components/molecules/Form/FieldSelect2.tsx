@@ -2,12 +2,14 @@ import { Box } from '@tpdewolf/styled-primitives'
 import { useSelect } from 'downshift'
 import styled from 'styled-components'
 
-import { InputWrapper } from '@/components/atoms'
+import { Icon, InputWrapper } from '@/components/atoms'
 import { Label } from '@/components/atoms/Form/Label'
 
+type Value = string | number
+
 interface Option {
-  value: string | number
-  label: string | number
+  value: Value
+  label: Value
 }
 
 interface SelectProps {
@@ -18,6 +20,9 @@ interface SelectProps {
   placeholder?: string
   hasError?: boolean
   native?: boolean
+  defaultValue?: Value
+  onChange?: (value: Value) => void
+  disabled?: boolean
 }
 
 const List = styled(Box)`
@@ -93,13 +98,23 @@ const StyledSelect = styled.select`
   }
 `
 
+const IconWrapper = styled(Box)`
+  transform: translateY(-50%);
+  pointer-events: none;
+`
+
 const NativeSelect: React.FC<SelectProps> = ({
   name,
   items,
   color,
   label,
-  // placeholder,
+  placeholder,
   hasError,
+  defaultValue,
+  onChange = () => {
+    /** noop */
+  },
+  disabled,
 }) => {
   return (
     <>
@@ -109,11 +124,24 @@ const NativeSelect: React.FC<SelectProps> = ({
         </Label>
       )}
       <InputWrapper color={color} hasError={hasError}>
-        <StyledSelect>
+        <StyledSelect
+          onChange={e => onChange(e.target.value)}
+          disabled={disabled}
+          defaultValue={defaultValue}>
+          {placeholder && (
+            <option disabled selected>
+              {placeholder}
+            </option>
+          )}
           {items.map((item, index) => (
-            <option key={`${item}${index}`}>{item.label}</option>
+            <option key={`${item}${index}`} value={item.value}>
+              {item.label}
+            </option>
           ))}
         </StyledSelect>
+        <IconWrapper position="absolute" right={10} top="50%">
+          <Icon icon="Chevron" size={15} />
+        </IconWrapper>
       </InputWrapper>
     </>
   )

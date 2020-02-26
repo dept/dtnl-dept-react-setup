@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 import { Button, Hyperlink, Icon, Reveal } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput } from '@/components/molecules/Formik'
-import { useModal } from '@/context/ModalContext'
+import { useModalActions } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
 import { FieldSelect2 } from '../components/molecules/Form/FieldSelect2'
@@ -29,7 +29,8 @@ const GridExampleBox: React.FC = props => (
 )
 
 const Page: NextPage = () => {
-  const modalStore = useModal()
+  const modalActions = useModalActions()
+
   return (
     <>
       <NextSeo title="Examples" description="Examples of the components in this setup" />
@@ -120,7 +121,10 @@ const Page: NextPage = () => {
               <FieldSelect2
                 name="select"
                 native
+                placeholder={''}
                 label="Dingen"
+                defaultValue={2}
+                onChange={e => console.log(e)}
                 items={[
                   {
                     value: 1,
@@ -146,7 +150,7 @@ const Page: NextPage = () => {
       <Section>
         <SectionHeader>Modal</SectionHeader>
 
-        <Button onClick={() => modalStore.show('uniqueModalId')}>Open modal</Button>
+        <Button onClick={() => modalActions.show('uniqueModalId')}>Open modal</Button>
 
         <Modal id="uniqueModalId">
           <Box p={50}>This is a modal</Box>

@@ -9,6 +9,7 @@ interface RevealWrapperProps {
 }
 
 const RevealWrapper = styled.div<RevealWrapperProps>`
+  position: relative;
   transition: opacity 300ms, transform 700ms;
   opacity: ${props => (props.inView ? 1 : 0)};
   transform: translateY(${props => (props.inView ? '0px' : '-15px')});
