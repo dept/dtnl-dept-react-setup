@@ -120,7 +120,7 @@ const Page: NextPage = () => {
 
               <FieldSelect2
                 name="select"
-                native
+                // native
                 placeholder={''}
                 label="Dingen"
                 defaultValue={2}

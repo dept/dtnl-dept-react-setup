@@ -62,7 +62,10 @@ const CustomSelect: React.FC<SelectProps> = ({
       )}
       <InputWrapper color={color} hasError={hasError}>
         <Box display="block" p="12px 14px" as="label" {...getToggleButtonProps()}>
-          {(selectedItem && selectedItem.label) || placeholder}
+          {(selectedItem && selectedItem.label) || placeholder || '-'}
+          <IconWrapper position="absolute" right={10} top="50%">
+            <Icon icon="Chevron" size={15} />
+          </IconWrapper>
         </Box>
         <List as="ul" bg="white" minWidth={200} maxWidth="100%" {...getMenuProps()}>
           {isOpen &&
