@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import qs from 'qs'
 
 export interface HttpErrorInput {
   message: string
@@ -61,16 +60,23 @@ export class HttpClient {
     }
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {'GET'} method
+   * @returns {RequestGetFn}
+   * @memberof HttpClient
+   */
   private createRequest(method: 'GET'): RequestGetFn
   private createRequest(method: string): RequestFn
   private createRequest(method: 'GET' | string): RequestFn {
     return (url, data, config) => {
       if (method === 'GET') {
-        let getUrl = url
+        const getUrl = new URL(url)
         if (data) {
-          getUrl = url + '?' + qs.stringify(data)
+          Object.entries(data).forEach(([key, value]) => getUrl.searchParams.append(key, value))
         }
-
         return this.request(getUrl, {
           ...config,
           method: 'GET',
@@ -105,6 +111,12 @@ export class HttpClient {
     }
   }
 
+  /**
+   *
+   *
+   * @private
+   * @memberof HttpClient
+   */
   private setAbortController = (config: RequestConfig) => {
     const { createAbort } = config
     if (createAbort) {
@@ -119,7 +131,16 @@ export class HttpClient {
     }
   }
 
-  public async request<T>(url: string, requestConfig: RequestConfig = {}): Promise<T> {
+  /**
+   *
+   *
+   * @template T
+   * @param {(string | URL)} url
+   * @param {RequestConfig} [requestConfig={}]
+   * @returns {Promise<T>}
+   * @memberof HttpClient
+   */
+  public async request<T>(url: string | URL, requestConfig: RequestConfig = {}): Promise<T> {
     const { beforeHook } = this.config
 
     const config: RequestConfig = {
@@ -144,6 +165,15 @@ export class HttpClient {
     return requestFn.catch(err => this.onError<T>(err, requestFn))
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {Response} res
+   * @param {RequestConfig} config
+   * @returns
+   * @memberof HttpClient
+   */
   private handleSuccess(res: Response, config: RequestConfig) {
     const { returnType = 'json' } = config
 
@@ -154,6 +184,16 @@ export class HttpClient {
     return res[returnType]()
   }
 
+  /**
+   *
+   *
+   * @private
+   * @template T
+   * @param {HttpError} err
+   * @param {Promise<T>} requestFn
+   * @returns
+   * @memberof HttpClient
+   */
   private async onError<T = any>(err: HttpError, requestFn: Promise<T>) {
     const { onError } = this.config
 
@@ -175,7 +215,7 @@ export class HttpClient {
       case 'application/json':
         return JSON.stringify(body)
       case 'application/x-www-form-urlencoded':
-        return qs.stringify(body)
+        return new URLSearchParams(body)
       default:
         return JSON.stringify(body)
     }
