@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { FieldSelect } from './FieldSelect'
+import { FieldSelectAdvanced } from './FieldSelectAdvanced'
 
-export default { title: 'Forms|Select field', component: FieldSelect }
+export default { title: 'Forms|Advanced Select field', component: FieldSelectAdvanced }
 
 const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
   value: item,
@@ -10,7 +10,10 @@ const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
 }))
 
 export const example = () => (
-  <FieldSelect options={frameworks} name="framework" label="Framework"></FieldSelect>
+  <FieldSelectAdvanced
+    options={frameworks}
+    name="framework"
+    label="Framework"></FieldSelectAdvanced>
 )
 
 example.story = {

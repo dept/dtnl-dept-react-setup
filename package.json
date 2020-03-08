@@ -76,6 +76,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^5.0.1",
     "styled-system": "^5.1.5",
+    "swr": "^0.1.18",
     "url-polyfill": "^1.1.8",
     "yup": "^0.28.1"
   },

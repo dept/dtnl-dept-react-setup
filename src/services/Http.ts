@@ -1,4 +1,9 @@
 import fetch from 'isomorphic-fetch'
+import useSWR  from 'swr'
+
+type SWRArguments = Parameters<typeof useSWR>
+
+const usePets = <Data = any, Error = any>(fetcher?: SWRArguments[1], config?: SWRArguments[2]<Data, Error>) => useSWR('/api/route', fetcher, config)
 
 export interface HttpErrorInput {
   message: string

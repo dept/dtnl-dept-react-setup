@@ -1,144 +1,164 @@
 import { Box } from '@tpdewolf/styled-primitives'
-import React, { FocusEventHandler } from 'react'
-import Select from 'react-select'
-import { ValueType } from 'react-select/src/types'
+import { useSelect } from 'downshift'
 import styled from 'styled-components'
 
-import { IconButton } from '@/components/atoms'
-import { colors } from '@/theme/colors'
+import { Icon, InputWrapper } from '@/components/atoms'
+import { Label } from '@/components/atoms/Form/Label'
+
+type Value = string | number
 
 interface Option {
-  value: string | number
-  label: string | number
+  value: Value
+  label: Value
 }
 
-export interface FieldSelectProps {
-  isClearable?: boolean
-  isSearchable?: boolean
-  minWidth?: number
-  options: Option[]
-  value?: string | number
-  placeholder?: string
+interface SelectProps {
+  name: string
+  items: Option[]
+  color?: string
   label?: string
-  onBlur?: FocusEventHandler
-  onChange?: (value: ValueType<Option>, action: any) => void
-  name?: string
-  disabled?: boolean
+  placeholder?: string
   hasError?: boolean
+  native?: boolean
+  defaultValue?: Value
+  onChange?: (value: Value) => void
+  disabled?: boolean
 }
 
-const INPUT_HEIGHT = '50px'
+const List = styled(Box)`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  z-index: 100;
+`
 
-const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefined }>`
+const ListItem = Box
+
+const CustomSelect: React.FC<SelectProps> = ({
+  name,
+  items,
+  color,
+  label,
+  placeholder,
+  hasError,
+}) => {
+  const {
+    isOpen,
+    selectedItem,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({ items })
+
+  return (
+    <>
+      {label && (
+        <Label htmlFor={name} color={color} {...getLabelProps()}>
+          {label}
+        </Label>
+      )}
+      <InputWrapper color={color} hasError={hasError}>
+        <Box display="block" p="12px 14px" as="label" {...getToggleButtonProps()}>
+          {(selectedItem && selectedItem.label) || placeholder || '-'}
+          <IconWrapper position="absolute" right={10} top="50%">
+            <Icon icon="Chevron" size={15} />
+          </IconWrapper>
+        </Box>
+        <List as="ul" bg="white" minWidth={200} maxWidth="100%" {...getMenuProps()}>
+          {isOpen &&
+            items.map((item, index) => (
+              <ListItem
+                as="li"
+                bg={highlightedIndex === index ? 'grey.light' : null}
+                p="12px 14px"
+                key={`${item}${index}`}
+                {...getItemProps({ item, index })}>
+                {item.label}
+              </ListItem>
+            ))}
+        </List>
+      </InputWrapper>
+    </>
+  )
+}
+
+const StyledSelect = styled.select`
+  appearance: none;
+  background-color: transparent;
   width: 100%;
-  max-width: 100%;
-  ${({ minWidth }) => `min-width: ${minWidth}px;`}
-  .reactselect__control {
-    border-radius: 0;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid ${({ hasError }) => (hasError ? colors.error : colors.grey.dark)};
-    min-height: ${INPUT_HEIGHT};
-    &:hover {
-      border-color: ${colors.grey.dark};
-    }
-    &--is-focused {
-      outline: none !important;
-      box-shadow: none;
-    }
-
-    &--menu-is-open {
-      box-shadow: none;
-    }
-  }
-
-  .reactselect__value-container {
-    padding: 0;
-    height: ${INPUT_HEIGHT};
-  }
-
-  .reactselect__menu {
-    box-shadow: none;
-    border: 1px solid ${colors.grey.dark};
-    border-radius: 0;
-    margin-top: -1px;
-  }
-
-  .reactselect__menu-list {
-    padding: 0;
-  }
-
-  .reactselect__indicator-separator {
+  display: block;
+  border: none;
+  padding: 12px 14px;
+  height: 50px;
+  &::-ms-expand {
     display: none;
   }
-
-  .reactselect__option {
-    &--is-focused {
-      background-color: ${colors.grey.lighter};
-    }
-    &--is-selected {
-      background-color: ${colors.grey.light};
-    }
-    &:active {
-      background-color: ${colors.grey.medium};
-      color: #fff;
-    }
+  &:focus {
+    outline: none;
   }
 `
 
-export const FieldSelect: React.FC<FieldSelectProps> = ({
+const IconWrapper = styled(Box)`
+  transform: translateY(-50%);
+  pointer-events: none;
+`
+
+const NativeSelect: React.FC<SelectProps> = ({
+  name,
+  items,
+  color,
   label,
-  value,
-  options,
-  disabled,
-  minWidth = 200,
-  isClearable = true,
   placeholder,
   hasError,
-  ...props
+  defaultValue,
+  onChange = () => {
+    /** noop */
+  },
+  disabled,
 }) => {
   return (
-    <SelectWrapper hasError={hasError} minWidth={minWidth}>
-      <Select
-        components={{
-          DropdownIndicator: ddProps => {
-            return (
-              <Box px={8}>
-                <IconButton
-                  tabIndex={-1}
-                  aria-label={'Uitklappen'}
-                  icon={'Chevron'}
-                  size={18}
-                  padding={0}
-                  rotate={ddProps.selectProps.menuIsOpen ? -180 : 0}
-                />
-              </Box>
-            )
-          },
-          ClearIndicator: clearProps => (
-            <Box px={10}>
-              <IconButton
-                aria-label={'Wissen'}
-                onClick={clearProps.clearValue}
-                icon={'CloseLight'}
-                rotate={-180}
-                size={14}
-                padding={0}
-              />
-            </Box>
-          ),
-        }}
-        // menuIsOpen
-        classNamePrefix="reactselect"
-        isDisabled={disabled}
-        isSearchable
-        placeholder={placeholder || label || 'Select'}
-        noOptionsMessage={() => 'No options'}
-        isClearable={isClearable}
-        value={options.find(item => item.value === value)}
-        options={options}
-        {...props}
-      />
-    </SelectWrapper>
+    <>
+      {label && (
+        <Label htmlFor={name} color={color}>
+          {label}
+        </Label>
+      )}
+      <InputWrapper color={color} hasError={hasError}>
+        <StyledSelect
+          onChange={e => onChange(e.target.value)}
+          disabled={disabled}
+          defaultValue={defaultValue}>
+          {placeholder && (
+            <option disabled selected>
+              {placeholder}
+            </option>
+          )}
+          {items.map((item, index) => (
+            <option key={`${item}${index}`} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </StyledSelect>
+        <IconWrapper position="absolute" right={10} top="50%">
+          <Icon icon="Chevron" size={15} />
+        </IconWrapper>
+      </InputWrapper>
+    </>
   )
+}
+
+export const FieldSelect: React.FC<SelectProps> = props => {
+  if (props.native) {
+    return <NativeSelect {...props}></NativeSelect>
+  } else {
+    return <CustomSelect {...props}></CustomSelect>
+  }
+}
+
+FieldSelect.defaultProps = {
+  placeholder: 'Choose option...',
+  color: 'grey.medium',
 }

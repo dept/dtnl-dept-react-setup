@@ -10,7 +10,7 @@ import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModalActions } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
-import { FieldSelect2 } from '../components/molecules/Form/FieldSelect2'
+import { FieldSelect } from '../components/molecules/Form/FieldSelect'
 
 const Section: React.FC = props => (
   <Reveal>
@@ -117,7 +117,7 @@ const Page: NextPage = () => {
                 ]}
               /> */}
 
-              <FieldSelect2
+              <FieldSelect
                 name="select"
                 // native
                 placeholder={''}
