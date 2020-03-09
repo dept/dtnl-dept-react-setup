@@ -1,6 +1,9 @@
 // @ts-nocheck
 import { precacheAndRoute } from 'workbox-precaching'
 
+/**
+ * Extend workbox
+ */
 precacheAndRoute(self.__WB_MANIFEST)
 
 /*
