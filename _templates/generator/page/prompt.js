@@ -1,8 +1,16 @@
 module.exports = [
   {
-    type: 'input',
+    type: 'select',
     name: 'componentType',
-    message: 'Functional(f) or Class(c)',
-    default: 'f',
+    message: 'Functional or Class',
+    choices: ['Functional', 'Class'],
+    default: 'Functional',
+  },
+  {
+    type: 'select',
+    name: 'dataFetching',
+    message: 'Static or SSR',
+    choices: ['Static', 'SSR', 'Neither'],
+    default: 'Static',
   },
 ]

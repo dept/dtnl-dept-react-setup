@@ -1,8 +1,7 @@
 import '@static/fonts/fonts.css'
-import '@/components/organisms/RichTextEditor/styles.css'
 
 import { DefaultSeo } from 'next-seo'
-import App from 'next/app'
+import { AppType } from 'next/dist/next-server/lib/utils'
 import ReactModal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
 
@@ -18,28 +17,22 @@ if (process.browser) {
 
 ReactModal.setAppElement('#__next')
 
-export interface AppProps {}
-
-class MyApp extends App<AppProps> {
-  public render() {
-    const { Component, pageProps } = this.props
-
-    return (
-      <>
-        <DefaultSeo titleTemplate={`%s | Dept`} />
-        <ContextProvider>
-          <ThemeProvider theme={theme}>
-            <>
-              <GlobalStyle />
-              <BaseLayout>
-                <Component {...pageProps} />
-              </BaseLayout>
-            </>
-          </ThemeProvider>
-        </ContextProvider>
-      </>
-    )
-  }
+const MyApp: AppType = ({ Component, pageProps }) => {
+  return (
+    <>
+      <DefaultSeo titleTemplate={`%s | Dept`} />
+      <ContextProvider>
+        <ThemeProvider theme={theme}>
+          <>
+            <GlobalStyle />
+            <BaseLayout>
+              <Component {...pageProps} />
+            </BaseLayout>
+          </>
+        </ThemeProvider>
+      </ContextProvider>
+    </>
+  )
 }
 
 export default MyApp
