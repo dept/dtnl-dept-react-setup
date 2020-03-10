@@ -1,11 +1,11 @@
 import { Box, Heading, Text } from '@tpdewolf/styled-primitives'
-import { NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import { Hyperlink } from '@/components/atoms'
 
-import { BlogPost, blogPosts } from '.'
+import { BlogPost, blogPosts } from '../blog'
 
 interface PageProps {
   post: BlogPost
@@ -27,19 +27,18 @@ const Page: NextPage<PageProps> = ({ post }) => {
   )
 }
 
-Page.getInitialProps = async ctx => {
-  const post = blogPosts.find(item => item.id === Number(ctx.query.postId))
-
-  if (!post) {
-    if (ctx.res) {
-      ctx.res.statusCode = 404
-    }
-
-    throw new Error('Post not found')
-  }
+export const getStaticProps: GetStaticProps = async ctx => {
+  const post = blogPosts.find(item => item.id === Number(ctx.params!.postId))
 
   return {
-    post,
+    props: { post },
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: blogPosts.map(item => ({ params: { postId: String(item.id) } })),
+    fallback: false,
   }
 }
 
