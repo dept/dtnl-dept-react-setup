@@ -5,19 +5,9 @@ const plugins = [
   [
     withOffline,
     {
+      generateSw: false,
       workboxOpts: {
-        runtimeCaching: [
-          {
-            urlPattern: /^https?.*/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'offlineCache',
-              expiration: {
-                maxEntries: 200,
-              },
-            },
-          },
-        ],
+        swSrc: './public/service-worker.js',
       },
     },
   ],
