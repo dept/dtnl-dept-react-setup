@@ -55,7 +55,6 @@ const StyledImage = styled.img<ImageProps>`
   opacity: 0;
   transition: opacity 300ms;
   z-index: 1;
-
   .image--is-loaded & {
     opacity: 1;
   }
@@ -94,9 +93,9 @@ export const Image: FC<ImageComponentProps> = ({
   const [transitioning, setTransitioning] = useState(false)
 
   useEffect(() => {
-    if (inView && imageRef?.current) {
-      const image = imageRef.current
+    const image = imageRef.current
 
+    if (inView && image) {
       image.addEventListener('transitionend', transitionHandler, { once: true })
 
       if (!src) return swapImage()
@@ -108,10 +107,11 @@ export const Image: FC<ImageComponentProps> = ({
       if (srcSet) image.srcset = srcSet
     }
     return () => {
-      if (imageRef?.current)
-        imageRef.current.removeEventListener('transitionend', transitionHandler)
+      if (image) {
+        image.removeEventListener('transitionend', transitionHandler)
+      }
     }
-  }, [inView])
+  }, [inView, imageRef, src, srcSet])
 
   const transitionHandler = ({ propertyName }: TransitionEvent) => {
     if (propertyName === 'opacity') {
@@ -131,7 +131,6 @@ export const Image: FC<ImageComponentProps> = ({
       className={transitioning ? 'image--is-loaded' : ''}>
       <StyledImage ref={imageRef} objectFit={objectFit} src={preload} alt={alt} />
       {!loaded && <PreloadImage objectFit={objectFit} src={preload} aria-hidden="true" alt={alt} />}
-
       {caption && <StyledCaption>{caption}</StyledCaption>}
     </ImageWrapper>
   )

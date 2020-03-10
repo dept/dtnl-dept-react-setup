@@ -67,19 +67,24 @@ const callback = function(error, response) {
     })
     .join('\n')
 
-  fs.writeFileSync(
-    `${folder}/FaviconsMeta.tsx`,
-    prettier.format(`
-    export const FaviconsMeta: React.FC = () => {
-      return (
-        <>
-          ${metaTags}
-        </>
+  prettier.resolveConfigFile().then(filePath => {
+    prettier.resolveConfig(filePath).then(options => {
+      const formatted = prettier.format(
+        `
+      export const FaviconsMeta: React.FC = () => {
+        return (
+          <>
+            ${metaTags}
+          </>
+        )
+      }
+      `,
+        options,
       )
-    }
-    `),
-  )
+
+      fs.writeFileSync(`${folder}/FaviconsMeta.tsx`, formatted)
+    })
+  })
 }
 
-// @ts-ignore
 favicons(source, configuration, callback)
