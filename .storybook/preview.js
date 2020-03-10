@@ -1,5 +1,6 @@
 import { addDecorator } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
+import { withKnobs } from '@storybook/addon-knobs'
 import { ThemeProvider } from 'styled-components'
 
 import { theme } from '../src/theme'
@@ -14,6 +15,8 @@ addDecorator(
     header: false, // Global configuration for the info addon across all of your stories.
   }),
 )
+
+addDecorator(withKnobs)
 
 addDecorator(story => (
   <>
