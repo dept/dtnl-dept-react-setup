@@ -2,13 +2,13 @@
 to: src/pages/<%= name %>.tsx
 ---
 <% classified = h.inflection.classify(name) -%>
-import { NextPage, NextPageContext } from 'next'
+import { <% if(dataFetching === 'SSR'){ -%>GetServerSideProps, <% } -%><% if(dataFetching === 'Static'){ -%>GetStaticPaths, GetStaticProps, <% } -%>NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
 interface PageProps {}
 
-<% if(componentType === 'f'){ -%>
+<% if(componentType === 'Functional'){ -%>
 const Page: NextPage<PageProps> = (props) => {
   return (
     <>
@@ -18,27 +18,9 @@ const Page: NextPage<PageProps> = (props) => {
   )
 }
 
-/**
- * Used to fetch initial data on the server side. Remove if not needed to allow for Automatic Static Optimization
- * https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
- * https://nextjs.org/docs/advanced-features/automatic-static-optimization
- */
-Page.getInitialProps = async (ctx: NextPageContext) => {
-  return {}
-}
-
-export default Page
 <% } -%>
-<% if(componentType === 'c'){ -%>
-export default class Page extends React.Component<PageProps> {
-  /**
-  * Used to fetch initial data on the server side. Remove if not needed to allow for Automatic Static Optimization
-  * https://nextjs.org/docs/api-reference/data-fetching/getInitialProps
-  * https://nextjs.org/docs/advanced-features/automatic-static-optimization
-  */
-  static getInitialProps = async (ctx: NextPageContext) => {
-    return {}
-  }
+<% if(componentType === 'Class'){ -%>
+class Page extends React.Component<PageProps> {
 
   render() {
     return (
@@ -49,7 +31,38 @@ export default class Page extends React.Component<PageProps> {
     )
   }
 }
-
 <% } -%>
+
+<% if(dataFetching === 'SSR'){ -%>
+/**
+* https://nextjs.org/docs/basic-features/data-fetching
+*/
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+}
+<% } -%>
+
+<% if(dataFetching === 'Static'){ -%>
+/**
+* https://nextjs.org/docs/basic-features/data-fetching
+*/
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { id: 1 } }],
+    fallback: false,
+  }
+}
+<% } -%>
+
+
+export default Page
 
 
