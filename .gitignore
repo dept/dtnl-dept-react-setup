@@ -2,6 +2,7 @@ node_modules
 .next
 dist
 .docz
+.out
 
 # misc
 .DS_Store
