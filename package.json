@@ -17,7 +17,7 @@
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "generate": "hygen generator",
     "storybook": "start-storybook",
-    "build-storybook": "build-storybook -c .storybook -o .out",
+    "build-storybook": "build-storybook",
     "favicons": "node config/favicons",
     "svgr": "npx @svgr/cli ./public/static/icons --template ./public/static/icons/svgrtemplate.js --ext tsx --out-dir ./public/static/icons/components"
   },
