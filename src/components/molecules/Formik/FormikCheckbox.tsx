@@ -21,7 +21,7 @@ export const FormikCheckbox: React.FC<FormikCheckboxProps> = ({ name, children, 
               hasError={meta.touched && meta.error}
               value={'true'}
               checked={meta.value}
-              onChange={e => form.setFieldValue(name, e.currentTarget.checked)}>
+              onChange={(e) => form.setFieldValue(name, e.currentTarget.checked)}>
               {children}
             </Checkbox>
           )

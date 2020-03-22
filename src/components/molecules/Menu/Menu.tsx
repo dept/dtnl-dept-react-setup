@@ -19,9 +19,9 @@ interface MenuPopupProps {
 }
 
 const MenuPopup = styled(Box)<MenuPopupProps>`
-  opacity: ${props => (props.isOpen ? 1 : 0)};
-  transform: translateY(${props => (props.isOpen ? '10px' : 0)});
-  pointer-events: ${props => (props.isOpen ? 'all' : 'none')};
+  opacity: ${(props) => (props.isOpen ? 1 : 0)};
+  transform: translateY(${(props) => (props.isOpen ? '10px' : 0)});
+  pointer-events: ${(props) => (props.isOpen ? 'all' : 'none')};
   transition: all 200ms ease-in-out;
 `
 

@@ -56,8 +56,8 @@ const ModalStyles = createGlobalStyle<any>`
 
     ${media.min('tablet')} {
       position: relative;
-      width: ${props => props.width};
-      height: ${props => props.height};
+      width: ${(props) => props.width};
+      height: ${(props) => props.height};
       margin: 100px auto 100px;
       max-width: 90%;
     }

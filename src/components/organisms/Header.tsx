@@ -34,7 +34,7 @@ const Navigation: React.FC = () => {
 
   return (
     <Flex as="nav">
-      {items.map(item => {
+      {items.map((item) => {
         return (
           <Box key={item.title}>
             <ActiveLink href={item.href} passHref>

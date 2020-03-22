@@ -24,8 +24,8 @@ const ModalContextDispatch = React.createContext({} as ReturnType<typeof createA
 
 function modalReducer(state: State, action: Action) {
   function changeModals(key: string, show: boolean, options?: ModalOptions) {
-    return produce(state, nextState => {
-      Object.keys(nextState).forEach(modalKey => (nextState[modalKey].isShown = false))
+    return produce(state, (nextState) => {
+      Object.keys(nextState).forEach((modalKey) => (nextState[modalKey].isShown = false))
       nextState[key] = { isShown: show, isClosable: true, ...options }
     })
   }

@@ -35,7 +35,7 @@ const Page: NextPage<PageProps> = () => {
           Blogs
         </Heading>
         <ul>
-          {blogPosts.map(item => {
+          {blogPosts.map((item) => {
             return (
               <li key={item.id}>
                 <Hyperlink href="/blog/[postId]" as={`/blog/${item.id}`}>

@@ -18,7 +18,7 @@ export const FormikSelect: React.FC<FormikSelectProps> = ({ name, ...props }) =>
               {...props}
               {...field}
               onBlur={() => form.setFieldTouched(name, true)}
-              onChange={option => {
+              onChange={(option) => {
                 // @ts-ignore
                 form.setFieldValue(name, option && !Array.isArray(option) && option.value)
               }}

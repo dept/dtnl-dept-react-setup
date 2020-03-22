@@ -42,28 +42,28 @@ const ButtonBase = styled(Box)<ButtonProps>`
 
   &:focus {
     outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
+    box-shadow: ${(props) => props.theme.shadows.outline || 'inherit'};
   }
 
   &:disabled {
     cursor: not-allowed;
   }
 
-  ${props => (props.inline ? 'display: inline-flex' : '')};
-  ${props => (props.block ? 'display: block; width: 100%;' : '')};
-  ${props => (props.variant !== 'clear' ? 'height: 50px;' : '')}
+  ${(props) => (props.inline ? 'display: inline-flex' : '')};
+  ${(props) => (props.block ? 'display: block; width: 100%;' : '')};
+  ${(props) => (props.variant !== 'clear' ? 'height: 50px;' : '')}
 `
 
 const StyledButtonLabel = styled.span<ButtonProps>`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: ${props => props.justify};
-  flex-direction: ${props => (props.iconReverse ? 'row-reverse' : 'row')};
+  justify-content: ${(props) => props.justify};
+  flex-direction: ${(props) => (props.iconReverse ? 'row-reverse' : 'row')};
 `
 
 const IconWrapper = styled.span<ButtonProps>`
-  margin: ${props => (!props.iconReverse ? '0 0 0 12px' : '0 12px 0 0')};
+  margin: ${(props) => (!props.iconReverse ? '0 0 0 12px' : '0 12px 0 0')};
 `
 
 // this is a class component because Buttons often need a ref, and function components require React.forwardRef to forward refs

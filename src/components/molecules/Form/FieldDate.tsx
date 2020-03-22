@@ -66,7 +66,7 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
     }
   }
 
-  const handleCalendarChange: OnChangeDateCallback = newDate => {
+  const handleCalendarChange: OnChangeDateCallback = (newDate) => {
     if (!Array.isArray(newDate)) {
       setDate(newDate)
       setInputDate(format(newDate, inputFormat))

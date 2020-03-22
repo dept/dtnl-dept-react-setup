@@ -42,14 +42,14 @@ const defaultImageStyles = css`
 const ImageWrapper = styled.figure<ImageWrapperProps>`
   position: relative;
   margin: 0;
-  width: ${props => props.width};
-  height: ${props => props.height};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   overflow: hidden;
 `
 
 const StyledImage = styled.img<ImageProps>`
   ${defaultImageStyles}
-  ${props => (props.objectFit ? objectFitStyles : '')};
+  ${(props) => (props.objectFit ? objectFitStyles : '')};
   position: relative;
   display: block;
   opacity: 0;
@@ -62,7 +62,7 @@ const StyledImage = styled.img<ImageProps>`
 
 const PreloadImage = styled.img<ImageProps>`
   ${defaultImageStyles}
-  ${props => (props.objectFit ? objectFitStyles : '')};
+  ${(props) => (props.objectFit ? objectFitStyles : '')};
   position: absolute;
   top: 50%;
   left: 50%;

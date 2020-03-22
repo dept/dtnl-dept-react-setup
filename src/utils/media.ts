@@ -26,10 +26,10 @@ function getSizeFromBreakpoint(breakpointValue: Breakpoints) {
   }
 }
 
-const max: BreakpointFunction = breakpoint =>
+const max: BreakpointFunction = (breakpoint) =>
   `@media (max-width: ${getSizeFromBreakpoint(breakpoint)})`
 
-const min: BreakpointFunction = breakpoint =>
+const min: BreakpointFunction = (breakpoint) =>
   `@media (min-width: ${getSizeFromBreakpoint(breakpoint)})`
 
 const between: BetweenFunction = (firstBreakpoint, secondBreakpoint) => `

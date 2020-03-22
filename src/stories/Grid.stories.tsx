@@ -3,7 +3,7 @@ import React from 'react'
 
 export default { title: 'Grid|Grid' }
 
-const GridExampleBox: React.FC = props => (
+const GridExampleBox: React.FC = (props) => (
   <Box bg="primary" my={5} color="white" p={20} fontSize={14} {...props} />
 )
 

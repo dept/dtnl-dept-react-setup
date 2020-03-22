@@ -36,10 +36,10 @@ const Check = styled.div<{ hasError: boolean }>`
   }
   input:focus + & {
     outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
+    box-shadow: ${(props) => props.theme.shadows.outline || 'inherit'};
   }
 
-  ${props =>
+  ${(props) =>
     props.hasError &&
     css`
       border: 1px solid ${colors.error};

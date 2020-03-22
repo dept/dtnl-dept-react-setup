@@ -22,7 +22,7 @@ const StyledInput = styled.input<InputProps>`
   background-color: transparent;
   border: none;
   margin: 0;
-  color: ${props => props.color || 'black'};
+  color: ${(props) => props.color || 'black'};
   padding: 12px 14px;
 
   &[type='number']::-webkit-inner-spin-button,
@@ -35,13 +35,13 @@ const StyledInput = styled.input<InputProps>`
     outline: none;
   }
 
-  ${props =>
+  ${(props) =>
     props.hasError &&
     css`
       color: ${colors.error};
     `};
 
-  ${props =>
+  ${(props) =>
     props.readOnly &&
     css`
       opacity: 0.3;
@@ -53,7 +53,7 @@ const StyledInput = styled.input<InputProps>`
 type InputWrapperProps = InputProps & { hasFocus: boolean }
 
 const InputWrapper = styled.div<InputWrapperProps>`
-  color: ${props => props.color || 'black'};
+  color: ${(props) => props.color || 'black'};
   border: 1px solid ${colors.grey.light};
   border-radius: 4px;
   position: relative;
@@ -62,7 +62,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
     border-color: ${colors.grey.medium};
   }
 
-  ${props =>
+  ${(props) =>
     props.hasFocus &&
     css`
       outline: none;
@@ -70,7 +70,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
       border-color: ${colors.grey.medium};
     `};
 
-  ${props =>
+  ${(props) =>
     props.hasError &&
     css`
       color: ${colors.error};
@@ -90,13 +90,13 @@ export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props
       <StyledInput
         type={type}
         {...props}
-        onBlur={e => {
+        onBlur={(e) => {
           setHasFocus(false)
           if (props.onBlur) {
             props.onBlur(e)
           }
         }}
-        onFocus={e => {
+        onFocus={(e) => {
           setHasFocus(true)
           if (props.onFocus) {
             props.onFocus(e)

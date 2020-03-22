@@ -14,7 +14,7 @@ type IconProps = Omit<BoxProps, 'width' | 'height'> & {
 
 const StyledIconWrapper = styled(Box)<BoxProps & { rotate?: number }>`
   transition: transform 0.2s ease-in-out;
-  ${props => props.rotate && `transform: rotate(${props.rotate}deg);`};
+  ${(props) => props.rotate && `transform: rotate(${props.rotate}deg);`};
   display: flex;
   flex-shrink: 0;
   justify-content: center;

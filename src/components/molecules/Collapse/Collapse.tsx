@@ -24,7 +24,7 @@ const CollapseWrapper = styled.div<{ height: number }>`
   }
   &.collapse-enter-active {
     opacity: 1;
-    height: ${props => props.height}px;
+    height: ${(props) => props.height}px;
   }
   &.collapse-enter-done {
     opacity: 1;
@@ -33,7 +33,7 @@ const CollapseWrapper = styled.div<{ height: number }>`
   }
   &.collapse-exit {
     opacity: 1;
-    height: ${props => props.height}px;
+    height: ${(props) => props.height}px;
   }
   &.collapse-exit-active {
     opacity: 0;

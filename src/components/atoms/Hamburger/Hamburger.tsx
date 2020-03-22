@@ -80,7 +80,7 @@ const HamburgerInner = styled.div<HamburgerProps>`
 
   ${squeezeInnerStyles}
 
-  ${props => (props.isActive ? squeezeInnerActiveStyles : '')}
+  ${(props) => (props.isActive ? squeezeInnerActiveStyles : '')}
 `
 
 const hamburgerWrapperActive = css`
@@ -119,7 +119,7 @@ const HamburgerWrapper = styled.button<HamburgerProps>`
     opacity: ${HAMBURGER_HOVER_OPACITY};
   }
 
-  ${props => (props.isActive ? hamburgerWrapperActive : '')}
+  ${(props) => (props.isActive ? hamburgerWrapperActive : '')}
 `
 
 const HamburgerBox = styled.div`
@@ -129,7 +129,7 @@ const HamburgerBox = styled.div`
   position: relative;
 `
 
-export const Hamburger: React.FC<HamburgerProps> = props => {
+export const Hamburger: React.FC<HamburgerProps> = (props) => {
   return (
     <HamburgerWrapper {...props}>
       <HamburgerBox>

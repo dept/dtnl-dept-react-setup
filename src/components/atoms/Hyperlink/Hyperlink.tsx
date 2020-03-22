@@ -33,7 +33,7 @@ const HyperlinkLabel = styled.span<HyperLinkElementProps>`
   }
 
   &:focus {
-    outline: ${props => props.theme.outline || 'inherit'};
+    outline: ${(props) => props.theme.outline || 'inherit'};
   }
 
   ${({ icon }) =>
