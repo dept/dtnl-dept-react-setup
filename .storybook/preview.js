@@ -18,7 +18,7 @@ addDecorator(
 
 addDecorator(withKnobs)
 
-addDecorator((story) => (
+addDecorator(story => (
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
@@ -27,4 +27,4 @@ addDecorator((story) => (
   </>
 ))
 
-addDecorator((story) => <ContextProvider>{story()}</ContextProvider>)
+addDecorator(story => <ContextProvider>{story()}</ContextProvider>)

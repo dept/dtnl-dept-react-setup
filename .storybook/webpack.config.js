@@ -13,7 +13,7 @@ module.exports = ({ config }) => {
       {
         loader: require.resolve('react-docgen-typescript-loader'),
         options: {
-          propFilter: (props) => {
+          propFilter: props => {
             if (props.parent) {
               if (props.parent.fileName.includes('styled-system')) {
                 return false
