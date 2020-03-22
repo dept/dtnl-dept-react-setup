@@ -49,7 +49,7 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
 
   &:focus {
     outline: none;
-    box-shadow: ${(props) => props.theme.shadows.outline || 'inherit'};
+    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
 `
 

@@ -10,11 +10,11 @@ const StyledAlertBox = styled(Box)<AlertProps>`
   ${({ type }) =>
     type &&
     css`
-      background-color: ${(props) => props.theme.colors[type]};
+      background-color: ${props => props.theme.colors[type]};
     `};
 `
 
-export const Alert: FC<AlertProps> = (props) => (
+export const Alert: FC<AlertProps> = props => (
   <StyledAlertBox py="xxs" {...props}>
     <Contain>
       <Row>

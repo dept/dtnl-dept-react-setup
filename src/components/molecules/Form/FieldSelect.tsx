@@ -101,7 +101,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({
     <SelectWrapper hasError={hasError} minWidth={minWidth}>
       <Select
         components={{
-          DropdownIndicator: (ddProps) => {
+          DropdownIndicator: ddProps => {
             return (
               <Box px={8}>
                 <IconButton
@@ -115,7 +115,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({
               </Box>
             )
           },
-          ClearIndicator: (clearProps) => (
+          ClearIndicator: clearProps => (
             <Box px={10}>
               <IconButton
                 aria-label={'Wissen'}
@@ -135,7 +135,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({
         placeholder={placeholder || label || 'Select'}
         noOptionsMessage={() => 'No options'}
         isClearable={isClearable}
-        value={options.find((item) => item.value === value)}
+        value={options.find(item => item.value === value)}
         options={options}
         {...props}
       />

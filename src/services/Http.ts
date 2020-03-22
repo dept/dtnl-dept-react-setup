@@ -139,9 +139,9 @@ export class HttpClient {
 
     const requestFn = fetch(baseUrl + url, config)
       .then(this.handleError)
-      .then((res) => this.handleSuccess(res, config)) as Promise<T>
+      .then(res => this.handleSuccess(res, config)) as Promise<T>
 
-    return requestFn.catch((err) => this.onError<T>(err, requestFn))
+    return requestFn.catch(err => this.onError<T>(err, requestFn))
   }
 
   private handleSuccess(res: Response, config: RequestConfig) {

@@ -27,8 +27,8 @@ const Page: NextPage<PageProps> = ({ post }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const post = blogPosts.find((item) => item.id === Number(ctx.params!.postId))
+export const getStaticProps: GetStaticProps = async ctx => {
+  const post = blogPosts.find(item => item.id === Number(ctx.params!.postId))
 
   return {
     props: { post },
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: blogPosts.map((item) => ({ params: { postId: String(item.id) } })),
+    paths: blogPosts.map(item => ({ params: { postId: String(item.id) } })),
     fallback: false,
   }
 }

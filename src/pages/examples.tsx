@@ -10,19 +10,19 @@ import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModalActions } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
-const Section: React.FC = (props) => (
+const Section: React.FC = props => (
   <Reveal>
     <Box p={30} {...props} />
   </Reveal>
 )
 
-const SectionHeader: React.FC = (props) => (
+const SectionHeader: React.FC = props => (
   <Card borderBottom="1px solid" borderColor="primary" mb={30}>
     <Heading {...props} />
   </Card>
 )
 
-const GridExampleBox: React.FC = (props) => (
+const GridExampleBox: React.FC = props => (
   <Box bg="primary" color="white" p={15} my={5} fontSize={14} {...props} />
 )
 
@@ -80,7 +80,7 @@ const Page: NextPage = () => {
             date: Yup.date().required('This field is required'),
             select: Yup.string().required('This field is required').nullable(),
           })}
-          onSubmit={(values) => console.log(values)}>
+          onSubmit={values => console.log(values)}>
           {() => (
             <Form>
               <FormikInput label="Text field" name="text" placeholder="This is a text field" />
@@ -131,7 +131,7 @@ const Page: NextPage = () => {
         <SectionHeader>Icons</SectionHeader>
 
         <Flex flexWrap="wrap">
-          {Object.keys(icons).map((icon) => (
+          {Object.keys(icons).map(icon => (
             <Box key={icon} p={5}>
               <Icon icon={icon as keyof typeof icons} size={50} color="secondary"></Icon>
             </Box>

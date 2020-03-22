@@ -5,7 +5,7 @@ import { useAuth } from './AuthContext'
 
 export default function withAuth() {
   return (AuthComponent: NextComponentType<any>) => {
-    const Authenticated: NextPage = (props) => {
+    const Authenticated: NextPage = props => {
       const [loading, setLoading] = useState(true)
       const [error, setError] = useState(false)
       const { user } = useAuth()

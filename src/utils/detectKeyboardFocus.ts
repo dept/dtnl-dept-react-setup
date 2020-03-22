@@ -7,7 +7,7 @@ class DetectKeyboardFocus {
   constructor() {
     this.keyDown = false
 
-    document.addEventListener('keydown', (event) => this.handleKey(true, event), true)
+    document.addEventListener('keydown', event => this.handleKey(true, event), true)
     document.addEventListener('keyup', () => this.handleKey(false), true)
     document.addEventListener('mouseleave', () => this.handleKey(false))
     document.addEventListener('focus', () => this.handleFocus(), true)

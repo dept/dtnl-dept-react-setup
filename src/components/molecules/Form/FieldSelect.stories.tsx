@@ -4,7 +4,7 @@ import { FieldSelect } from './FieldSelect'
 
 export default { title: 'Forms|Select field', component: FieldSelect }
 
-const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map((item) => ({
+const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
   value: item,
   label: item,
 }))

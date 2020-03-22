@@ -24,7 +24,7 @@ export const FormikCheckBoxGroup: FC<FormikCheckBoxGroupProps> = ({ name, ...pro
                   newValue.push(target.value)
                 } else {
                   newValue.splice(
-                    newValue.findIndex((item) => item === target.value),
+                    newValue.findIndex(item => item === target.value),
                     1,
                   )
                 }

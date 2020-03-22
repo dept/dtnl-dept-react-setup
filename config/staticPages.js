@@ -1,4 +1,4 @@
-const exportPathMap = async function () {
+const exportPathMap = async function() {
   return {}
 }
 
