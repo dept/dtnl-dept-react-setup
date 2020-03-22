@@ -47,7 +47,7 @@ const configuration = {
   },
 }
 
-const callback = function(error, response) {
+const callback = function (error, response) {
   if (error) {
     console.log(error.message) // Error description e.g. "An unknown error has occurred"
     return

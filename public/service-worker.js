@@ -26,7 +26,7 @@ const CACHE_NAME = 'offline'
 // Customize this with a different URL if needed.
 const OFFLINE_URL = 'offline.html'
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME)
@@ -37,7 +37,7 @@ self.addEventListener('install', (event) => {
   )
 })
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   event.waitUntil(
     (async () => {
       // Enable navigation preload if it's supported.
@@ -52,7 +52,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim()
 })
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', event => {
   // We only want to call event.respondWith() if this is a navigation request
   // for an HTML page.
   if (event.request.mode === 'navigate') {
