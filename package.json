@@ -5,7 +5,7 @@
   "main": "server.js",
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint-fix"
+      "pre-commit": "yarn type-check && yarn lint-fix"
     }
   },
   "scripts": {
