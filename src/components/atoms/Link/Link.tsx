@@ -21,9 +21,14 @@ export const ActiveLink: React.FC<ActiveLinkProps> = ({
 }: ActiveLinkProps) => {
   const router = useRouter()
   const child = children && React.Children.only(children)
+
+  const routerPath = router.asPath ? router.asPath : router.pathname
+  const match = router.asPath ? otherProps.as : href
+
   const condition = exact
-    ? Boolean(router && router.pathname === href)
-    : Boolean(router && router.pathname.startsWith(String(href)))
+    ? Boolean(routerPath === match)
+    : Boolean(routerPath.startsWith(String(match)))
+
   const className = condition ? activeClassName : undefined
 
   return (
