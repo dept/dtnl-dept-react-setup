@@ -17,16 +17,18 @@
 - Run `rm -rf node_modules` to remove devDependencies
 - Run `yarn --prod` to build only production dependencies
 - Create `web.config` file in the root where you fill in a bunch or stuff and run node index.js:
+
 ```
 <handlers>
     <add name=“iisnode” path=“index.js” verb=“*” modules=“iisnode”/>
 </handler
 ```
+
 - For questions: wesley.ronda@deptagency.com
 
 ## Next.js
 
-This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are *routing* and *server side data fetching*. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
+This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
 
 ```javascript
 if (process.browser) {
@@ -68,7 +70,7 @@ To generate the favicons:
 To create a new route add a new page to the `./pages` folder. You can easily create a new page by running `yarn generate page name-of-the-page`. Your newly created page will server from `http://localhost:3000/name-of-the-page`. Because the filename will be the same as the slug name has to be in kebab-case [http://wiki.c2.com/?KebabCase](http://wiki.c2.com/?KebabCase). If you need the page to be dynamic, create a page with brackets. For example: `product/[productId].tsx`. `http://localhost:3000/product/100` will serve the page with `{ productId: '100' }` in its `ctx.query` object. More info [https://github.com/zeit/next.js#dynamic-routing](https://github.com/zeit/next.js#dynamic-routing)
 
 1. Create new page with `yarn generate page about`
-3. Serve the page from `http://localhost:3000/about`
+2. Serve the page from `http://localhost:3000/about`
 
 ### Server side data fetching
 
@@ -84,19 +86,10 @@ Documentation for this project is present in storybook. Run `yarn storybook` to 
 
 ## Design system
 
-This project uses [styled-components](https://www.styled-components.com/) and [styled-system](https://github.com/styled-system/styled-system) to create the ui library, but using *css*, *css modules* and *sass* are still supported.
+This project uses [styled-components](https://www.styled-components.com/) and [styled-system](https://github.com/styled-system/styled-system) to create the ui library, but using _css_, _css modules_ and _sass_ are still supported.
 
 ## Atomic design structure
 
 The component archicture is set up following the atomic design methodology.
 
 ![Atomic Design](http://atomicdesign.bradfrost.com/images/content/atomic-design-molecules.png)
-
-
-
-
-
-
-
-
-

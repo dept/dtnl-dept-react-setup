@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import 'regenerator-runtime/runtime'
 import 'intersection-observer'
+import 'regenerator-runtime/runtime'
 import 'url-polyfill'
 // import './a11y'
