@@ -5,7 +5,7 @@ const path = require('path')
 const aliases = tsconfig.compilerOptions.paths
 const aliasKeys = Object.keys(aliases)
 
-const stripSlashStar = string => string.replace('/*', '')
+const stripSlashStar = (string) => string.replace('/*', '')
 
 function setAliasConfig(config) {
   const webpackAliases = aliasKeys.reduce((obj, key) => {

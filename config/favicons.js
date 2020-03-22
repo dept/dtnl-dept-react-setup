@@ -47,28 +47,28 @@ const configuration = {
   },
 }
 
-const callback = function(error, response) {
+const callback = function (error, response) {
   if (error) {
     console.log(error.message) // Error description e.g. "An unknown error has occurred"
     return
   }
 
-  response.images.forEach(image => {
+  response.images.forEach((image) => {
     fs.writeFileSync(`${folder}/${image.name}`, image.contents)
   })
 
-  response.files.forEach(file => {
+  response.files.forEach((file) => {
     fs.writeFileSync(`${folder}/${file.name}`, file.contents)
   })
 
   const metaTags = response.html
-    .map(html => {
+    .map((html) => {
       return html.replace('">', '" />')
     })
     .join('\n')
 
-  prettier.resolveConfigFile().then(filePath => {
-    prettier.resolveConfig(filePath).then(options => {
+  prettier.resolveConfigFile().then((filePath) => {
+    prettier.resolveConfig(filePath).then((options) => {
       const formatted = prettier.format(
         `
       export const FaviconsMeta: React.FC = () => {
