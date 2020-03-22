@@ -2,6 +2,7 @@ node_modules
 .next
 dist
 .docz
+storybook-static
 
 # misc
 .DS_Store
