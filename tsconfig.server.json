@@ -6,9 +6,7 @@
     "target": "es2017",
     "isolatedModules": false,
     "noEmit": false,
-    "lib": [
-      "es2017"
-    ],
+    "lib": ["es2017"],
     "paths": {}
   },
   "include": ["server/**/*.ts"],

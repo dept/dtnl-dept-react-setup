@@ -27,7 +27,7 @@ type Token = string | undefined
 type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
 type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
 type BeforeHook = (client: HttpClient) => Promise<void> | void
-type ErrorHook = <T = any>(err: HttpError, request: Promise<T>) => any
+type ErrorHook = <T = any>(err: HttpError, request: () => Promise<T>) => any
 type HttpClientInit = RequestInit & {
   baseUrl?: string
   returnType?: 'json' | 'text' | 'blob'
@@ -141,7 +141,7 @@ export class HttpClient {
       .then(this.handleError)
       .then(res => this.handleSuccess(res, config)) as Promise<T>
 
-    return requestFn.catch(err => this.onError<T>(err, requestFn))
+    return requestFn.catch(err => this.onError<T>(err, () => this.request(url, requestConfig)))
   }
 
   private handleSuccess(res: Response, config: RequestConfig) {
@@ -154,7 +154,7 @@ export class HttpClient {
     return res[returnType]()
   }
 
-  private async onError<T = any>(err: HttpError, requestFn: Promise<T>) {
+  private async onError<T = any>(err: HttpError, requestFn: () => Promise<T>) {
     const { onError } = this.config
 
     if (onError) {

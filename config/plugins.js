@@ -14,7 +14,7 @@ const plugins = [
       },
     },
   ],
-  [withBundleAnalyzer],
+  withBundleAnalyzer,
 ]
 
 module.exports = {
