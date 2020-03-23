@@ -26,9 +26,7 @@ export const example = () => {
   }
 
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .required('Name is required')
-      .min(3),
+    name: Yup.string().required('Name is required').min(3),
     age: Yup.number()
       .nullable()
       .required('Age is required')

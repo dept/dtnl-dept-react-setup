@@ -76,13 +76,9 @@ const Page: NextPage = () => {
           validationSchema={Yup.object({
             text: Yup.string().required('This field is required'),
             number: Yup.string().required('This field is required'),
-            email: Yup.string()
-              .email()
-              .required('This field is required'),
+            email: Yup.string().email().required('This field is required'),
             date: Yup.date().required('This field is required'),
-            select: Yup.string()
-              .required('This field is required')
-              .nullable(),
+            select: Yup.string().required('This field is required').nullable(),
           })}
           onSubmit={values => console.log(values)}>
           {() => (
