@@ -39,9 +39,9 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "@next/bundle-analyzer": "^9.3.1",
     "@sentry/browser": "^5.13.2",
     "@tpdewolf/styled-primitives": "^3.0.1",
-    "@zeit/next-bundle-analyzer": "^0.1.2",
     "compression": "^1.7.4",
     "core-js": "^3.6.4",
     "date-fns": "^2.10.0",
