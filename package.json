@@ -5,7 +5,7 @@
   "main": "server.js",
   "husky": {
     "hooks": {
-      "pre-push": "yarn type-check && yarn lint-fix"
+      "pre-push": "yarn type-check"
     }
   },
   "scripts": {
@@ -17,7 +17,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "format": "prettier --write './{src,server}/**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write './{src,server}/**/*'",
     "lint-fix": "eslint src/ server/ --ext .ts,.tsx --fix && yarn format",
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "generate": "hygen generator",
