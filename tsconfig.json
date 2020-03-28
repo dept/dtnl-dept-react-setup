@@ -28,6 +28,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*", "jest.config.js"],
+  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", ".next", "server/**/*.*"]
 }

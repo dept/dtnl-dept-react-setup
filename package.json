@@ -9,10 +9,10 @@
     "export": "next export",
     "postbuild": "tsc --project tsconfig.server.json",
     "type-check": "tsc --noEmit",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:debug": "node  --inspect-brk ./node_modules/bin/jest/jest.js --runInBand --watch",
-    "test:coverage": "jest --coverage",
+    "test": "jest --config test/jest.config.js",
+    "test:watch": "yarn test -- --watch",
+    "test:debug": "node  --inspect-brk ./node_modules/bin/jest/jest.js --config test/jest.config.js --runInBand --watch",
+    "test:coverage": "yarn test -- --coverage",
     "format": "prettier --write './{src,server}/**/*'",
     "lint": "eslint src/ server/ --ext .ts,.tsx",
     "lint-fix": "yarn lint -- --fix",
@@ -36,10 +36,8 @@
     }
   ],
   "lint-staged": {
-    "**/*.(js|ts|tsx)": [
-      "eslint"
-    ],
     "**/*.(js|json|ts|tsx)": [
+      "eslint",
       "prettier --write"
     ]
   },
