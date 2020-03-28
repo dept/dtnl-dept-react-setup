@@ -14,7 +14,7 @@
     "test:debug": "node  --inspect-brk ./node_modules/bin/jest/jest.js --config test/jest.config.js --runInBand --watch",
     "test:coverage": "yarn test -- --coverage",
     "format": "prettier --write './{src,server}/**/*'",
-    "lint": "eslint src/ server/ --ext .ts,.tsx",
+    "lint": "eslint src/ server/ --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "yarn lint -- --fix",
     "validate": "npm-run-all --parallel type-check lint test -s build",
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
@@ -25,6 +25,7 @@
     "svgr": "npx @svgr/cli ./public/static/icons --template ./public/static/icons/svgrtemplate.js --ext tsx --out-dir ./public/static/icons/components"
   },
   "author": "Dept",
+  "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
   "contributors": [
     {
       "name": "Tim de Wolf",
@@ -52,7 +53,6 @@
     "@next/bundle-analyzer": "^9.3.2",
     "@sentry/browser": "^5.15.4",
     "@tpdewolf/styled-primitives": "^3.0.1",
-    "compression": "^1.7.4",
     "core-js": "^3.6.4",
     "date-fns": "^2.11.1",
     "dotenv": "^8.2.0",
@@ -86,14 +86,12 @@
     "react-quill": "^1.3.3",
     "react-scroll": "^1.7.16",
     "react-select": "^3.1.0",
-    "react-textarea-autosize": "^7.1.2",
     "react-transition-group": "^4.3.0",
     "react-use": "^13.27.1",
     "regenerator-runtime": "^0.13.5",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^5.0.1",
     "styled-system": "^5.1.5",
-    "url-polyfill": "^1.1.8",
     "yup": "^0.28.3"
   },
   "devDependencies": {
