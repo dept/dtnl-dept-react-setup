@@ -37,9 +37,10 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     'prettier/prettier': 'off',
     'simple-import-sort/sort': 'warn',
-    'import/no-unresolved': 'off',
-    'import/named': 'off',
-    'import/namespace': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/default': 'off',
+    // 'import/named': 'off',
+    // 'import/namespace': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/prop-types': 'off',
@@ -51,6 +52,14 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
     },
   },
 }
