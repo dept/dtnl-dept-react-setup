@@ -24,9 +24,10 @@
     "paths": {
       "@static/*": ["./public/static/*"],
       "@server/*": ["./server/*"],
+      "@test/*": ["./test/*"],
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "config/**/*", "types/**/*", "jest.config.js"],
+  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*", "jest.config.js"],
   "exclude": ["node_modules", "**/*.spec.ts", ".next", "server/**/*.*"]
 }
