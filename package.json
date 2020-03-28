@@ -15,7 +15,7 @@
     "format": "prettier --write './{src,server}/**/*'",
     "lint": "eslint src/ server/ --ext .ts,.tsx",
     "lint-fix": "yarn lint -- --fix",
-    "validate": "npm-run-all type-check lint build",
+    "validate": "npm-run-all --parallel type-check lint test build",
     "start": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server",
     "generate": "hygen generator",
     "storybook": "start-storybook",

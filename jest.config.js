@@ -8,6 +8,9 @@ module.exports = {
   },
   transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
   moduleNameMapper: {
+    '@/(.*)$': '<rootDir>/src/$1',
+    '@static/(.*)$': '<rootDir>/public/static/$1',
+    '@server/(.*)$': '<rootDir>/server/$1',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
   },
 }
