@@ -39,13 +39,13 @@
       "eslint"
     ],
     "**/*.(js|json|ts|tsx)": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn type-check"
     }
   },
   "license": "ISC",
