@@ -3,6 +3,7 @@ node_modules
 dist
 .docz
 storybook-static
+coverage
 
 # misc
 .DS_Store
