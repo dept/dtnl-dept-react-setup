@@ -1,23 +1,10 @@
 {
-  "presets": [[
-    "next/babel",
-      {
-        "preset-env": {
-          "targets": {
-            "browsers": [
-              "> 1%",
-              "last 2 versions",
-              "Firefox ESR",
-              "ie >= 11"
-            ]
-          }
-        }
-      }
-    ]],
+  "presets": ["next/babel"],
   "plugins": [
     ["babel-plugin-styled-components"],
     [
-      "import", {
+      "import",
+      {
         "libraryName": "react-use",
         "libraryDirectory": "lib",
         "camel2DashComponentName": false

@@ -1,4 +1,4 @@
-import { Box } from '@tpdewolf/styled-primitives'
+import { Box } from '@/components/atoms'
 
 export const Footer: React.FC<{}> = () => {
   return (

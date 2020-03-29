@@ -1,10 +1,21 @@
-import { Box, Card, Column, Flex, Heading, Row, Text } from '@tpdewolf/styled-primitives'
 import { Form, Formik } from 'formik'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import * as Yup from 'yup'
 
-import { Button, Hyperlink, Icon, Reveal } from '@/components/atoms'
+import {
+  Box,
+  Button,
+  Card,
+  Column,
+  Flex,
+  Heading,
+  Hyperlink,
+  Icon,
+  Reveal,
+  Row,
+  Text,
+} from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModalActions } from '@/context/ModalContext'
@@ -78,13 +89,9 @@ const Page: NextPage = () => {
           validationSchema={Yup.object({
             text: Yup.string().required('This field is required'),
             number: Yup.string().required('This field is required'),
-            email: Yup.string()
-              .email()
-              .required('This field is required'),
+            email: Yup.string().email().required('This field is required'),
             date: Yup.date().required('This field is required'),
-            select: Yup.string()
-              .required('This field is required')
-              .nullable(),
+            select: Yup.string().required('This field is required').nullable(),
           })}
           onSubmit={values => console.log(values)}>
           {() => (

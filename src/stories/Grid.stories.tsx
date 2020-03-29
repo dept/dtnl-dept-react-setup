@@ -1,5 +1,6 @@
-import { Box, Column, Contain, Row } from '@tpdewolf/styled-primitives'
 import React from 'react'
+
+import { Box, Column, Grid, Row } from '@/components/atoms'
 
 export default { title: 'Grid|Grid' }
 
@@ -8,7 +9,7 @@ const GridExampleBox: React.FC = props => (
 )
 
 export const example = () => (
-  <Contain>
+  <Grid>
     <Row gutter={[15, 30]}>
       <Column col={[12, 4]}>
         <GridExampleBox>1</GridExampleBox>
@@ -20,7 +21,7 @@ export const example = () => (
         <GridExampleBox>3</GridExampleBox>
       </Column>
     </Row>
-  </Contain>
+  </Grid>
 )
 
 example.story = {

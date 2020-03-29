@@ -1,11 +1,12 @@
-import { Box, Flex, Text } from '@tpdewolf/styled-primitives'
 import { hideVisually } from 'polished'
 import React, { HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
+import { Box, Flex } from '../Grid'
 import { Icon } from '../Icon'
+import { Text } from '../Text'
 import { Label } from './Label'
 
 export interface CheckBoxProps extends HTMLAttributes<HTMLInputElement> {

@@ -1,8 +1,7 @@
-import { Box } from '@tpdewolf/styled-primitives'
 import { useSelect } from 'downshift'
 import styled from 'styled-components'
 
-import { Icon, InputWrapper } from '@/components/atoms'
+import { Box, Icon, InputWrapper } from '@/components/atoms'
 import { Label } from '@/components/atoms/Form/Label'
 
 type Value = string | number

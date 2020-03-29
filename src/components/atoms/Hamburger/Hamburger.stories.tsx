@@ -1,8 +1,8 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs'
-import { Box } from '@tpdewolf/styled-primitives'
 import React from 'react'
 
-import { Hamburger } from '.'
+import { Box } from '../Grid'
+import { Hamburger } from './Hamburger'
 
 export default { title: 'Atoms|Hamburger', component: Hamburger, decorators: [withKnobs] }
 

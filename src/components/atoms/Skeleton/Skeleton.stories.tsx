@@ -1,6 +1,6 @@
-import { Box, Card, Flex } from '@tpdewolf/styled-primitives'
 import React from 'react'
 
+import { Box, Card, Flex } from '../Grid'
 import { Skeleton } from './Skeleton'
 
 export default { title: 'Atoms|Skeleton', component: Skeleton }

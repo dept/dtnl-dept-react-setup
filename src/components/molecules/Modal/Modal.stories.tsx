@@ -1,7 +1,6 @@
 import { withKnobs } from '@storybook/addon-knobs'
-import { Box } from '@tpdewolf/styled-primitives'
 
-import { Button } from '@/components/atoms'
+import { Box, Button } from '@/components/atoms'
 import { useModalActions } from '@/context/ModalContext'
 
 import { Modal } from '.'

@@ -1,10 +1,11 @@
-import { Flex, Text } from '@tpdewolf/styled-primitives'
 import { hideVisually } from 'polished'
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
+import { Flex } from '../Grid'
+import { Text } from '../Text'
 import { Label } from './Label'
 
 export interface RadioProps extends HTMLAttributes<HTMLInputElement> {

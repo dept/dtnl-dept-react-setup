@@ -1,4 +1,4 @@
-FROM node:10.16.3-alpine
+FROM node:lts-alpine
 
 WORKDIR /usr/src/app
 
@@ -9,6 +9,6 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build
+RUN yarn validate
 
 CMD ["yarn", "start"]

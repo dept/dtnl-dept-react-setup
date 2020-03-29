@@ -3,10 +3,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -21,34 +18,16 @@
     "strict": true,
     "target": "esnext",
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types"
-    ],
+    "typeRoots": ["./node_modules/@types", "./types"],
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "paths": {
-      "@static/*": [
-        "./public/static/*"
-      ],
-      "@server/*": [
-        "./server/*"
-      ],
-      "@/*": [
-        "./src/*"
-      ]
+      "@static/*": ["./public/static/*"],
+      "@server/*": ["./server/*"],
+      "@test/*": ["./test/*"],
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "config/**/*",
-    "types/**/*",
-    "jest.config.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    ".next",
-    "server/**/*.*"
-  ]
+  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", ".next", "server/**/*.*"]
 }

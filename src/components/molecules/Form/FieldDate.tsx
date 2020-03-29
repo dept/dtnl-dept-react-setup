@@ -1,10 +1,10 @@
-import { Box } from '@tpdewolf/styled-primitives'
 import { format, isValid, parse, parseISO } from 'date-fns'
 import React, { useEffect, useRef, useState } from 'react'
 import Calendar, { OnChangeDateCallback } from 'react-calendar/dist/entry.nostyle'
 import useClickAway from 'react-use/lib/useClickAway'
 import styled from 'styled-components'
 
+import { Box } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 import { Omit } from '@/utils/types'
 

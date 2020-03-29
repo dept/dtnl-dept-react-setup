@@ -1,6 +1,7 @@
-import { Box } from '@tpdewolf/styled-primitives'
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
+
+import { Box } from '../Grid'
 
 interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   color?: string

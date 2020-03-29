@@ -1,7 +1,7 @@
-import { Box, Text } from '@tpdewolf/styled-primitives'
 import { ErrorMessage } from 'formik'
 import React from 'react'
 
+import { Box, Text } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
 interface FormikErrorProps {
