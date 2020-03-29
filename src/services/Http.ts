@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch'
 
+import { isBrowser } from '@/utils/isBrowser'
+
 export interface HttpErrorInput {
   message: string
   statusCode: number
@@ -25,7 +27,7 @@ export type AbortFunction = () => void
 type Token = string | undefined
 type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
 type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
-type BeforeHook = (config: RequestInit) => Promise<void> | void
+type BeforeHook = (client: HttpClient) => Promise<void> | void
 type ErrorHook = <T = any>(err: HttpError, request: () => Promise<T>) => any
 type HttpClientInit = RequestInit & {
   baseUrl?: string
@@ -73,7 +75,7 @@ export class HttpClient {
   private createRequest(method: 'GET' | string): RequestFn {
     return (url, data, config) => {
       if (method === 'GET') {
-        const getUrl = new URL(url)
+        const getUrl = new URL(url, isBrowser ? window.location.origin : undefined)
         if (data) {
           Object.entries(data).forEach(([key, value]) => getUrl.searchParams.append(key, value))
         }
@@ -153,7 +155,7 @@ export class HttpClient {
     this.setAbortController(config)
 
     if (beforeHook) {
-      await beforeHook(config)
+      await beforeHook(this)
     }
 
     this.setAuthenticationHeaders(config)
