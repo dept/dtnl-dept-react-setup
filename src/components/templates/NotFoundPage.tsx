@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from '@tpdewolf/styled-primitives'
+import { Heading, Paragraph } from '@/components/atoms'
 
 export const NotFoundPage: React.FC = () => {
   return (

@@ -1,9 +1,8 @@
-import { Box, Heading, Text } from '@tpdewolf/styled-primitives'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
-import { Hyperlink } from '@/components/atoms'
+import { Box, Heading, Hyperlink, Text } from '@/components/atoms'
 
 import { BlogPost, blogPosts } from '../blog'
 

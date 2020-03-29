@@ -1,4 +1,4 @@
-import { Box, Contain, Flex, Heading, Text } from '@tpdewolf/styled-primitives'
+import { Box, Flex, Grid, Heading, Text } from '@/components/atoms'
 
 import { Modal } from '../molecules'
 import { Footer, Header } from '../organisms'
@@ -10,7 +10,7 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
     <Flex flexDirection="column" height="100vh">
       <Header />
       <Box as="main" flex={'1 0 auto'} display="block">
-        <Contain>{children}</Contain>
+        <Grid>{children}</Grid>
       </Box>
       <Footer />
 

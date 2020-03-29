@@ -1,9 +1,8 @@
-import { Box, Heading } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
 import ReactModal from 'react-modal'
 import { createGlobalStyle } from 'styled-components'
 
-import { Button, IconButton } from '@/components/atoms'
+import { Box, Button, Heading, IconButton } from '@/components/atoms'
 import { useModalActions, useModalState } from '@/context/ModalContext'
 import { colors } from '@/theme/colors'
 import { media } from '@/utils/media'

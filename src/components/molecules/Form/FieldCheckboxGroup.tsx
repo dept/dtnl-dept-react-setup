@@ -1,7 +1,6 @@
-import { Column, Row } from '@tpdewolf/styled-primitives'
 import React, { FC } from 'react'
 
-import { Checkbox, CheckBoxProps } from '../../atoms'
+import { Checkbox, CheckBoxProps, Column, Row } from '@/components/atoms'
 
 interface Option {
   value: string

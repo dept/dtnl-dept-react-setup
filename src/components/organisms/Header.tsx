@@ -1,7 +1,6 @@
-import { Box, Flex } from '@tpdewolf/styled-primitives'
 import styled from 'styled-components'
 
-import { ActiveLink, Link } from '@/components/atoms'
+import { ActiveLink, Box, Flex, Link } from '@/components/atoms'
 
 interface HeaderProps {}
 
