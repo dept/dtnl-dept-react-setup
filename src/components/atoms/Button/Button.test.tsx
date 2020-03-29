@@ -1,9 +1,19 @@
-import { render, screen } from '@test/utils'
+import { render } from '@test/utils'
+import { axe } from 'jest-axe'
 
 import { Button } from './Button'
 
-test('renders with text', () => {
+test('renders with text', async () => {
   const text = 'Click me'
-  render(<Button>{text}</Button>)
-  expect(screen.getByText(text)).toBeInTheDocument()
+  const screen = render(<Button>{text}</Button>)
+
+  const button = screen.container.querySelector('button')
+
+  const results = await axe(screen.container)
+
+  expect(results).toHaveNoViolations()
+
+  expect(button).toBeInTheDocument()
+  expect(button).toHaveTextContent(text)
+  expect(button).toHaveAttribute('type', 'button')
 })

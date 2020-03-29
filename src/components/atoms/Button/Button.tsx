@@ -31,6 +31,8 @@ export type ButtonProps = BoxProps &
     ripple?: boolean
     href?: string
     target?: string
+    // adds a test id so it's easier to find in integration/e2e tests
+    'data-testid'?: string
   }
 
 const ButtonBase = styled(Box)<ButtonProps>`
@@ -54,7 +56,7 @@ const ButtonBase = styled(Box)<ButtonProps>`
   ${props => (props.variant !== 'clear' ? 'height: 50px;' : '')}
 `
 
-const StyledButtonLabel = styled.span<ButtonProps>`
+const ButtonLabel = styled.span<ButtonProps>`
   display: flex;
   width: 100%;
   align-items: center;
@@ -101,7 +103,7 @@ export class Button extends Component<ButtonProps> {
         ) : (
           <>
             {ripple && <Ink />}
-            <StyledButtonLabel size={size} justify={justify} {...props}>
+            <ButtonLabel size={size} justify={justify} {...props}>
               {loading ? (
                 <Loader color={'white'} size={50} />
               ) : (
@@ -114,7 +116,7 @@ export class Button extends Component<ButtonProps> {
                   )}
                 </>
               )}
-            </StyledButtonLabel>
+            </ButtonLabel>
           </>
         )}
       </ButtonBase>
