@@ -1,7 +1,8 @@
-import { Box, Heading, Text } from '@tpdewolf/styled-primitives'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
+
+import { Box, Heading, Text } from '@/components/atoms'
 
 interface PageProps {}
 

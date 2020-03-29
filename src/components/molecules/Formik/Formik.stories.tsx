@@ -1,9 +1,8 @@
-import { Flex } from '@tpdewolf/styled-primitives'
 import { Form, Formik } from 'formik'
 import React from 'react'
 import * as Yup from 'yup'
 
-import { Button } from '@/components/atoms'
+import { Button, Flex } from '@/components/atoms'
 import { SubmitHandler } from '@/utils/types'
 
 import { FormikInput } from './FormikInput'

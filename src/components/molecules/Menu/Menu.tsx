@@ -1,8 +1,8 @@
-import { Box } from '@tpdewolf/styled-primitives'
 import { useEffect, useRef, useState } from 'react'
 import useClickAway from 'react-use/lib/useClickAway'
 import styled from 'styled-components'
 
+import { Box } from '@/components/atoms'
 import { useWindowScrollPosition } from '@/utils/hooks'
 import { useKeyPress } from '@/utils/hooks/useKeyPress'
 

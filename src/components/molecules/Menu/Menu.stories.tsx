@@ -1,7 +1,6 @@
-import { Card } from '@tpdewolf/styled-primitives'
 import React from 'react'
 
-import { Button } from '@/components/atoms'
+import { Button, Card } from '@/components/atoms'
 
 import { Menu } from './Menu'
 

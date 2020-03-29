@@ -1,10 +1,10 @@
-import { Box, BoxProps, Flex } from '@tpdewolf/styled-primitives'
 import { LinkProps } from 'next/link'
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import { IconOption } from '@/theme'
 
+import { Box, BoxProps, Flex } from '../Grid'
 import { Icon } from '../Icon'
 import { Link } from '../Link'
 

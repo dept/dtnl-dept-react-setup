@@ -1,6 +1,6 @@
-import { Box } from '@tpdewolf/styled-primitives'
-
 import { colors } from '@/theme/colors'
+
+import { Box } from '../Grid'
 
 interface LoaderProps {
   size?: number

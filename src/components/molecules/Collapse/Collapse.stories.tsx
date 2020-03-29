@@ -1,8 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs'
-import { Card } from '@tpdewolf/styled-primitives'
 import React, { useState } from 'react'
 
-import { Button } from '@/components/atoms'
+import { Button, Card } from '@/components/atoms'
 
 import { Collapse } from '.'
 

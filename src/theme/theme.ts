@@ -1,4 +1,3 @@
-import { ThemeGrid } from '@tpdewolf/styled-primitives'
 import { darken } from 'polished'
 import { DefaultTheme } from 'styled-components'
 
@@ -72,6 +71,16 @@ const shadows = {
 export const icons = iconComponents
 
 export type IconOption = keyof typeof icons
+
+export interface ThemeGridContainer {
+  maxWidth: number
+  padding: number | any[]
+}
+
+export interface ThemeGrid {
+  gutter: number | any[]
+  container: ThemeGridContainer
+}
 
 export interface CustomTheme {
   breakpoints: string[]

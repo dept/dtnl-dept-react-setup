@@ -1,10 +1,10 @@
-import { Box, BoxProps } from '@tpdewolf/styled-primitives'
 import React, { ButtonHTMLAttributes, Component } from 'react'
 import Ink from 'react-ink'
 import styled from 'styled-components'
 
 import { buttons, IconOption } from '@/theme'
 
+import { Box, BoxProps } from '../Grid'
 import { Icon } from '../Icon'
 import { Loader } from '../Loader'
 

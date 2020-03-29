@@ -1,10 +1,21 @@
-import { Box, Card, Column, Flex, Heading, Row, Text } from '@tpdewolf/styled-primitives'
 import { Form, Formik } from 'formik'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import * as Yup from 'yup'
 
-import { Button, Hyperlink, Icon, Reveal } from '@/components/atoms'
+import {
+  Box,
+  Button,
+  Card,
+  Column,
+  Flex,
+  Heading,
+  Hyperlink,
+  Icon,
+  Reveal,
+  Row,
+  Text,
+} from '@/components/atoms'
 import { Modal } from '@/components/molecules'
 import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModalActions } from '@/context/ModalContext'

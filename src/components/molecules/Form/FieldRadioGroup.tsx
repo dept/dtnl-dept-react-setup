@@ -1,7 +1,6 @@
-import { Column, Row } from '@tpdewolf/styled-primitives'
 import React from 'react'
 
-import { Radio, RadioProps } from '@/components/atoms'
+import { Column, Radio, RadioProps, Row } from '@/components/atoms'
 
 interface Option {
   value: string
