@@ -1,7 +1,7 @@
 import { darken } from 'polished'
 import { DefaultTheme } from 'styled-components'
 
-import * as iconComponents from '../../public/static/icons/components'
+import * as iconComponents from '../../public/icons/components'
 import { colors } from './colors'
 import { grid } from './grid'
 
