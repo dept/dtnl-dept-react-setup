@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes, useContext, useState } from 'react'
-import styled, { css, ThemeContext } from 'styled-components'
+import React, { InputHTMLAttributes, useEffect, useState } from 'react'
+import styled, { css } from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
@@ -9,6 +9,8 @@ import { IconButton } from '../IconButton'
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel'
   color?: string
+  inputRef?: any
+  floatCallback?: (shouldFloat: boolean) => void
   clearable?: boolean
   hasError?: boolean
   readonly?: boolean
@@ -102,9 +104,26 @@ const AdornmentWrapper: React.FC<BoxProps> = props => (
   />
 )
 
-export const Input: React.FC<InputProps> = ({ type, clearable, onClear, start, end, ...props }) => {
+export const Input: React.FC<InputProps> = ({
+  type,
+  clearable,
+  onClear,
+  start,
+  end,
+  inputRef,
+  floatCallback,
+  ...props
+}) => {
+  const initHasValue = Boolean(props.value || props.defaultValue)
+  const [hasValue, setHasValue] = useState(initHasValue)
   const [hasFocus, setHasFocus] = useState(false)
-  const { color, hasError, onBlur, onFocus } = props
+  const { color, hasError, onBlur, onFocus, onChange } = props
+
+  useEffect(() => {
+    if (floatCallback) {
+      floatCallback(initHasValue || hasValue || hasFocus)
+    }
+  }, [hasValue, hasFocus, initHasValue, floatCallback])
 
   return (
     <InputWrapper color={color} hasFocus={hasFocus} hasError={hasError}>
@@ -112,17 +131,19 @@ export const Input: React.FC<InputProps> = ({ type, clearable, onClear, start, e
       <StyledInput
         type={type}
         {...props}
+        ref={inputRef}
+        onChange={e => {
+          const { value } = e.currentTarget
+          setHasValue(Boolean(value))
+          if (onChange) onChange(e)
+        }}
         onBlur={e => {
           setHasFocus(false)
-          if (onBlur) {
-            onBlur(e)
-          }
+          if (onBlur) onBlur(e)
         }}
         onFocus={e => {
           setHasFocus(true)
-          if (onFocus) {
-            onFocus(e)
-          }
+          if (onFocus) onFocus(e)
         }}
       />
       {end && <AdornmentWrapper>{end}</AdornmentWrapper>}
