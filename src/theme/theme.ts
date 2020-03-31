@@ -1,7 +1,7 @@
 import { darken } from 'polished'
 import { DefaultTheme } from 'styled-components'
 
-import * as iconComponents from '../../public/static/icons/components'
+import * as iconComponents from '../../public/icons/components'
 import { colors } from './colors'
 import { grid } from './grid'
 
@@ -68,6 +68,14 @@ const shadows = {
   outline: '0px 0px 0px 4px rgba(0, 0, 0, 0.1);',
 }
 
+const input = {
+  borderColor: '#bdbdbd',
+  height: '50px',
+  hover: {
+    borderColor: '#7b7b7b',
+  },
+}
+
 export const icons = iconComponents
 
 export type IconOption = keyof typeof icons
@@ -92,6 +100,7 @@ export interface CustomTheme {
   buttons: typeof buttons
   outline?: string
   grid: ThemeGrid
+  input: typeof input
 }
 
 export const theme: DefaultTheme = {
@@ -104,4 +113,5 @@ export const theme: DefaultTheme = {
   colors,
   buttons,
   grid,
+  input,
 }

@@ -4,7 +4,7 @@ module.exports = {
     '@storybook/addon-docs',
     '@storybook/addon-links/register',
     '@storybook/addon-knobs/register',
-    '@storybook/addon-notes/register',
+    '@storybook/addon-notes/register-panel',
     '@storybook/addon-storysource/register',
   ],
 }

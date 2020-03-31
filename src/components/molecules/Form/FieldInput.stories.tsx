@@ -1,10 +1,17 @@
+import { text } from '@storybook/addon-knobs'
 import React from 'react'
 
 import { FieldInput } from './FieldInput'
 
 export default { title: 'Forms|Input field', component: FieldInput }
 
-export const withLabel = () => <FieldInput name="firstName" label="First name"></FieldInput>
+export const withLabel = () => (
+  <FieldInput
+    start={text('start', '€')}
+    end={text('end', ',00')}
+    name="firstName"
+    label="First name"></FieldInput>
+)
 
 export const withPlaceholder = () => (
   <FieldInput name="firstName" placeholder="First name"></FieldInput>

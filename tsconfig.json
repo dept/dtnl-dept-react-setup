@@ -22,7 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "paths": {
-      "@static/*": ["./public/static/*"],
+      "@public/*": ["./public/*"],
       "@server/*": ["./server/*"],
       "@test/*": ["./test/*"],
       "@/*": ["./src/*"]

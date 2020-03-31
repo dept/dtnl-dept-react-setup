@@ -1,24 +1,26 @@
-import React, { InputHTMLAttributes, useState } from 'react'
-import styled, { css } from 'styled-components'
+import React, { InputHTMLAttributes, useContext, useState } from 'react'
+import styled, { css, ThemeContext } from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Box } from '../Grid'
+import { Box, BoxProps } from '../Grid'
 import { IconButton } from '../IconButton'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel'
-  color?: 'white' | 'black'
+  color?: string
   clearable?: boolean
   hasError?: boolean
   readonly?: boolean
   onClear?: () => void
+  start?: string | number | JSX.Element
+  end?: string | number | JSX.Element
 }
 
 const StyledInput = styled.input<InputProps>`
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
-  height: 50px;
   background-color: transparent;
   border: none;
   margin: 0;
@@ -50,13 +52,17 @@ const StyledInput = styled.input<InputProps>`
     `};
 `
 
-type InputWrapperProps = InputProps & { hasFocus: boolean }
+type InputWrapperProps = InputProps & { hasFocus?: boolean }
 
-const InputWrapper = styled.div<InputWrapperProps>`
-  color: ${props => props.color || 'black'};
+export const InputWrapper = styled(Box)<InputWrapperProps>`
+  display: flex;
+  align-items: center;
   border: 1px solid ${colors.grey.light};
   border-radius: 4px;
+  height: ${({ theme }) => theme.input.height || '50px'};
   position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
 
   &:hover {
     border-color: ${colors.grey.medium};
@@ -82,27 +88,44 @@ const ClearableWrapper = styled(Box)`
   transform: translateY(-50%);
 `
 
-export const Input: React.FC<InputProps> = ({ type, clearable, onClear, ...props }) => {
+const AdornmentWrapper: React.FC<BoxProps> = props => (
+  <Box
+    minWidth={40}
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    px={10}
+    height="100%"
+    flex="1"
+    bg="grey.lighter"
+    {...props}
+  />
+)
+
+export const Input: React.FC<InputProps> = ({ type, clearable, onClear, start, end, ...props }) => {
   const [hasFocus, setHasFocus] = useState(false)
+  const { color, hasError, onBlur, onFocus } = props
 
   return (
-    <InputWrapper color={props.color} hasFocus={hasFocus} hasError={props.hasError}>
+    <InputWrapper color={color} hasFocus={hasFocus} hasError={hasError}>
+      {start && <AdornmentWrapper>{start}</AdornmentWrapper>}
       <StyledInput
         type={type}
         {...props}
         onBlur={e => {
           setHasFocus(false)
-          if (props.onBlur) {
-            props.onBlur(e)
+          if (onBlur) {
+            onBlur(e)
           }
         }}
         onFocus={e => {
           setHasFocus(true)
-          if (props.onFocus) {
-            props.onFocus(e)
+          if (onFocus) {
+            onFocus(e)
           }
         }}
       />
+      {end && <AdornmentWrapper>{end}</AdornmentWrapper>}
       {clearable && props.value && (
         <ClearableWrapper position="absolute" right={10} top="50%">
           <IconButton

@@ -9,14 +9,17 @@ interface RevealWrapperProps {
 }
 
 const RevealWrapper = styled.div<RevealWrapperProps>`
-  transition: opacity 300ms;
+  position: relative;
+  transition: opacity 300ms, top 700ms;
   opacity: ${props => (props.inView ? 1 : 0)};
+  top: ${props => (props.inView ? '0px' : '-15px')};
 `
 
 export const Reveal: React.FC<RevealProps> = ({ children }) => {
   const [ref, inView] = useInView({
     /* Optional options */
     threshold: 0,
+    triggerOnce: true,
   })
 
   return (

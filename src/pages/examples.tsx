@@ -21,6 +21,8 @@ import { FormikDate, FormikInput } from '@/components/molecules/Formik'
 import { useModalActions } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
+import { FieldSelect } from '../components/molecules/Form/FieldSelect'
+
 const Section: React.FC = props => (
   <Reveal>
     <Box p={30} {...props} />
@@ -121,6 +123,29 @@ const Page: NextPage = () => {
                   },
                 ]}
               /> */}
+
+              <FieldSelect
+                name="select"
+                // native
+                placeholder={''}
+                label="Dingen"
+                defaultValue={2}
+                onChange={e => console.log(e)}
+                items={[
+                  {
+                    value: 1,
+                    label: 'Test 1',
+                  },
+                  {
+                    value: 2,
+                    label: 'Test 2',
+                  },
+                  {
+                    value: 3,
+                    label: 'Test 3',
+                  },
+                ]}
+              />
 
               <Button type="submit">Submit</Button>
             </Form>

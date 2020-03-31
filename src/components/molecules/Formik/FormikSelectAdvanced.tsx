@@ -1,25 +1,26 @@
 import { FastField, FastFieldProps } from 'formik'
 import React from 'react'
 
-import { FieldSelect, FieldSelectProps } from '../Form/FieldSelect'
+import { FieldSelectAdvanced, FieldSelectAdvancedProps } from '../Form/FieldSelectAdvanced'
 import { FormikError } from './FormikError'
 
-type FormikSelectProps = FieldSelectProps & {
+type FormikSelectAdvancedProps = FieldSelectAdvancedProps & {
   name: string
 }
 
-export const FormikSelectAdvanced: React.FC<FormikSelectProps> = ({ name, ...props }) => {
+export const FormikSelectAdvanced: React.FC<FormikSelectAdvancedProps> = ({ name, ...props }) => {
   return (
     <>
       <FastField name={name}>
         {({ field, form, meta }: FastFieldProps) => {
           return (
-            <FieldSelect
+            <FieldSelectAdvanced
               {...props}
               {...field}
               onBlur={() => form.setFieldTouched(name, true)}
-              onChange={item => {
-                form.setFieldValue(name, item)
+              onChange={option => {
+                // @ts-ignore
+                form.setFieldValue(name, option && !Array.isArray(option) && option.value)
               }}
               hasError={Boolean(meta.touched && meta.error)}
             />

@@ -1,143 +1,216 @@
-import React, { FocusEventHandler } from 'react'
-import Select from 'react-select'
-import { ValueType } from 'react-select/src/types'
-import styled from 'styled-components'
+import { useSelect } from 'downshift'
+import { useState } from 'react'
+import styled, { css } from 'styled-components'
 
-import { Box, IconButton } from '@/components/atoms'
-import { colors } from '@/theme/colors'
+import { Box, Icon, InputWrapper } from '@/components/atoms'
+import { Label } from '@/components/atoms/Form/Label'
+
+type Value = string | number
 
 interface Option {
-  value: string | number
-  label: string | number
+  value: Value
+  label: Value
 }
 
 export interface FieldSelectProps {
-  isClearable?: boolean
-  isSearchable?: boolean
-  minWidth?: number
-  options: Option[]
-  value?: string | number
-  placeholder?: string
+  name: string
+  items: Option[]
+  color?: string
   label?: string
-  onBlur?: FocusEventHandler
-  onChange?: (value: ValueType<Option>, action: any) => void
-  name?: string
-  disabled?: boolean
+  placeholder?: string
   hasError?: boolean
+  native?: boolean
+  defaultValue?: Value
+  onBlur?: (event: React.FocusEvent<HTMLSelectElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLSelectElement>) => void
+  onChange?: (value: Value) => void
+  disabled?: boolean
 }
 
-const INPUT_HEIGHT = '50px'
+const activeListStyles = css`
+  --list-scale: 1;
+  opacity: 1;
+  pointer-events: all;
+`
 
-const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefined }>`
+const List = styled(Box)<{ isOpen: boolean }>`
+  --list-scale: 0.8;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  z-index: 100;
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 0.1s ease-out, opacity 0.1s ease;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  opacity: 0;
+  outline: none;
+  transform: scale(var(--list-scale)) translateX(-50%);
+  ${props => props.isOpen && activeListStyles};
+`
+
+const ListItem = Box
+
+const CustomSelect: React.FC<FieldSelectProps> = ({
+  name,
+  items,
+  color,
+  label,
+  placeholder,
+  hasError,
+}) => {
+  const {
+    isOpen,
+    selectedItem,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({ items })
+
+  return (
+    <Box position="relative">
+      {label && (
+        <Label htmlFor={name} color={color} {...getLabelProps()}>
+          {label}
+        </Label>
+      )}
+      <InputWrapper color={color} hasError={hasError}>
+        <Box
+          height="100%"
+          width="100%"
+          display="block"
+          p="11px 14px"
+          as="label"
+          {...getToggleButtonProps()}>
+          {(selectedItem && selectedItem.label) || placeholder || '-'}
+          <IconWrapper position="absolute" right={10} top="50%">
+            <Icon icon="Chevron" size={15} rotate={isOpen ? -180 : 0} />
+          </IconWrapper>
+        </Box>
+      </InputWrapper>
+      <List
+        isOpen={isOpen}
+        as="ul"
+        bg="white"
+        color="black"
+        minWidth={200}
+        maxWidth="100%"
+        {...getMenuProps()}>
+        {items.map((item, index) => (
+          <ListItem
+            color="black"
+            as="li"
+            bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : null}
+            p="12px 14px"
+            key={`${item}${index}`}
+            {...getItemProps({ item, index })}>
+            {item.label}
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  )
+}
+
+const Select = styled.select`
+  -webkit-appearance: none;
+  background-color: transparent;
   width: 100%;
-  max-width: 100%;
-  ${({ minWidth }) => `min-width: ${minWidth}px;`}
-  .reactselect__control {
-    border-radius: 0;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid ${({ hasError }) => (hasError ? colors.error : colors.grey.dark)};
-    min-height: ${INPUT_HEIGHT};
-    &:hover {
-      border-color: ${colors.grey.dark};
-    }
-    &--is-focused {
-      outline: none !important;
-      box-shadow: none;
-    }
-
-    &--menu-is-open {
-      box-shadow: none;
-    }
-  }
-
-  .reactselect__value-container {
-    padding: 0;
-    height: ${INPUT_HEIGHT};
-  }
-
-  .reactselect__menu {
-    box-shadow: none;
-    border: 1px solid ${colors.grey.dark};
-    border-radius: 0;
-    margin-top: -1px;
-  }
-
-  .reactselect__menu-list {
-    padding: 0;
-  }
-
-  .reactselect__indicator-separator {
+  display: block;
+  border: none;
+  padding: 12px 14px;
+  height: 50px;
+  &::-ms-expand {
     display: none;
   }
-
-  .reactselect__option {
-    &--is-focused {
-      background-color: ${colors.grey.lighter};
-    }
-    &--is-selected {
-      background-color: ${colors.grey.light};
-    }
-    &:active {
-      background-color: ${colors.grey.medium};
-      color: #fff;
-    }
+  &:focus {
+    outline: none;
+  }
+  &:invalid {
+    opacity: 0.5;
   }
 `
 
-export const FieldSelect: React.FC<FieldSelectProps> = ({
+const IconWrapper = styled(Box)`
+  transform: translateY(-50%);
+  pointer-events: none;
+`
+
+const NativeSelect: React.FC<FieldSelectProps> = ({
+  name,
+  items,
+  color,
   label,
-  value,
-  options,
-  disabled,
-  minWidth = 200,
-  isClearable = true,
   placeholder,
   hasError,
-  ...props
+  defaultValue = '',
+  onChange = () => {
+    /** noop */
+  },
+  disabled,
+  ...rest
 }) => {
+  const [hasFocus, setFocus] = useState(false)
+
+  function onFocus(e: React.FocusEvent<HTMLSelectElement>) {
+    if (rest.onFocus) rest.onFocus(e)
+    setFocus(true)
+  }
+
+  function onBlur(e: React.FocusEvent<HTMLSelectElement>) {
+    if (rest.onBlur) rest.onBlur(e)
+    setFocus(false)
+  }
+
   return (
-    <SelectWrapper hasError={hasError} minWidth={minWidth}>
-      <Select
-        components={{
-          DropdownIndicator: ddProps => {
-            return (
-              <Box px={8}>
-                <IconButton
-                  tabIndex={-1}
-                  aria-label={'Uitklappen'}
-                  icon={'Chevron'}
-                  size={18}
-                  padding={0}
-                  rotate={ddProps.selectProps.menuIsOpen ? -180 : 0}
-                />
-              </Box>
-            )
-          },
-          ClearIndicator: clearProps => (
-            <Box px={10}>
-              <IconButton
-                aria-label={'Wissen'}
-                onClick={clearProps.clearValue}
-                icon={'CloseLight'}
-                rotate={-180}
-                size={14}
-                padding={0}
-              />
-            </Box>
-          ),
-        }}
-        // menuIsOpen
-        classNamePrefix="reactselect"
-        isDisabled={disabled}
-        isSearchable
-        placeholder={placeholder || label || 'Select'}
-        noOptionsMessage={() => 'No options'}
-        isClearable={isClearable}
-        value={options.find(item => item.value === value)}
-        options={options}
-        {...props}
-      />
-    </SelectWrapper>
+    <>
+      {label && (
+        <Label htmlFor={name} color={color}>
+          {label}
+        </Label>
+      )}
+      <InputWrapper hasFocus={hasFocus} color={color} hasError={hasError}>
+        <Select
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onChange={e => onChange(e.target.value)}
+          disabled={disabled}
+          defaultValue={defaultValue}>
+          {placeholder && (
+            <option disabled value="">
+              {placeholder}
+            </option>
+          )}
+          {items.map((item, index) => (
+            <option key={`${item}${index}`} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </Select>
+        <IconWrapper position="absolute" right={10} top="50%">
+          <Icon icon="Chevron" size={15} />
+        </IconWrapper>
+      </InputWrapper>
+    </>
   )
+}
+
+export const FieldSelect: React.FC<FieldSelectProps> = props => {
+  if (props.native) {
+    return <NativeSelect {...props}></NativeSelect>
+  } else {
+    return <CustomSelect {...props}></CustomSelect>
+  }
+}
+
+FieldSelect.defaultProps = {
+  placeholder: 'Choose option...',
+  color: 'black',
 }

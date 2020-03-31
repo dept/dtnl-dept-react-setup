@@ -1,4 +1,4 @@
-import '@static/fonts/fonts.css'
+import '@public/fonts/fonts.css'
 
 import { DefaultSeo } from 'next-seo'
 import { AppType } from 'next/dist/next-server/lib/utils'

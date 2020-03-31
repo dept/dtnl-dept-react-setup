@@ -1,3 +1,4 @@
+import { boolean, text } from '@storybook/addon-knobs'
 import React from 'react'
 
 import { FieldSelect } from './FieldSelect'
@@ -10,12 +11,11 @@ const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
 }))
 
 export const example = () => (
-  <FieldSelect options={frameworks} name="framework" label="Framework"></FieldSelect>
+  <FieldSelect
+    native={boolean('native', true)}
+    hasError={boolean('error', false)}
+    items={frameworks}
+    name="framework"
+    placeholder={text('placeholder', 'Choose framework')}
+    label={text('label', 'Framework')}></FieldSelect>
 )
-
-example.story = {
-  parameters: {
-    info:
-      'Uses react-select (https://github.com/JedWatson/react-select) to create a accessible select component',
-  },
-}

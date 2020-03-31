@@ -22,7 +22,7 @@
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
     "favicons": "node config/favicons",
-    "svgr": "npx @svgr/cli ./public/static/icons --template ./public/static/icons/svgrtemplate.js --ext tsx --out-dir ./public/static/icons/components"
+    "svgr": "npx @svgr/cli ./public/icons --template ./public/icons/svgrtemplate.js --ext tsx --out-dir ./public/icons/components"
   },
   "author": "Dept",
   "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
@@ -55,6 +55,7 @@
     "core-js": "^3.6.4",
     "date-fns": "^2.11.1",
     "dotenv": "^8.2.0",
+    "downshift": "^5.0.3",
     "express": "^4.17.1",
     "favicons": "^6.0.0",
     "formik": "^2.1.4",
@@ -72,7 +73,6 @@
     "next-offline": "^5.0.0",
     "next-seo": "^4.4.0",
     "polished": "^3.5.1",
-    "qs": "^6.9.3",
     "react": "^16.13.1",
     "react-axe": "^3.4.1",
     "react-calendar": "^2.19.2",
@@ -109,7 +109,6 @@
     "@types/jest-axe": "^3.2.1",
     "@types/lodash.throttle": "^4.1.6",
     "@types/node": "^13.9.5",
-    "@types/qs": "^6.9.1",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.5",
     "@types/react-modal": "^3.10.5",
