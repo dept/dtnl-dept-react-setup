@@ -18,6 +18,11 @@ export type FieldDateProps = Omit<FieldInputProps, 'onChange' | 'value'> & {
 
 const CalendarWrapper = styled(Box)`
   z-index: 1;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 `
 
 export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, ...props }) => {
@@ -96,7 +101,6 @@ const Wrapper = styled(Box)`
     width: 350px;
     max-width: 100%;
     background: white;
-    border: 1px solid ${colors.grey.lighter};
     line-height: 1.125em;
     abbr[title] {
       text-decoration: none;

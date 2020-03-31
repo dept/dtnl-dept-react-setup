@@ -15,7 +15,7 @@ export interface FieldSelectAdvancedProps {
   isClearable?: boolean
   isSearchable?: boolean
   minWidth?: number
-  options: Option[]
+  items: Option[]
   value?: string | number
   placeholder?: string
   label?: string
@@ -88,7 +88,7 @@ const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefi
 export const FieldSelectAdvanced: React.FC<FieldSelectAdvancedProps> = ({
   label,
   value,
-  options,
+  items,
   disabled,
   minWidth = 200,
   isClearable = true,
@@ -134,8 +134,8 @@ export const FieldSelectAdvanced: React.FC<FieldSelectAdvancedProps> = ({
         placeholder={placeholder || label || 'Select'}
         noOptionsMessage={() => 'No options'}
         isClearable={isClearable}
-        value={options.find(item => item.value === value)}
-        options={options}
+        value={items.find(item => item.value === value)}
+        options={items}
         {...props}
       />
     </SelectWrapper>

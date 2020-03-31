@@ -10,10 +10,7 @@ const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
 }))
 
 export const example = () => (
-  <FieldSelectAdvanced
-    options={frameworks}
-    name="framework"
-    label="Framework"></FieldSelectAdvanced>
+  <FieldSelectAdvanced items={frameworks} name="framework" label="Framework"></FieldSelectAdvanced>
 )
 
 example.story = {
