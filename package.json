@@ -22,7 +22,7 @@
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
     "favicons": "node config/favicons",
-    "svgr": "npx @svgr/cli ./public/static/icons --template ./public/static/icons/svgrtemplate.js --ext tsx --out-dir ./public/static/icons/components"
+    "svgr": "npx @svgr/cli ./public/icons --template ./public/icons/svgrtemplate.js --ext tsx --out-dir ./public/icons/components"
   },
   "author": "Dept",
   "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
