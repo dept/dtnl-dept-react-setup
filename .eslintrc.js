@@ -37,6 +37,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     'prettier/prettier': 'off',
     'simple-import-sort/sort': 'warn',
+    'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
     'import/default': 'off',
     'import/named': 'off',

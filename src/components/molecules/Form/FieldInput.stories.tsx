@@ -1,4 +1,4 @@
-import { text } from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
 import React from 'react'
 
 import { FieldInput } from './FieldInput'
@@ -9,6 +9,7 @@ export const withLabel = () => (
   <FieldInput
     start={text('start', '€')}
     end={text('end', ',00')}
+    clearable={boolean('clearable', false)}
     name="firstName"
     label="First name"></FieldInput>
 )

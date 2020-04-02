@@ -86,10 +86,6 @@ export const InputWrapper = styled(Box)<InputWrapperProps>`
     `};
 `
 
-const ClearableWrapper = styled(Box)`
-  transform: translateY(-50%);
-`
-
 const AdornmentWrapper: React.FC<BoxProps> = props => (
   <Box
     minWidth={40}
@@ -104,6 +100,14 @@ const AdornmentWrapper: React.FC<BoxProps> = props => (
   />
 )
 
+const Clear: React.FC<any> = ({ onClick }) => {
+  return (
+    <Box display="flex" alignItems="center" justifyContent="center" px={10} height="100%" flex="1">
+      <IconButton type="button" aria-label="Clear" icon="CloseLight" size={15} onClick={onClick} />
+    </Box>
+  )
+}
+
 export const Input: React.FC<InputProps> = ({
   type,
   clearable,
@@ -117,13 +121,15 @@ export const Input: React.FC<InputProps> = ({
   const initHasValue = Boolean(props.value || props.defaultValue)
   const [hasValue, setHasValue] = useState(initHasValue)
   const [hasFocus, setHasFocus] = useState(false)
+
   const { color, hasError, onBlur, onFocus, onChange } = props
+  const shouldFloat = initHasValue || hasValue || hasFocus
 
   useEffect(() => {
     if (floatCallback) {
-      floatCallback(initHasValue || hasValue || hasFocus)
+      floatCallback(shouldFloat)
     }
-  }, [hasValue, hasFocus, initHasValue, floatCallback])
+  }, [floatCallback, shouldFloat])
 
   return (
     <InputWrapper color={color} hasFocus={hasFocus} hasError={hasError}>
@@ -146,19 +152,8 @@ export const Input: React.FC<InputProps> = ({
           if (onFocus) onFocus(e)
         }}
       />
+      {clearable && hasValue && <Clear onClick={onClear} />}
       {end && <AdornmentWrapper>{end}</AdornmentWrapper>}
-      {clearable && props.value && (
-        <ClearableWrapper position="absolute" right={10} top="50%">
-          <IconButton
-            type="button"
-            aria-label="Wissen"
-            color={props.color}
-            icon="CloseLight"
-            size={15}
-            onClick={onClear}
-          />
-        </ClearableWrapper>
-      )}
     </InputWrapper>
   )
 }
