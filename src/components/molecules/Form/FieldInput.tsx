@@ -28,8 +28,6 @@ export const FieldInput: React.FC<FieldInputProps> = ({ label, ...props }) => {
     setShouldFloat(initFloat)
   }, [initFloat])
 
-  console.log(shouldFloat)
-
   return (
     <FieldInputWrapper isFloating={shouldFloat}>
       {label && (
