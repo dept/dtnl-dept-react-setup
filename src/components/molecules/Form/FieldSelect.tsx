@@ -2,8 +2,10 @@ import { useSelect } from 'downshift'
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Box, Icon, InputWrapper } from '@/components/atoms'
-import { Label } from '@/components/atoms/Form/Label'
+import { Box, Icon } from '@/components/atoms'
+import { Label } from '@/components/atoms/Label/Label'
+
+import { InputWrapper } from './FieldInput'
 
 type Value = string | number
 

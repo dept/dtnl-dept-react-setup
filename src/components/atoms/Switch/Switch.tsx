@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import { colors } from '@/theme/colors'
 
-import { Label } from '../Form/Label'
 import { Box, Flex } from '../Grid'
+import { Label } from '../Label'
 import { Text } from '../Text'
 
 const TOGGLE_HEIGHT = '25px'

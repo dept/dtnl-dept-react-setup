@@ -2,14 +2,10 @@ import { hideVisually } from 'polished'
 import React, { HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
+import { Box, Flex, Icon, Label, Text } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
-import { Box, Flex } from '../Grid'
-import { Icon } from '../Icon'
-import { Text } from '../Text'
-import { Label } from './Label'
-
-export interface CheckBoxProps extends HTMLAttributes<HTMLInputElement> {
+export interface FieldCheckBoxProps extends HTMLAttributes<HTMLInputElement> {
   checked?: boolean
   hasError?: any
   value?: string
@@ -47,7 +43,7 @@ const Check = styled.div<{ hasError: boolean }>`
     `}
 `
 
-export const Checkbox: React.FC<CheckBoxProps> = ({
+export const FieldCheckbox: React.FC<FieldCheckBoxProps> = ({
   children,
   onFocus,
   onChange,
