@@ -1,13 +1,15 @@
 import React, { FC } from 'react'
 
-import { Checkbox, CheckBoxProps, Column, Row } from '@/components/atoms'
+import { Column, Row } from '@/components/atoms'
+
+import { FieldCheckbox, FieldCheckboxProps } from './FieldCheckbox'
 
 interface Option {
   value: string
   label: string
 }
 
-export type FieldCheckBoxGroupProps = CheckBoxProps & {
+export type FieldCheckboxGroupProps = FieldCheckboxProps & {
   options: Option[]
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
   name: string
@@ -15,7 +17,7 @@ export type FieldCheckBoxGroupProps = CheckBoxProps & {
   value: string[]
 }
 
-export const FieldCheckBoxGroup: FC<FieldCheckBoxGroupProps> = ({
+export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
   options,
   value,
   direction = 'vertical',
@@ -27,14 +29,14 @@ export const FieldCheckBoxGroup: FC<FieldCheckBoxGroupProps> = ({
       {options.map((option, index) => {
         return (
           <Column key={index}>
-            <Checkbox
+            <FieldCheckbox
               name={name}
               value={option.value}
               checked={value.includes(option.value)}
               onChange={onChange}
               {...props}>
               {option.label}
-            </Checkbox>
+            </FieldCheckbox>
           </Column>
         )
       })}

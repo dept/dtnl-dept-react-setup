@@ -3,18 +3,18 @@ import React, { FC } from 'react'
 
 import { Omit } from '@/utils/types'
 
-import { FieldCheckBoxGroup, FieldCheckBoxGroupProps } from '../Form/FieldCheckboxGroup'
+import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup'
 import { FormikError } from './FormikError'
 
-type FormikCheckBoxGroupProps = Omit<FieldCheckBoxGroupProps, 'onChange' | 'value'>
+type FormikCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'value'>
 
-export const FormikCheckBoxGroup: FC<FormikCheckBoxGroupProps> = ({ name, ...props }) => {
+export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({ name, ...props }) => {
   return (
     <>
       <FastField name={name}>
         {({ field, form, meta }: FastFieldProps) => {
           return (
-            <FieldCheckBoxGroup
+            <FieldCheckboxGroup
               {...props}
               {...field}
               onChange={(e: React.FormEvent<HTMLInputElement>) => {
