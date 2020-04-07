@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { Column, Radio, RadioProps, Row } from '@/components/atoms'
+import { Column, Row } from '@/components/atoms'
+
+import { FieldRadio, FieldRadioProps } from './FieldRadio'
 
 interface Option {
   value: string
   label: string
 }
 
-export type FieldRadioGroupProps = RadioProps & {
+export type FieldRadioGroupProps = FieldRadioProps & {
   options: Option[]
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
   name: string
@@ -27,14 +29,14 @@ export const FieldRadioGroup: React.FC<FieldRadioGroupProps> = ({
       {options.map((option, index) => {
         return (
           <Column key={index} my={5}>
-            <Radio
+            <FieldRadio
               name={`${name}[]`}
               value={option.value}
               checked={value === option.value}
               onChange={onChange}
               {...props}>
               {option.label}
-            </Radio>
+            </FieldRadio>
           </Column>
         )
       })}
