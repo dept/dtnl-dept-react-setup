@@ -110,14 +110,13 @@ const Clear: React.FC<any> = ({ onClick }) => {
   )
 }
 
-const floatingLabelStyles = css`
-  & ${String(Label)} {
-  }
-`
+const floatingLabelStyles = css``
 
 const FieldInputWrapper = styled(Box)<{ isFloating: boolean }>`
   position: relative;
-  ${props => props.isFloating && floatingLabelStyles}
+  label {
+    ${props => props.isFloating && floatingLabelStyles}
+  }
 `
 
 export const FieldInput: React.FC<FieldInputProps> = ({
@@ -135,8 +134,13 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   inputRef,
   ...props
 }) => {
-  const initFloat = Boolean(props.value || props.defaultValue || start || end)
-  const initHasValue = Boolean(props.value || props.defaultValue)
+  const initFloat = Boolean(
+    props.value !== undefined ||
+      props.defaultValue !== undefined ||
+      start !== undefined ||
+      end !== undefined,
+  )
+  const initHasValue = Boolean(props.value !== undefined || props.defaultValue !== undefined)
   const [hasValue, setHasValue] = useState(initHasValue)
   const [hasFocus, setHasFocus] = useState(false)
 
