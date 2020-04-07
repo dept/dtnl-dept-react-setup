@@ -14,9 +14,7 @@ interface State {
   [key: string]: ModalOptions
 }
 
-type Action =
-  | { type: 'show'; key: string; options?: ModalOptions }
-  | { type: 'hide'; key: string; options?: ModalOptions }
+type Action = { type: 'show'; key: string; options?: ModalOptions } | { type: 'hide'; key: string }
 type Dispatch = (action: Action) => void
 
 const ModalContextState = React.createContext({} as ReturnType<typeof createState>)
@@ -26,7 +24,8 @@ function modalReducer(state: State, action: Action) {
   function changeModals(key: string, show: boolean, options?: ModalOptions) {
     return produce(state, nextState => {
       Object.keys(nextState).forEach(modalKey => (nextState[modalKey].isShown = false))
-      nextState[key] = { isShown: show, isClosable: true, ...options }
+      const currentModalState = nextState[key] || {}
+      nextState[key] = { isClosable: true, ...currentModalState, isShown: show, ...options }
     })
   }
 
@@ -35,7 +34,7 @@ function modalReducer(state: State, action: Action) {
       return changeModals(action.key, true, action.options)
     }
     case 'hide': {
-      return changeModals(action.key, false, action.options)
+      return changeModals(action.key, false)
     }
     default: {
       throw new Error(`Unhandled action`)
@@ -71,10 +70,11 @@ function createActions(dispatch: Dispatch) {
     })
   }
 
-  const show = (key: string) => {
+  const show = (key: string, options?: ModalOptions) => {
     dispatch({
       type: 'show',
       key,
+      options,
     })
   }
 
