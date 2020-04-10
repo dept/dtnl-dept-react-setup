@@ -17,7 +17,7 @@ interface ModalProps {
 }
 
 const ModalStyles = createGlobalStyle<any>`
-  .ReactModal__Overlay {
+  .c-modal__overlay {
     background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
@@ -38,7 +38,7 @@ const ModalStyles = createGlobalStyle<any>`
     }
   }
 
-  .ReactModal__Content {
+  .c-modal__content {
     width: 100%;
     margin-top: auto;
     background: ${colors.white};
@@ -103,8 +103,16 @@ export const Modal: FC<ModalProps> = ({
     <>
       <ModalStyles width={width} height={height}></ModalStyles>
       <ReactModal
-        className="c-modal__content"
-        overlayClassName="c-modal__overlay"
+        className={{
+          base: 'c-modal__content',
+          afterOpen: 'c-modal__content--after-open',
+          beforeClose: 'c-modal__content--before-close',
+        }}
+        overlayClassName={{
+          base: 'c-modal__overlay',
+          afterOpen: 'c-modal__overlay--after-open',
+          beforeClose: 'c-modal__overlay--before-close',
+        }}
         closeTimeoutMS={duration}
         isOpen={Boolean(modal && modal.isShown)}
         contentLabel="Modal"
