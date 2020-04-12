@@ -1,11 +1,11 @@
 import { hideVisually } from 'polished'
-import React, { HTMLAttributes } from 'react'
+import React, { InputHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Box, Flex, Icon, Label, Text } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
-export interface FieldCheckboxProps extends HTMLAttributes<HTMLInputElement> {
+export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean
   hasError?: any
   value?: string

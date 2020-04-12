@@ -1,11 +1,11 @@
 import { hideVisually } from 'polished'
-import React, { HTMLAttributes } from 'react'
+import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 import { Flex, Label, Text } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
-export interface FieldRadioProps extends HTMLAttributes<HTMLInputElement> {
+export interface FieldRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
   checked?: boolean
   value?: string

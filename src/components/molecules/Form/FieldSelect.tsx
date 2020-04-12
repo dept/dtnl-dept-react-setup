@@ -1,5 +1,5 @@
 import { useSelect } from 'downshift'
-import { useState } from 'react'
+import { InputHTMLAttributes, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Box, Icon } from '@/components/atoms'
@@ -14,7 +14,7 @@ interface Option {
   label: Value
 }
 
-export interface FieldSelectProps {
+export interface FieldSelectProps extends Omit<InputHTMLAttributes<HTMLSelectElement>, 'onChange'> {
   name: string
   items: Option[]
   color?: string
@@ -22,11 +22,7 @@ export interface FieldSelectProps {
   placeholder?: string
   hasError?: boolean
   native?: boolean
-  defaultValue?: Value
-  onBlur?: (event: React.FocusEvent<HTMLSelectElement>) => void
-  onFocus?: (event: React.FocusEvent<HTMLSelectElement>) => void
   onChange?: (value: Value) => void
-  disabled?: boolean
 }
 
 const activeListStyles = css`

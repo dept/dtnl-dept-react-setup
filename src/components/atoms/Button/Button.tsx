@@ -96,14 +96,14 @@ export class Button extends Component<ButtonProps> {
         {...conditionalProps}
         variant={variant}
         disabled={disabled || loading}
-        size={size}
+        size={size as any}
         {...props}>
         {variant === 'clear' ? (
           children
         ) : (
           <>
             {ripple && <Ink />}
-            <ButtonLabel size={size} justify={justify} {...props}>
+            <ButtonLabel size={size as any} justify={justify} {...props}>
               {loading ? (
                 <Loader color={'white'} size={50} />
               ) : (
