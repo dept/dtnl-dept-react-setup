@@ -11,7 +11,6 @@ interface Option {
 
 export type FieldCheckboxGroupProps = FieldCheckboxProps & {
   options: Option[]
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void
   name: string
   direction?: 'horizontal' | 'vertical'
   value: string[]
