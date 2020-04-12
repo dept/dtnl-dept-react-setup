@@ -2,13 +2,10 @@ import { hideVisually } from 'polished'
 import React, { HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
+import { Flex, Label, Text } from '@/components/atoms'
 import { colors } from '@/theme/colors'
 
-import { Flex } from '../Grid'
-import { Text } from '../Text'
-import { Label } from './Label'
-
-export interface RadioProps extends HTMLAttributes<HTMLInputElement> {
+export interface FieldRadioProps extends HTMLAttributes<HTMLInputElement> {
   name: string
   checked?: boolean
   value?: string
@@ -39,7 +36,7 @@ const Circle = styled.div`
   }
 `
 
-export const Radio: React.FC<RadioProps> = ({ children, ...rest }) => {
+export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...rest }) => {
   return (
     <Label style={{ cursor: 'pointer' }}>
       <Flex>

@@ -45,7 +45,7 @@ The project includes generators for components en context provider. Simply run e
 
 ## Generate icons from svg
 
-Place all your icons in `/public/static/icons`. Run `yarn svgr`. This generates jsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.
+Place all your icons in `/public/icons`. Run `yarn svgr`. This generates jsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.
 
 Example:
 
