@@ -13,7 +13,7 @@ interface IconButtonProps {
   as?: ButtonElements
   icon: IconOption
   'aria-label': string
-  size: number
+  size?: number
   height?: any
   padding?: number
   color?: string

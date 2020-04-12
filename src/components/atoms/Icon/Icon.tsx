@@ -10,7 +10,7 @@ type IconProps = Omit<BoxProps, 'width' | 'height'> & {
   icon: IconOption
   rotate?: number
   color?: string
-  size: number | any[]
+  size?: number | any[]
 }
 
 const StyledIconWrapper = styled(Box)<BoxProps & { rotate?: number }>`
@@ -22,7 +22,7 @@ const StyledIconWrapper = styled(Box)<BoxProps & { rotate?: number }>`
   ${props => props.rotate && `transform: rotate(${props.rotate}deg);`};
 `
 
-export const Icon: FC<IconProps> = ({ size, icon, ...props }) => {
+export const Icon: FC<IconProps> = ({ size = 22, icon, ...props }) => {
   const IconComponent = icons[icon]
 
   return (
