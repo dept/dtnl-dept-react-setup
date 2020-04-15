@@ -71,13 +71,18 @@ To create a new route add a new page to the `./pages` folder. You can easily cre
 1. Create new page with `yarn generate page about`
 2. Serve the page from `http://localhost:3000/about`
 
-### Server side data fetching
-
-Next.js adds a static function to each page called `getInitialProps`. The object returned from this function will be available as props in the render function.
-
 ## Typescript
 
 This project is written to typescript. If you aren't that familiar with typescript this [cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet) is a great resource to get familiar.
+
+## Opt out of Server Side Rendering
+
+If you would like to create a static website and opt out of SSR thats also possible. Make sure non of your pages use the `getInitialProps` or the `getServerSideProps` functions. Also make sure you dont have any api routes (routes in the `/api` folder), because they will not work without the server. Run `yarn build` && `yarn export`. This will generate the `out` folder, which includes all the static files. Upload the out folder to your server and make sure all traffic is pointed to `index.html`. Check out the documentation for `exportPathMap` ([https://nextjs.org/docs/api-reference/next.config.js/exportPathMap](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap)) for static pages and `getStaticProps` for dynamic pages ([https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)).
+
+To test:
+
+1. Go to the `out` folder `cd out`
+2. Run a http server `npx http-server`
 
 ## Documentation
 
