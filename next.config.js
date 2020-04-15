@@ -1,4 +1,4 @@
-const { parsed: dotenv } = require('dotenv').config()
+require('dotenv').config()
 const withPlugins = require('next-compose-plugins')
 
 const { plugins } = require('./config/plugins')
@@ -12,10 +12,10 @@ module.exports = withPlugins(plugins, {
   publicRuntimeConfig: {
     /**
      * add the environment variables you would like exposed to the client here
-     * import { config } from '@utils'
+     * import { config } from '@/utils/config'
      * documentation: https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
      */
-    ENVIRONMENT_NAME: dotenv.ENVIRONMENT_NAME,
+    ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
   },
   reactStrictMode: true,
   compression: true, // true to enable gzipping
