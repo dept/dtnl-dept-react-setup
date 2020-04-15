@@ -6,7 +6,7 @@ const folder = 'public/favicon'
 const source = 'public/logo.png' // Source image(s). `string`, `buffer` or array of `string`
 
 const configuration = {
-  path: '/', // Path for overriding default icons path. `string`
+  path: '/favicon', // Path for overriding default icons path. `string`
   appName: 'Dept', // Your application's name. `string`
   appShortName: 'Dept', // Your application's short_name. `string`. Optional. If not set, appName will be used
   appDescription: 'Next.js starter for Dept', // Your application's description. `string`

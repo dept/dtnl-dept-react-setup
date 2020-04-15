@@ -1,3 +1,4 @@
+const path = require('path')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.BUNDLE_ANALYZE === 'true',
 })
@@ -10,7 +11,7 @@ const plugins = [
     {
       generateSw: false,
       workboxOpts: {
-        swSrc: './public/service-worker.js',
+        swSrc: path.resolve(__dirname, '../src/service-worker.js'),
       },
     },
   ],

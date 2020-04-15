@@ -1,16 +1,22 @@
+const { parsed: dotenv } = require('dotenv').config()
 const withPlugins = require('next-compose-plugins')
 
 const { plugins } = require('./config/plugins')
 const { exportPathMap } = require('./config/staticPages')
-const { publicRuntimeConfig, serverRuntimeConfig } = require('./config/runtimeConfig')
 const { setAliasConfig } = require('./config/alias')
 
 const dev = process.env.NODE_ENV !== 'production'
 
 module.exports = withPlugins(plugins, {
   exportPathMap,
-  publicRuntimeConfig,
-  serverRuntimeConfig,
+  publicRuntimeConfig: {
+    /**
+     * add the environment variables you would like exposed to the client here
+     * import { config } from '@utils'
+     * documentation: https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
+     */
+    ENVIRONMENT_NAME: dotenv.ENVIRONMENT_NAME,
+  },
   reactStrictMode: true,
   compression: true, // true to enable gzipping
   webpack(config, options) {

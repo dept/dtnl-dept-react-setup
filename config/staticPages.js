@@ -1,5 +1,7 @@
 const exportPathMap = async function () {
-  return {}
+  return {
+    '/': { page: '/' },
+  }
 }
 
 module.exports = {
