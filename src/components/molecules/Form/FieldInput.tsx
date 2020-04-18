@@ -61,7 +61,7 @@ type InputWrapperProps = InputProps & { hasFocus?: boolean }
 export const InputWrapper = styled(Box)<InputWrapperProps>`
   display: flex;
   align-items: center;
-  border: 1px solid ${colors.grey.light};
+  border: 1px solid ${colors.gray[200]};
   border-radius: 4px;
   height: ${({ theme }) => theme.input.height || '50px'};
   position: relative;
@@ -69,7 +69,7 @@ export const InputWrapper = styled(Box)<InputWrapperProps>`
   overflow: hidden;
 
   &:hover {
-    border-color: ${colors.grey.medium};
+    border-color: ${colors.gray[300]};
   }
 
   ${props =>
@@ -77,7 +77,7 @@ export const InputWrapper = styled(Box)<InputWrapperProps>`
     css`
       outline: none;
       box-shadow: ${props.theme.shadows.outline || 'inherit'};
-      border-color: ${colors.grey.medium};
+      border-color: ${colors.gray[300]};
     `};
 
   ${props =>
@@ -149,7 +149,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   return (
     <FieldInputWrapper isFloating={shouldFloat}>
       {label && (
-        <Label htmlFor={props.name} color={color || colors.grey.medium}>
+        <Label htmlFor={props.name} color={color || colors.gray[800]}>
           {label}
         </Label>
       )}

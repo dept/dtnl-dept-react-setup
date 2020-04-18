@@ -52,6 +52,7 @@
   "dependencies": {
     "@next/bundle-analyzer": "^9.3.4",
     "@sentry/browser": "^5.15.4",
+    "@styled-system/css": "^5.1.5",
     "core-js": "^3.6.5",
     "date-fns": "^2.12.0",
     "dotenv": "^8.2.0",

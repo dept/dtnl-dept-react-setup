@@ -160,7 +160,7 @@ const Wrapper = styled(Box)`
     color: ${colors.error};
   }
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: ${colors.grey.light};
+    color: ${colors.gray[200]};
   }
   .react-calendar__year-view .react-calendar__tile,
   .react-calendar__decade-view .react-calendar__tile,
@@ -178,7 +178,7 @@ const Wrapper = styled(Box)`
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: ${colors.grey.lighter};
+    background-color: ${colors.gray[300]};
   }
   .react-calendar__tile--hasActive {
     background: ${colors.primary};
@@ -196,6 +196,6 @@ const Wrapper = styled(Box)`
     background: ${colors.primary};
   }
   .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: ${colors.grey.lighter};
+    background-color: ${colors.gray[300]};
   }
 `

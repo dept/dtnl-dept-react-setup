@@ -36,10 +36,10 @@ const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefi
     border-radius: 0;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid ${({ hasError }) => (hasError ? colors.error : colors.grey.dark)};
+    border-bottom: 1px solid ${({ hasError }) => (hasError ? colors.error : colors.gray[600])};
     min-height: ${INPUT_HEIGHT};
     &:hover {
-      border-color: ${colors.grey.dark};
+      border-color: ${colors.gray[600]};
     }
     &--is-focused {
       outline: none !important;
@@ -58,7 +58,7 @@ const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefi
 
   .reactselect__menu {
     box-shadow: none;
-    border: 1px solid ${colors.grey.dark};
+    border: 1px solid ${colors.gray[600]};
     border-radius: 0;
     margin-top: -1px;
   }
@@ -73,13 +73,13 @@ const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefi
 
   .reactselect__option {
     &--is-focused {
-      background-color: ${colors.grey.lighter};
+      background-color: ${colors.gray[100]};
     }
     &--is-selected {
-      background-color: ${colors.grey.light};
+      background-color: ${colors.gray[200]};
     }
     &:active {
-      background-color: ${colors.grey.medium};
+      background-color: ${colors.gray[300]};
       color: #fff;
     }
   }
