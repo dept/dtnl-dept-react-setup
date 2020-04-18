@@ -20,7 +20,7 @@ type SwitchProps = HTMLAttributes<HTMLInputElement> & {
 
 const SwitchBackground = styled.div`
   background-color: transparent;
-  border: 1px solid ${colors.grey.dark};
+  border: 1px solid ${colors.gray[600]};
   border-radius: 12px;
   padding: 5px;
   height: ${TOGGLE_HEIGHT};
@@ -36,7 +36,7 @@ const SwitchBall = styled.div`
   width: 13px;
   border-radius: 50%;
   transition: all 0.2s linear;
-  background-color: ${colors.grey.dark};
+  background-color: ${colors.gray[600]};
   transform: translateX(0%);
 `
 
@@ -53,7 +53,7 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 
   &:checked ~ ${SwitchBackground} {
-    background-color: ${colors.grey.dark};
+    background-color: ${colors.gray[600]};
     ${SwitchBall} {
       background-color: ${colors.white};
       transform: translateX(150%);

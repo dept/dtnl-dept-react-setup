@@ -9,6 +9,7 @@ import { ContextProvider } from '../src/context/ContextProvider'
 import { Box } from '../src/components/atoms'
 
 addDecorator(
+  // @ts-ignore
   withInfo({
     source: false,
     inline: true,

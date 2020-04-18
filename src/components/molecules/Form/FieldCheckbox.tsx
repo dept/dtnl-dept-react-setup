@@ -64,7 +64,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
         <Icon icon="CloseNormal" size={13} color="white" />
       </Check>
       <Box>
-        <Text color={colors.grey.medium} fontSize={14}>
+        <Text color="grey.300" fontSize={14}>
           {children}
         </Text>
       </Box>

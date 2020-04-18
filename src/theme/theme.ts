@@ -4,17 +4,7 @@ import { DefaultTheme } from 'styled-components'
 import * as iconComponents from '../../public/icons/components'
 import { colors } from './colors'
 import { grid } from './grid'
-
-const fontSizes = {
-  xxxs: 12,
-  xxs: 16,
-  xs: 20,
-  s: 30,
-  m: 40,
-  l: 60,
-  xl: 80,
-  xxl: 100,
-}
+import { typography } from './typography'
 
 const space = {
   xxxs: 8,
@@ -26,6 +16,13 @@ const space = {
   xl: 100,
   xxl: 120,
 }
+
+const breakpoints: any = ['40em', '52em', '64em', '80em']
+
+breakpoints.sm = breakpoints[0]
+breakpoints.md = breakpoints[1]
+breakpoints.lg = breakpoints[2]
+breakpoints.xl = breakpoints[3]
 
 const buttonBase = {
   fontWeight: 'bold',
@@ -57,11 +54,6 @@ export const buttons = {
   },
 }
 
-const fonts = {
-  primary: 'Work Sans, sans-serif',
-  secondary: 'Helvetica',
-}
-
 const shadows = {
   small: '0 0 4px rgba(0, 0, 0, .125)',
   large: '0 0 24px rgba(0, 0, 0, .125)',
@@ -91,11 +83,14 @@ export interface ThemeGrid {
 }
 
 export interface CustomTheme {
-  breakpoints: string[]
-  fontSizes: typeof fontSizes
+  breakpoints: typeof breakpoints
+  letterSpacings: typeof typography['letterSpacings']
+  lineHeights: typeof typography['lineHeights']
+  fontWeights: typeof typography['fontWeights']
+  fonts: typeof typography['fonts']
+  fontSizes: typeof typography['fontSizes']
   colors: typeof colors
   space: typeof space
-  fonts: typeof fonts
   shadows: typeof shadows
   buttons: typeof buttons
   outline?: string
@@ -104,12 +99,11 @@ export interface CustomTheme {
 }
 
 export const theme: DefaultTheme = {
-  breakpoints: ['40em', '52em', '64em', '80em'],
-  fontSizes,
+  ...typography,
+  breakpoints,
   space,
-  fonts,
   shadows,
-  outline: `5px auto #5E9ED6`,
+  outline: `5px auto ${colors.gray[300]}`,
   colors,
   buttons,
   grid,
