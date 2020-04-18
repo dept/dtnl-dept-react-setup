@@ -1,14 +1,27 @@
-FROM node:lts-alpine
-
+# ---- Base Node ----
+FROM node:lts-alpine as base
+# set working directory
 WORKDIR /usr/src/app
-
+# Copy package and lockfile
 COPY package.json ./
 COPY yarn.lock ./
 
-RUN yarn install
-
+# ---- Dependencies ----
+FROM base AS dependencies
+RUN yarn --frozen-lockfile --prod \
+    && cp -R node_modules prod_node_modules \
+    && yarn --frozen-lockfile
 COPY . .
+RUN yarn build
 
-RUN yarn validate
-
+FROM base AS release
+# copy production node_modules
+COPY --from=dependencies /usr/src/app/prod_node_modules ./node_modules
+# Bundle required app source
+COPY --from=dependencies /usr/src/app/.next ./.next
+COPY --from=dependencies /usr/src/app/public ./public
+COPY --from=dependencies /usr/src/app/.env.example ./.env.example
+# dont run as root
+USER node
+# Start server
 CMD ["yarn", "start"]
