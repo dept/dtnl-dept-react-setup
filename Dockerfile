@@ -19,8 +19,11 @@ FROM base AS release
 COPY --from=dependencies /usr/src/app/prod_node_modules ./node_modules
 # Bundle required app source
 COPY --from=dependencies /usr/src/app/.next ./.next
+COPY --from=dependencies /usr/src/app/config ./config
 COPY --from=dependencies /usr/src/app/public ./public
-COPY --from=dependencies /usr/src/app/.env.example ./.env.example
+COPY --from=dependencies /usr/src/app/package.json ./
+COPY --from=dependencies /usr/src/app/next.config.js ./
+COPY --from=dependencies /usr/src/app/.env* ./
 # dont run as root
 USER node
 # Start server
