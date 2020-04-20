@@ -5076,6 +5076,11 @@ case-sensitive-paths-webpack-plugin@^2.2.0:
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz#23ac613cc9a856e4f88ff8bb73bbb5e989825cf7"
   integrity sha512-/4YgnZS8y1UXXmC02xD5rRrBEu6T5ub+mQHLNRj0fzTRbgdBYhsNo2V5EqwgqrExjxsjtF/OpAKAMkKsxbD5XQ==
 
+case@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
+  integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
+
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -6400,13 +6405,15 @@ depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
-dept-react-scripts@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/dept-react-scripts/-/dept-react-scripts-1.0.2.tgz#4f3adc4262a475c73389b021c1b648fb5071f2a0"
-  integrity sha512-BqYvaUjXeCTjHbe7BHCStzuJo2HNMj48dWra1hG3vRqVm5d8hOFqooOiSbtaPVlumjJe8cYQMB2QyMCkUh1QWg==
+dept-react-scripts@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/dept-react-scripts/-/dept-react-scripts-1.0.4.tgz#cbc0472787714f2c4213dbfea77788b8d375280e"
+  integrity sha512-zV+ecCOVsrGk8AMlwnIVETiBzbjoeBRtNRQF+9gAi97dr21xHZ5GydFcC2h+vt9xn8tytB584Oqdw1cHPgo6QQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.27.0"
     "@typescript-eslint/parser" "^2.27.0"
+    case "^1.6.3"
+    chalk "^4.0.0"
     commander "^5.0.0"
     enquirer "^2.3.5"
     eslint "^6.8.0"
