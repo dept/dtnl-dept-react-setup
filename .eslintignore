@@ -1,1 +1,6 @@
-*.js
+node_modules
+.next
+dist
+storybook-static
+coverage
+

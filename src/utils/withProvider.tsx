@@ -7,24 +7,26 @@ import React from 'react'
  * Usage:
  * `export default withProvider(Page, ModalContextProvider)`
  */
-export const withProvider = (Page: NextPage, Provider: React.ComponentType) => {
-  return class WithProvider extends React.Component<any> {
-    public static async getInitialProps(ctx: NextPageContext) {
-      let pageProps: any = {}
+export const withProvider = (
+  Page: NextPage<any>,
+  Provider: React.ComponentType<any>,
+  providerProps: any,
+) => {
+  const WithProvider: NextPage<any> = props => {
+    return (
+      <Provider {...providerProps}>
+        <Page {...props}></Page>
+      </Provider>
+    )
+  }
 
-      if (Page.getInitialProps) {
-        pageProps = await Page.getInitialProps(ctx)
-      }
+  WithProvider.getInitialProps = async (ctx: NextPageContext) => {
+    let pageProps: any = {}
 
-      return pageProps
+    if (Page.getInitialProps) {
+      pageProps = await Page.getInitialProps(ctx)
     }
 
-    public render() {
-      return (
-        <Provider>
-          <Page {...this.props}></Page>
-        </Provider>
-      )
-    }
+    return pageProps
   }
 }
