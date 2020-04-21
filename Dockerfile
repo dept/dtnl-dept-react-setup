@@ -24,7 +24,7 @@ FROM dependencies as release
 # copy build
 COPY --from=build /usr/src/app/.next ./.next
 # dont run as root
-# USER node
+USER node
 # enable run as production
 ENV NODE_ENV=production
 # enable full-icu
