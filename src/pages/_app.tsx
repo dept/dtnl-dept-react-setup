@@ -9,6 +9,7 @@ import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
+import { appConfigurator } from '@/utils/appConfigurator'
 
 if (process.browser) {
   require('@/utils/detectTouch')
@@ -17,7 +18,7 @@ if (process.browser) {
 
 ReactModal.setAppElement('#__next')
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp: AppType = ({ Component: Page, pageProps }) => {
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
@@ -27,7 +28,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           <>
             <GlobalStyle />
             <BaseLayout>
-              <Component {...pageProps} />
+              <Page {...pageProps} />
             </BaseLayout>
           </>
         </ThemeProvider>
@@ -36,4 +37,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   )
 }
 
-export default MyApp
+export default appConfigurator(MyApp, {
+  supportIE: false,
+  ssr: true,
+})

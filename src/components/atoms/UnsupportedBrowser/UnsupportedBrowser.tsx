@@ -77,7 +77,7 @@ export const UnsupportedBrowser: React.FC<UnsupportedBrowserProps> = ({
         .wrapper {
           max-width: 600px;
           margin: 0 auto;
-          padding: 0px 15px;
+          padding: 15px;
         }
 
         h1 {
@@ -132,6 +132,8 @@ export const UnsupportedBrowser: React.FC<UnsupportedBrowserProps> = ({
         }
 
         body {
+          margin: 0;
+          padding: 0;
           background-color: #131313;
           color: #ffffff;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,

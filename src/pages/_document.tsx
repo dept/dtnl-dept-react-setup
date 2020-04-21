@@ -2,8 +2,6 @@ import { FaviconsMeta } from '@public/favicon/FaviconsMeta'
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
-import { UnsupportedBrowser } from '@/components/atoms'
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
@@ -39,9 +37,7 @@ export default class MyDocument extends Document {
           <FaviconsMeta />
         </Head>
         <body>
-          <UnsupportedBrowser supportIE>
-            <Main />
-          </UnsupportedBrowser>
+          <Main />
           <NextScript />
         </body>
       </Html>
