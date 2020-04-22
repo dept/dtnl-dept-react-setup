@@ -70,12 +70,12 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
-  } = useSelect({ items })
+  } = useSelect({ items, id: name })
 
   return (
     <Box position="relative">
       {label && (
-        <Label htmlFor={name} color={color} {...getLabelProps()}>
+        <Label color={color} {...getLabelProps()}>
           {label}
         </Label>
       )}
@@ -176,6 +176,8 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
       )}
       <InputWrapper hasFocus={hasFocus} color={color} hasError={hasError}>
         <Select
+          id={name}
+          name={name}
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={e => onChange(e.target.value)}

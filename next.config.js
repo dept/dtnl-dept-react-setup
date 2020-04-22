@@ -9,6 +9,7 @@ const dev = process.env.NODE_ENV !== 'production'
 
 module.exports = withPlugins(plugins, {
   exportPathMap,
+  poweredByHeader: false,
   publicRuntimeConfig: {
     /**
      * add the environment variables you would like exposed to the client here

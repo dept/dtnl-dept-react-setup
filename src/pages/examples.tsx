@@ -109,19 +109,6 @@ const Page: NextPage = () => {
                 placeholder="This is a number field"
               />
               <FormikDate name="date" label="Date field" placeholder="This is a date field" />
-              {/* <FormikSelect
-                name="select"
-                options={[
-                  {
-                    label: 'Option 1',
-                    value: 1,
-                  },
-                  {
-                    label: 'Option 2',
-                    value: 2,
-                  },
-                ]}
-              /> */}
 
               <FieldSelect
                 name="select"
