@@ -19,7 +19,6 @@ export const AuthContextProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<UserModel>()
 
   function login() {
-    console.log('Hello?')
     setUser({
       name: 'John Smith',
       email: 'john@deptagency.com',
