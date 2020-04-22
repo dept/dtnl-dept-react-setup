@@ -30,3 +30,5 @@ const col = style({
 })
 
 export const Column = styled(Box)<Omit<ColumnProps, 'width'>>(compose(col, inset))
+
+Column.displayName = 'Column'

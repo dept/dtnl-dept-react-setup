@@ -1,7 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs'
 import React, { useState } from 'react'
 
-import { Button, Card } from '@/components/atoms'
+import { Box, Button } from '@/components/atoms'
 
 import { Collapse } from '.'
 
@@ -14,9 +14,9 @@ export const Component = () => {
     <div>
       <Button onClick={() => setOpen(!open)}>Click to collapse</Button>
       <Collapse isOpen={open}>
-        <Card border="2px solid red" p={30}>
+        <Box border="2px solid red" p={30}>
           Content to be collapsed
-        </Card>
+        </Box>
       </Collapse>
     </div>
   )

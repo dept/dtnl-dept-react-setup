@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const defaultBaseColor = '#eee'
@@ -40,51 +40,47 @@ interface Props {
   circle?: boolean
 }
 
-export class Skeleton extends Component<Props> {
-  static defaultProps = {
-    count: 1,
-    duration: 1.2,
-    width: null,
-    wrapper: null,
-    height: null,
-    circle: false,
-  }
+export const Skeleton: React.FC<Props> = props => {
+  const { count = 1, width, height, circle, wrapper } = props
 
-  render() {
-    const { count = 1 } = this.props
-
-    const elements = []
-    for (let i = 0; i < count; i++) {
-      const style: any = {}
-      if (this.props.width != null) {
-        style.width = this.props.width
-      }
-      if (this.props.height != null) {
-        style.height = this.props.height
-      }
-      if (this.props.width !== null && this.props.height !== null && this.props.circle) {
-        style.borderRadius = '50%'
-      }
-      elements.push(
-        <SkeletonElement key={i} style={style}>
-          &zwnj;
-        </SkeletonElement>,
-      )
+  const elements = []
+  for (let i = 0; i < count; i++) {
+    const style: any = {}
+    if (width != null) {
+      style.width = width
     }
-
-    const Wrapper: any = this.props.wrapper
-
-    return (
-      <span>
-        {Wrapper
-          ? elements.map((element, i) => (
-              <Wrapper key={i}>
-                {element}
-                &zwnj;
-              </Wrapper>
-            ))
-          : elements}
-      </span>
+    if (height != null) {
+      style.height = height
+    }
+    if (width !== null && height !== null && circle) {
+      style.borderRadius = '50%'
+    }
+    elements.push(
+      <SkeletonElement key={i} style={style}>
+        &zwnj;
+      </SkeletonElement>,
     )
   }
+
+  const Wrapper: any = wrapper
+
+  return (
+    <span>
+      {Wrapper
+        ? elements.map((element, i) => (
+            <Wrapper key={i}>
+              {element}
+              &zwnj;
+            </Wrapper>
+          ))
+        : elements}
+    </span>
+  )
+}
+
+Skeleton.defaultProps = {
+  count: 1,
+  duration: 1.2,
+  wrapper: null,
+  circle: false,
 }

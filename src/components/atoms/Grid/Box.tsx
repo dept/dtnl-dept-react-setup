@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import {
   background,
   BackgroundProps,
+  border,
+  BorderProps,
   ButtonStyleProps,
   color,
   ColorProps,
@@ -17,6 +19,8 @@ import {
   OpacityProps,
   position,
   PositionProps,
+  shadow,
+  ShadowProps,
   space,
   SpaceProps,
   style,
@@ -24,7 +28,6 @@ import {
   TextStyleProps,
   typography,
   TypographyProps,
-  variant,
 } from 'styled-system'
 
 type TextDecorationOption = 'overline' | 'line-through' | 'underline'
@@ -33,11 +36,13 @@ type TextTransformOption = 'uppercase' | 'lowercase' | 'capitalize'
 export type BoxProps = BackgroundProps &
   ButtonStyleProps &
   ColorProps &
+  BorderProps &
   ColorStyleProps &
   FlexboxProps &
   LayoutProps &
   OpacityProps &
   PositionProps &
+  ShadowProps &
   SpaceProps &
   TextStyleProps &
   TypographyProps & {
@@ -57,24 +62,19 @@ const textTransform = style({
 
 const boxStyles = compose(
   background,
+  border,
   color,
   colorStyle,
   flexbox,
   layout,
   opacity,
   position,
+  shadow,
   space,
-  textStyle,
   textDecoration,
+  textStyle,
   textTransform,
   typography,
-  variant({
-    prop: 'variant',
-    scale: 'buttons',
-    variants: {
-      primary: {},
-    },
-  }),
 )
 
 export const Box = styled.div<BoxProps>(

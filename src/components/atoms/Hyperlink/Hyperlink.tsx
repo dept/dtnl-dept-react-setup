@@ -1,5 +1,5 @@
 import { LinkProps } from 'next/link'
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import { IconOption } from '@/theme'
@@ -68,13 +68,11 @@ const HyperlinkLabel = styled.span<HyperLinkElementProps>`
       : ''}
 `
 
-// this is a class component because Hyperlinks often need a ref, and function components require React.forwardRef to forward refs
-export class Hyperlink extends Component<HyperlinkProps> {
-  render() {
-    const { children, icon, color, href, as, iconColor, underline = true, ...props } = this.props
+export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
+  ({ children, icon, color, href, as, iconColor, underline = true, ...props }, ref) => {
     return (
       <Link href={href} as={as} passHref>
-        <HyperlinkWrapper as="a" {...props}>
+        <HyperlinkWrapper as="a" {...props} ref={ref}>
           <HyperlinkLabel color={color} underline={underline}>
             <Flex alignItems="center" height="100%" as="span">
               {icon && (
@@ -88,5 +86,5 @@ export class Hyperlink extends Component<HyperlinkProps> {
         </HyperlinkWrapper>
       </Link>
     )
-  }
-}
+  },
+)

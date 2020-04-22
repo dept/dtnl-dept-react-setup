@@ -18,3 +18,5 @@ export const StyledChildren: React.FC<{ className?: string } & SpaceProps> = ({
 }
 
 export const Space = styled(StyledChildren)(space)
+
+Space.displayName = 'Space'
