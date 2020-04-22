@@ -25,8 +25,6 @@ export const appConfigurator = (App: AppType, config: AppConfig) => {
 
   if (App.getInitialProps) {
     AppConfigurator.getInitialProps = async ctx => {
-      console.log(ctx)
-
       return App.getInitialProps!(ctx)
     }
   }
