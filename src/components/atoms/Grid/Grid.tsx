@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 import { DisplayProps, HeightProps } from 'styled-system'
 
 import { Box } from './Box'
@@ -7,24 +6,16 @@ import { Box } from './Box'
 type GridProps = DisplayProps & HeightProps
 
 export const Grid: React.FC<GridProps> = props => {
-  const themeContext = useContext(ThemeContext)
+  const themeContext = useTheme()
 
   return (
     <Box
       mx="auto"
-      px={
-        themeContext &&
-        themeContext.grid &&
-        themeContext.grid.container &&
-        themeContext.grid.container.padding
-      }
-      maxWidth={
-        themeContext &&
-        themeContext.grid &&
-        themeContext.grid.container &&
-        themeContext.grid.container.maxWidth
-      }
+      px={themeContext?.grid?.container?.padding}
+      maxWidth={themeContext?.grid?.container?.maxWidth}
       {...props}
     />
   )
 }
+
+Grid.displayName = 'Grid'

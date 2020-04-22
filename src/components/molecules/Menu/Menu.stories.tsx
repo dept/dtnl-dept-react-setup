@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button, Card } from '@/components/atoms'
+import { Box, Button } from '@/components/atoms'
 
 import { Menu } from './Menu'
 
@@ -12,7 +12,7 @@ export const example = () => {
       trigger={(clickHandler, isOpen) => (
         <Button onClick={clickHandler}>{isOpen ? 'Close menu' : 'Open menu'}</Button>
       )}>
-      <Card bg="white" border="1px solid #ddd" width={200}>
+      <Box bg="white" border="1px solid #ddd" width={200}>
         <Button variant="clear" block>
           Option 1
         </Button>
@@ -22,7 +22,7 @@ export const example = () => {
         <Button variant="clear" block>
           Option 3
         </Button>
-      </Card>
+      </Box>
     </Menu>
   )
 }

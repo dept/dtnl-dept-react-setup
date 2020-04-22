@@ -1,6 +1,7 @@
-import React, { ButtonHTMLAttributes, Component } from 'react'
+import css from '@styled-system/css'
+import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import { buttons, IconOption } from '@/theme'
 
@@ -68,10 +69,9 @@ const IconWrapper = styled.span<ButtonProps>`
   margin: ${props => (!props.iconReverse ? '0 0 0 12px' : '0 12px 0 0')};
 `
 
-// this is a class component because Buttons often need a ref, and function components require React.forwardRef to forward refs
-export class Button extends Component<ButtonProps> {
-  render() {
-    const {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
       as = 'button',
       icon,
       children,
@@ -83,13 +83,17 @@ export class Button extends Component<ButtonProps> {
       loading,
       disabled,
       ...props
-    } = this.props
-
+    },
+    ref,
+  ) => {
+    const theme = useTheme()
     const conditionalProps: ConditionalProps = { as }
 
     if (as === 'button') {
       conditionalProps.type = type
     }
+
+    const buttonVariant = theme.buttons[variant]
 
     return (
       <ButtonBase
@@ -97,7 +101,12 @@ export class Button extends Component<ButtonProps> {
         variant={variant}
         disabled={disabled || loading}
         size={size}
-        {...props}>
+        {...props}
+        css={css({
+          ...buttonVariant,
+          ...(props.css as any),
+        })}
+        ref={ref}>
         {variant === 'clear' ? (
           children
         ) : (
@@ -121,5 +130,5 @@ export class Button extends Component<ButtonProps> {
         )}
       </ButtonBase>
     )
-  }
-}
+  },
+)

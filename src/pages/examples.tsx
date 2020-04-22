@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 import {
   Box,
   Button,
-  Card,
   Column,
   Flex,
   Heading,
@@ -30,9 +29,9 @@ const Section: React.FC = props => (
 )
 
 const SectionHeader: React.FC = props => (
-  <Card borderBottom="1px solid" borderColor="primary" mb={30}>
+  <Box borderBottom="1px solid" borderColor="primary" mb={30}>
     <Heading {...props} />
-  </Card>
+  </Box>
 )
 
 const GridExampleBox: React.FC = props => (

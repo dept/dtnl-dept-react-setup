@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { Box, Card, Flex } from '../Grid'
+import { Box, Flex } from '../Grid'
 import { Skeleton } from './Skeleton'
 
 export default { title: 'Atoms|Skeleton', component: Skeleton }
 
 export const example = () => (
-  <Card borderRadius={10} border="1px solid #ddd" p={20}>
+  <Box borderRadius={10} border="1px solid #ddd" p={20}>
     <Flex width="100%" alignItems="center">
       <Skeleton width="60px" height="60px" circle></Skeleton>
       <Box flex={1} ml={10}>
@@ -19,7 +19,7 @@ export const example = () => (
     <Box>
       <Skeleton width="60%" count={1}></Skeleton>
     </Box>
-  </Card>
+  </Box>
 )
 
 example.story = {
