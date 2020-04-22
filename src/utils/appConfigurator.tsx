@@ -1,4 +1,3 @@
-import { AppContext } from 'next/app'
 import { AppType } from 'next/dist/next-server/lib/utils'
 import React from 'react'
 
@@ -25,9 +24,7 @@ export const appConfigurator = (App: AppType, config: AppConfig) => {
   }
 
   if (App.getInitialProps) {
-    AppConfigurator.getInitialProps = async (ctx: AppContext) => {
-      console.log(ctx)
-
+    AppConfigurator.getInitialProps = async ctx => {
       return App.getInitialProps!(ctx)
     }
   }
