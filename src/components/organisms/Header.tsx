@@ -29,6 +29,10 @@ const Navigation: React.FC = () => {
       href: '/examples',
       title: 'Examples',
     },
+    {
+      href: '/admin',
+      title: 'Admin',
+    },
   ]
 
   return (

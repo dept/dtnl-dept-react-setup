@@ -20,13 +20,11 @@ export const withProvider = (
     )
   }
 
-  WithProvider.getInitialProps = async (ctx: NextPageContext) => {
-    let pageProps: any = {}
-
-    if (Page.getInitialProps) {
-      pageProps = await Page.getInitialProps(ctx)
+  if (Page.getInitialProps) {
+    WithProvider.getInitialProps = async (ctx: NextPageContext) => {
+      return Page.getInitialProps!(ctx)
     }
-
-    return pageProps
   }
+
+  return WithProvider
 }
