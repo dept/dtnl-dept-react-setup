@@ -12,7 +12,6 @@ interface UserModel {
 }
 
 export const AuthContext = React.createContext({} as AuthContextStore)
-export const AuthConsumer = AuthContext.Consumer
 export const useAuth = () => useContext(AuthContext)
 
 export const AuthContextProvider: React.FC = ({ children }) => {
