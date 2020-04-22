@@ -4,4 +4,9 @@
  */
 
 import 'intersection-observer'
-// import './a11y'
+
+const enableAxe = false
+
+if (enableAxe) {
+  require('./a11y')
+}

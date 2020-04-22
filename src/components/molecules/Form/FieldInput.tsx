@@ -121,6 +121,7 @@ const FieldInputWrapper = styled(Box)<{ isFloating: boolean }>`
 
 export const FieldInput: React.FC<FieldInputProps> = ({
   label,
+  name,
   color,
   type,
   clearable,
@@ -149,7 +150,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   return (
     <FieldInputWrapper isFloating={shouldFloat}>
       {label && (
-        <Label htmlFor={props.name} color={color || colors.gray[800]}>
+        <Label htmlFor={name} color={color || colors.gray[800]}>
           {label}
         </Label>
       )}
@@ -158,6 +159,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
         <StyledInput
           type={type}
           {...props}
+          id={name}
           ref={inputRef}
           onChange={e => {
             const { value } = e.currentTarget
