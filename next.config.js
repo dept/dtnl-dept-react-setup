@@ -3,7 +3,7 @@ const withPlugins = require('next-compose-plugins')
 
 const { plugins } = require('./config/plugins')
 const { exportPathMap } = require('./config/staticPages')
-const { setAliasConfig } = require('./config/alias')
+const { includePolyfills } = require('./config/includePolyfills')
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -34,19 +34,7 @@ module.exports = withPlugins(plugins, {
       )
     }
 
-    const originalEntry = config.entry
-
-    config.entry = async () => {
-      const entries = await originalEntry()
-
-      if (entries['main.js'] && !entries['main.js'].includes('./src/polyfills.ts')) {
-        entries['main.js'].unshift('./src/polyfills.ts')
-      }
-
-      return entries
-    }
-
-    setAliasConfig(config)
+    includePolyfills(config)
 
     return config
   },
