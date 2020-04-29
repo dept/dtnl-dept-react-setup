@@ -1,6 +1,6 @@
 {
   "name": "dept-react-setup",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "React setup for Dept",
   "main": "server.js",
   "scripts": {
