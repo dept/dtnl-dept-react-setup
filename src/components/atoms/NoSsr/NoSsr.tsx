@@ -1,14 +1,9 @@
-import React from 'react'
+import { FC } from 'react'
 
-export interface NoSsrProps {}
+export interface Props {}
 
-export const NoSsr: React.FC<NoSsrProps> = ({ children }) => {
-  const [isMounted, setMounted] = React.useState(false)
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!isMounted) return null
+export const NoSsr: FC<Props> = ({ children }) => {
+  if (!process.browser) return null
 
   return <>{children}</>
 }
