@@ -41,9 +41,9 @@ if (process.browser) {
 
 The project includes generators for components en context provider. Simply run either:
 
-- `yarn generate page about`
-- `yarn generate component Slider`
-- `yarn generate context User`
+- `yarn route about`
+- `yarn component Slider`
+- `yarn context User`
 
 ## Generate icons from svg
 
@@ -68,9 +68,9 @@ To generate the favicons:
 
 ### Routing
 
-To create a new route add a new page to the `./pages` folder. You can easily create a new page by running `yarn generate page name-of-the-page`. Your newly created page will server from `http://localhost:3000/name-of-the-page`. Because the filename will be the same as the slug name has to be in kebab-case [http://wiki.c2.com/?KebabCase](http://wiki.c2.com/?KebabCase). If you need the page to be dynamic, create a page with brackets. For example: `product/[productId].tsx`. `http://localhost:3000/product/100` will serve the page with `{ productId: '100' }` in its `ctx.query` object. More info [https://github.com/zeit/next.js#dynamic-routing](https://github.com/zeit/next.js#dynamic-routing)
+To create a new route add a new page to the `./pages` folder. You can easily create a new page by running `yarn route name-of-the-page`. Your newly created page will server from `http://localhost:3000/name-of-the-page`. Because the filename will be the same as the slug name has to be in kebab-case [http://wiki.c2.com/?KebabCase](http://wiki.c2.com/?KebabCase). If you need the page to be dynamic, create a page with brackets. For example: `product/[productId].tsx`. `http://localhost:3000/product/100` will serve the page with `{ productId: '100' }` in its `ctx.query` object. More info [https://github.com/zeit/next.js#dynamic-routing](https://github.com/zeit/next.js#dynamic-routing)
 
-1. Create new page with `yarn generate page about`
+1. Create new page with `yarn route about`
 2. Serve the page from `http://localhost:3000/about`
 
 ## Typescript
