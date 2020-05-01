@@ -28,9 +28,6 @@
   },
   "author": "Dept",
   "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
-  "np": {
-    "publish": false
-  },
   "contributors": [
     {
       "name": "Tim de Wolf",
