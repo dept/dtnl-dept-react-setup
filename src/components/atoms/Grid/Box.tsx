@@ -197,7 +197,7 @@ type BoxHTMLProps = React.RefAttributes<any> & React.HTMLAttributes<any>
 
 export type BoxProps = BoxHTMLProps & StyledSystemProps & ModifiedStyledSystemProps & Truncated
 
-export const truncate = (props: BoxProps) => {
+export const truncate = (props: BoxProps): any => {
   if (props.isTruncated) {
     return {
       overflow: 'hidden',
@@ -223,10 +223,11 @@ export const boxStyles = compose(
   boxConfig,
 )
 
-export const Box = styled.div<BoxProps>(
+export const Box = styled('div')<BoxProps>(
   {
     boxSizing: 'border-box',
   },
+  // truncate,
   boxStyles,
 )
 

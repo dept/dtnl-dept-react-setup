@@ -1,23 +1,14 @@
 import React, { FC } from 'react'
-import styled, { css } from 'styled-components'
 
 import { Box, BoxProps, Column, Grid, Row } from '../Grid'
 import { Text } from '../Text'
 
 type AlertProps = BoxProps & {
-  type?: 'succes' | 'warning' | 'neutral'
+  type: 'succes' | 'warning' | 'neutral'
 }
 
-const StyledAlertBox = styled(Box)<AlertProps>`
-  ${({ type }) =>
-    type &&
-    css`
-      background-color: ${props => props.theme.colors[type]};
-    `};
-`
-
-export const Alert: FC<AlertProps> = props => (
-  <StyledAlertBox py="xxs" {...props}>
+export const Alert: FC<AlertProps> = ({ type, ...props }) => (
+  <Box py="xxs" {...props} color={type}>
     <Grid>
       <Row>
         <Column>
@@ -25,5 +16,5 @@ export const Alert: FC<AlertProps> = props => (
         </Column>
       </Row>
     </Grid>
-  </StyledAlertBox>
+  </Box>
 )
