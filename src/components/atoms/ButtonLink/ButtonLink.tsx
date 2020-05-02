@@ -23,7 +23,8 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
       prefetch={prefetch}
       scroll={scroll}
       shallow={shallow}
-      replace={replace}>
+      replace={replace}
+      passHref>
       <Button as="a" {...props}>
         {children}
       </Button>

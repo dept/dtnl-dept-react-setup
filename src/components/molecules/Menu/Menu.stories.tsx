@@ -13,13 +13,13 @@ export const example = () => {
         <Button onClick={clickHandler}>{isOpen ? 'Close menu' : 'Open menu'}</Button>
       )}>
       <Box bg="white" border="1px solid #ddd" width={200}>
-        <Button variant="clear" block>
+        <Button variant="clear" display="block">
           Option 1
         </Button>
-        <Button variant="clear" block>
+        <Button variant="clear" display="block">
           Option 2
         </Button>
-        <Button variant="clear" block>
+        <Button variant="clear" display="block">
           Option 3
         </Button>
       </Box>

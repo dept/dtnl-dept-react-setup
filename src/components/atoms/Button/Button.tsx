@@ -1,11 +1,11 @@
 import css from '@styled-system/css'
 import React, { ButtonHTMLAttributes } from 'react'
 import Ink from 'react-ink'
-import styled, { useTheme } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import { buttons, IconOption } from '@/theme'
 
-import { Box, BoxProps } from '../Grid'
+import { Box, BoxProps, PseudoBox } from '../Grid'
 import { Icon } from '../Icon'
 import { Loader } from '../Loader'
 
@@ -20,15 +20,10 @@ export type ButtonProps = BoxProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     as?: ButtonElements
     variant?: keyof typeof buttons
-    size?: 'small' | 'normal'
     disabled?: boolean
-    iconReverse?: boolean
-    icon?: IconOption
-    block?: boolean
-    inline?: boolean
-    justify?: 'center' | 'space-between'
+    startIcon?: IconOption
+    endIcon?: IconOption
     loading?: boolean
-    selected?: boolean
     ripple?: boolean
     href?: string
     target?: string
@@ -36,48 +31,14 @@ export type ButtonProps = BoxProps &
     'data-testid'?: string
   }
 
-const ButtonBase = styled(Box)<ButtonProps>`
-  display: inline-flex;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-  user-select: none;
-
-  &:focus {
-    outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  ${props => (props.inline ? 'display: inline-flex' : '')};
-  ${props => (props.block ? 'display: block; width: 100%;' : '')};
-  ${props => (props.variant !== 'clear' ? 'height: 50px;' : '')}
-`
-
-const ButtonLabel = styled.span<ButtonProps>`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: ${props => props.justify};
-  flex-direction: ${props => (props.iconReverse ? 'row-reverse' : 'row')};
-`
-
-const IconWrapper = styled.span<ButtonProps>`
-  margin: ${props => (!props.iconReverse ? '0 0 0 12px' : '0 12px 0 0')};
-`
-
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<any, ButtonProps>(
   (
     {
       as = 'button',
-      icon,
+      startIcon,
+      endIcon,
       children,
       variant = 'primary',
-      justify = 'center',
-      size = 'normal',
       type = 'button',
       ripple = true,
       loading,
@@ -87,48 +48,62 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const theme = useTheme()
+    const buttonVariant = theme.buttons[variant]
     const conditionalProps: ConditionalProps = { as }
 
     if (as === 'button') {
       conditionalProps.type = type
     }
 
-    const buttonVariant = theme.buttons[variant]
-
     return (
-      <ButtonBase
+      <PseudoBox
+        as="button"
+        display="inline-block"
         {...conditionalProps}
-        variant={variant}
         disabled={disabled || loading}
-        size={size}
-        {...props}
         css={css({
+          textAlign: 'center',
+          lineHeight: 1.5,
+          userSelect: 'none',
+          position: 'relative',
+          cursor: 'pointer',
+          border: 0,
+          appearance: 'none',
           ...buttonVariant,
-          ...(props.css as any),
         })}
+        _focus={{
+          outline: 'none',
+          boxShadow: theme.shadows.outline,
+        }}
+        {...props}
         ref={ref}>
         {variant === 'clear' ? (
           children
         ) : (
           <>
             {ripple && <Ink />}
-            <ButtonLabel size={size} justify={justify} {...props}>
+            <PseudoBox display="flex" alignItems="center" justifyContent="space-between">
               {loading ? (
                 <Loader color={'white'} size={50} />
               ) : (
                 <>
+                  {startIcon && (
+                    <Box mr={8}>
+                      <Icon size={20} icon={startIcon}></Icon>
+                    </Box>
+                  )}
                   <span>{children}</span>
-                  {icon && (
-                    <IconWrapper>
-                      <Icon size={18} icon={icon} />
-                    </IconWrapper>
+                  {endIcon && (
+                    <Box ml={8}>
+                      <Icon size={20} icon={endIcon}></Icon>
+                    </Box>
                   )}
                 </>
               )}
-            </ButtonLabel>
+            </PseudoBox>
           </>
         )}
-      </ButtonBase>
+      </PseudoBox>
     )
   },
 )

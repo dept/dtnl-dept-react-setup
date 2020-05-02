@@ -195,7 +195,15 @@ type ModifiedStyledSystemProps = TypographyProps &
 
 type BoxHTMLProps = React.RefAttributes<any> & React.HTMLAttributes<any>
 
-export type BoxProps = BoxHTMLProps & StyledSystemProps & ModifiedStyledSystemProps & Truncated
+type OtherHTMLProps = {
+  disabled?: boolean
+}
+
+export type BoxProps = BoxHTMLProps &
+  StyledSystemProps &
+  ModifiedStyledSystemProps &
+  Truncated &
+  OtherHTMLProps
 
 export const truncate = (props: BoxProps): any => {
   if (props.isTruncated) {
@@ -227,7 +235,7 @@ export const Box = styled('div')<BoxProps>(
   {
     boxSizing: 'border-box',
   },
-  // truncate,
+  truncate,
   boxStyles,
 )
 
