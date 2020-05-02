@@ -20,7 +20,7 @@ export const Pagination: FC<PaginationProps> = ({
   /**
    * Pagination should only show if there is enough content to fill more than one page.
    */
-  if (total / perPage < 1 || !pages || current < 0 || current >= pages) return null
+  if (total / perPage < 1 || !pages || current < 0 || current > pages) return null
 
   /**
    *
