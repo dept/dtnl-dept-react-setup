@@ -1,7 +1,7 @@
 import { AppType } from 'next/dist/next-server/lib/utils'
 import React from 'react'
 
-import { UnsupportedBrowser } from '@/components/atoms'
+import { UnsupportedBrowser } from '@/components/organisms/UnsupportedBrowser'
 
 import { isBrowser } from './isBrowser'
 

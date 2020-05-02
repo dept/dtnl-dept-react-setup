@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { ActiveLink, Box, Flex, Link } from '@/components/atoms'
+import { Box, Flex, Link, NavLink } from '@/components/atoms'
 
 interface HeaderProps {}
 
@@ -40,11 +40,11 @@ const Navigation: React.FC = () => {
       {items.map(item => {
         return (
           <Box key={item.title}>
-            <ActiveLink href={item.href} passHref>
+            <NavLink href={item.href} passHref>
               <NavigationLink as="a" px={15} mx={10}>
                 {item.title}
               </NavigationLink>
-            </ActiveLink>
+            </NavLink>
           </Box>
         )
       })}

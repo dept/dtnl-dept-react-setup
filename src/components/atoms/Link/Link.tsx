@@ -4,21 +4,21 @@ import React from 'react'
 
 export const Link = NextLink
 
-type ActiveLinkProps = LinkProps & {
+type NavLinkProps = LinkProps & {
   activeClassName?: string
   exact?: boolean
   render?: (isActive: boolean) => any
   children?: React.ReactElement
 }
 
-export const ActiveLink: React.FC<ActiveLinkProps> = ({
+export const NavLink: React.FC<NavLinkProps> = ({
   children,
   href,
   exact,
   activeClassName = 'active',
   render,
   ...otherProps
-}: ActiveLinkProps) => {
+}: NavLinkProps) => {
   const router = useRouter()
   const child = children && React.Children.only(children)
 
