@@ -59,17 +59,16 @@ export const Button = React.forwardRef<any, ButtonProps>(
     return (
       <PseudoBox
         as="button"
-        display="inline-block"
         {...conditionalProps}
-        disabled={disabled || loading}
+        disabled={disabled}
         css={css({
+          display: 'inline-block',
           textAlign: 'center',
           lineHeight: 1.5,
           userSelect: 'none',
           position: 'relative',
           cursor: 'pointer',
           border: 0,
-          appearance: 'none',
           ...buttonVariant,
         })}
         _disabled={{

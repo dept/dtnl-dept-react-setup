@@ -1,4 +1,4 @@
-import { darken } from 'polished'
+import { darken, rgba } from 'polished'
 import { DefaultTheme } from 'styled-components'
 
 import * as iconComponents from '../../public/icons/components'
@@ -35,20 +35,26 @@ export const buttons = {
     borderRadius: 4,
     bg: 'primary',
     color: 'white',
-    ['&:hover']: {
+    '&:hover': {
       bg: darken(0.2, colors.primary),
     },
-    ['&:disabled']: {
-      bg: 'grey.500',
-      color: 'grey.800',
+    '&:disabled': {
+      bg: 'gray.300',
+      color: 'gray.800',
     },
   },
   secondary: {
     ...buttonBase,
     borderRadius: 4,
     border: '1px solid',
-    borderColor: 'primary',
+    borderColor: 'currentColor',
     color: 'primary',
+    '&:hover': {
+      bg: rgba(colors.primary, 0.05),
+    },
+    '&:disabled': {
+      color: 'gray.300',
+    },
   },
   clear: {
     borderRadius: 4,
