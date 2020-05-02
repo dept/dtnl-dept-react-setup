@@ -8,7 +8,7 @@ type AlertProps = BoxProps & {
 }
 
 export const Alert: FC<AlertProps> = ({ type, ...props }) => (
-  <Box py="xxs" {...props} color={type}>
+  <Box py="xxs" bg={type} {...props}>
     <Grid>
       <Row>
         <Column>

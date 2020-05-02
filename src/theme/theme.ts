@@ -26,31 +26,30 @@ breakpoints.xl = breakpoints[3]
 
 const buttonBase = {
   fontWeight: 'bold',
-  border: '1px solid',
-  borderColor: 'primary',
-  padding: '0 20px',
-  height: 50,
-  borderRadius: 50,
+  padding: '10px 20px',
 }
 
 export const buttons = {
   primary: {
     ...buttonBase,
+    borderRadius: 4,
     bg: 'primary',
     color: 'white',
-    ['&:hover, &:focus']: {
-      backgroundColor: darken(0.2, colors.primary),
+    ['&:hover']: {
+      bg: darken(0.2, colors.primary),
     },
   },
   secondary: {
     ...buttonBase,
+    border: '2px solid',
+    borderColor: 'primary',
     color: 'black',
   },
   clear: {
+    borderRadius: 4,
     backgroundColor: 'transparent',
     border: 'none',
     padding: '0',
-    height: 'auto',
   },
 }
 
@@ -71,6 +70,7 @@ const input = {
 export const icons = iconComponents
 
 export type IconOption = keyof typeof icons
+export type ButtonOption = keyof typeof buttons
 
 export interface ThemeGridContainer {
   maxWidth: number
