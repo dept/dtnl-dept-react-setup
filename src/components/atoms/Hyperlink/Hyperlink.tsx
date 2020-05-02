@@ -1,6 +1,6 @@
 import { LinkProps } from 'next/link'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { IconOption } from '@/theme'
 
@@ -37,17 +37,16 @@ const HyperlinkLabel = styled.span<HyperLinkElementProps>`
   }
 
   ${({ icon }) =>
-    icon
-      ? `
-    display: flex;
-    align-items: center;
-    line-height: 1;
-  `
-      : ''}
+    icon &&
+    css`
+      display: flex;
+      align-items: center;
+      line-height: 1;
+    `}
 
   ${({ underline }) =>
-    underline
-      ? `
+    underline &&
+    css`
       &:after {
         content: '';
         display: block;
@@ -64,8 +63,7 @@ const HyperlinkLabel = styled.span<HyperLinkElementProps>`
           max-width: 0%;
         }
       }
-    `
-      : ''}
+    `}
 `
 
 export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
