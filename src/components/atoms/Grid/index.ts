@@ -1,4 +1,5 @@
 export * from './Box'
+export * from './PseudoBox'
 export * from './Column'
 export * from './Flex'
 export * from './Grid'
