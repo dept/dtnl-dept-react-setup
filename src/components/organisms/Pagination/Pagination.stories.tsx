@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Pagination } from './Pagination'
 
-export default { title: 'Organisms|Pagination', component: Pagination, decorators: [withKnobs] }
+export default { title: 'Organisms|Pagination', component: Pagination }
 
 export const example = () => {
   return (
