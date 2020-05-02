@@ -1,0 +1,17 @@
+import { number, withKnobs } from '@storybook/addon-knobs'
+import React from 'react'
+
+import { Pagination } from './Pagination'
+
+export default { title: 'Organisms|Pagination', component: Pagination, decorators: [withKnobs] }
+
+export const example = () => {
+  return (
+    <Pagination
+      current={number('Current page', 6)}
+      total={number('Amount of content', 74)}
+      perPage={number('Items per page', 10)}
+      onNavigate={val => console.log(val)}
+    />
+  )
+}
