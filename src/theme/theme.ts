@@ -26,7 +26,7 @@ breakpoints.xl = breakpoints[3]
 
 const buttonBase = {
   fontWeight: 'bold',
-  padding: '10px 20px',
+  padding: '8px 16px',
 }
 
 export const buttons = {
@@ -38,12 +38,17 @@ export const buttons = {
     ['&:hover']: {
       bg: darken(0.2, colors.primary),
     },
+    ['&:disabled']: {
+      bg: 'grey.500',
+      color: 'grey.800',
+    },
   },
   secondary: {
     ...buttonBase,
-    border: '2px solid',
+    borderRadius: 4,
+    border: '1px solid',
     borderColor: 'primary',
-    color: 'black',
+    color: 'primary',
   },
   clear: {
     borderRadius: 4,

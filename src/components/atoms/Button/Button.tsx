@@ -1,5 +1,7 @@
 import css from '@styled-system/css'
+import { motion } from 'framer-motion'
 import React, { ButtonHTMLAttributes } from 'react'
+import { AiOutlineLoading } from 'react-icons/ai'
 import Ink from 'react-ink'
 import { useTheme } from 'styled-components'
 
@@ -7,7 +9,6 @@ import { buttons, IconOption } from '@/theme'
 
 import { Box, BoxProps, PseudoBox } from '../Grid'
 import { Icon } from '../Icon'
-import { Loader } from '../Loader'
 
 type ButtonElements = 'button' | 'a'
 
@@ -71,6 +72,9 @@ export const Button = React.forwardRef<any, ButtonProps>(
           appearance: 'none',
           ...buttonVariant,
         })}
+        _disabled={{
+          cursor: 'not-allowed',
+        }}
         _focus={{
           outline: 'none',
           boxShadow: theme.shadows.outline,
@@ -84,7 +88,12 @@ export const Button = React.forwardRef<any, ButtonProps>(
             {ripple && <Ink />}
             <PseudoBox display="flex" alignItems="center" justifyContent="space-between">
               {loading ? (
-                <Loader color={'white'} size={50} />
+                <motion.div
+                  animate={{ transform: 'rotate(350deg)' }}
+                  style={{ width: '24px', height: '24px' }}
+                  transition={{ duration: 1, loop: Infinity, ease: 'linear' }}>
+                  <AiOutlineLoading size={20} />
+                </motion.div>
               ) : (
                 <>
                   {startIcon && (
