@@ -5,7 +5,7 @@ import { Box, Column, Grid, Row } from '@/components/atoms'
 export default { title: 'Grid|Grid' }
 
 const GridExampleBox: React.FC = props => (
-  <Box bg="primary" my={5} color="white" p={20} fontSize={14} {...props} />
+  <Box bg="primary" my={1} color="white" p={4} fontSize={14} {...props} />
 )
 
 export const example = () => (

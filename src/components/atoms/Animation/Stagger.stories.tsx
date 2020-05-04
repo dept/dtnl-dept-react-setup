@@ -14,22 +14,22 @@ export const stagger = () => {
 
   return (
     <Stagger key={Object.values(props).join('-')} {...props}>
-      <Box bg="red.300" mb={5} p={10}>
+      <Box bg="red.300" mb={1} p={2}>
         Child
       </Box>
-      <Box bg="orange.300" mb={5} p={10}>
+      <Box bg="orange.300" mb={1} p={2}>
         Child
       </Box>
-      <Box bg="yellow.300" mb={5} p={10}>
+      <Box bg="yellow.300" mb={1} p={2}>
         Child
       </Box>
-      <Box bg="green.300" mb={5} p={10}>
+      <Box bg="green.300" mb={1} p={2}>
         Child
       </Box>
-      <Box bg="blue.300" mb={5} p={10}>
+      <Box bg="blue.300" mb={1} p={2}>
         Child
       </Box>
-      <Box bg="purple.300" mb={5} p={10}>
+      <Box bg="purple.300" mb={1} p={2}>
         Child
       </Box>
     </Stagger>

@@ -91,15 +91,15 @@ export const Pagination: FC<PaginationProps> = ({
   }
 
   return (
-    <Box my={30}>
+    <Box my={8}>
       <Flex alignItems="center">
         <Button disabled={current <= 1} onClick={() => handleNavigate(current - 1)}>
           Prev page
         </Button>
 
-        <Flex alignItems="center" mx={20}>
+        <Flex alignItems="center" mx={4}>
           {getItems().map((item: number | string) => (
-            <Box key={item} bg="red" mx={6}>
+            <Box key={item} bg="red" mx={1}>
               {typeof item !== 'number' ? (
                 <Paragraph opacity={0.3}>{item}</Paragraph>
               ) : (
@@ -107,7 +107,7 @@ export const Pagination: FC<PaginationProps> = ({
                   variant="clear"
                   onClick={() => handleNavigate(item)}
                   disabled={current === item}
-                  p={[2, 6, 10]}>
+                  p={2}>
                   {item}
                 </Button>
               )}

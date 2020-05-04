@@ -1,19 +1,10 @@
+import { css } from '@styled-system/css'
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
-import styled from 'styled-components'
+
+import { PseudoBox } from '../Grid'
 
 export interface RevealProps {}
-
-interface RevealWrapperProps {
-  inView: boolean
-}
-
-const RevealWrapper = styled.div<RevealWrapperProps>`
-  position: relative;
-  transition: opacity 300ms, top 700ms;
-  opacity: ${props => (props.inView ? 1 : 0)};
-  top: ${props => (props.inView ? '0px' : '-15px')};
-`
 
 export const Reveal: React.FC<RevealProps> = ({ children }) => {
   const [ref, inView] = useInView({
@@ -23,8 +14,15 @@ export const Reveal: React.FC<RevealProps> = ({ children }) => {
   })
 
   return (
-    <RevealWrapper ref={ref} inView={inView}>
+    <PseudoBox
+      ref={ref}
+      css={css({
+        position: 'relative',
+        transition: 'opacity 300ms, top 700ms',
+        opacity: inView ? 1 : 0,
+        top: inView ? '0px' : '15px',
+      })}>
       {children}
-    </RevealWrapper>
+    </PseudoBox>
   )
 }

@@ -7,14 +7,24 @@ import { grid } from './grid'
 import { typography } from './typography'
 
 const space = {
-  xxxs: 8,
-  xxs: 10,
-  xs: 20,
-  s: 40,
-  m: 60,
-  l: 80,
-  xl: 100,
-  xxl: 120,
+  '0': '0',
+  '1': '0.25rem',
+  '2': '0.5rem',
+  '3': '0.75rem',
+  '4': '1rem',
+  '5': '1.25rem',
+  '6': '1.5rem',
+  '8': '2rem',
+  '10': '2.5rem',
+  '12': '3rem',
+  '16': '4rem',
+  '20': '5rem',
+  '24': '6rem',
+  '32': '8rem',
+  '40': '10rem',
+  '48': '12rem',
+  '56': '14rem',
+  '64': '16rem',
 }
 
 const breakpoints: any = ['40em', '52em', '64em', '80em']
@@ -24,17 +34,13 @@ breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 breakpoints.xl = breakpoints[3]
 
-const buttonBase = {
-  fontWeight: 'bold',
-  padding: '8px 16px',
-}
-
 export const buttons = {
   primary: {
-    ...buttonBase,
-    borderRadius: 4,
     bg: 'primary',
+    borderRadius: 4,
     color: 'white',
+    fontWeight: 'bold',
+    padding: '8px 16px',
     '&:hover': {
       bg: darken(0.2, colors.primary),
     },
@@ -44,11 +50,12 @@ export const buttons = {
     },
   },
   secondary: {
-    ...buttonBase,
-    borderRadius: 4,
     border: '1px solid',
     borderColor: 'currentColor',
+    borderRadius: 4,
     color: 'primary',
+    fontWeight: 'bold',
+    padding: '8px 16px',
     '&:hover': {
       bg: rgba(colors.primary, 0.05),
     },
@@ -60,7 +67,6 @@ export const buttons = {
     borderRadius: 4,
     backgroundColor: 'transparent',
     border: 'none',
-    padding: '0',
   },
 }
 

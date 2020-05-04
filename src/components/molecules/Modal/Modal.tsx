@@ -120,8 +120,8 @@ export const Modal: FC<ModalProps> = ({
         {modal && (
           <>
             {modal.isClosable && (
-              <Box top={0} right={0} zIndex={99} position="absolute" p={['xs', 'xs', 's']}>
-                <IconButton aria-label="Close" onClick={onDismiss} size={22} icon="CloseLight" />
+              <Box top={0} right={0} zIndex={99} position="absolute" p={4}>
+                <IconButton aria-label="Close" onClick={onDismiss} size={20} icon="CloseLight" />
               </Box>
             )}
 

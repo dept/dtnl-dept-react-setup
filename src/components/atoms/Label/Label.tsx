@@ -1,23 +1,22 @@
+import css from '@styled-system/css'
 import React, { HTMLAttributes } from 'react'
-import styled from 'styled-components'
 
-import { Box } from '../Grid'
+import { PseudoBox, PseudoBoxProps } from '../Grid'
 
 interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
-  color?: string
   htmlFor?: string
 }
 
-const StyledLabel = styled(Box)<LabelProps>`
-  cursor: pointer;
-  user-select: none;
-  display: block;
-`
-
-export const Label: React.FC<LabelProps> = ({ children, ...rest }) => {
+export const Label: React.FC<LabelProps & PseudoBoxProps> = ({ children, ...props }) => {
   return (
-    <StyledLabel as="label" {...rest}>
+    <PseudoBox
+      as="label"
+      css={css({
+        cursor: 'pointer',
+        userSelect: 'none',
+      })}
+      {...props}>
       {children}
-    </StyledLabel>
+    </PseudoBox>
   )
 }

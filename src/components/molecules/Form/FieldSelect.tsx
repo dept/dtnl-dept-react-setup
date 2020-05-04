@@ -88,7 +88,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           as="label"
           {...getToggleButtonProps()}>
           {(selectedItem && selectedItem.label) || placeholder || '-'}
-          <IconWrapper position="absolute" right={10} top="50%">
+          <IconWrapper position="absolute" right={3} top="50%">
             <Icon icon="Chevron" size={15} rotate={isOpen ? -180 : 0} />
           </IconWrapper>
         </Box>
@@ -194,7 +194,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
             </option>
           ))}
         </Select>
-        <IconWrapper position="absolute" right={10} top="50%">
+        <IconWrapper position="absolute" right={3} top="50%">
           <Icon icon="Chevron" size={15} />
         </IconWrapper>
       </InputWrapper>
@@ -204,7 +204,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
 
 export const FieldSelect: React.FC<FieldSelectProps> = props => {
   if (props.native) {
-    return <NativeSelect {...props}></NativeSelect>
+    return <NativeSelect {...props}> </NativeSelect>
   } else {
     return <CustomSelect {...props}></CustomSelect>
   }

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { Box, BoxProps, Column, Grid, Row } from '../Grid'
+import { Box, BoxProps } from '../Grid'
 import { Text } from '../Text'
 
 type AlertProps = BoxProps & {
@@ -8,13 +8,7 @@ type AlertProps = BoxProps & {
 }
 
 export const Alert: FC<AlertProps> = ({ type, ...props }) => (
-  <Box py="xxs" bg={type} {...props}>
-    <Grid>
-      <Row>
-        <Column>
-          <Text>{props.children}</Text>
-        </Column>
-      </Row>
-    </Grid>
+  <Box py="2" px="4" bg={type} {...props}>
+    <Text color="rgba(0,0,0,0.7)">{props.children}</Text>
   </Box>
 )

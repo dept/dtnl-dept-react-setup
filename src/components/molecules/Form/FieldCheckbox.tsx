@@ -1,9 +1,9 @@
+import css from '@styled-system/css'
 import { hideVisually } from 'polished'
 import React, { InputHTMLAttributes } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import { Box, Flex, Icon, Label, Text } from '@/components/atoms'
-import { colors } from '@/theme/colors'
 
 export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean
@@ -17,57 +17,55 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 `
 
-const Check = styled.div<{ hasError: boolean }>`
-  height: 25px;
-  width: 25px;
-  display: inline-flex;
-  flex-shrink: 0;
-  background-color: ${colors.white};
-  border: 1px solid ${colors.black};
-  margin-right: 15px;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  input:checked + & {
-    background-color: ${colors.black};
-  }
-  input:focus + & {
-    outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
-  }
-
-  ${props =>
-    props.hasError &&
-    css`
-      border: 1px solid ${colors.error};
-    `}
-`
-
 export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
   children,
   onFocus,
   onChange,
   onBlur,
   hasError,
-  ...rest
-}) => (
-  <Label>
-    <Flex opacity={rest.disabled ? 0.2 : 1}>
-      <HiddenInput
-        type="checkbox"
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onChange={onChange}
-        {...rest}
-      />
-      <Check hasError={hasError}>
-        <Icon icon="CloseNormal" size={13} color="white" />
-      </Check>
-      <Box>
-        <Text color="grey.300" fontSize={14}>
-          {children}
-        </Text>
-      </Box>
-    </Flex>
-  </Label>
-)
+  ...props
+}) => {
+  const theme = useTheme()
+  return (
+    <Label>
+      <Flex opacity={props.disabled ? 0.2 : 1} alignItems="center">
+        <HiddenInput
+          type="checkbox"
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onChange={onChange}
+          {...props}
+        />
+        <Box
+          mr={3}
+          css={css({
+            height: 25,
+            width: 25,
+            bg: 'white',
+            border: '2px solid',
+            borderRadius: 4,
+            borderColor: hasError ? 'error' : 'primary',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            boxSizing: 'border-box',
+            'input:checked + &': {
+              bg: 'primary',
+            },
+            'input:focus + &': {
+              outline: 'none',
+              boxShadow: theme.shadows.outline,
+            },
+          })}>
+          <Icon icon="CloseNormal" size={13} color="white" />
+        </Box>
+        <Box>
+          <Text color="gray.800" fontSize={14}>
+            {children}
+          </Text>
+        </Box>
+      </Flex>
+    </Label>
+  )
+}

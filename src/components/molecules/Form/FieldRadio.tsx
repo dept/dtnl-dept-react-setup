@@ -1,9 +1,9 @@
+import css from '@styled-system/css'
 import { hideVisually } from 'polished'
 import React, { InputHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
-import { Flex, Label, Text } from '@/components/atoms'
-import { colors } from '@/theme/colors'
+import { Box, Flex, Label, Text } from '@/components/atoms'
 
 export interface FieldRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
@@ -15,33 +15,32 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 `
 
-const Circle = styled.div`
-  height: 25px;
-  width: 25px;
-  display: inline-flex;
-  background-color: ${colors.white};
-  border: 1px solid ${colors.black};
-  margin-right: 15px;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  input:checked + & {
-    border-width: 6px;
-  }
-  input:focus + & {
-    outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
-  }
-`
-
-export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...rest }) => {
+export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) => {
+  const theme = useTheme()
   return (
     <Label style={{ cursor: 'pointer' }}>
-      <Flex>
-        <HiddenInput type="radio" {...rest} />
-        <Circle />
+      <Flex opacity={props.disabled ? 0.2 : 1} alignItems="center">
+        <HiddenInput type="radio" {...props} />
+        <Box
+          mr={3}
+          my={1}
+          css={css({
+            display: 'inline-flex',
+            flexShrink: 0,
+            height: 25,
+            width: 25,
+            borderRadius: '50%',
+            border: '2px solid',
+            borderColor: 'primary',
+            'input:checked + &': {
+              borderWidth: '6px',
+            },
+            'input:focus + &': {
+              outline: 'none',
+              boxShadow: theme.shadows.outline,
+            },
+          })}
+        />
         <Text>{children}</Text>
       </Flex>
     </Label>

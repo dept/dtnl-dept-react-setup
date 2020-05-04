@@ -96,13 +96,13 @@ export const Button = React.forwardRef<any, ButtonProps>(
               ) : (
                 <>
                   {startIcon && (
-                    <Box mr={8}>
+                    <Box mr={2}>
                       <Icon size={20} icon={startIcon}></Icon>
                     </Box>
                   )}
                   <span>{children}</span>
                   {endIcon && (
-                    <Box ml={8}>
+                    <Box ml={2}>
                       <Icon size={20} icon={endIcon}></Icon>
                     </Box>
                   )}

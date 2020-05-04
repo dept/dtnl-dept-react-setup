@@ -6,10 +6,10 @@ import { Skeleton } from './Skeleton'
 export default { title: 'Atoms|Skeleton', component: Skeleton }
 
 export const example = () => (
-  <Box borderRadius={10} border="1px solid #ddd" p={20}>
+  <Box borderRadius={10} border="1px solid #ddd" p={4}>
     <Flex width="100%" alignItems="center">
       <Skeleton width="60px" height="60px" circle></Skeleton>
-      <Box flex={1} ml={10}>
+      <Box flex={1} ml={2}>
         <Skeleton width="70%"></Skeleton>
       </Box>
     </Flex>

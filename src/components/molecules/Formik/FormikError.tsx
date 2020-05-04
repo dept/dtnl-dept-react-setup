@@ -10,7 +10,7 @@ interface FormikErrorProps {
 
 export const FormikError: React.FC<FormikErrorProps> = ({ name }) => {
   return (
-    <Box mt={5}>
+    <Box mt={1}>
       <ErrorMessage
         name={name}
         render={(message: string) => {
