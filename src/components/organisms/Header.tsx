@@ -11,30 +11,30 @@ const NavigationLink = styled(Box)`
   padding-bottom: 10px;
   border-bottom: 5px solid var(--border-color);
   &.active {
-    --border-color: black;
+    --border-color: rgba(0, 0, 0, 0.2);
   }
 `
 
-const Navigation: React.FC = () => {
-  const items = [
-    {
-      href: '/about',
-      title: 'About',
-    },
-    {
-      href: '/blog',
-      title: 'Blog',
-    },
-    {
-      href: '/examples',
-      title: 'Examples',
-    },
-    {
-      href: '/admin',
-      title: 'Admin',
-    },
-  ]
+const items = [
+  {
+    href: '/about',
+    title: 'About',
+  },
+  {
+    href: '/blog',
+    title: 'Blog',
+  },
+  {
+    href: '/examples',
+    title: 'Examples',
+  },
+  {
+    href: '/admin',
+    title: 'Admin',
+  },
+]
 
+const Navigation: React.FC = () => {
   return (
     <Flex as="nav">
       {items.map(item => {

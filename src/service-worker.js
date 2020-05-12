@@ -21,6 +21,7 @@ Copyright 2015, 2019 Google Inc. All Rights Reserved.
 
 // Incrementing OFFLINE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const OFFLINE_VERSION = 1
 const CACHE_NAME = 'offline'
 // Customize this with a different URL if needed.
