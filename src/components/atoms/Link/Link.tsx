@@ -23,7 +23,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
   const child = children && React.Children.only(children)
 
   const routerPath = router.asPath ? router.asPath : router.pathname
-  const match = router.asPath ? otherProps.as : href
+  const match = router.asPath ? otherProps.as || href : href
 
   const condition = exact
     ? Boolean(routerPath === match)

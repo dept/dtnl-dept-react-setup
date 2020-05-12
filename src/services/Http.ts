@@ -1,4 +1,5 @@
-import fetch from 'isomorphic-fetch'
+// Fetch is built in since Next 9.4
+// import fetch from 'isomorphic-fetch'
 
 import { isBrowser } from '@/utils/isBrowser'
 
