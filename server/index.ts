@@ -1,3 +1,5 @@
+import * as gitApi from '@tinacms/api-git'
+import cors from 'cors'
 import express from 'express'
 import next from 'next'
 
@@ -12,6 +14,15 @@ app
     const server = express()
 
     server.use('/service-worker.js', express.static('.next/service-worker.js'))
+
+    server.use(cors() as any)
+    server.use(
+      '/___tina',
+      gitApi.router({
+        pathToRepo: process.cwd(),
+        pathToContent: '',
+      } as any),
+    )
 
     server.get('*', (req, res) => handle(req, res))
     server.listen(port, (err?: Error) => {
