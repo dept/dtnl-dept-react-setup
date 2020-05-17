@@ -2,14 +2,23 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
-import { Box, Heading, Paragraph } from '@/components/atoms'
+import { Box, Button, Heading, Paragraph } from '@/components/atoms'
 import { config } from '@/utils/config'
+import { useQueryParam } from '@/utils/hooks/useQueryParams'
 
 const { ENVIRONMENT_NAME } = config
 
 interface PageProps {}
 
 const Page: NextPage<PageProps> = () => {
+  const [state, setState] = useQueryParam('page', {
+    defaultValue: 1,
+  })
+
+  console.log({
+    state,
+  })
+
   return (
     <>
       <NextSeo title="Homepage" description="This is the homepage" />
@@ -23,6 +32,7 @@ const Page: NextPage<PageProps> = () => {
         <Paragraph>Run `yarn context [name]` to create a context provider</Paragraph>
 
         {ENVIRONMENT_NAME && <code>Running on environment: {ENVIRONMENT_NAME}</code>}
+        <Button onClick={() => setState(state! + 1)}>Next page</Button>
       </Box>
     </>
   )
