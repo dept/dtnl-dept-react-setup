@@ -6,12 +6,29 @@ import { useCallback } from 'react'
 import yn from 'yn'
 
 type Key = string
-type Value = string | undefined
 type PossibleValue = boolean | string | Date | number | undefined
 type ReturnType<T> = [T, (value: T) => void]
 type Options<PT, R> = {
   type?: PT
   defaultValue?: R
+}
+
+type PossibleOptions =
+  | Options<ParamType.Boolean, boolean>
+  | Options<ParamType.Date, Date | undefined>
+  | Options<ParamType.Number, number | undefined>
+  | Options<ParamType.String, string | undefined>
+
+interface QueryParamsHookConfig {
+  [key: string]: PossibleOptions
+}
+
+interface QueryParamSetterConfig {
+  [key: string]: PossibleValue
+}
+
+interface QueryParamSetterValues {
+  [key: string]: string
 }
 
 export enum ParamType {
@@ -21,7 +38,7 @@ export enum ParamType {
   Date,
 }
 
-function castValue(value: boolean | string | Date | number): string {
+function encodeValue(value: boolean | string | Date | number): string {
   switch (typeof value) {
     case 'string':
       return value
@@ -38,19 +55,39 @@ function castValue(value: boolean | string | Date | number): string {
   }
 }
 
-export function setQueryParam(key: Key, value: PossibleValue) {
+function decodeValue(value: string, option: PossibleOptions) {
+  const { type = ParamType.String, defaultValue } = option
+
+  switch (type) {
+    case ParamType.Boolean:
+      return Boolean(yn(value))
+    case ParamType.Number:
+      return value ? Number(value) : defaultValue
+    case ParamType.Date:
+      return value ? new Date(value) : defaultValue
+    default:
+      return value ? String(value) : defaultValue
+  }
+}
+
+export function setQueryParams(values: QueryParamSetterConfig) {
   const { pathname, query, asPath } = Router
 
-  let newValue: Value
+  const newValues = produce(values, draftValues => {
+    for (const [key, value] of Object.entries(draftValues)) {
+      if (value !== undefined) {
+        draftValues[key] = encodeValue(value)
+      }
+    }
+  }) as QueryParamSetterValues
 
-  if (value !== undefined) {
-    newValue = castValue(value)
-  }
-
-  const newQuery = produce(query, draft => {
-    draft[key] = newValue
-    if (draft[key] === undefined) {
-      delete draft[key]
+  const newQuery = produce(query, draftQuery => {
+    for (const [key, value] of Object.entries(newValues)) {
+      if (value !== undefined) {
+        draftQuery[key] = value
+      } else {
+        delete draftQuery[key]
+      }
     }
   })
 
@@ -76,12 +113,29 @@ export function setQueryParam(key: Key, value: PossibleValue) {
   )
 }
 
+export function setQueryParam(key: Key, value: PossibleValue) {
+  setQueryParams({
+    [key]: value,
+  })
+}
+
 export const useSetQueryParam = (key: string) => {
   const callback = useCallback(
     (value: PossibleValue) => {
       return setQueryParam(key, value)
     },
     [key],
+  )
+
+  return callback
+}
+
+export const useSetQueryParams = <T>(config: T) => {
+  const callback = useCallback(
+    (values: { [key in keyof typeof config]?: PossibleValue }) => {
+      return setQueryParams(values)
+    },
+    [config],
   )
 
   return callback
@@ -115,12 +169,7 @@ function useQueryParam(
   | ReturnType<number | undefined>
   | ReturnType<string | undefined> {
   const value = useQueryParamValue(key, options as any)
-  const setter = useCallback(
-    (value: PossibleValue) => {
-      return setQueryParam(key, value)
-    },
-    [key],
-  )
+  const setter = useSetQueryParam(key)
 
   return [value, setter]
 }
@@ -140,30 +189,38 @@ function useQueryParamValue(
 ): number | undefined
 function useQueryParamValue(
   key: Key,
-  options:
-    | Options<ParamType.Boolean, boolean>
-    | Options<ParamType.Date, Date | undefined>
-    | Options<ParamType.Number, number | undefined>
-    | Options<ParamType.String, string | undefined>
-    | undefined = {
+  options: PossibleOptions = {
     type: ParamType.String,
   },
 ): boolean | string | number | Date | undefined {
   const router = useRouter()
   const value = (router.query[key] as unknown) as any
+  return decodeValue(value, options)
+}
 
-  const { type, defaultValue } = options
+export const useQueryParams = <T>(
+  config: { [key in keyof T]: PossibleOptions },
+): [
+  { [key in keyof T]?: PossibleValue },
+  (values: { [key in keyof T]?: PossibleValue }) => void,
+] => {
+  const values = useQueryParamValues(config)
+  const setter = useSetQueryParams(config)
+  return [values, setter]
+}
 
-  switch (type) {
-    case ParamType.Boolean:
-      return Boolean(yn(value))
-    case ParamType.Number:
-      return value ? Number(value) : defaultValue
-    case ParamType.Date:
-      return value ? new Date(value) : defaultValue
-    default:
-      return value ? String(value) : defaultValue
-  }
+const useQueryParamValues = <T>(config: T) => {
+  const router = useRouter()
+  const keys = Object.keys(config) as Array<keyof T>
+
+  const values = keys.reduce((obj, key) => {
+    const value = (router.query[key as string] as unknown) as any
+    const option = config[key]
+    obj[key] = decodeValue(value, option)
+    return obj
+  }, {} as { [key in keyof typeof config]?: PossibleValue })
+
+  return values
 }
 
 export { useQueryParam, useQueryParamValue }
