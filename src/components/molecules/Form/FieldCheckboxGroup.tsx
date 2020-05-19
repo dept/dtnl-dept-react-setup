@@ -17,6 +17,7 @@ export type FieldCheckboxGroupProps = FieldCheckboxProps & {
 }
 
 export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
+  name,
   options,
   value,
   direction = 'vertical',

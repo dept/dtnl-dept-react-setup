@@ -1,4 +1,5 @@
 import express from 'express'
+import helmet from 'helmet'
 import next from 'next'
 
 const port = process.env.PORT || 3000
@@ -10,6 +11,8 @@ app
   .prepare()
   .then(() => {
     const server = express()
+
+    server.use(helmet() as any)
 
     server.use('/service-worker.js', express.static('.next/service-worker.js'))
 

@@ -18,6 +18,7 @@ export type FieldRadioGroupProps = FieldRadioProps & {
 }
 
 export const FieldRadioGroup: React.FC<FieldRadioGroupProps> = ({
+  name,
   options,
   value,
   direction = 'vertical',
