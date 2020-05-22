@@ -14,9 +14,9 @@ app
 
     server.use(helmet() as any)
 
-    server.use('/service-worker.js', express.static('.next/service-worker.js'))
+    server.get('/service-worker.js', express.static('.next/service-worker.js'))
 
-    server.get('*', (req, res) => handle(req, res))
+    server.all('*', (req, res) => handle(req, res))
     server.listen(port, (err?: Error) => {
       if (err) {
         throw err
