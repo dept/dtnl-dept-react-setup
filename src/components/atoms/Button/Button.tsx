@@ -58,7 +58,6 @@ export const Button = React.forwardRef<any, ButtonProps>(
 
     return (
       <PseudoBox
-        as="button"
         {...conditionalProps}
         disabled={disabled}
         css={css({

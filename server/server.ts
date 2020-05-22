@@ -1,6 +1,7 @@
 import * as gitApi from '@tinacms/api-git'
 import cors from 'cors'
 import express from 'express'
+import helmet from 'helmet'
 import next from 'next'
 
 const port = process.env.PORT || 3000
@@ -13,8 +14,7 @@ app
   .then(() => {
     const server = express()
 
-    server.use('/service-worker.js', express.static('.next/service-worker.js'))
-
+    server.use(helmet() as any)
     server.use(cors() as any)
     server.use(
       '/___tina',
@@ -24,7 +24,9 @@ app
       } as any),
     )
 
-    server.get('*', (req, res) => handle(req, res))
+    server.get('/service-worker.js', express.static('.next/service-worker.js'))
+    server.all('*', (req, res) => handle(req, res))
+
     server.listen(port, (err?: Error) => {
       if (err) {
         throw err

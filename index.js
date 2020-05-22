@@ -2,4 +2,4 @@
 // This only works after you've build the server
 
 // @ts-ignore
-require('.next/server/index.js')
+require('.next/server/server.js')

@@ -3,7 +3,7 @@ import '@public/fonts/fonts.css'
 import { GitClient, GitMediaStore } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import { AppType } from 'next/dist/next-server/lib/utils'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import ReactModal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
 import { TinaCMS, TinaProvider } from 'tinacms'
@@ -31,20 +31,21 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
   }, [])
 
   return (
-    <TinaProvider cms={cms}>
+    <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
-
       <ContextProvider>
         <ThemeProvider theme={theme}>
-          <>
-            <GlobalStyle />
-            <BaseLayout>
-              <Page {...pageProps} />
-            </BaseLayout>
-          </>
+          <TinaProvider cms={cms}>
+            <>
+              <GlobalStyle />
+              <BaseLayout>
+                <Page {...pageProps} />
+              </BaseLayout>
+            </>
+          </TinaProvider>
         </ThemeProvider>
       </ContextProvider>
-    </TinaProvider>
+    </>
   )
 }
 
