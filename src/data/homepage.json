@@ -1,4 +1,4 @@
 {
   "title": "Homepage",
-  "content": "Run \\`yarn storybook\\` to view all components\n\nRun \\`yarn route \\[name\\]\\` to create a page\n\nRun \\`yarn component \\[name\\]\\` to create a component\n\nRun \\`yarn context \\[name\\]\\` to create a context provider\n\n`Running on environment: local`"
+  "content": "Run \\`yarn storybook\\` to view all components\n\nRun \\`yarn route \\[name\\]\\` to create a page\n\nRun \\`yarn component \\[name\\]\\` to create a component\n\nRun \\`yarn context \\[name\\]\\` to create a context provider"
 }
