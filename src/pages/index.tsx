@@ -1,38 +1,35 @@
 import { db } from '@server/mongo/client'
 import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import { JsonFile, useLocalJsonForm } from 'next-tinacms-json'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import { InlineForm, InlineTextField, InlineWysiwyg } from 'react-tinacms-inline'
 
-import { Box, Heading, Paragraph } from '@/components/atoms'
-import { useMongoLocalForm } from '@/mongo/hooks/useMongoLocalForm'
+import { Box, Heading } from '@/components/atoms'
 import { config } from '@/utils/config'
 
 const { ENVIRONMENT_NAME } = config
 
 interface PageProps {
-  initialValues: typeof import('@/data/homepage.json')
+  data: JsonFile
 }
 
-export const getStaticProps: GetStaticProps = async ctx => {
-  const data = await db.getDocument({
-    collection: 'pages',
-    slug: 'homepage',
-  })
-  const globals = await db.getCollection('globals')
-
-  console.log({ data, globals })
+export const getStaticProps: GetStaticProps<PageProps> = async ctx => {
+  const json = await import('@/data/homepage.json')
 
   return {
     props: {
-      initialValues: data.fields,
+      data: {
+        fileRelativePath: '/src/data/homepage.json',
+        data: json.default,
+      },
     },
   }
 }
 
-const Page: NextPage<PageProps> = ({ initialValues }) => {
-  const [values] = useMongoLocalForm('pages', 'homepage', {
-    initialValues,
+const Page: NextPage<PageProps> = ({ data }) => {
+  const [values, form] = useLocalJsonForm(data, {
     label: 'Homepage',
     fields: [
       {
@@ -46,29 +43,23 @@ const Page: NextPage<PageProps> = ({ initialValues }) => {
         component: 'markdown',
       },
     ],
-    onSubmit: async () => {
-      return
-    },
   })
 
   return (
-    <>
+    <InlineForm form={form}>
       <NextSeo title="Homepage" description="This is the homepage" />
       <Box>
         <Heading as="h1" color="primary">
-          {values.title}
+          <InlineTextField name="title" />
         </Heading>
 
-        <ReactMarkdown source={values.content}></ReactMarkdown>
-
-        <Paragraph>Run `yarn storybook` to view all components</Paragraph>
-        <Paragraph>Run `yarn route [name]` to create a page</Paragraph>
-        <Paragraph>Run `yarn component [name]` to create a component</Paragraph>
-        <Paragraph>Run `yarn context [name]` to create a context provider</Paragraph>
+        <InlineWysiwyg name="content">
+          <ReactMarkdown source={values.content}></ReactMarkdown>
+        </InlineWysiwyg>
 
         {ENVIRONMENT_NAME && <code>Running on environment: {ENVIRONMENT_NAME}</code>}
       </Box>
-    </>
+    </InlineForm>
   )
 }
 

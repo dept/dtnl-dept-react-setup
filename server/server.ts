@@ -1,3 +1,4 @@
+import * as gitApi from '@tinacms/api-git'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
@@ -5,8 +6,6 @@ import helmet from 'helmet'
 import next from 'next'
 
 require('dotenv').config()
-
-import { mongoRouter } from './mongo/router'
 
 const port = process.env.PORT || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -21,7 +20,13 @@ app
     server.use(helmet() as any)
     server.use(cors() as any)
     server.use(bodyParser.json())
-    server.use('/___tina', mongoRouter)
+    server.use(
+      '/___tina',
+      gitApi.router({
+        pathToRepo: process.cwd(),
+        pathToContent: '',
+      } as any),
+    )
 
     server.get('/service-worker.js', express.static('.next/service-worker.js'))
     server.all('*', (req, res) => handle(req, res))
