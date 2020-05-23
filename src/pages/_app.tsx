@@ -1,6 +1,6 @@
 import '@public/fonts/fonts.css'
 
-import { GitClient, GitMediaStore } from '@tinacms/git-client'
+import { GitClient } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import { AppType } from 'next/dist/next-server/lib/utils'
 import { useMemo } from 'react'
@@ -10,6 +10,7 @@ import { TinaCMS, TinaProvider } from 'tinacms'
 
 import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
+import { cloudinaryStore } from '@/services/cloudinary'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
 import { appConfigurator } from '@/utils/appConfigurator'
@@ -26,7 +27,7 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
     const cms = new TinaCMS()
     const client = new GitClient('http://localhost:3000/___tina')
     cms.registerApi('git', client)
-    cms.media.store = new GitMediaStore(client)
+    cms.media.store = cloudinaryStore
     return cms
   }, [])
 

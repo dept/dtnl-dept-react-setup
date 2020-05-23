@@ -27,6 +27,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*"],
+  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*", "lib/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", ".next", "server/**/*.*"]
 }

@@ -3,6 +3,7 @@ node_modules
 dist
 storybook-static
 coverage
+tmp
 
 # misc
 .DS_Store

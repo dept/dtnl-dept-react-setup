@@ -5,6 +5,8 @@ import express from 'express'
 import helmet from 'helmet'
 import next from 'next'
 
+import * as cloudinary from '../lib/tina/cloudinary/router'
+
 require('dotenv').config()
 
 const port = process.env.PORT || 3000
@@ -26,6 +28,15 @@ app
         pathToRepo: process.cwd(),
         pathToContent: '',
       } as any),
+    )
+
+    server.use(
+      '/___tina/cloudinary',
+      cloudinary.router({
+        cloud_name: 'dy9ejxrsw',
+        api_key: '873592917847126',
+        api_secret: 'YUGD7CiL_y3UPb_mUi75pvmIH_U',
+      }),
     )
 
     server.get('/service-worker.js', express.static('.next/service-worker.js'))

@@ -6,8 +6,8 @@ import ReactMarkdown from 'react-markdown'
 import { InlineForm, InlineTextField, InlineWysiwyg } from 'react-tinacms-inline'
 
 import { Box, Heading } from '@/components/atoms'
-import { EditToggle } from '@/components/organisms/Cms/EditToggle'
 import { InlineButtons } from '@/components/organisms/Cms/InlineButtons'
+import { cloudinaryStore } from '@/services/cloudinary'
 import { config } from '@/utils/config'
 
 const { ENVIRONMENT_NAME } = config
@@ -37,6 +37,12 @@ const Page: NextPage<PageProps> = ({ data }) => {
         name: 'title',
         label: 'Title',
         component: 'text',
+      },
+      {
+        name: 'image',
+        label: 'Image',
+        component: 'image',
+        ...cloudinaryStore.getFieldProps(),
       },
       {
         name: 'content',
