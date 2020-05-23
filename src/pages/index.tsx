@@ -1,4 +1,3 @@
-import { db } from '@server/mongo/client'
 import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { JsonFile, useLocalJsonForm } from 'next-tinacms-json'
