@@ -6,6 +6,8 @@ import ReactMarkdown from 'react-markdown'
 import { InlineForm, InlineTextField, InlineWysiwyg } from 'react-tinacms-inline'
 
 import { Box, Heading } from '@/components/atoms'
+import { EditToggle } from '@/components/organisms/Cms/EditToggle'
+import { InlineButtons } from '@/components/organisms/Cms/InlineButtons'
 import { config } from '@/utils/config'
 
 const { ENVIRONMENT_NAME } = config
@@ -58,6 +60,8 @@ const Page: NextPage<PageProps> = ({ data }) => {
 
         {ENVIRONMENT_NAME && <code>Running on environment: {ENVIRONMENT_NAME}</code>}
       </Box>
+
+      <InlineButtons />
     </InlineForm>
   )
 }
