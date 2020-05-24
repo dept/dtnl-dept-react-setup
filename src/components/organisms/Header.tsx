@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Box, Flex, Link, NavLink } from '@/components/atoms'
+import { useUser } from '@/context/UserContext'
 
 interface HeaderProps {}
 
@@ -28,13 +29,10 @@ const items = [
     href: '/examples',
     title: 'Examples',
   },
-  {
-    href: '/admin',
-    title: 'Admin',
-  },
 ]
 
 const Navigation: React.FC = () => {
+  const { user } = useUser()
   return (
     <Flex as="nav">
       {items.map(item => {
@@ -48,6 +46,15 @@ const Navigation: React.FC = () => {
           </Box>
         )
       })}
+      {!user && (
+        <Box>
+          <NavLink href="/login" passHref>
+            <NavigationLink as="a" px={4} mx={3}>
+              Log in
+            </NavigationLink>
+          </NavLink>
+        </Box>
+      )}
     </Flex>
   )
 }

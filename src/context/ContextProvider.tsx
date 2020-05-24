@@ -2,6 +2,7 @@ import React from 'react'
 
 import { AuthContextProvider } from './AuthContext'
 import { ModalContextProvider } from './ModalContext'
+import { UserProvider } from './UserContext'
 
 /**
  * Add new context providers to the array
@@ -14,7 +15,7 @@ import { ModalContextProvider } from './ModalContext'
  * </AuthContextProvider>
  * ```
  */
-const providers = [AuthContextProvider, ModalContextProvider]
+const providers = [AuthContextProvider, ModalContextProvider, UserProvider]
 
 export const ContextProvider: React.FC = ({ children }) => (
   <>
