@@ -1,11 +1,10 @@
 import * as gitApi from '@tinacms/api-git'
+import * as cloudinary from 'api-cloudinary'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import next from 'next'
-
-import * as cloudinary from '../lib/tina/cloudinary/router'
 
 require('dotenv').config()
 

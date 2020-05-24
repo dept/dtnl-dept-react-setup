@@ -1,8 +1,8 @@
 import { v2 as cloudinary } from 'cloudinary'
-import express from 'express'
+import * as express from 'express'
 import * as fs from 'fs'
-import multer from 'multer'
-import path from 'path'
+import * as multer from 'multer'
+import * as path from 'path'
 
 interface RouterConfig {
   cloud_name: string
