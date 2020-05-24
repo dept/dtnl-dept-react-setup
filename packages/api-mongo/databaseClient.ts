@@ -1,29 +1,18 @@
 import { Db, MongoClient } from 'mongodb'
 
-const user = process.env.MONGO_USER
-const pass = process.env.MONGO_PASSWORD
-
-const uri = `mongodb+srv://${user}:${pass}@cluster0-utu8u.mongodb.net/test?retryWrites=true&w=majority`
+import { DatabaseClient, DocumentInput, DocumentUri } from '../next-tinacms-db/utils/types'
 
 interface MongoServiceConfig {
   uri: string
   db: string
+  defaultCollection: string
 }
 
-interface DocumentUri {
-  collection: string
-  slug: string
-}
+export class MongoDataseClient implements DatabaseClient {
+  private client: MongoClient
+  public db: Db | null = null
 
-class MongoService {
-  client: MongoClient
-  config: MongoServiceConfig
-  db: Db | null = null
-
-  constructor(config: MongoServiceConfig) {
-    console.log(config)
-
-    this.config = config
+  constructor(private config: MongoServiceConfig) {
     this.client = new MongoClient(config.uri, { useNewUrlParser: true, useUnifiedTopology: true })
   }
 
@@ -34,7 +23,7 @@ class MongoService {
     this.db = this.client.db(db)
   }
 
-  async getDocument({ collection, slug }: DocumentUri) {
+  async getDocument({ collection = this.config.defaultCollection, slug }: DocumentUri) {
     await this.connect()
     const db = this.db!.collection(collection)
     let document = await db.findOne({
@@ -42,17 +31,24 @@ class MongoService {
     })
 
     if (!document) {
-      const insert = await db.insertOne({
-        status: 'draft',
+      document = await this.createDraft({
         slug,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        fields: {},
+        collection,
       })
-      document = insert.ops as any
     }
 
     return this.serialize(document)
+  }
+
+  async createDraft({ slug, collection = this.config.defaultCollection }: DocumentUri) {
+    const insert = await this.db!.collection(collection).insertOne({
+      status: 'draft',
+      slug,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      fields: {},
+    })
+    return insert.ops as any
   }
 
   async getCollection(collection: string) {
@@ -62,7 +58,19 @@ class MongoService {
     return this.serialize(documents)
   }
 
-  async updateDocument({ slug, collection, formData }: DocumentUri & { formData: any }) {
+  async createDocument({ slug, collection }: DocumentUri) {
+    await this.connect()
+    return this.createDraft({
+      slug,
+      collection,
+    })
+  }
+
+  async updateDocument({
+    slug,
+    collection = this.config.defaultCollection,
+    formData,
+  }: DocumentInput) {
     await this.connect()
 
     const document = await this.getDocument({
@@ -86,9 +94,8 @@ class MongoService {
     )
   }
 
-  async removeDocument({ collection, slug }: DocumentUri) {
+  async removeDocument({ collection = this.config.defaultCollection, slug }: DocumentUri) {
     await this.connect()
-
     await this.db!.collection(collection).remove({
       slug,
     })
@@ -98,8 +105,3 @@ class MongoService {
     return JSON.parse(JSON.stringify(data))
   }
 }
-
-export const db = new MongoService({
-  uri,
-  db: 'cms',
-})

@@ -6,7 +6,8 @@ import next from 'next'
 
 require('dotenv').config()
 
-import { mongoRouter } from './mongo/router'
+import { router as mongoRouter } from '../packages/api-mongo/router'
+import { db } from './mongo'
 
 const port = process.env.PORT || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -18,11 +19,15 @@ app
   .then(() => {
     const server = express()
 
-    server.use(helmet() as any)
     server.use(cors() as any)
     server.use(bodyParser.json())
-    server.use('/___tina', mongoRouter)
-
+    server.use(helmet() as any)
+    server.use(
+      '/___db',
+      mongoRouter({
+        db,
+      }),
+    )
     server.get('/service-worker.js', express.static('.next/service-worker.js'))
     server.all('*', (req, res) => handle(req, res))
 

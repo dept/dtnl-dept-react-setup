@@ -1,38 +1,33 @@
-import { db } from '@server/mongo/client'
+import { useDatabaseLocalForm } from '@packages/next-tinacms-db/useDatabaseLocalForm'
+import { db } from '@server/mongo'
 import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
 import { Box, Heading, Paragraph } from '@/components/atoms'
-import { useMongoLocalForm } from '@/mongo/hooks/useMongoLocalForm'
 import { config } from '@/utils/config'
 
 const { ENVIRONMENT_NAME } = config
 
 interface PageProps {
-  initialValues: typeof import('@/data/homepage.json')
+  data: any
 }
 
 export const getStaticProps: GetStaticProps = async ctx => {
   const data = await db.getDocument({
-    collection: 'pages',
     slug: 'homepage',
   })
-  const globals = await db.getCollection('globals')
-
-  console.log({ data, globals })
 
   return {
     props: {
-      initialValues: data.fields,
+      data,
     },
   }
 }
 
-const Page: NextPage<PageProps> = ({ initialValues }) => {
-  const [values] = useMongoLocalForm('pages', 'homepage', {
-    initialValues,
+const Page: NextPage<PageProps> = ({ data }) => {
+  const [values] = useDatabaseLocalForm(data, {
     label: 'Homepage',
     fields: [
       {
@@ -46,9 +41,6 @@ const Page: NextPage<PageProps> = ({ initialValues }) => {
         component: 'markdown',
       },
     ],
-    onSubmit: async () => {
-      return
-    },
   })
 
   return (

@@ -1,27 +1,31 @@
 import { FORM_ERROR } from 'final-form'
 import { FormOptions, TinaCMS } from 'tinacms'
 
-interface MongoSubmitOptions {
+import { DatabaseClient, DocumentUri } from './types'
+
+interface DatabaseSubmitOptions extends DocumentUri {
   cms: TinaCMS
-  collection: string
-  slug: string
   onSubmit?: SubmitHandler
 }
 
 type SubmitHandler = FormOptions<any>['onSubmit']
 
-export const createMongoSubmitHandler = ({
+export const createDatabaseSubmitHandler = ({
   cms,
   collection,
   slug,
   onSubmit,
-}: MongoSubmitOptions): SubmitHandler => async formData => {
+}: DatabaseSubmitOptions): SubmitHandler => async formData => {
   try {
-    const mongo: any = cms.api.mongodb
+    const db: DatabaseClient = cms.api.db
 
-    console.log(mongo)
+    console.log({
+      collection,
+      slug,
+      formData,
+    })
 
-    await mongo.update({
+    await db.updateDocument({
       collection,
       slug,
       formData,
@@ -31,6 +35,7 @@ export const createMongoSubmitHandler = ({
 
     return onSubmit
   } catch (error) {
+    cms.alerts.error(`Update to database failed`)
     return { [FORM_ERROR]: error }
   }
 }
