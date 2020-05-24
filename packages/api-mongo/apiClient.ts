@@ -21,7 +21,11 @@ export class MongoApiClient implements DatabaseClient {
         throw new Error('Database request failed')
       }
 
-      return res.json()
+      if (res.status === 200) {
+        return res.json()
+      }
+
+      return res
     })
   }
 

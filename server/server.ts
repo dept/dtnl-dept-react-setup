@@ -1,3 +1,4 @@
+import * as cloudinary from 'api-cloudinary'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import express from 'express'
@@ -28,6 +29,16 @@ app
         db,
       }),
     )
+
+    server.use(
+      '/___tina/cloudinary',
+      cloudinary.router({
+        cloud_name: 'dy9ejxrsw',
+        api_key: '873592917847126',
+        api_secret: 'YUGD7CiL_y3UPb_mUi75pvmIH_U',
+      }),
+    )
+
     server.get('/service-worker.js', express.static('.next/service-worker.js'))
     server.all('*', (req, res) => handle(req, res))
 

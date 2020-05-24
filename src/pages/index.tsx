@@ -2,10 +2,12 @@ import { useDatabaseLocalForm } from '@packages/next-tinacms-db/useDatabaseLocal
 import { db } from '@server/mongo'
 import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import { InlineForm, InlineTextField, InlineWysiwyg } from 'react-tinacms-inline'
 
-import { Box, Heading, Paragraph } from '@/components/atoms'
+import { Box, Heading } from '@/components/atoms'
+import { InlineButtons } from '@/components/organisms/Cms/InlineButtons'
+import { cloudinaryStore } from '@/services/cloudinary'
 import { config } from '@/utils/config'
 
 const { ENVIRONMENT_NAME } = config
@@ -27,13 +29,19 @@ export const getStaticProps: GetStaticProps = async ctx => {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => {
-  const [values] = useDatabaseLocalForm(data, {
+  const [values, form] = useDatabaseLocalForm(data, {
     label: 'Homepage',
     fields: [
       {
         name: 'title',
         label: 'Title',
         component: 'text',
+      },
+      {
+        name: 'image',
+        label: 'Image',
+        component: 'image',
+        ...cloudinaryStore.getFieldProps('image'),
       },
       {
         name: 'content',
@@ -44,23 +52,22 @@ const Page: NextPage<PageProps> = ({ data }) => {
   })
 
   return (
-    <>
+    <InlineForm form={form}>
       <NextSeo title="Homepage" description="This is the homepage" />
       <Box>
         <Heading as="h1" color="primary">
-          {values.title}
+          <InlineTextField name="title" />
         </Heading>
 
-        <ReactMarkdown source={values.content}></ReactMarkdown>
-
-        <Paragraph>Run `yarn storybook` to view all components</Paragraph>
-        <Paragraph>Run `yarn route [name]` to create a page</Paragraph>
-        <Paragraph>Run `yarn component [name]` to create a component</Paragraph>
-        <Paragraph>Run `yarn context [name]` to create a context provider</Paragraph>
+        <InlineWysiwyg name="content">
+          <ReactMarkdown source={values.content}></ReactMarkdown>
+        </InlineWysiwyg>
 
         {ENVIRONMENT_NAME && <code>Running on environment: {ENVIRONMENT_NAME}</code>}
       </Box>
-    </>
+
+      <InlineButtons />
+    </InlineForm>
   )
 }
 

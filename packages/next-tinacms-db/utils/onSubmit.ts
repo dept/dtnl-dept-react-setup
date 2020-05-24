@@ -35,6 +35,7 @@ export const createDatabaseSubmitHandler = ({
 
     return onSubmit
   } catch (error) {
+    console.error(error)
     cms.alerts.error(`Update to database failed`)
     return { [FORM_ERROR]: error }
   }
