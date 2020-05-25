@@ -9,5 +9,6 @@ module.exports = {
   extends: ['./node_modules/dept-react-scripts/config/eslint'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
 }

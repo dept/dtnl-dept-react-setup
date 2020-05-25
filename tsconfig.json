@@ -23,11 +23,12 @@
     "paths": {
       "@public/*": ["./public/*"],
       "@server/*": ["./server/*"],
+      "@packages/*": ["./packages/*"],
       "@test/*": ["./test/*"],
       "@lib/*": ["./lib/*"],
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*", "lib/**/*"],
+  "include": ["src/**/*", "config/**/*", "test/**/*", "types/**/*", "packages/**/*", "lib/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", ".next", "server/**/*.*"]
 }

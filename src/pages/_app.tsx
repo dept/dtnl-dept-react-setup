@@ -1,12 +1,17 @@
 import '@public/fonts/fonts.css'
 
+import { GitClient } from '@tinacms/git-client'
 import { DefaultSeo } from 'next-seo'
 import { AppType } from 'next/dist/next-server/lib/utils'
+import { useMemo } from 'react'
 import ReactModal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
+import { TinaCMS, TinaProvider } from 'tinacms'
 
 import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
+import { cloudinaryStore } from '@/services/cloudinary'
+import { firestoreClient } from '@/services/Firestore'
 import { GlobalStyle } from '@/theme/GlobalStyle'
 import { theme } from '@/theme/theme'
 import { appConfigurator } from '@/utils/appConfigurator'
@@ -19,18 +24,30 @@ if (process.browser) {
 ReactModal.setAppElement('#__next')
 
 const MyApp: AppType = ({ Component: Page, pageProps }) => {
+  const cms = useMemo(() => {
+    const cms = new TinaCMS()
+
+    cms.registerApi('db', firestoreClient)
+
+    const gitClient = new GitClient('http://localhost:3000/___tina')
+    cms.registerApi('git', gitClient)
+    cms.media.store = cloudinaryStore
+    return cms
+  }, [])
+
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
-
       <ContextProvider>
         <ThemeProvider theme={theme}>
-          <>
-            <GlobalStyle />
-            <BaseLayout>
-              <Page {...pageProps} />
-            </BaseLayout>
-          </>
+          <TinaProvider cms={cms} hidden={false}>
+            <>
+              <GlobalStyle />
+              <BaseLayout>
+                <Page {...pageProps} />
+              </BaseLayout>
+            </>
+          </TinaProvider>
         </ThemeProvider>
       </ContextProvider>
     </>

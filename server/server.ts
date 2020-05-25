@@ -2,6 +2,8 @@ import express from 'express'
 import helmet from 'helmet'
 import next from 'next'
 
+require('dotenv').config()
+
 const port = process.env.PORT || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -15,8 +17,8 @@ app
     server.use(helmet() as any)
 
     server.get('/service-worker.js', express.static('.next/service-worker.js'))
-
     server.all('*', (req, res) => handle(req, res))
+
     server.listen(port, (err?: Error) => {
       if (err) {
         throw err

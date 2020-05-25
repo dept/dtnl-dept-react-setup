@@ -1,53 +1,89 @@
 import { firestore } from '@lib/firebase/firebaseAdmin'
+import { useDatabaseLocalForm } from '@packages/next-tinacms-db/useDatabaseLocalForm'
+import { usePageCreatorPlugin } from '@packages/next-tinacms-db/usePageCreatorPlugin'
 import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import { InlineForm, InlineTextField, InlineWysiwyg } from 'react-tinacms-inline'
 
-import { Box, Heading, Paragraph } from '@/components/atoms'
+import { Box, Heading } from '@/components/atoms'
+import { InlineButtons } from '@/components/organisms/Cms/InlineButtons'
+import { cloudinaryStore } from '@/services/cloudinary'
 import { config } from '@/utils/config'
 
 const { ENVIRONMENT_NAME } = config
 
-interface PageProps {}
+interface PageProps {
+  data: any
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const doc = await firestore.doc('/environment/test/pages/homepage').get()
+  const documentPath = '/environment/test/pages/homepage'
+  const defaultFields = {
+    title: 'Homepage',
+  }
+
+  const doc = await firestore.doc(documentPath).get()
 
   const data = doc.data()
 
   if (!data) {
     await doc.ref.create({
-      slug: '',
       title: 'Homepage',
     })
   }
 
-  console.log({
-    doc,
-    data: doc.data(),
-  })
-
   return {
-    props: {},
+    props: {
+      data: {
+        slug: documentPath,
+        fields: doc.data() || defaultFields,
+      },
+    },
   }
 }
 
-const Page: NextPage<PageProps> = () => {
+const Page: NextPage<PageProps> = ({ data }) => {
+  usePageCreatorPlugin()
+  const [values, form] = useDatabaseLocalForm(data, {
+    label: 'Homepage',
+    fields: [
+      {
+        name: 'title',
+        label: 'Title',
+        component: 'text',
+      },
+      {
+        name: 'image',
+        label: 'Image',
+        component: 'image',
+        ...cloudinaryStore.getFieldProps('image'),
+      },
+      {
+        name: 'content',
+        label: 'Content',
+        component: 'markdown',
+      },
+    ],
+  })
+
   return (
-    <>
+    <InlineForm form={form}>
       <NextSeo title="Homepage" description="This is the homepage" />
       <Box>
         <Heading as="h1" color="primary">
-          Homepage
+          <InlineTextField name="title" />
         </Heading>
-        <Paragraph>Run `yarn storybook` to view all components</Paragraph>
-        <Paragraph>Run `yarn route [name]` to create a page</Paragraph>
-        <Paragraph>Run `yarn component [name]` to create a component</Paragraph>
-        <Paragraph>Run `yarn context [name]` to create a context provider</Paragraph>
+
+        <InlineWysiwyg name="content">
+          <ReactMarkdown source={values.content}></ReactMarkdown>
+        </InlineWysiwyg>
 
         {ENVIRONMENT_NAME && <code>Running on environment: {ENVIRONMENT_NAME}</code>}
       </Box>
-    </>
+
+      <InlineButtons />
+    </InlineForm>
   )
 }
 

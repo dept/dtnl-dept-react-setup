@@ -1,5 +1,6 @@
 import firebase from '@lib/firebase/firebaseClient'
 import React, { useContext, useEffect, useState } from 'react'
+import { Cookies } from 'react-cookie'
 
 interface UserStore {
   user: firebase.User | null
@@ -9,6 +10,8 @@ interface UserStore {
 }
 
 const googleProvider = new firebase.auth.GoogleAuthProvider()
+
+const cookies = new Cookies()
 
 export const UserContext = React.createContext({} as UserStore)
 
@@ -23,6 +26,10 @@ export const UserProvider: React.FC = ({ children }) => {
         if (user) {
           // User is signed in.
           console.log({ user })
+
+          const idToken = await user.getIdToken()
+
+          cookies.set('idToken', idToken)
           // You could also look for the user doc in your Firestore (if you have one):
           // const userDoc = await firebase.firestore().doc(`users/${uid}`).get()
           setUser(user)

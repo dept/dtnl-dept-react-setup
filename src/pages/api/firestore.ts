@@ -2,12 +2,12 @@ import { firestore } from '@lib/firebase/firebaseAdmin'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function firestoreRequest(req: NextApiRequest, res: NextApiResponse) {
-  const { documentPath, formData } = req.body
+  const { slug: documentPath, formData } = req.body
 
   try {
     switch (req.method) {
       case 'POST':
-        await firestore.doc(documentPath).create({})
+        await firestore.doc(documentPath).create(formData)
         res.status(201).end()
         break
       case 'PUT':
@@ -26,4 +26,6 @@ export default async function firestoreRequest(req: NextApiRequest, res: NextApi
     console.error(err)
     res.status(500).end()
   }
+
+  res.end('Hello World')
 }

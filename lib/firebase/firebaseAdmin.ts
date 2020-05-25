@@ -18,4 +18,13 @@ if (!admin.apps.length && !isBrowser) {
 
 export const firestore = admin.firestore()
 
+export const verifyIdToken = (token: string) => {
+  return admin
+    .auth()
+    .verifyIdToken(token)
+    .catch(error => {
+      throw error
+    })
+}
+
 export default admin

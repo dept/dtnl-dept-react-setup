@@ -4,6 +4,7 @@ const withPlugins = require('next-compose-plugins')
 const { plugins } = require('./config/plugins')
 const { exportPathMap } = require('./config/staticPages')
 const { includePolyfills } = require('./config/includePolyfills')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -42,6 +43,12 @@ module.exports = withPlugins(plugins, {
         }),
       )
     }
+
+    config.plugins.push(
+      new MomentLocalesPlugin({
+        localesToKeep: ['en', 'nl'],
+      }),
+    )
 
     includePolyfills(config)
 

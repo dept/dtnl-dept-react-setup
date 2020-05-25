@@ -9,9 +9,9 @@ class FirestoreClient {
     })
   }
 
-  update = (data: any) => this.client.put('/firestore', data)
-  create = (data: any) => this.client.post('/firestore', data)
-  remove = (data: any) => this.client.delete('/firestore', data)
+  updateDocument = (data: any) => this.client.put('/firestore', data)
+  createDocument = (data: any) => this.client.post('/firestore', data)
+  removeDocument = (data: any) => this.client.delete('/firestore', data)
 }
 
 export const firestoreClient = new FirestoreClient()
