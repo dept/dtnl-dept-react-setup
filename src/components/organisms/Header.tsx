@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
 
 export const Header: React.FC<HeaderProps> = () => {
   return (
-    <Flex as="header" bg="primary" color="white" px={8} alignItems="center">
+    <Flex as="header" bg="primary" color="white" px={8} flexShrink={0} alignItems="center">
       <Box mr={8}>
         <Link href="/">
           <a>
