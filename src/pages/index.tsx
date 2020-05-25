@@ -1,4 +1,5 @@
-import { NextPage } from 'next'
+import { firestore } from '@lib/firebase/firebaseAdmin'
+import { GetStaticProps, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
 
@@ -8,6 +9,28 @@ import { config } from '@/utils/config'
 const { ENVIRONMENT_NAME } = config
 
 interface PageProps {}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const doc = await firestore.doc('/environment/test/pages/homepage').get()
+
+  const data = doc.data()
+
+  if (!data) {
+    await doc.ref.create({
+      slug: '',
+      title: 'Homepage',
+    })
+  }
+
+  console.log({
+    doc,
+    data: doc.data(),
+  })
+
+  return {
+    props: {},
+  }
+}
 
 const Page: NextPage<PageProps> = () => {
   return (

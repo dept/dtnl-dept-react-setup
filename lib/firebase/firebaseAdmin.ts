@@ -1,8 +1,10 @@
 import * as admin from 'firebase-admin'
 
-const firebasePrivateKey = String(process.env.FIREBASE_PRIVATE_KEY)
+import { isBrowser } from '@/utils/isBrowser'
 
-if (!admin.apps.length) {
+if (!admin.apps.length && !isBrowser) {
+  const firebasePrivateKey = String(process.env.FIREBASE_PRIVATE_KEY)
+
   admin.initializeApp({
     credential: admin.credential.cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
@@ -13,3 +15,7 @@ if (!admin.apps.length) {
     databaseURL: process.env.FIREBASE_DATABASE_URL,
   })
 }
+
+export const firestore = admin.firestore()
+
+export default admin
