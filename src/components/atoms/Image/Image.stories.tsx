@@ -1,4 +1,4 @@
-import { boolean, text } from '@storybook/addon-knobs'
+import { text } from '@storybook/addon-knobs'
 import React from 'react'
 
 import { Image } from './Image'

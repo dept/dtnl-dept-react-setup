@@ -4,6 +4,7 @@ import { DefaultSeo } from 'next-seo'
 import { AppType } from 'next/dist/next-server/lib/utils'
 import ReactModal from 'react-modal'
 import { ThemeProvider } from 'styled-components'
+import yn from 'yn'
 
 import { BaseLayout } from '@/components/templates'
 import { ContextProvider } from '@/context/ContextProvider'
@@ -38,6 +39,6 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
 }
 
 export default appConfigurator(MyApp, {
-  supportIE: false,
+  supportIE: !!yn(process.env.IE_SUPPORT),
   ssr: true,
 })

@@ -67,7 +67,7 @@ export const Image: FC<ImageProps> = ({
         onError && onError(event)
       }
     }
-  }, [src, onLoad, onError, inView, lazyload])
+  }, [src, srcSet, onLoad, onError, inView, lazyload])
 
   const ratioProps = ratio
     ? {
