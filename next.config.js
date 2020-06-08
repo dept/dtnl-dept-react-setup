@@ -6,6 +6,10 @@ const { includePolyfills } = require('./config/includePolyfills')
 
 const dev = process.env.NODE_ENV !== 'production'
 
+/**
+ * Next config
+ * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
+ */
 module.exports = withPlugins(plugins, {
   /**
    * add the environment variables you would like exposed to the client here
