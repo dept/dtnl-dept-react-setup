@@ -2,7 +2,6 @@ import '@public/fonts/fonts.css'
 
 import whyDidYouRender from '@welldone-software/why-did-you-render'
 import { DefaultSeo } from 'next-seo'
-import { AppProps } from 'next/app'
 import { AppType } from 'next/dist/next-server/lib/utils'
 import React from 'react'
 import ReactModal from 'react-modal'
@@ -42,7 +41,7 @@ if (isBrowser && process.env.ENVIRONMENT_NAME !== 'production') {
 
 ReactModal.setAppElement('#__next')
 
-const MyApp: AppType = ({ Component: Page, pageProps }: AppProps) => {
+const MyApp: AppType = ({ Component: Page, pageProps }) => {
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
