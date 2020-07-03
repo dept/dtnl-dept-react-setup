@@ -20,7 +20,7 @@ export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
             open: { opacity: 1, height: 'auto' },
             collapsed: { opacity: 0, height: 0 },
           }}
-          transition={{ duration, ease: [0.04, 0.62, 0.23, 0.98] }}>
+          transition={{ duration, ease: [0.77, 0, 0.175, 1] }}>
           {children}
         </motion.section>
       )}
