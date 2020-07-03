@@ -13,7 +13,6 @@ export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
     <AnimatePresence initial={false}>
       {isOpen && (
         <motion.section
-          key="content"
           initial="collapsed"
           animate="open"
           exit="collapsed"
