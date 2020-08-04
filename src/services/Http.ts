@@ -180,7 +180,7 @@ export class HttpClient {
   private handleSuccess(res: Response, config: RequestConfig) {
     const { returnType = 'json' } = config
 
-    if (res.status === 204 || res.status === 201) {
+    if (res.status === 204 || res.status === 201 || !res.bodyUsed) {
       return res
     }
 
