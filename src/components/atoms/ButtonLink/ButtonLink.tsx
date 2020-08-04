@@ -4,7 +4,7 @@ import React from 'react'
 import { Button, ButtonProps } from '../Button'
 import { Link } from '../Link'
 
-export type ButtonLinkProps = ButtonProps & LinkProps
+export type ButtonLinkProps = Omit<ButtonProps, 'as'> & LinkProps
 
 export const ButtonLink: React.FC<ButtonLinkProps> = ({
   href,
