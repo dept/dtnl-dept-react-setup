@@ -59,6 +59,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
   items,
   color,
   label,
+  onChange,
   placeholder,
   hasError,
 }) => {
@@ -70,7 +71,15 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
-  } = useSelect({ items, id: name })
+  } = useSelect({
+    items,
+    id: name,
+    onSelectedItemChange: e => {
+      if (e?.selectedItem?.value && onChange) {
+        onChange(e?.selectedItem?.value)
+      }
+    },
+  })
 
   return (
     <Box position="relative">
