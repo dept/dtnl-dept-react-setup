@@ -16,7 +16,7 @@ import {
   Text,
 } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
-import { FormikDate, FormikInput } from '@/components/molecules/Formik'
+import { FormikDate, FormikInput, FormikSelect } from '@/components/molecules/Formik'
 import { useModalActions } from '@/context/ModalContext'
 import { icons } from '@/theme'
 
@@ -109,7 +109,6 @@ const Page: NextPage = () => {
                 placeholder="This is a number field"
               />
               <FormikDate name="date" label="Date field" placeholder="This is a date field" />
-
               <FieldSelect
                 name="select"
                 // native
@@ -131,8 +130,7 @@ const Page: NextPage = () => {
                     label: 'Test 3',
                   },
                 ]}
-              />
-
+              />{' '}
               <Button type="submit">Submit</Button>
             </Form>
           )}
