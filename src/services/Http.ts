@@ -183,8 +183,11 @@ export class HttpClient {
     if (res.status === 204 || res.status === 201) {
       return res
     }
-
-    return res[returnType]()
+    try {
+      return res[returnType]()
+    } catch {
+      return res.text()
+    }
   }
 
   private async onError<T = any>(err: HttpError, requestFn: () => Promise<T>) {
