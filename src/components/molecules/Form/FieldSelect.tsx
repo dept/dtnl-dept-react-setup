@@ -75,7 +75,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
     items,
     id: name,
     onSelectedItemChange: e => {
-      if (e?.selectedItem?.value) {
+      if (e?.selectedItem?.value && onChange) {
         onChange(e?.selectedItem?.value)
       }
     },
