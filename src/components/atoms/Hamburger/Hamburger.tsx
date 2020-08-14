@@ -1,19 +1,19 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
-const HAMBURGER_PADDING_X = 10
-const HAMBURGER_PADDING_Y = 10
-const HAMBURGER_LAYER_WIDTH = 30
-const HAMBURGER_LAYER_HEIGHT = 1
-const HAMBURGER_LAYER_SPACING = 6
-const HAMBURGER_LAYER_COLOR = '#FFF'
-const HAMBURGER_LAYER_BORDER_RADIUS = 0
-const HAMBURGER_HOVER_OPACITY = 0.7
-const HAMBURGER_ACTIVE_LAYER_COLOR = HAMBURGER_LAYER_COLOR
-const HAMBURGER_ACTIVE_HOVER_OPACITY = HAMBURGER_HOVER_OPACITY
+const HAMBURGER_PADDING_X = 10;
+const HAMBURGER_PADDING_Y = 10;
+const HAMBURGER_LAYER_WIDTH = 30;
+const HAMBURGER_LAYER_HEIGHT = 1;
+const HAMBURGER_LAYER_SPACING = 6;
+const HAMBURGER_LAYER_COLOR = '#FFF';
+const HAMBURGER_LAYER_BORDER_RADIUS = 0;
+const HAMBURGER_HOVER_OPACITY = 0.7;
+const HAMBURGER_ACTIVE_LAYER_COLOR = HAMBURGER_LAYER_COLOR;
+const HAMBURGER_ACTIVE_HOVER_OPACITY = HAMBURGER_HOVER_OPACITY;
 
 interface HamburgerProps {
-  onClick: () => void
-  isActive: boolean
+  onClick: () => void;
+  isActive: boolean;
 }
 
 const squeezeInnerStyles = css`
@@ -27,7 +27,7 @@ const squeezeInnerStyles = css`
   &::after {
     transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
-`
+`;
 const squeezeInnerActiveStyles = css`
   transform: rotate(45deg);
   transition-delay: 0.12s;
@@ -44,7 +44,7 @@ const squeezeInnerActiveStyles = css`
     transform: rotate(-90deg);
     transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-`
+`;
 
 const HamburgerInner = styled.div<HamburgerProps>`
   display: block;
@@ -81,7 +81,7 @@ const HamburgerInner = styled.div<HamburgerProps>`
   ${squeezeInnerStyles}
 
   ${props => (props.isActive ? squeezeInnerActiveStyles : '')}
-`
+`;
 
 const hamburgerWrapperActive = css`
   &:hover {
@@ -95,7 +95,7 @@ const hamburgerWrapperActive = css`
       background-color: ${HAMBURGER_ACTIVE_LAYER_COLOR};
     }
   }
-`
+`;
 
 const HamburgerWrapper = styled.button<HamburgerProps>`
   padding: ${HAMBURGER_PADDING_Y}px ${HAMBURGER_PADDING_X}px;
@@ -120,14 +120,14 @@ const HamburgerWrapper = styled.button<HamburgerProps>`
   }
 
   ${props => (props.isActive ? hamburgerWrapperActive : '')}
-`
+`;
 
 const HamburgerBox = styled.div`
   width: ${HAMBURGER_LAYER_WIDTH}px;
   height: ${HAMBURGER_LAYER_HEIGHT * 3 + HAMBURGER_LAYER_SPACING * 2}px;
   display: inline-block;
   position: relative;
-`
+`;
 
 export const Hamburger: React.FC<HamburgerProps> = props => {
   return (
@@ -136,5 +136,5 @@ export const Hamburger: React.FC<HamburgerProps> = props => {
         <HamburgerInner {...props} />
       </HamburgerBox>
     </HamburgerWrapper>
-  )
-}
+  );
+};

@@ -1,10 +1,10 @@
-import { colors } from '@/theme/colors'
+import { colors } from '@/theme/colors';
 
-import { Box } from '../Grid'
+import { Box } from '../Grid';
 
 interface LoaderProps {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
 export const Loader: React.FC<LoaderProps> = ({ size = 100, color = colors.primary }) => (
@@ -62,4 +62,4 @@ export const Loader: React.FC<LoaderProps> = ({ size = 100, color = colors.prima
       </g>
     </svg>
   </Box>
-)
+);

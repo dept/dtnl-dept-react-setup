@@ -1,7 +1,7 @@
-import { render } from '@test/utils'
-import React from 'react'
+import { render } from '@test/utils';
+import React from 'react';
 
-import { Skeleton } from './Skeleton'
+import { Skeleton } from './Skeleton';
 
 test('it renders', () => {
   render(
@@ -11,5 +11,5 @@ test('it renders', () => {
       <Skeleton></Skeleton>
       <Skeleton></Skeleton>
     </>,
-  )
-})
+  );
+});

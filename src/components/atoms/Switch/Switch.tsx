@@ -1,22 +1,22 @@
-import { hideVisually } from 'polished'
-import React, { HTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { hideVisually } from 'polished';
+import React, { HTMLAttributes } from 'react';
+import styled from 'styled-components';
 
-import { colors } from '@/theme/colors'
+import { colors } from '@/theme/colors';
 
-import { Box, Flex } from '../Grid'
-import { Label } from '../Label'
-import { Text } from '../Text'
+import { Box, Flex } from '../Grid';
+import { Label } from '../Label';
+import { Text } from '../Text';
 
-const TOGGLE_HEIGHT = '25px'
+const TOGGLE_HEIGHT = '25px';
 
 type SwitchProps = HTMLAttributes<HTMLInputElement> & {
-  checked?: boolean
+  checked?: boolean;
   label?: {
-    active: string
-    inactive: string
-  }
-}
+    active: string;
+    inactive: string;
+  };
+};
 
 const SwitchBackground = styled.div`
   background-color: transparent;
@@ -29,7 +29,7 @@ const SwitchBackground = styled.div`
   cursor: pointer;
   box-sizing: border-box;
   flex-shrink: 0;
-`
+`;
 
 const SwitchBall = styled.div`
   height: 13px;
@@ -38,16 +38,16 @@ const SwitchBall = styled.div`
   transition: all 0.2s linear;
   background-color: ${colors.gray[600]};
   transform: translateX(0%);
-`
+`;
 
 const LabelWrapper = styled(Box)`
   height: ${TOGGLE_HEIGHT};
   overflow: hidden;
-`
+`;
 
 const LabelPosition = styled(Box)`
   transition: transform 0.2s ease-in-out;
-`
+`;
 
 const HiddenInput = styled.input`
   ${hideVisually()};
@@ -70,7 +70,7 @@ const HiddenInput = styled.input`
     outline: none;
     box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
-`
+`;
 
 export const Switch = ({ label, ...props }: SwitchProps) => {
   return (
@@ -97,5 +97,5 @@ export const Switch = ({ label, ...props }: SwitchProps) => {
         )}
       </Flex>
     </Label>
-  )
-}
+  );
+};

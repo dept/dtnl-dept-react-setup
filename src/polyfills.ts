@@ -3,10 +3,10 @@
  * Next.js adds corejs (babel-polyfill), the URL api and fetch by default so you dont have to include those
  */
 
-import 'intersection-observer'
+import 'intersection-observer';
 
-const enableAxe = false
+const enableAxe = false;
 
 if (enableAxe) {
-  require('./a11y')
+  require('./a11y');
 }

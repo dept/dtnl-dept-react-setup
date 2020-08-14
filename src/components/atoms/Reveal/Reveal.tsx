@@ -1,8 +1,8 @@
-import { css } from '@styled-system/css'
-import React from 'react'
-import { useInView } from 'react-intersection-observer'
+import { css } from '@styled-system/css';
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import { PseudoBox } from '../Grid'
+import { PseudoBox } from '../Grid';
 
 export interface RevealProps {}
 
@@ -11,7 +11,7 @@ export const Reveal: React.FC<RevealProps> = ({ children }) => {
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
-  })
+  });
 
   return (
     <PseudoBox
@@ -24,5 +24,5 @@ export const Reveal: React.FC<RevealProps> = ({ children }) => {
       })}>
       {children}
     </PseudoBox>
-  )
-}
+  );
+};

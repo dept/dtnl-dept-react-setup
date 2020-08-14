@@ -1,32 +1,32 @@
-import React, { FocusEventHandler } from 'react'
-import Select from 'react-select'
-import { ValueType } from 'react-select/src/types'
-import styled from 'styled-components'
+import React, { FocusEventHandler } from 'react';
+import Select from 'react-select';
+import { ValueType } from 'react-select/src/types';
+import styled from 'styled-components';
 
-import { Box, IconButton } from '@/components/atoms'
-import { colors } from '@/theme/colors'
+import { Box, IconButton } from '@/components/atoms';
+import { colors } from '@/theme/colors';
 
 interface Option {
-  value: string | number
-  label: string | number
+  value: string | number;
+  label: string | number;
 }
 
 export interface FieldSelectAdvancedProps {
-  isClearable?: boolean
-  isSearchable?: boolean
-  minWidth?: number
-  items: Option[]
-  value?: string | number
-  placeholder?: string
-  label?: string
-  onBlur?: FocusEventHandler
-  onChange?: (value: ValueType<Option>, action: any) => void
-  name?: string
-  disabled?: boolean
-  hasError?: boolean
+  isClearable?: boolean;
+  isSearchable?: boolean;
+  minWidth?: number;
+  items: Option[];
+  value?: string | number;
+  placeholder?: string;
+  label?: string;
+  onBlur?: FocusEventHandler;
+  onChange?: (value: ValueType<Option>, action: any) => void;
+  name?: string;
+  disabled?: boolean;
+  hasError?: boolean;
 }
 
-const INPUT_HEIGHT = '50px'
+const INPUT_HEIGHT = '50px';
 
 const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefined }>`
   width: 100%;
@@ -83,7 +83,7 @@ const SelectWrapper = styled.div<{ hasError?: boolean; minWidth: number | undefi
       color: #fff;
     }
   }
-`
+`;
 
 export const FieldSelectAdvanced: React.FC<FieldSelectAdvancedProps> = ({
   label,
@@ -112,7 +112,7 @@ export const FieldSelectAdvanced: React.FC<FieldSelectAdvancedProps> = ({
                   rotate={ddProps.selectProps.menuIsOpen ? -180 : 0}
                 />
               </Box>
-            )
+            );
           },
           ClearIndicator: clearProps => (
             <Box px={10}>
@@ -139,5 +139,5 @@ export const FieldSelectAdvanced: React.FC<FieldSelectAdvancedProps> = ({
         {...props}
       />
     </SelectWrapper>
-  )
-}
+  );
+};

@@ -1,25 +1,25 @@
-import React, { InputHTMLAttributes, useState } from 'react'
-import styled, { css } from 'styled-components'
+import React, { InputHTMLAttributes, useState } from 'react';
+import styled, { css } from 'styled-components';
 
-import { Box, BoxProps, IconButton, Label } from '@/components/atoms'
-import { colors } from '@/theme/colors'
+import { Box, BoxProps, IconButton, Label } from '@/components/atoms';
+import { colors } from '@/theme/colors';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel'
-  color?: string
-  inputRef?: any
-  clearable?: boolean
-  hasError?: boolean
-  readonly?: boolean
-  onClear?: () => void
-  start?: string | number | JSX.Element
-  end?: string | number | JSX.Element
+  type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel';
+  color?: string;
+  inputRef?: any;
+  clearable?: boolean;
+  hasError?: boolean;
+  readonly?: boolean;
+  onClear?: () => void;
+  start?: string | number | JSX.Element;
+  end?: string | number | JSX.Element;
 }
 
 export type FieldInputProps = InputProps & {
-  label?: string
-  name: string
-}
+  label?: string;
+  name: string;
+};
 
 const StyledInput = styled.input<InputProps>`
   width: 100%;
@@ -54,9 +54,9 @@ const StyledInput = styled.input<InputProps>`
       user-select: none;
       cursor: not-allowed;
     `};
-`
+`;
 
-type InputWrapperProps = InputProps & { hasFocus?: boolean }
+type InputWrapperProps = InputProps & { hasFocus?: boolean };
 
 export const InputWrapper = styled(Box)<InputWrapperProps>`
   display: flex;
@@ -86,7 +86,7 @@ export const InputWrapper = styled(Box)<InputWrapperProps>`
       color: ${colors.error};
       border-color: ${colors.error} !important;
     `};
-`
+`;
 
 const AdornmentWrapper: React.FC<BoxProps> = props => (
   <Box
@@ -100,24 +100,24 @@ const AdornmentWrapper: React.FC<BoxProps> = props => (
     bg="grey.lighter"
     {...props}
   />
-)
+);
 
 const Clear: React.FC<any> = ({ onClick }) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
       <IconButton type="button" aria-label="Clear" icon="CloseLight" size={15} onClick={onClick} />
     </Box>
-  )
-}
+  );
+};
 
-const floatingLabelStyles = css``
+const floatingLabelStyles = css``;
 
 const FieldInputWrapper = styled(Box)<{ isFloating: boolean }>`
   position: relative;
   label {
     ${props => props.isFloating && floatingLabelStyles}
   }
-`
+`;
 
 export const FieldInput: React.FC<FieldInputProps> = ({
   label,
@@ -140,12 +140,12 @@ export const FieldInput: React.FC<FieldInputProps> = ({
       props.defaultValue !== undefined ||
       start !== undefined ||
       end !== undefined,
-  )
-  const initHasValue = Boolean(props.value !== undefined || props.defaultValue !== undefined)
-  const [hasValue, setHasValue] = useState(initHasValue)
-  const [hasFocus, setHasFocus] = useState(false)
+  );
+  const initHasValue = Boolean(props.value !== undefined || props.defaultValue !== undefined);
+  const [hasValue, setHasValue] = useState(initHasValue);
+  const [hasFocus, setHasFocus] = useState(false);
 
-  const shouldFloat = initFloat || hasValue || hasFocus
+  const shouldFloat = initFloat || hasValue || hasFocus;
 
   return (
     <FieldInputWrapper isFloating={shouldFloat}>
@@ -162,22 +162,22 @@ export const FieldInput: React.FC<FieldInputProps> = ({
           id={name}
           ref={inputRef}
           onChange={e => {
-            const { value } = e.currentTarget
-            setHasValue(Boolean(value))
-            if (onChange) onChange(e)
+            const { value } = e.currentTarget;
+            setHasValue(Boolean(value));
+            if (onChange) onChange(e);
           }}
           onBlur={e => {
-            setHasFocus(false)
-            if (onBlur) onBlur(e)
+            setHasFocus(false);
+            if (onBlur) onBlur(e);
           }}
           onFocus={e => {
-            setHasFocus(true)
-            if (onFocus) onFocus(e)
+            setHasFocus(true);
+            if (onFocus) onFocus(e);
           }}
         />
         {clearable && hasValue && <Clear onClick={onClear} />}
         {end && <AdornmentWrapper>{end}</AdornmentWrapper>}
       </InputWrapper>
     </FieldInputWrapper>
-  )
-}
+  );
+};

@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import { Box, Column, Grid, Row } from '@/components/atoms'
+import { Box, Column, Grid, Row } from '@/components/atoms';
 
-export default { title: 'Grid|Grid' }
+export default { title: 'Grid/Grid' };
 
 const GridExampleBox: React.FC = props => (
   <Box bg="primary" my={1} color="white" p={4} fontSize={14} {...props} />
-)
+);
 
 export const example = () => (
   <Grid>
@@ -22,10 +22,10 @@ export const example = () => (
       </Column>
     </Row>
   </Grid>
-)
+);
 
 example.story = {
   parameters: {
     info: 'More information: https://styled-system.com/getting-started',
   },
-}
+};

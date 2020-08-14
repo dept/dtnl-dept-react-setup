@@ -1,33 +1,36 @@
-import { FastField, FastFieldProps } from 'formik'
-import React from 'react'
+import { useField } from 'formik';
+import React from 'react';
 
-import { Omit } from '@/utils/types'
+import { useFastField } from '@/utils/hooks';
+import { Omit } from '@/utils/types';
 
-import { FieldDate, FieldDateProps } from '../Form/FieldDate'
-import { FormikError } from './FormikError'
+import { FieldDate, FieldDateProps } from '../Form/FieldDate';
+import { FormikError } from './FormikError';
 
 type FormikDate = Omit<FieldDateProps, 'onChange' | 'value'> & {
-  name: string
-}
+  name: string;
+  optimized?: boolean;
+};
 
-export const FormikDate: React.FC<FormikDate> = ({ name, ...props }) => {
+export const FormikDate: React.FC<FormikDate> = ({ name, optimized, ...props }) => {
+  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+
   return (
     <>
-      <FastField name={name}>
-        {({ field, form, meta }: FastFieldProps) => {
-          return (
-            <FieldDate
-              {...props}
-              {...field}
-              onBlur={undefined}
-              onClose={() => form.setFieldTouched(name, true)}
-              onChange={date => form.setFieldValue(name, date)}
-              hasError={Boolean(meta.touched && meta.error)}
-            />
-          )
+      <FieldDate
+        {...props}
+        {...field}
+        onBlur={undefined}
+        onClose={() => helpers.setTouched(true)}
+        onChange={date => {
+          if (date !== field.value) {
+            helpers.setValue(date);
+          }
         }}
-      </FastField>
+        hasError={Boolean(meta.touched && meta.error)}
+      />
+
       <FormikError name={name} />
     </>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from '@/components/atoms'
+import { Heading, Paragraph } from '@/components/atoms';
 
 export const ErrorPage: React.FC = () => {
   return (
@@ -6,5 +6,5 @@ export const ErrorPage: React.FC = () => {
       <Heading>Oops...</Heading>
       <Paragraph>Something went wrong</Paragraph>
     </>
-  )
-}
+  );
+};

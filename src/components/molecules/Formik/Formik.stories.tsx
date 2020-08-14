@@ -1,28 +1,28 @@
-import { Form, Formik } from 'formik'
-import React from 'react'
-import * as Yup from 'yup'
+import { Form, Formik } from 'formik';
+import React from 'react';
+import * as Yup from 'yup';
 
-import { Button, Flex } from '@/components/atoms'
-import { SubmitHandler } from '@/utils/types'
+import { Button, Flex } from '@/components/atoms';
+import { SubmitHandler } from '@/utils/types';
 
-import { FormikInput } from './FormikInput'
+import { FormikInput } from './FormikInput';
 
-export default { title: 'Forms|Formik' }
+export default { title: 'Forms/Formik' };
 
 interface ExampleValues {
-  name: string
-  age?: number
+  name: string;
+  age?: number;
 }
 
 export const example = () => {
   const submitHandler: SubmitHandler<ExampleValues> = async (values, actions) => {
-    actions.setSubmitting(true)
-    console.log(values, actions)
-    alert(JSON.stringify(values))
+    actions.setSubmitting(true);
+    console.log(values, actions);
+    alert(JSON.stringify(values));
     setTimeout(() => {
-      actions.setSubmitting(false)
-    }, 3000)
-  }
+      actions.setSubmitting(false);
+    }, 3000);
+  };
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required').min(3),
@@ -30,7 +30,7 @@ export const example = () => {
       .nullable()
       .required('Age is required')
       .min(18, 'You have to be at least 18 years old'),
-  })
+  });
 
   return (
     <Formik
@@ -49,5 +49,5 @@ export const example = () => {
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};

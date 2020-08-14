@@ -1,33 +1,31 @@
-import { FastField, FastFieldProps } from 'formik'
-import React from 'react'
+import { useField } from 'formik';
+import React from 'react';
 
-import { FieldInput, FieldInputProps } from '../Form/FieldInput'
-import { FormikError } from './FormikError'
+import { useFastField } from '@/utils/hooks';
+
+import { FieldInput, FieldInputProps } from '../Form/FieldInput';
+import { FormikError } from './FormikError';
 
 type FormikInput = FieldInputProps & {
-  name: string
-}
+  name: string;
+  optimized?: boolean;
+};
 
-export const FormikInput: React.FC<FormikInput> = ({ name, ...props }) => {
+export const FormikInput: React.FC<FormikInput> = ({ name, optimized, ...props }) => {
+  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+
   return (
     <>
-      <FastField name={name}>
-        {({ field, form, meta }: FastFieldProps) => {
-          return (
-            <FieldInput
-              {...props}
-              {...field}
-              hasError={Boolean(meta.touched && meta.error)}
-              onClear={() => {
-                form.setFieldValue(name, '')
-                field.onBlur(undefined)
-              }}
-            />
-          )
+      <FieldInput
+        {...props}
+        {...field}
+        hasError={Boolean(meta.touched && meta.error)}
+        onClear={() => {
+          helpers.setValue('');
+          field.onBlur(undefined);
         }}
-      </FastField>
-
+      />
       <FormikError name={name} />
     </>
-  )
-}
+  );
+};

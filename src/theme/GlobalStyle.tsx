@@ -1,7 +1,7 @@
-import { normalize } from 'polished'
-import { createGlobalStyle } from 'styled-components'
+import { normalize } from 'polished';
+import { createGlobalStyle } from 'styled-components';
 
-import { theme } from './theme'
+import { theme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize()}
@@ -18,4 +18,4 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-`
+`;

@@ -1,19 +1,19 @@
-import React, { FC } from 'react'
-import ReactModal from 'react-modal'
-import { createGlobalStyle } from 'styled-components'
+import React, { FC } from 'react';
+import ReactModal from 'react-modal';
+import { createGlobalStyle } from 'styled-components';
 
-import { Box, Button, Heading, IconButton } from '@/components/atoms'
-import { useModalActions, useModalState } from '@/context/ModalContext'
-import { colors } from '@/theme/colors'
-import { media } from '@/utils/media'
+import { Box, Button, Heading, IconButton } from '@/components/atoms';
+import { useModalActions, useModalState } from '@/context/ModalContext';
+import { colors } from '@/theme/colors';
+import { media } from '@/utils/media';
 
-const duration = 300
+const duration = 300;
 
 interface ModalProps {
-  id: string
-  onClose?: () => void
-  width?: string
-  height?: string
+  id: string;
+  onClose?: () => void;
+  width?: string;
+  height?: string;
 }
 
 const ModalStyles = createGlobalStyle<any>`
@@ -69,7 +69,7 @@ const ModalStyles = createGlobalStyle<any>`
       transform: translateY(40px);
     }
   }
-`
+`;
 
 export const Modal: FC<ModalProps> = ({
   children,
@@ -78,26 +78,26 @@ export const Modal: FC<ModalProps> = ({
   width = '500px',
   height = 'auto',
 }) => {
-  const modalActions = useModalActions()
-  const modalState = useModalState()
+  const modalActions = useModalActions();
+  const modalState = useModalState();
 
-  const modal = modalState.getModal(id)
+  const modal = modalState.getModal(id);
 
   const onDismiss = () => {
-    modalActions.hide(id)
+    modalActions.hide(id);
 
     if (onClose) {
-      setTimeout(onClose, duration)
+      setTimeout(onClose, duration);
     }
-  }
+  };
 
   const onConfirm = () => {
     if (modal.callback) {
-      modal.callback()
+      modal.callback();
     }
 
-    onDismiss()
-  }
+    onDismiss();
+  };
 
   return (
     <>
@@ -138,5 +138,5 @@ export const Modal: FC<ModalProps> = ({
         )}
       </ReactModal>
     </>
-  )
-}
+  );
+};

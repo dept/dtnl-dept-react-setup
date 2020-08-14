@@ -1,11 +1,8 @@
-import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import React from 'react'
+import { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
+import React from 'react';
 
-import { Box, Heading, Paragraph } from '@/components/atoms'
-import { config } from '@/utils/config'
-
-const { ENVIRONMENT_NAME } = config
+import { Box, Heading, Paragraph } from '@/components/atoms';
 
 interface PageProps {}
 
@@ -22,10 +19,12 @@ const Page: NextPage<PageProps> = () => {
         <Paragraph>Run `yarn component [name]` to create a component</Paragraph>
         <Paragraph>Run `yarn context [name]` to create a context provider</Paragraph>
 
-        {ENVIRONMENT_NAME && <code>Running on environment: {ENVIRONMENT_NAME}</code>}
+        {process.env.ENVIRONMENT_NAME && (
+          <code>Running on environment: {process.env.ENVIRONMENT_NAME}</code>
+        )}
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

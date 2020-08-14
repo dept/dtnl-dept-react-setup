@@ -1,12 +1,12 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
-import { Box, Button, Flex, Paragraph } from '@/components/atoms'
+import { Box, Button, Flex, Paragraph } from '@/components/atoms';
 
 interface PaginationProps {
-  total: number
-  perPage?: number
-  current?: number
-  onNavigate: (page: number) => void
+  total: number;
+  perPage?: number;
+  current?: number;
+  onNavigate: (page: number) => void;
 }
 
 export const Pagination: FC<PaginationProps> = ({
@@ -15,21 +15,21 @@ export const Pagination: FC<PaginationProps> = ({
   total,
   onNavigate,
 }) => {
-  const pages = Math.ceil(total / perPage)
+  const pages = Math.ceil(total / perPage);
 
   /**
    * Pagination should only show if there is enough content to fill more than one page.
    */
-  if (total / perPage < 1 || !pages || current < 0 || current > pages) return null
+  if (total / perPage < 1 || !pages || current < 0 || current > pages) return null;
 
   /**
    *
    * @param toPage new page
    */
   const handleNavigate = (toPage: number) => {
-    onNavigate(toPage)
-    window.scrollTo(0, 0)
-  }
+    onNavigate(toPage);
+    window.scrollTo(0, 0);
+  };
 
   /**
    * Creates a new array based on a start & end parameter.
@@ -37,15 +37,15 @@ export const Pagination: FC<PaginationProps> = ({
    * @param end end position of array
    */
   const getRestItems = (start: number, end: number): number[] =>
-    [...Array(end - start + 1).keys()].map((_v, i) => i + start)
+    [...Array(end - start + 1).keys()].map((_v, i) => i + start);
 
   /**
    * Determine delta
    */
   const getDelta = () => {
-    if (pages <= 7) return 7
-    return current > 4 && current < pages - 3 ? 2 : 4
-  }
+    if (pages <= 7) return 7;
+    return current > 4 && current < pages - 3 ? 2 : 4;
+  };
 
   /**
    * Adds a [...] item if there is enough content (based on delta)
@@ -53,42 +53,42 @@ export const Pagination: FC<PaginationProps> = ({
    */
   const handleDots = (items: (string | number)[]) => {
     const addDots = (value: number, pair: (string | number)[]) =>
-      items.length + 1 !== pages ? pair : [value]
+      items.length + 1 !== pages ? pair : [value];
 
     if (items[0] !== 1) {
-      items = addDots(1, [1, '...']).concat(items)
+      items = addDots(1, [1, '...']).concat(items);
     }
 
     if (items[items.length - 1] < pages) {
-      items = items.concat(addDots(pages, ['...', pages]))
+      items = items.concat(addDots(pages, ['...', pages]));
     }
 
-    return items
-  }
+    return items;
+  };
 
   /**
    * Build up items including
    */
   const getItems = () => {
-    const delta = getDelta()
+    const delta = getDelta();
 
     let start = Math.round(current - delta / 2),
-      end = Math.round(current + delta / 2)
+      end = Math.round(current + delta / 2);
 
     if (start - 1 === 1 || end + 1 === pages) {
-      start += 1
-      end += 1
+      start += 1;
+      end += 1;
     }
 
     const items =
       current > delta
         ? getRestItems(Math.min(start, pages - delta), Math.min(end, pages))
-        : getRestItems(1, Math.min(pages, delta + 1))
+        : getRestItems(1, Math.min(pages, delta + 1));
 
-    const enhancedItems = handleDots(items)
+    const enhancedItems = handleDots(items);
 
-    return enhancedItems
-  }
+    return enhancedItems;
+  };
 
   return (
     <Box my={8}>
@@ -120,5 +120,5 @@ export const Pagination: FC<PaginationProps> = ({
         </Button>
       </Flex>
     </Box>
-  )
-}
+  );
+};

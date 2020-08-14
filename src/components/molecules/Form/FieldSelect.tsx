@@ -1,35 +1,35 @@
-import { useSelect } from 'downshift'
-import { InputHTMLAttributes, useState } from 'react'
-import styled, { css } from 'styled-components'
+import { useSelect } from 'downshift';
+import { InputHTMLAttributes, useState } from 'react';
+import styled, { css } from 'styled-components';
 
-import { Box, Icon } from '@/components/atoms'
-import { Label } from '@/components/atoms/Label/Label'
+import { Box, Icon } from '@/components/atoms';
+import { Label } from '@/components/atoms/Label/Label';
 
-import { InputWrapper } from './FieldInput'
+import { InputWrapper } from './FieldInput';
 
-type Value = string | number
+type Value = string | number;
 
 interface Option {
-  value: Value
-  label: Value
+  value: Value;
+  label: Value;
 }
 
 export interface FieldSelectProps extends Omit<InputHTMLAttributes<HTMLSelectElement>, 'onChange'> {
-  name: string
-  items: Option[]
-  color?: string
-  label?: string
-  placeholder?: string
-  hasError?: boolean
-  native?: boolean
-  onChange?: (value: Value) => void
+  name: string;
+  items: Option[];
+  color?: string;
+  label?: string;
+  placeholder?: string;
+  hasError?: boolean;
+  native?: boolean;
+  onChange?: (value: Value) => void;
 }
 
 const activeListStyles = css`
   --list-scale: 1;
   opacity: 1;
   pointer-events: all;
-`
+`;
 
 const List = styled(Box)<{ isOpen: boolean }>`
   --list-scale: 0.8;
@@ -50,15 +50,16 @@ const List = styled(Box)<{ isOpen: boolean }>`
   outline: none;
   transform: scale(var(--list-scale)) translateX(-50%);
   ${props => props.isOpen && activeListStyles};
-`
+`;
 
-const ListItem = Box
+const ListItem = Box;
 
 const CustomSelect: React.FC<FieldSelectProps> = ({
   name,
   items,
   color,
   label,
+  onChange,
   placeholder,
   hasError,
 }) => {
@@ -70,7 +71,15 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
-  } = useSelect({ items, id: name })
+  } = useSelect({
+    items,
+    id: name,
+    onSelectedItemChange: e => {
+      if (e?.selectedItem?.value && onChange) {
+        onChange(e?.selectedItem?.value);
+      }
+    },
+  });
 
   return (
     <Box position="relative">
@@ -114,8 +123,8 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
         ))}
       </List>
     </Box>
-  )
-}
+  );
+};
 
 const Select = styled.select`
   -webkit-appearance: none;
@@ -134,12 +143,12 @@ const Select = styled.select`
   &:invalid {
     opacity: 0.5;
   }
-`
+`;
 
 const IconWrapper = styled(Box)`
   transform: translateY(-50%);
   pointer-events: none;
-`
+`;
 
 const NativeSelect: React.FC<FieldSelectProps> = ({
   name,
@@ -155,16 +164,16 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
   disabled,
   ...rest
 }) => {
-  const [hasFocus, setFocus] = useState(false)
+  const [hasFocus, setFocus] = useState(false);
 
   function onFocus(e: React.FocusEvent<HTMLSelectElement>) {
-    if (rest.onFocus) rest.onFocus(e)
-    setFocus(true)
+    if (rest.onFocus) rest.onFocus(e);
+    setFocus(true);
   }
 
   function onBlur(e: React.FocusEvent<HTMLSelectElement>) {
-    if (rest.onBlur) rest.onBlur(e)
-    setFocus(false)
+    if (rest.onBlur) rest.onBlur(e);
+    setFocus(false);
   }
 
   return (
@@ -199,18 +208,18 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
         </IconWrapper>
       </InputWrapper>
     </>
-  )
-}
+  );
+};
 
 export const FieldSelect: React.FC<FieldSelectProps> = props => {
   if (props.native) {
-    return <NativeSelect {...props}> </NativeSelect>
+    return <NativeSelect {...props}> </NativeSelect>;
   } else {
-    return <CustomSelect {...props}></CustomSelect>
+    return <CustomSelect {...props}></CustomSelect>;
   }
-}
+};
 
 FieldSelect.defaultProps = {
   placeholder: 'Choose option...',
   color: 'black',
-}
+};

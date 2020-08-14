@@ -12,28 +12,13 @@
 - Run `yarn dev` to start the dev server
 - Run `yarn build && yarn start` to start the production server
 
-## To deploy and build this project on a test environment or production server using a CI tool
-
-- Run `yarn build` to make a production build
-- Run `rm -rf node_modules` to remove devDependencies
-- Run `yarn --prod` to build only production dependencies
-- Create `web.config` file in the root where you fill in a bunch or stuff and run node index.js:
-
-```
-<handlers>
-    <add name=“iisnode” path=“index.js” verb=“*” modules=“iisnode”/>
-</handler
-```
-
-- For questions: wesley.ronda@deptagency.com
-
 ## Next.js
 
 This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
 
 ```javascript
 if (process.browser) {
-  window.addEventListener(fn)
+  window.addEventListener(fn);
 }
 ```
 
@@ -79,7 +64,7 @@ This project is written to typescript. If you aren't that familiar with typescri
 
 ## Opt out of Server Side Rendering
 
-If you would like to create a static website and opt out of SSR thats also possible. Make sure non of your pages use the `getInitialProps` or the `getServerSideProps` functions. Also make sure you dont have any api routes (routes in the `/api` folder), because they will not work without the server. Run `yarn build` && `yarn export`. This will generate the `out` folder, which includes all the static files. Upload the out folder to your server and make sure all traffic is pointed to `index.html`. Check out the documentation for `exportPathMap` ([https://nextjs.org/docs/api-reference/next.config.js/exportPathMap](https://nextjs.org/docs/api-reference/next.config.js/exportPathMap)) for static pages and `getStaticProps` for dynamic pages ([https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)).
+If you would like to create a static website and opt out of SSR thats also possible. Make sure non of your pages use the `getInitialProps` or the `getServerSideProps` functions. Also make sure you dont have any api routes (routes in the `/api` folder), because they will not work without the server. Run `yarn build` && `yarn export`. This will generate the `out` folder, which includes all the static files. Upload the out folder to your server and make sure all traffic is pointed to `index.html`. Check out the documentation for static pages and `getStaticProps` for dynamic pages ([https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation)).
 
 To test:
 

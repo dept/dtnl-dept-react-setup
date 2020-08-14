@@ -1,9 +1,9 @@
-import { text, withKnobs } from '@storybook/addon-knobs'
-import React from 'react'
+import { text, withKnobs } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { Switch } from '.'
+import { Switch } from '.';
 
-export default { title: 'Atoms|Switch', decorators: [withKnobs] }
+export default { title: 'Atoms/Switch', decorators: [withKnobs] };
 
 export const example = () => {
   return (
@@ -12,5 +12,5 @@ export const example = () => {
         active: text('Active label', 'Active label'),
         inactive: text('Inactive label', 'Inactive label'),
       }}></Switch>
-  )
-}
+  );
+};

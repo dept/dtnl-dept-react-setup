@@ -1,7 +1,7 @@
-import { NotFoundPage } from '@/components/templates'
+import { NotFoundPage } from '@/components/templates';
 
 const Page = () => {
-  return <NotFoundPage />
-}
+  return <NotFoundPage />;
+};
 
-export default Page
+export default Page;

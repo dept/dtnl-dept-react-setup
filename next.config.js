@@ -2,22 +2,24 @@ require('dotenv').config()
 const withPlugins = require('next-compose-plugins')
 
 const { plugins } = require('./config/plugins')
-const { exportPathMap } = require('./config/staticPages')
 const { includePolyfills } = require('./config/includePolyfills')
 
 const dev = process.env.NODE_ENV !== 'production'
 
+/**
+ * Next config
+ * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
+ */
 module.exports = withPlugins(plugins, {
-  exportPathMap,
-  poweredByHeader: false,
-  publicRuntimeConfig: {
-    /**
-     * add the environment variables you would like exposed to the client here
-     * import { config } from '@/utils/config'
-     * documentation: https://nextjs.org/docs/api-reference/next.config.js/runtime-configuration
-     */
+  /**
+   * add the environment variables you would like exposed to the client here
+   * documentation: https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+   */
+  env: {
+    IE_SUPPORT: process.env.IE_SUPPORT,
     ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
   },
+  poweredByHeader: false,
   reactStrictMode: true,
   compression: true, // true to enable gzipping
   webpack(config, options) {

@@ -1,8 +1,8 @@
-import { HTMLAttributes } from 'react'
-import styled, { css } from 'styled-components'
-import { TypographyProps } from 'styled-system'
+import { HTMLAttributes } from 'react';
+import styled, { css } from 'styled-components';
+import { TypographyProps } from 'styled-system';
 
-import { Box, BoxProps } from '../Grid/Box'
+import { Box, BoxProps } from '../Grid/Box';
 
 export type TextProps = BoxProps &
   TypographyProps &
@@ -20,15 +20,15 @@ export type TextProps = BoxProps &
       | 'h4'
       | 'h5'
       | 'h6'
-      | 'label'
-    target?: string
-    singleLine?: boolean
-  }
+      | 'label';
+    target?: string;
+    singleLine?: boolean;
+  };
 
 export type HeadingProps = TextProps &
   HTMLAttributes<HTMLHeadingElement> & {
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  }
+    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  };
 
 export const Text = styled(Box)<TextProps>`
   ${props =>
@@ -39,19 +39,19 @@ export const Text = styled(Box)<TextProps>`
       overflow: hidden;
       text-overflow: ellipsis;
     `}
-`
-export const Paragraph = styled(Text)({})
+`;
+export const Paragraph = styled(Text)({});
 
-export const Heading = styled(Text)<HeadingProps>({})
+export const Heading = styled(Text)<HeadingProps>({});
 
 Heading.defaultProps = {
   as: 'h2',
-}
+};
 
 Text.defaultProps = {
   as: 'span',
-}
+};
 
 Paragraph.defaultProps = {
   as: 'p',
-}
+};

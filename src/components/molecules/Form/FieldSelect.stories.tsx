@@ -1,14 +1,14 @@
-import { boolean, text } from '@storybook/addon-knobs'
-import React from 'react'
+import { boolean, text } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { FieldSelect } from './FieldSelect'
+import { FieldSelect } from './FieldSelect';
 
-export default { title: 'Forms|Select field', component: FieldSelect }
+export default { title: 'Forms/Select field', component: FieldSelect };
 
 const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
   value: item,
   label: item,
-}))
+}));
 
 export const example = () => (
   <FieldSelect
@@ -18,4 +18,4 @@ export const example = () => (
     name="framework"
     placeholder={text('placeholder', 'Choose framework')}
     label={text('label', 'Framework')}></FieldSelect>
-)
+);

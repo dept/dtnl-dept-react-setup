@@ -1,31 +1,31 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react';
 
 export interface AuthContextStore {
-  login: () => void
-  logout: () => void
-  user: UserModel | undefined
+  login: () => void;
+  logout: () => void;
+  user: UserModel | undefined;
 }
 
 interface UserModel {
-  name: string
-  email: string
+  name: string;
+  email: string;
 }
 
-export const AuthContext = React.createContext({} as AuthContextStore)
-export const useAuth = () => useContext(AuthContext)
+export const AuthContext = React.createContext({} as AuthContextStore);
+export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<UserModel>()
+  const [user, setUser] = useState<UserModel>();
 
   function login() {
     setUser({
       name: 'John Smith',
       email: 'john@deptagency.com',
-    })
+    });
   }
 
   function logout() {
-    setUser(undefined)
+    setUser(undefined);
   }
 
   const store: AuthContextStore = useMemo(() => {
@@ -33,8 +33,8 @@ export const AuthContextProvider: React.FC = ({ children }) => {
       logout,
       user,
       login,
-    }
-  }, [user])
+    };
+  }, [user]);
 
-  return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>
-}
+  return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>;
+};

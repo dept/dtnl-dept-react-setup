@@ -1,20 +1,20 @@
-import { format, isValid, parse, parseISO } from 'date-fns'
-import React, { useEffect, useRef, useState } from 'react'
-import Calendar, { OnChangeDateCallback } from 'react-calendar/dist/entry.nostyle'
-import useClickAway from 'react-use/lib/useClickAway'
-import styled from 'styled-components'
+import { format, isValid, parse, parseISO } from 'date-fns';
+import React, { useEffect, useRef, useState } from 'react';
+import Calendar, { OnChangeDateCallback } from 'react-calendar/dist/entry.nostyle';
+import useClickAway from 'react-use/lib/useClickAway';
+import styled from 'styled-components';
 
-import { Box } from '@/components/atoms'
-import { colors } from '@/theme/colors'
-import { Omit } from '@/utils/types'
+import { Box } from '@/components/atoms';
+import { colors } from '@/theme/colors';
+import { Omit } from '@/utils/types';
 
-import { FieldInput, FieldInputProps } from './FieldInput'
+import { FieldInput, FieldInputProps } from './FieldInput';
 
 export type FieldDateProps = Omit<FieldInputProps, 'onChange' | 'value'> & {
-  value?: string | undefined
-  onChange: (date: string) => void
-  onClose?: () => void
-}
+  value?: string | undefined;
+  onChange: (date: string) => void;
+  onClose?: () => void;
+};
 
 const CalendarWrapper = styled(Box)`
   z-index: 1;
@@ -23,62 +23,62 @@ const CalendarWrapper = styled(Box)`
   transform: translateX(-50%);
   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14),
     0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-`
+`;
 
 export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, ...props }) => {
-  const outputFormat = 'yyyy-MM-dd'
-  const inputFormat = 'dd-MM-yyyy'
+  const outputFormat = 'yyyy-MM-dd';
+  const inputFormat = 'dd-MM-yyyy';
 
-  const [date, setDate] = useState<Date | undefined>(value ? parseISO(value) : undefined)
-  const [outputDate, setOutputDate] = useState(date ? format(date, outputFormat) : '')
-  const [inputDate, setInputDate] = useState(date ? format(date, inputFormat) : '')
-  const [isOpen, setIsOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [date, setDate] = useState<Date | undefined>(value ? parseISO(value) : undefined);
+  const [outputDate, setOutputDate] = useState(date ? format(date, outputFormat) : '');
+  const [inputDate, setInputDate] = useState(date ? format(date, inputFormat) : '');
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useClickAway(ref, () => {
     if (isOpen) {
-      setIsOpen(false)
+      setIsOpen(false);
       if (onClose) {
-        onClose()
+        onClose();
       }
     }
-  })
+  });
 
   function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
-    setIsOpen(true)
+    setIsOpen(true);
 
     if (props.onFocus) {
-      props.onFocus(e)
+      props.onFocus(e);
     }
   }
 
   useEffect(() => {
-    onChange(outputDate)
-  }, [onChange, outputDate])
+    onChange(outputDate);
+  }, [onChange, outputDate]);
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const inputValue = e.currentTarget.value
-    setInputDate(inputValue)
+    const inputValue = e.currentTarget.value;
+    setInputDate(inputValue);
 
-    const parsedDate = parse(inputValue, 'dd-MM-yyyy', new Date())
+    const parsedDate = parse(inputValue, 'dd-MM-yyyy', new Date());
 
     if (isValid(parsedDate)) {
-      setOutputDate(format(parsedDate, outputFormat))
-      setDate(parsedDate)
+      setOutputDate(format(parsedDate, outputFormat));
+      setDate(parsedDate);
     } else {
-      setOutputDate('')
-      setDate(undefined)
+      setOutputDate('');
+      setDate(undefined);
     }
   }
 
   const handleCalendarChange: OnChangeDateCallback = newDate => {
     if (!Array.isArray(newDate)) {
-      setDate(newDate)
-      setInputDate(format(newDate, inputFormat))
-      setOutputDate(format(newDate, outputFormat))
-      setIsOpen(false)
+      setDate(newDate);
+      setInputDate(format(newDate, inputFormat));
+      setOutputDate(format(newDate, outputFormat));
+      setIsOpen(false);
     }
-  }
+  };
 
   return (
     <Wrapper position="relative" ref={ref}>
@@ -93,8 +93,8 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
         <Calendar locale="nl" value={date} onChange={handleCalendarChange} />
       </CalendarWrapper>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled(Box)`
   .react-calendar {
@@ -198,4 +198,4 @@ const Wrapper = styled(Box)`
   .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: ${colors.gray[300]};
   }
-`
+`;

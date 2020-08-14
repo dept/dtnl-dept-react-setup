@@ -1,22 +1,23 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { Column, Row } from '@/components/atoms'
+import { Column, Row } from '@/components/atoms';
 
-import { FieldCheckbox, FieldCheckboxProps } from './FieldCheckbox'
+import { FieldCheckbox, FieldCheckboxProps } from './FieldCheckbox';
 
 interface Option {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 export type FieldCheckboxGroupProps = FieldCheckboxProps & {
-  options: Option[]
-  name: string
-  direction?: 'horizontal' | 'vertical'
-  value: string[]
-}
+  options: Option[];
+  name: string;
+  direction?: 'horizontal' | 'vertical';
+  value: string[];
+};
 
 export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
+  name,
   options,
   value,
   direction = 'vertical',
@@ -37,8 +38,8 @@ export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
               {option.label}
             </FieldCheckbox>
           </Column>
-        )
+        );
       })}
     </Row>
-  )
-}
+  );
+};

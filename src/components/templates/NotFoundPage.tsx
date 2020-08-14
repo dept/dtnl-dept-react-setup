@@ -1,4 +1,4 @@
-import { Heading, Paragraph } from '@/components/atoms'
+import { Heading, Paragraph } from '@/components/atoms';
 
 export const NotFoundPage: React.FC = () => {
   return (
@@ -6,5 +6,5 @@ export const NotFoundPage: React.FC = () => {
       <Heading>404</Heading>
       <Paragraph>The page you&apos;re trying to visit doesn&apos;t exist (anymore).</Paragraph>
     </>
-  )
-}
+  );
+};

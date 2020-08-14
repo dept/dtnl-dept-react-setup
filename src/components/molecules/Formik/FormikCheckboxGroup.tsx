@@ -1,42 +1,45 @@
-import { FastField, FastFieldProps } from 'formik'
-import React, { FC } from 'react'
+import { useField } from 'formik';
+import React, { FC } from 'react';
 
-import { Omit } from '@/utils/types'
+import { useFastField } from '@/utils/hooks';
+import { Omit } from '@/utils/types';
 
-import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup'
-import { FormikError } from './FormikError'
+import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup';
+import { FormikError } from './FormikError';
 
-type FormikCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'value'>
+type FormikCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'value'> & {
+  optimized?: boolean;
+};
 
-export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({ name, ...props }) => {
+export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({
+  name,
+  optimized,
+  ...props
+}) => {
+  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+
   return (
     <>
-      <FastField name={name}>
-        {({ field, form, meta }: FastFieldProps) => {
-          return (
-            <FieldCheckboxGroup
-              {...props}
-              {...field}
-              onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                const target = e.currentTarget
-                const newValue = [...field.value] || []
-                if (target.checked) {
-                  newValue.push(target.value)
-                } else {
-                  newValue.splice(
-                    newValue.findIndex(item => item === target.value),
-                    1,
-                  )
-                }
-                form.setFieldValue(name, newValue)
-              }}
-              hasError={meta.touched && meta.error}
-            />
-          )
+      <FieldCheckboxGroup
+        {...props}
+        {...field}
+        onChange={(e: React.FormEvent<HTMLInputElement>) => {
+          const target = e.currentTarget;
+          const newValue = [...field.value] || [];
+          if (target.checked) {
+            newValue.push(target.value);
+          } else {
+            newValue.splice(
+              newValue.findIndex(item => item === target.value),
+              1,
+            );
+          }
+          helpers.setValue(newValue);
         }}
-      </FastField>
+        hasError={meta.touched && meta.error}
+      />
 
       <FormikError name={name} />
     </>
-  )
-}
+  );
+};

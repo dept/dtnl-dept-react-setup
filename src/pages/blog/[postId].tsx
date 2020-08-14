@@ -1,13 +1,13 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import React from 'react'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
+import React from 'react';
 
-import { Box, Heading, Hyperlink, Text } from '@/components/atoms'
+import { Box, Heading, Hyperlink, Text } from '@/components/atoms';
 
-import { BlogPost, blogPosts } from '../blog'
+import { BlogPost, blogPosts } from '../blog';
 
 interface PageProps {
-  post: BlogPost
+  post: BlogPost;
 }
 
 const Page: NextPage<PageProps> = ({ post }) => {
@@ -23,22 +23,22 @@ const Page: NextPage<PageProps> = ({ post }) => {
         <Hyperlink href="/blog">Go back</Hyperlink>
       </Box>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async ctx => {
-  const post = blogPosts.find(item => item.id === Number(ctx.params!.postId))
+  const post = blogPosts.find(item => item.id === Number(ctx.params!.postId));
 
   return {
     props: { post },
-  }
-}
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: blogPosts.map(item => ({ params: { postId: String(item.id) } })),
     fallback: false,
-  }
-}
+  };
+};
 
-export default Page
+export default Page;

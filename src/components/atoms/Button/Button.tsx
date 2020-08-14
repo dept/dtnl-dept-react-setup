@@ -1,36 +1,36 @@
-import css from '@styled-system/css'
-import { motion } from 'framer-motion'
-import React, { ButtonHTMLAttributes } from 'react'
-import { AiOutlineLoading } from 'react-icons/ai'
-import Ink from 'react-ink'
-import { useTheme } from 'styled-components'
+import css from '@styled-system/css';
+import { motion } from 'framer-motion';
+import React, { ButtonHTMLAttributes } from 'react';
+import { AiOutlineLoading } from 'react-icons/ai';
+import Ink from 'react-ink';
+import { useTheme } from 'styled-components';
 
-import { buttons, IconOption } from '@/theme'
+import { buttons, IconOption } from '@/theme';
 
-import { Box, BoxProps, PseudoBox } from '../Grid'
-import { Icon } from '../Icon'
+import { Box, BoxProps, PseudoBox } from '../Grid';
+import { Icon } from '../Icon';
 
-type ButtonElements = 'button' | 'a'
+type ButtonElements = 'button' | 'a';
 
 interface ConditionalProps {
-  as: ButtonElements
-  type?: 'submit' | 'button' | 'reset'
+  as: ButtonElements;
+  type?: 'submit' | 'button' | 'reset';
 }
 
 export type ButtonProps = BoxProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
-    as?: ButtonElements
-    variant?: keyof typeof buttons
-    disabled?: boolean
-    startIcon?: IconOption
-    endIcon?: IconOption
-    loading?: boolean
-    ripple?: boolean
-    href?: string
-    target?: string
+    as?: ButtonElements;
+    variant?: keyof typeof buttons;
+    disabled?: boolean;
+    startIcon?: IconOption;
+    endIcon?: IconOption;
+    loading?: boolean;
+    ripple?: boolean;
+    href?: string;
+    target?: string;
     // adds a test id so it's easier to find in integration/e2e tests
-    'data-testid'?: string
-  }
+    'data-testid'?: string;
+  };
 
 export const Button = React.forwardRef<any, ButtonProps>(
   (
@@ -48,17 +48,16 @@ export const Button = React.forwardRef<any, ButtonProps>(
     },
     ref,
   ) => {
-    const theme = useTheme()
-    const buttonVariant = theme.buttons[variant]
-    const conditionalProps: ConditionalProps = { as }
+    const theme = useTheme();
+    const buttonVariant = theme.buttons[variant];
+    const conditionalProps: ConditionalProps = { as };
 
     if (as === 'button') {
-      conditionalProps.type = type
+      conditionalProps.type = type;
     }
 
     return (
       <PseudoBox
-        as="button"
         {...conditionalProps}
         disabled={disabled}
         css={css({
@@ -112,6 +111,6 @@ export const Button = React.forwardRef<any, ButtonProps>(
           </>
         )}
       </PseudoBox>
-    )
+    );
   },
-)
+);

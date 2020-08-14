@@ -1,22 +1,22 @@
-import css from '@styled-system/css'
-import { hideVisually } from 'polished'
-import React, { InputHTMLAttributes } from 'react'
-import styled, { useTheme } from 'styled-components'
+import css from '@styled-system/css';
+import { hideVisually } from 'polished';
+import React, { InputHTMLAttributes } from 'react';
+import styled, { useTheme } from 'styled-components';
 
-import { Box, Flex, Label, Text } from '@/components/atoms'
+import { Box, Flex, Label, Text } from '@/components/atoms';
 
 export interface FieldRadioProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string
-  checked?: boolean
-  value?: string
+  name: string;
+  checked?: boolean;
+  value?: string;
 }
 
 const HiddenInput = styled.input`
   ${hideVisually()};
-`
+`;
 
 export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <Label style={{ cursor: 'pointer' }}>
       <Flex opacity={props.disabled ? 0.2 : 1} alignItems="center">
@@ -44,5 +44,5 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) =>
         <Text>{children}</Text>
       </Flex>
     </Label>
-  )
-}
+  );
+};

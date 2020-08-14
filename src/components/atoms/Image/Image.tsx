@@ -1,137 +1,100 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import styled, { css } from 'styled-components'
+import css from '@styled-system/css';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-type StyledImageProps = {
-  objectFit?: boolean
-}
+import { Box, BoxProps } from '../Grid';
 
-type SharedImageComponentProps = StyledImageProps & {
-  src?: string
-  srcSet?: string
-  preload?: string
-  alt: string
-}
+type ImageProps = BoxProps & {
+  src?: string;
+  srcSet?: string;
+  placeholderSrc?: string;
+  placeholderSrcSet?: string;
+  alt: string;
+  ratio?: number;
+  lazyload?: boolean;
+  onLoad?: (event: Event) => void;
+  onError?: (event: Event | string) => void;
+};
 
-type ImageWrapperProps = StyledImageProps & {
-  width?: string
-  height?: string
-}
+const transparentPlaceholder =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
-type ImageComponentProps = SharedImageComponentProps &
-  ImageWrapperProps & {
-    caption?: string
-  }
-
-type ImageProps = FC<HTMLImageElement> & SharedImageComponentProps
-
-const objectFitStyles = css`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-`
-const defaultImageStyles = css`
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-  height: auto;
-`
-
-const ImageWrapper = styled.figure<ImageWrapperProps>`
-  position: relative;
-  margin: 0;
-  width: ${props => props.width};
-  height: ${props => props.height};
-  overflow: hidden;
-`
-
-const StyledImage = styled.img<ImageProps>`
-  ${defaultImageStyles}
-  ${props => (props.objectFit ? objectFitStyles : '')};
-  position: relative;
-  display: block;
-  opacity: 0;
-  transition: opacity 300ms;
-  z-index: 1;
-  .image--is-loaded & {
-    opacity: 1;
-  }
-`
-
-const PreloadImage = styled.img<ImageProps>`
-  ${defaultImageStyles}
-  ${props => (props.objectFit ? objectFitStyles : '')};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  transition: opacity 300ms 50ms;
-  opacity: 1;
-  z-index: 0;
-`
-
-const StyledCaption = styled.figcaption``
-
-export const Image: FC<ImageComponentProps> = ({
+export const Image: FC<ImageProps> = ({
   src,
   srcSet,
   alt,
-  preload,
-  caption,
+  placeholderSrc,
+  placeholderSrcSet,
   objectFit = true,
+  onLoad,
+  lazyload = true,
+  objectPosition,
+  onError,
+  ratio,
   ...props
 }) => {
+  const isMounted = useRef(true);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0,
-  })
-
-  const imageRef = useRef() as React.MutableRefObject<HTMLImageElement>
-
-  const [loaded, setLoaded] = useState(false)
-  const [transitioning, setTransitioning] = useState(false)
+    triggerOnce: true,
+    rootMargin: '100px',
+  });
 
   useEffect(() => {
-    const image = imageRef.current
-
-    if (inView && image) {
-      image.addEventListener('transitionend', transitionHandler, { once: true })
-
-      if (!src) return swapImage()
-
-      image.src = ''
-      image.onload = () => swapImage()
-      image.src = src
-
-      if (srcSet) image.srcset = srcSet
+    if (!src && !srcSet) {
+      return;
     }
-    return () => {
-      if (image) {
-        image.removeEventListener('transitionend', transitionHandler)
+
+    if (lazyload && !inView) {
+      return;
+    }
+
+    const image = new window.Image();
+    if (src) image.src = src;
+    if (srcSet) image.srcset = srcSet;
+
+    image.onload = event => {
+      if (isMounted.current) {
+        setHasLoaded(true);
+        onLoad && onLoad(event);
       }
-    }
-  }, [inView, imageRef, src, srcSet])
+    };
 
-  const transitionHandler = ({ propertyName }: TransitionEvent) => {
-    if (propertyName === 'opacity') {
-      setLoaded(true)
-    }
-  }
+    image.onerror = event => {
+      if (isMounted.current) {
+        setHasLoaded(false);
+        onError && onError(event);
+      }
+    };
+  }, [src, srcSet, onLoad, onError, inView, lazyload]);
 
-  const swapImage = () => {
-    setTransitioning(true)
-  }
+  const ratioProps = ratio
+    ? {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+      }
+    : {};
 
   return (
-    <ImageWrapper
-      {...props}
-      objectFit={objectFit}
-      ref={ref}
-      className={transitioning ? 'image--is-loaded' : ''}>
-      <StyledImage ref={imageRef} objectFit={objectFit} src={preload} alt={alt} />
-      {!loaded && <PreloadImage objectFit={objectFit} src={preload} aria-hidden="true" alt={alt} />}
-      {caption && <StyledCaption>{caption}</StyledCaption>}
-    </ImageWrapper>
-  )
-}
+    <Box {...props} position="relative" ref={ref} pt={ratio ? ratio * 100 + '%' : undefined}>
+      <Box
+        as="img"
+        display="block"
+        src={hasLoaded ? src : placeholderSrc || transparentPlaceholder}
+        srcSet={hasLoaded ? srcSet : placeholderSrcSet}
+        {...(ratioProps as any)}
+        css={css({
+          width: '100%',
+          height: '100%',
+          transition: 'opacity 0.4s ease-in-out',
+          opacity: hasLoaded || placeholderSrc ? 1 : 0,
+          objectFit: objectFit as any,
+          objectPosition: objectPosition as any,
+        })}
+        alt={alt}
+      />
+    </Box>
+  );
+};

@@ -1,34 +1,37 @@
-import { FastField, FastFieldProps } from 'formik'
-import React from 'react'
+import { useField } from 'formik';
+import React from 'react';
 
-import { FieldSelectAdvanced, FieldSelectAdvancedProps } from '../Form/FieldSelectAdvanced'
-import { FormikError } from './FormikError'
+import { useFastField } from '@/utils/hooks';
+
+import { FieldSelectAdvanced, FieldSelectAdvancedProps } from '../Form/FieldSelectAdvanced';
+import { FormikError } from './FormikError';
 
 type FormikSelectAdvancedProps = FieldSelectAdvancedProps & {
-  name: string
-}
+  name: string;
+  optimized?: boolean;
+};
 
-export const FormikSelectAdvanced: React.FC<FormikSelectAdvancedProps> = ({ name, ...props }) => {
+export const FormikSelectAdvanced: React.FC<FormikSelectAdvancedProps> = ({
+  name,
+  optimized,
+  ...props
+}) => {
+  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+
   return (
     <>
-      <FastField name={name}>
-        {({ field, form, meta }: FastFieldProps) => {
-          return (
-            <FieldSelectAdvanced
-              {...props}
-              {...field}
-              onBlur={() => form.setFieldTouched(name, true)}
-              onChange={option => {
-                // @ts-ignore
-                form.setFieldValue(name, option && !Array.isArray(option) && option.value)
-              }}
-              hasError={Boolean(meta.touched && meta.error)}
-            />
-          )
+      <FieldSelectAdvanced
+        {...props}
+        {...field}
+        onBlur={() => helpers.setValue(true)}
+        onChange={option => {
+          // @ts-ignore
+          helpers.setValue(option && !Array.isArray(option) && option?.value);
         }}
-      </FastField>
+        hasError={Boolean(meta.touched && meta.error)}
+      />
 
       <FormikError name={name} />
     </>
-  )
-}
+  );
+};

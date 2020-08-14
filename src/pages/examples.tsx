@@ -1,7 +1,7 @@
-import { Form, Formik } from 'formik'
-import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import * as Yup from 'yup'
+import { Form, Formik } from 'formik';
+import { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
+import * as Yup from 'yup';
 
 import {
   Box,
@@ -14,32 +14,32 @@ import {
   Reveal,
   Row,
   Text,
-} from '@/components/atoms'
-import { Modal } from '@/components/molecules'
-import { FormikDate, FormikInput } from '@/components/molecules/Formik'
-import { useModalActions } from '@/context/ModalContext'
-import { icons } from '@/theme'
+} from '@/components/atoms';
+import { Modal } from '@/components/molecules';
+import { FormikDate, FormikInput } from '@/components/molecules/Formik';
+import { useModalActions } from '@/context/ModalContext';
+import { icons } from '@/theme';
 
-import { FieldSelect } from '../components/molecules/Form/FieldSelect'
+import { FieldSelect } from '../components/molecules/Form/FieldSelect';
 
 const Section: React.FC = props => (
   <Reveal>
     <Box p={30} {...props} />
   </Reveal>
-)
+);
 
 const SectionHeader: React.FC = props => (
   <Box borderBottom="1px solid" borderColor="primary" mb={30}>
     <Heading {...props} />
   </Box>
-)
+);
 
 const GridExampleBox: React.FC = props => (
   <Box bg="primary" color="white" p={15} my={5} fontSize={14} {...props} />
-)
+);
 
 const Page: NextPage = () => {
-  const modalActions = useModalActions()
+  const modalActions = useModalActions();
 
   return (
     <>
@@ -109,7 +109,6 @@ const Page: NextPage = () => {
                 placeholder="This is a number field"
               />
               <FormikDate name="date" label="Date field" placeholder="This is a date field" />
-
               <FieldSelect
                 name="select"
                 // native
@@ -131,8 +130,7 @@ const Page: NextPage = () => {
                     label: 'Test 3',
                   },
                 ]}
-              />
-
+              />{' '}
               <Button type="submit">Submit</Button>
             </Form>
           )}
@@ -165,7 +163,7 @@ const Page: NextPage = () => {
         <Hyperlink href="/about">This is a link</Hyperlink>
       </Section>
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

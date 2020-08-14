@@ -1,5 +1,5 @@
-import { NextPage, NextPageContext } from 'next'
-import React from 'react'
+import { NextPage, NextPageContext } from 'next';
+import React from 'react';
 
 /**
  * Use this to only wrap one Page with a Provider instead of the entire app
@@ -17,14 +17,14 @@ export const withProvider = (
       <Provider {...providerProps}>
         <Page {...props}></Page>
       </Provider>
-    )
-  }
+    );
+  };
 
   if (Page.getInitialProps) {
     WithProvider.getInitialProps = async (ctx: NextPageContext) => {
-      return Page.getInitialProps!(ctx)
-    }
+      return Page.getInitialProps!(ctx);
+    };
   }
 
-  return WithProvider
-}
+  return WithProvider;
+};

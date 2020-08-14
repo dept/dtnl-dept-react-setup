@@ -5,4 +5,4 @@ export const grid = {
     padding: [15, null, 80],
     paddingSmall: 15,
   },
-}
+};

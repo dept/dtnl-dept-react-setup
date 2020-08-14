@@ -1,13 +1,13 @@
-import { boolean, select, text } from '@storybook/addon-knobs'
-import React from 'react'
+import { boolean, select, text } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { ButtonOption, buttons, IconOption, icons } from '@/theme'
+import { ButtonOption, buttons, IconOption, icons } from '@/theme';
 
-import { Button } from './Button'
+import { Button } from './Button';
 
-export default { title: 'Atoms|Button', component: Button }
+export default { title: 'Atoms/Button', component: Button };
 
-const buttonVariants = Object.keys(buttons) as ButtonOption[]
+const buttonVariants = Object.keys(buttons) as ButtonOption[];
 
 export const example = () => (
   <Button
@@ -18,4 +18,4 @@ export const example = () => (
     disabled={boolean('Is disabled', false)}>
     {text('Label', 'Button')}
   </Button>
-)
+);

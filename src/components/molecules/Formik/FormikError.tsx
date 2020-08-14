@@ -1,11 +1,11 @@
-import { ErrorMessage } from 'formik'
-import React from 'react'
+import { ErrorMessage } from 'formik';
+import React from 'react';
 
-import { Box, Text } from '@/components/atoms'
-import { colors } from '@/theme/colors'
+import { Box, Text } from '@/components/atoms';
+import { colors } from '@/theme/colors';
 
 interface FormikErrorProps {
-  name: string
+  name: string;
 }
 
 export const FormikError: React.FC<FormikErrorProps> = ({ name }) => {
@@ -18,9 +18,9 @@ export const FormikError: React.FC<FormikErrorProps> = ({ name }) => {
             <Text display="block" fontSize="xxxs" color={colors.error}>
               {message}
             </Text>
-          )
+          );
         }}
       />
     </Box>
-  )
-}
+  );
+};
