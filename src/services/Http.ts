@@ -1,46 +1,46 @@
 // Fetch is built in since Next 9.4
 // import fetch from 'isomorphic-fetch'
 
-import { isBrowser } from '@/utils/isBrowser'
+import { isBrowser } from '@/utils/isBrowser';
 
 export interface HttpErrorInput {
-  message: string
-  statusCode: number
-  response?: Response
-  body?: any
+  message: string;
+  statusCode: number;
+  response?: Response;
+  body?: any;
 }
 
 export class HttpError extends Error {
-  statusCode: number
-  response?: Response
-  body?: any
+  statusCode: number;
+  response?: Response;
+  body?: any;
 
   constructor(input: HttpErrorInput) {
-    super(input.message)
-    this.response = input.response
-    this.statusCode = input.statusCode
-    this.body = input.body
-    this.name = 'HttpError'
+    super(input.message);
+    this.response = input.response;
+    this.statusCode = input.statusCode;
+    this.body = input.body;
+    this.name = 'HttpError';
   }
 }
 
-export type AbortFunction = () => void
-type Token = string | undefined
-type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>
-type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>
-type BeforeHook = (client: HttpClient) => Promise<void> | void
-type ErrorHook = <T = any>(err: HttpError, request: () => Promise<T>) => any
+export type AbortFunction = () => void;
+type Token = string | undefined;
+type RequestFn = <T = any, I = any>(url: string, data: I, config?: RequestConfig) => Promise<T>;
+type RequestGetFn = <T = any, I = any>(url: string, data?: I, config?: RequestConfig) => Promise<T>;
+type BeforeHook = (client: HttpClient) => Promise<void> | void;
+type ErrorHook = <T = any>(err: HttpError, request: () => Promise<T>) => any;
 type HttpClientInit = RequestInit & {
-  baseUrl?: string
-  returnType?: 'json' | 'text' | 'blob'
+  baseUrl?: string;
+  returnType?: 'json' | 'text' | 'blob';
   /**  This function is called before every request. This is where you would check if your token is still valid */
-  beforeHook?: BeforeHook
+  beforeHook?: BeforeHook;
   /** Function that is called if an error occurs */
-  onError?: ErrorHook
-}
+  onError?: ErrorHook;
+};
 type RequestConfig = HttpClientInit & {
-  createAbort?: (abortFunction: AbortFunction) => void
-}
+  createAbort?: (abortFunction: AbortFunction) => void;
+};
 
 /**
  * Wrapper around fetch
@@ -51,16 +51,16 @@ export class HttpClient {
     headers: {
       'Content-Type': 'application/json',
     },
-  }
+  };
 
-  private config: RequestConfig = {}
-  private token: Token
+  private config: RequestConfig = {};
+  private token: Token;
 
   constructor(config: HttpClientInit = {}) {
     this.config = {
       ...this.defaultConfig,
       ...config,
-    }
+    };
   }
 
   /**
@@ -71,38 +71,38 @@ export class HttpClient {
    * @returns {RequestGetFn}
    * @memberof HttpClient
    */
-  private createRequest(method: 'GET'): RequestGetFn
-  private createRequest(method: string): RequestFn
+  private createRequest(method: 'GET'): RequestGetFn;
+  private createRequest(method: string): RequestFn;
   private createRequest(method: 'GET' | string): RequestFn {
     return (url, data, config) => {
       if (method === 'GET') {
-        const getUrl = new URL(url, isBrowser ? window.location.origin : undefined)
+        const getUrl = new URL(url, isBrowser ? window.location.origin : undefined);
         if (data) {
-          Object.entries(data).forEach(([key, value]) => getUrl.searchParams.append(key, value))
+          Object.entries(data).forEach(([key, value]) => getUrl.searchParams.append(key, value));
         }
         return this.request(getUrl, {
           ...config,
           method: 'GET',
-        })
+        });
       }
 
-      const contentType = config && config.headers && (config.headers as any)['Content-Type']
+      const contentType = config && config.headers && (config.headers as any)['Content-Type'];
 
       return this.request(url, {
         ...config,
         method,
         body: this.createBody(data, contentType),
-      })
-    }
+      });
+    };
   }
 
-  public get = this.createRequest('GET')
-  public post = this.createRequest('POST')
-  public put = this.createRequest('PUT')
-  public patch = this.createRequest('PATCH')
-  public delete = this.createRequest('DELETE')
+  public get = this.createRequest('GET');
+  public post = this.createRequest('POST');
+  public put = this.createRequest('PUT');
+  public patch = this.createRequest('PATCH');
+  public delete = this.createRequest('DELETE');
 
-  public setToken = (token: Token) => (this.token = token)
+  public setToken = (token: Token) => (this.token = token);
 
   private setAuthenticationHeaders(config: RequestConfig) {
     // if authenticated set bearer token
@@ -110,7 +110,7 @@ export class HttpClient {
       config.headers = {
         ...config.headers,
         Authorization: `Bearer ${this.token}`,
-      }
+      };
     }
   }
 
@@ -121,18 +121,18 @@ export class HttpClient {
    * @memberof HttpClient
    */
   private setAbortController = (config: RequestConfig) => {
-    const { createAbort } = config
+    const { createAbort } = config;
     if (createAbort) {
       if (typeof AbortController !== undefined) {
-        const controller = new AbortController()
-        const { signal } = controller
-        config.signal = signal
-        createAbort(controller.abort.bind(controller))
+        const controller = new AbortController();
+        const { signal } = controller;
+        config.signal = signal;
+        createAbort(controller.abort.bind(controller));
       } else {
-        createAbort(() => console.log('The AbortController api isnt available in your browser'))
+        createAbort(() => console.log('The AbortController api isnt available in your browser'));
       }
     }
-  }
+  };
 
   /**
    *
@@ -144,28 +144,28 @@ export class HttpClient {
    * @memberof HttpClient
    */
   public async request<T>(url: string | URL, requestConfig: RequestConfig = {}): Promise<T> {
-    const { beforeHook } = this.config
+    const { beforeHook } = this.config;
 
     const config: RequestConfig = {
       ...this.config,
       ...requestConfig,
-    }
+    };
 
-    const { baseUrl = '' } = config
+    const { baseUrl = '' } = config;
 
-    this.setAbortController(config)
+    this.setAbortController(config);
 
     if (beforeHook) {
-      await beforeHook(this)
+      await beforeHook(this);
     }
 
-    this.setAuthenticationHeaders(config)
+    this.setAuthenticationHeaders(config);
 
     const requestFn = fetch(baseUrl + url, config)
       .then(this.handleError)
-      .then(res => this.handleSuccess(res, config)) as Promise<T>
+      .then(res => this.handleSuccess(res, config)) as Promise<T>;
 
-    return requestFn.catch(err => this.onError<T>(err, () => this.request(url, requestConfig)))
+    return requestFn.catch(err => this.onError<T>(err, () => this.request(url, requestConfig)));
   }
 
   /**
@@ -178,26 +178,26 @@ export class HttpClient {
    * @memberof HttpClient
    */
   private handleSuccess(res: Response, config: RequestConfig) {
-    const { returnType = 'json' } = config
+    const { returnType = 'json' } = config;
 
     if (res.status === 204 || res.status === 201) {
-      return res
+      return res;
     }
     try {
-      return res[returnType]()
+      return res[returnType]();
     } catch {
-      return res.text()
+      return res.text();
     }
   }
 
   private async onError<T = any>(err: HttpError, requestFn: () => Promise<T>) {
-    const { onError } = this.config
+    const { onError } = this.config;
 
     if (onError) {
-      return onError(err, requestFn)
+      return onError(err, requestFn);
     }
 
-    throw err
+    throw err;
   }
 
   /**
@@ -209,11 +209,11 @@ export class HttpClient {
   private createBody(body: any, contentType: string): any {
     switch (contentType) {
       case 'application/json':
-        return JSON.stringify(body)
+        return JSON.stringify(body);
       case 'application/x-www-form-urlencoded':
-        return new URLSearchParams(body)
+        return new URLSearchParams(body);
       default:
-        return JSON.stringify(body)
+        return JSON.stringify(body);
     }
   }
 
@@ -223,16 +223,16 @@ export class HttpClient {
    */
   private async handleError(response: Response) {
     if (response.ok) {
-      return response
+      return response;
     }
 
-    const responseBody = await response.text()
-    let body: any = response
+    const responseBody = await response.text();
+    let body: any = response;
 
     try {
-      body = JSON.parse(responseBody)
+      body = JSON.parse(responseBody);
     } catch (err) {
-      body = responseBody
+      body = responseBody;
     }
 
     const error = {
@@ -240,9 +240,9 @@ export class HttpClient {
       statusCode: response.status,
       response,
       body,
-    }
+    };
 
-    console.error(error)
-    throw new HttpError(error)
+    console.error(error);
+    throw new HttpError(error);
   }
 }

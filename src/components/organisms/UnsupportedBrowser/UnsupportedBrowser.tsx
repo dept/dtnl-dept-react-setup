@@ -1,39 +1,39 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from 'react';
 
 function checkUnsupported() {
   if (typeof window === 'undefined') {
-    return false
+    return false;
   }
 
-  const ua = window.navigator.userAgent
+  const ua = window.navigator.userAgent;
 
   // test if browser is  <= IE10
-  const msie = ua.indexOf('MSIE ')
+  const msie = ua.indexOf('MSIE ');
   if (msie > 0) {
-    return true
+    return true;
   }
 
   // test if browser is IE11
-  const trident = ua.indexOf('Trident/')
+  const trident = ua.indexOf('Trident/');
   if (trident > 0) {
-    return true
+    return true;
   }
 
-  return false
+  return false;
 }
 
 interface UnsupportedBrowserProps {
-  supportIE?: boolean
+  supportIE?: boolean;
 }
 
 export const UnsupportedBrowser: React.FC<UnsupportedBrowserProps> = ({
   children,
   supportIE = false,
 }) => {
-  const isUnsupported = useMemo(checkUnsupported, [])
+  const isUnsupported = useMemo(checkUnsupported, []);
 
   if (!isUnsupported || supportIE) {
-    return <>{children}</>
+    return <>{children}</>;
   }
 
   return (
@@ -147,5 +147,5 @@ export const UnsupportedBrowser: React.FC<UnsupportedBrowserProps> = ({
         }
       `}</style>
     </>
-  )
-}
+  );
+};

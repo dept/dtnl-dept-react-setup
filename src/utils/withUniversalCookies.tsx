@@ -1,12 +1,12 @@
-import { NextPageContext } from 'next'
-import { AppContext, AppProps } from 'next/app'
-import { AppType } from 'next/dist/next-server/lib/utils'
-import React from 'react'
-import { Cookies, CookiesProvider } from 'react-cookie'
+import { NextPageContext } from 'next';
+import { AppContext, AppProps } from 'next/app';
+import { AppType } from 'next/dist/next-server/lib/utils';
+import React from 'react';
+import { Cookies, CookiesProvider } from 'react-cookie';
 
 type WithUniversalCookieProps = AppProps & {
-  cookies: Cookies
-}
+  cookies: Cookies;
+};
 
 /**
  * Wraps the app with the CookieProvider from react-cookie (https://github.com/reactivestack/cookies/tree/master/packages/react-cookie)
@@ -19,33 +19,33 @@ type WithUniversalCookieProps = AppProps & {
 export const withUniversalCookies = (App: AppType) => {
   function getCookies(ctx: NextPageContext) {
     if (ctx && ctx.req && ctx.req.headers.cookie) {
-      return new Cookies(ctx.req.headers.cookie)
+      return new Cookies(ctx.req.headers.cookie);
     }
 
-    return new Cookies()
+    return new Cookies();
   }
 
   const WithUniversalCookies = (props: WithUniversalCookieProps) => {
-    const { cookies, ...rest } = props
+    const { cookies, ...rest } = props;
     return (
       <CookiesProvider cookies={process.browser ? undefined : cookies}>
         <App {...rest} />
       </CookiesProvider>
-    )
-  }
+    );
+  };
 
   WithUniversalCookies.getInitialProps = async (appCtx: AppContext) => {
-    const { ctx } = appCtx
-    let appProps: any = {}
+    const { ctx } = appCtx;
+    let appProps: any = {};
 
     if (App.getInitialProps) {
-      appProps = await App.getInitialProps(appCtx)
+      appProps = await App.getInitialProps(appCtx);
     }
 
-    const cookies = getCookies(ctx)
+    const cookies = getCookies(ctx);
 
-    return { ...appProps, cookies }
-  }
+    return { ...appProps, cookies };
+  };
 
-  return WithUniversalCookies
-}
+  return WithUniversalCookies;
+};

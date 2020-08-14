@@ -1,1 +1,1 @@
-export * from './UnsupportedBrowser'
+export * from './UnsupportedBrowser';

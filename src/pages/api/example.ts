@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handle(_req: NextApiRequest, res: NextApiResponse) {
-  res.end('Hello World')
+  res.end('Hello World');
 }

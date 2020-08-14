@@ -1,8 +1,8 @@
-import { render } from '@test/utils'
-import React from 'react'
+import { render } from '@test/utils';
+import React from 'react';
 
-import { Rte } from './Rte'
+import { Rte } from './Rte';
 
 test('it renders', () => {
-  render(<Rte>{'<h1>Test</h1>'}</Rte>)
-})
+  render(<Rte>{'<h1>Test</h1>'}</Rte>);
+});

@@ -1,47 +1,47 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 
-export const UNDO_TIME = 4000
+export const UNDO_TIME = 4000;
 
-type CallbackFn = () => Promise<any>
+type CallbackFn = () => Promise<any>;
 
 export function useUndo() {
-  const [undoing, setUndoing] = useState(false)
-  const [cancel, setCancel] = useState(false)
-  const timeout = useRef<any>()
+  const [undoing, setUndoing] = useState(false);
+  const [cancel, setCancel] = useState(false);
+  const timeout = useRef<any>();
 
-  const [callback, setCallback] = useState<CallbackFn>()
+  const [callback, setCallback] = useState<CallbackFn>();
 
   useEffect(() => {
-    clearTimeout(timeout.current)
+    clearTimeout(timeout.current);
     if (undoing) {
       timeout.current = setTimeout(() => {
         if (callback) {
-          callback()
+          callback();
         }
-        setUndoing(false)
-      }, UNDO_TIME)
+        setUndoing(false);
+      }, UNDO_TIME);
     }
     return () => {
-      clearTimeout(timeout.current)
-    }
-  }, [undoing, callback])
+      clearTimeout(timeout.current);
+    };
+  }, [undoing, callback]);
 
   useEffect(() => {
     if (cancel) {
-      setUndoing(false)
-      setCancel(false)
-      clearTimeout(timeout.current)
+      setUndoing(false);
+      setCancel(false);
+      clearTimeout(timeout.current);
     }
-  }, [cancel, timeout])
+  }, [cancel, timeout]);
 
   function start(func: CallbackFn) {
-    setCallback(() => func)
-    setUndoing(true)
+    setCallback(() => func);
+    setUndoing(true);
   }
 
   return {
     undoing,
     start,
     cancel: () => setCancel(true),
-  }
+  };
 }

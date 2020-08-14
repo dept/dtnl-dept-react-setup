@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Divider = styled.hr`
   border: 0;
@@ -7,4 +7,4 @@ export const Divider = styled.hr`
   height: 1px;
   width: 100%;
   margin: 0px;
-`
+`;

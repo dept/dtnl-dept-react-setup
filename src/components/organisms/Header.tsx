@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { Box, Flex, Link, NavLink } from '@/components/atoms'
+import { Box, Flex, Link, NavLink } from '@/components/atoms';
 
 interface HeaderProps {}
 
@@ -13,7 +13,7 @@ const NavigationLink = styled(Box)`
   &.active {
     --border-color: rgba(0, 0, 0, 0.2);
   }
-`
+`;
 
 const items = [
   {
@@ -32,7 +32,7 @@ const items = [
     href: '/admin',
     title: 'Admin',
   },
-]
+];
 
 const Navigation: React.FC = () => {
   return (
@@ -46,11 +46,11 @@ const Navigation: React.FC = () => {
               </NavigationLink>
             </NavLink>
           </Box>
-        )
+        );
       })}
     </Flex>
-  )
-}
+  );
+};
 
 export const Header: React.FC<HeaderProps> = () => {
   return (
@@ -65,5 +65,5 @@ export const Header: React.FC<HeaderProps> = () => {
 
       <Navigation></Navigation>
     </Flex>
-  )
-}
+  );
+};

@@ -1,9 +1,9 @@
-import { render } from '@test/utils'
-import React from 'react'
+import { render } from '@test/utils';
+import React from 'react';
 
-import { Column } from './Column'
-import { Grid } from './Grid'
-import { Row } from './Row'
+import { Column } from './Column';
+import { Grid } from './Grid';
+import { Row } from './Row';
 
 test('it renders', () => {
   render(
@@ -15,5 +15,5 @@ test('it renders', () => {
         <Column>4</Column>
       </Row>
     </Grid>,
-  )
-})
+  );
+});

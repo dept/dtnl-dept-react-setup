@@ -1,41 +1,41 @@
-import React, { FC, HTMLAttributes } from 'react'
-import styled from 'styled-components'
+import React, { FC, HTMLAttributes } from 'react';
+import styled from 'styled-components';
 
-import { IconOption } from '@/theme'
-import { colors } from '@/theme/colors'
+import { IconOption } from '@/theme';
+import { colors } from '@/theme/colors';
 
-import { Box, BoxProps } from '../Grid'
-import { Icon } from '../Icon'
+import { Box, BoxProps } from '../Grid';
+import { Icon } from '../Icon';
 
-type ButtonElements = 'button' | 'a' | 'span'
+type ButtonElements = 'button' | 'a' | 'span';
 
 interface IconButtonProps {
-  as?: ButtonElements
-  icon: IconOption
-  'aria-label': string
-  size?: number
-  height?: any
-  padding?: number
-  color?: string
-  radii?: number
-  rotate?: number
-  selected?: boolean
-  disabled?: boolean
-  border?: boolean
-  type?: string
+  as?: ButtonElements;
+  icon: IconOption;
+  'aria-label': string;
+  size?: number;
+  height?: any;
+  padding?: number;
+  color?: string;
+  radii?: number;
+  rotate?: number;
+  selected?: boolean;
+  disabled?: boolean;
+  border?: boolean;
+  type?: string;
 }
 
 interface ConditionalProps {
-  as: ButtonElements
-  type?: 'submit' | 'button' | 'reset'
+  as: ButtonElements;
+  type?: 'submit' | 'button' | 'reset';
 }
 
 interface IconButtonStyledProps {
-  size: number
-  height?: number
-  padding: number
-  radii?: number
-  border?: boolean
+  size: number;
+  height?: number;
+  padding: number;
+  radii?: number;
+  border?: boolean;
 }
 
 const StyledIconButton = styled(Box)<IconButtonStyledProps>`
@@ -51,7 +51,7 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
     outline: none;
     box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
   }
-`
+`;
 
 export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = ({
   icon,
@@ -66,9 +66,9 @@ export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = 
   bg,
   ...rest
 }) => {
-  const conditionalProps: ConditionalProps = { as }
+  const conditionalProps: ConditionalProps = { as };
   if (as === 'button') {
-    conditionalProps.type = 'button'
+    conditionalProps.type = 'button';
   }
 
   return (
@@ -83,5 +83,5 @@ export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = 
       {...rest}>
       <Icon color={color} icon={icon} rotate={rotate} size={size} />
     </StyledIconButton>
-  )
-}
+  );
+};

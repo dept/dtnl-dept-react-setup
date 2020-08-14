@@ -1,24 +1,26 @@
-import { LinkProps } from 'next/link'
-import React from 'react'
-import { useTheme } from 'styled-components'
+import { LinkProps } from 'next/link';
+import React from 'react';
+import { useTheme } from 'styled-components';
 
-import { IconOption } from '@/theme'
+import { IconOption } from '@/theme';
 
-import { Box, BoxProps, Flex, PseudoBox } from '../Grid'
-import { Icon } from '../Icon'
-import { Link } from '../Link'
+import { Box, BoxProps, Flex, PseudoBox } from '../Grid';
+import { Icon } from '../Icon';
+import { Link } from '../Link';
 
 interface HyperLinkElementProps {
-  icon?: IconOption
-  iconColor?: string
-  target?: string
+  icon?: IconOption;
+  iconColor?: string;
+  target?: string;
 }
 
-type HyperlinkProps = BoxProps & Pick<LinkProps, 'href' | 'as' | 'prefetch'> & HyperLinkElementProps
+type HyperlinkProps = BoxProps &
+  Pick<LinkProps, 'href' | 'as' | 'prefetch'> &
+  HyperLinkElementProps;
 
 export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
   ({ children, icon, href, as, iconColor, color = 'primary', ...props }, ref) => {
-    const theme = useTheme()
+    const theme = useTheme();
 
     return (
       <Link href={href} as={as} passHref>
@@ -43,6 +45,6 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
           </Flex>
         </PseudoBox>
       </Link>
-    )
+    );
   },
-)
+);

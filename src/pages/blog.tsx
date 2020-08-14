@@ -1,15 +1,15 @@
-import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import React from 'react'
+import { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
+import React from 'react';
 
-import { Box, Heading, Hyperlink } from '@/components/atoms'
+import { Box, Heading, Hyperlink } from '@/components/atoms';
 
 interface PageProps {}
 
 export interface BlogPost {
-  id: number
-  title: string
-  content: string
+  id: number;
+  title: string;
+  content: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -23,7 +23,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Another example blog post',
     content: 'More awesome content',
   },
-]
+];
 
 const Page: NextPage<PageProps> = () => {
   return (
@@ -41,12 +41,12 @@ const Page: NextPage<PageProps> = () => {
                   {item.title}
                 </Hyperlink>
               </li>
-            )
+            );
           })}
         </ul>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

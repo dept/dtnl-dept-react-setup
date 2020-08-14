@@ -1,15 +1,15 @@
-import { FC } from 'react'
-import { CSSTransition } from 'react-transition-group'
-import styled from 'styled-components'
+import { FC } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import styled from 'styled-components';
 
-import { useMeasure } from '@/utils/hooks'
+import { useMeasure } from '@/utils/hooks';
 
 interface Props {
-  isOpen?: boolean
-  maxHeight?: number
+  isOpen?: boolean;
+  maxHeight?: number;
 }
 
-const duration = 300
+const duration = 300;
 
 const CollapseWrapper = styled.div<{ height: number }>`
   overflow: hidden;
@@ -43,11 +43,11 @@ const CollapseWrapper = styled.div<{ height: number }>`
     opacity: 0;
     height: 0px;
   }
-`
+`;
 
 export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
-  const { ref, bounds } = useMeasure()
-  const { height: elementHeight } = bounds
+  const { ref, bounds } = useMeasure();
+  const { height: elementHeight } = bounds;
 
   return (
     <>
@@ -57,5 +57,5 @@ export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
         </CollapseWrapper>
       </CSSTransition>
     </>
-  )
-}
+  );
+};

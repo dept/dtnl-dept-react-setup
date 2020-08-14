@@ -1,16 +1,16 @@
-import { useRef, useState } from 'react'
-import { Manager, Popper, PopperProps, Reference } from 'react-popper'
-import useClickAway from 'react-use/lib/useClickAway'
-import styled from 'styled-components'
+import { useRef, useState } from 'react';
+import { Manager, Popper, PopperProps, Reference } from 'react-popper';
+import useClickAway from 'react-use/lib/useClickAway';
+import styled from 'styled-components';
 
-import { colors } from '@/theme/colors'
+import { colors } from '@/theme/colors';
 
-import { Box, Flex } from '../Grid'
-import { Text } from '../Text'
+import { Box, Flex } from '../Grid';
+import { Text } from '../Text';
 
 interface TooltipProps {
-  placement?: PopperProps['placement']
-  trigger?: any
+  placement?: PopperProps['placement'];
+  trigger?: any;
 }
 
 const TooltipElement = styled(Box)`
@@ -22,7 +22,7 @@ const TooltipElement = styled(Box)`
   margin: 10px 0;
   transition: opacity 0.2s linear;
   pointer-events: none;
-`
+`;
 
 const Trigger = styled.button`
   width: 22px;
@@ -34,15 +34,15 @@ const Trigger = styled.button`
   padding: 0;
   vertical-align: middle;
   position: relative;
-`
+`;
 
 export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, trigger }) => {
-  const [active, setActive] = useState(false)
-  const tooltipRef = useRef(null)
+  const [active, setActive] = useState(false);
+  const tooltipRef = useRef(null);
 
   useClickAway(tooltipRef, () => {
-    setActive(false)
-  })
+    setActive(false);
+  });
 
   return (
     <Manager>
@@ -78,9 +78,9 @@ export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, t
 
               {/* <div ref={arrowProps.ref} style={arrowProps.style} /> */}
             </TooltipElement>
-          )
+          );
         }}
       </Popper>
     </Manager>
-  )
-}
+  );
+};

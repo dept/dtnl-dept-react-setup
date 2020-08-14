@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
-import styled, { keyframes } from 'styled-components'
+import { ReactNode } from 'react';
+import styled, { keyframes } from 'styled-components';
 
-const defaultBaseColor = '#eee'
+const defaultBaseColor = '#eee';
 
-const defaultHighlightColor = '#f5f5f5'
+const defaultHighlightColor = '#f5f5f5';
 
 const skeletonKeyframes = keyframes`
   0% {
@@ -12,7 +12,7 @@ const skeletonKeyframes = keyframes`
   100% {
     background-position: calc(200px + 100%) 0;
   }
-`
+`;
 
 const SkeletonElement = styled.span`
   background-color: ${defaultBaseColor};
@@ -29,40 +29,40 @@ const SkeletonElement = styled.span`
   line-height: 1;
   width: 100%;
   animation: ${skeletonKeyframes} 1.2s ease-in-out infinite;
-`
+`;
 
 interface Props {
-  count?: number
-  duration?: number
-  width?: string
-  wrapper?: ReactNode
-  height?: string
-  circle?: boolean
+  count?: number;
+  duration?: number;
+  width?: string;
+  wrapper?: ReactNode;
+  height?: string;
+  circle?: boolean;
 }
 
 export const Skeleton: React.FC<Props> = props => {
-  const { count = 1, width, height, circle, wrapper } = props
+  const { count = 1, width, height, circle, wrapper } = props;
 
-  const elements = []
+  const elements = [];
   for (let i = 0; i < count; i++) {
-    const style: any = {}
+    const style: any = {};
     if (width != null) {
-      style.width = width
+      style.width = width;
     }
     if (height != null) {
-      style.height = height
+      style.height = height;
     }
     if (width !== null && height !== null && circle) {
-      style.borderRadius = '50%'
+      style.borderRadius = '50%';
     }
     elements.push(
       <SkeletonElement key={i} style={style}>
         &zwnj;
       </SkeletonElement>,
-    )
+    );
   }
 
-  const Wrapper: any = wrapper
+  const Wrapper: any = wrapper;
 
   return (
     <span>
@@ -75,12 +75,12 @@ export const Skeleton: React.FC<Props> = props => {
           ))
         : elements}
     </span>
-  )
-}
+  );
+};
 
 Skeleton.defaultProps = {
   count: 1,
   duration: 1.2,
   wrapper: null,
   circle: false,
-}
+};

@@ -9,48 +9,48 @@ import {
   FieldInputProps,
   FieldMetaProps,
   useField,
-} from 'formik'
-import { ChangeEvent, useEffect, useState } from 'react'
+} from 'formik';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export function useFastField<Val = any>(
   propsOrFieldName: string | FieldHookConfig<Val>,
 ): [FieldInputProps<Val>, FieldMetaProps<Val>, FieldHelperProps<Val>] {
-  const INTERVAL = 250
+  const INTERVAL = 250;
 
-  const [field, meta, helpers] = useField(propsOrFieldName)
-  const [value, setValue] = useState(field.value)
-  const { onBlur, onChange } = field
-  const [fieldChangeEvent, setFieldChangeEvent] = useState<ChangeEvent<any>>()
+  const [field, meta, helpers] = useField(propsOrFieldName);
+  const [value, setValue] = useState(field.value);
+  const { onBlur, onChange } = field;
+  const [fieldChangeEvent, setFieldChangeEvent] = useState<ChangeEvent<any>>();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (fieldChangeEvent && fieldChangeEvent?.target) {
-        onChange(fieldChangeEvent)
+        onChange(fieldChangeEvent);
       }
-    }, INTERVAL)
+    }, INTERVAL);
 
-    return () => clearTimeout(timeout)
-  }, [fieldChangeEvent, onChange])
+    return () => clearTimeout(timeout);
+  }, [fieldChangeEvent, onChange]);
 
-  field.value = value
+  field.value = value;
 
   field.onChange = (e: ChangeEvent<any>) => {
     if (e && e.target) {
-      setValue(e.currentTarget.value)
+      setValue(e.currentTarget.value);
 
-      e.persist()
-      setFieldChangeEvent(e)
+      e.persist();
+      setFieldChangeEvent(e);
     }
-  }
+  };
 
   field.onBlur = (e: ChangeEvent<any>) => {
-    onChange(e)
-    onBlur(e)
-  }
+    onChange(e);
+    onBlur(e);
+  };
 
   helpers.setValue = value => {
-    setValue(value)
-  }
+    setValue(value);
+  };
 
-  return [field, meta, helpers]
+  return [field, meta, helpers];
 }

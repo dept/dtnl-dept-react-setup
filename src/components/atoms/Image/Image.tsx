@@ -1,23 +1,23 @@
-import css from '@styled-system/css'
-import React, { FC, useEffect, useRef, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
+import css from '@styled-system/css';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import { Box, BoxProps } from '../Grid'
+import { Box, BoxProps } from '../Grid';
 
 type ImageProps = BoxProps & {
-  src?: string
-  srcSet?: string
-  placeholderSrc?: string
-  placeholderSrcSet?: string
-  alt: string
-  ratio?: number
-  lazyload?: boolean
-  onLoad?: (event: Event) => void
-  onError?: (event: Event | string) => void
-}
+  src?: string;
+  srcSet?: string;
+  placeholderSrc?: string;
+  placeholderSrcSet?: string;
+  alt: string;
+  ratio?: number;
+  lazyload?: boolean;
+  onLoad?: (event: Event) => void;
+  onError?: (event: Event | string) => void;
+};
 
 const transparentPlaceholder =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
 export const Image: FC<ImageProps> = ({
   src,
@@ -33,41 +33,41 @@ export const Image: FC<ImageProps> = ({
   ratio,
   ...props
 }) => {
-  const isMounted = useRef(true)
-  const [hasLoaded, setHasLoaded] = useState(false)
+  const isMounted = useRef(true);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [ref, inView] = useInView({
     threshold: 0,
     triggerOnce: true,
     rootMargin: '100px',
-  })
+  });
 
   useEffect(() => {
     if (!src && !srcSet) {
-      return
+      return;
     }
 
     if (lazyload && !inView) {
-      return
+      return;
     }
 
-    const image = new window.Image()
-    if (src) image.src = src
-    if (srcSet) image.srcset = srcSet
+    const image = new window.Image();
+    if (src) image.src = src;
+    if (srcSet) image.srcset = srcSet;
 
     image.onload = event => {
       if (isMounted.current) {
-        setHasLoaded(true)
-        onLoad && onLoad(event)
+        setHasLoaded(true);
+        onLoad && onLoad(event);
       }
-    }
+    };
 
     image.onerror = event => {
       if (isMounted.current) {
-        setHasLoaded(false)
-        onError && onError(event)
+        setHasLoaded(false);
+        onError && onError(event);
       }
-    }
-  }, [src, srcSet, onLoad, onError, inView, lazyload])
+    };
+  }, [src, srcSet, onLoad, onError, inView, lazyload]);
 
   const ratioProps = ratio
     ? {
@@ -75,7 +75,7 @@ export const Image: FC<ImageProps> = ({
         top: 0,
         left: 0,
       }
-    : {}
+    : {};
 
   return (
     <Box {...props} position="relative" ref={ref} pt={ratio ? ratio * 100 + '%' : undefined}>
@@ -96,5 +96,5 @@ export const Image: FC<ImageProps> = ({
         alt={alt}
       />
     </Box>
-  )
-}
+  );
+};

@@ -233,7 +233,7 @@ const palette = {
     800: '#005885',
     900: '#003f5e',
   },
-}
+};
 
 export const colors = {
   primary: '#1a18f7',
@@ -248,4 +248,4 @@ export const colors = {
   transparent: 'transparent',
   current: 'currentColor',
   ...palette,
-}
+};

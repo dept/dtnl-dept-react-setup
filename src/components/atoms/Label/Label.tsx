@@ -1,10 +1,10 @@
-import css from '@styled-system/css'
-import React, { HTMLAttributes } from 'react'
+import css from '@styled-system/css';
+import React, { HTMLAttributes } from 'react';
 
-import { PseudoBox, PseudoBoxProps } from '../Grid'
+import { PseudoBox, PseudoBoxProps } from '../Grid';
 
 interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
-  htmlFor?: string
+  htmlFor?: string;
 }
 
 export const Label: React.FC<LabelProps & PseudoBoxProps> = ({ children, ...props }) => {
@@ -18,5 +18,5 @@ export const Label: React.FC<LabelProps & PseudoBoxProps> = ({ children, ...prop
       {...props}>
       {children}
     </PseudoBox>
-  )
-}
+  );
+};

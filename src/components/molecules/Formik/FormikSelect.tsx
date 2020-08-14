@@ -1,18 +1,18 @@
-import { useField } from 'formik'
-import React from 'react'
+import { useField } from 'formik';
+import React from 'react';
 
-import { useFastField } from '@/utils/hooks'
+import { useFastField } from '@/utils/hooks';
 
-import { FieldSelect, FieldSelectProps } from '../Form/FieldSelect'
-import { FormikError } from './FormikError'
+import { FieldSelect, FieldSelectProps } from '../Form/FieldSelect';
+import { FormikError } from './FormikError';
 
 type FormikSelectProps = FieldSelectProps & {
-  name: string
-  optimized?: boolean
-}
+  name: string;
+  optimized?: boolean;
+};
 
 export const FormikSelect: React.FC<FormikSelectProps> = ({ name, optimized, ...props }) => {
-  const [field, meta, helpers] = (optimized ? useFastField : useField)(name)
+  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
 
   return (
     <>
@@ -21,12 +21,12 @@ export const FormikSelect: React.FC<FormikSelectProps> = ({ name, optimized, ...
         {...field}
         onBlur={() => helpers.setTouched(true)}
         onChange={item => {
-          helpers.setValue(item)
+          helpers.setValue(item);
         }}
         hasError={Boolean(meta.touched && meta.error)}
       />
 
       <FormikError name={name} />
     </>
-  )
-}
+  );
+};

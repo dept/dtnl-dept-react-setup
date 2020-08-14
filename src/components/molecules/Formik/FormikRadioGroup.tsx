@@ -1,22 +1,22 @@
-import { useField } from 'formik'
-import React from 'react'
+import { useField } from 'formik';
+import React from 'react';
 
-import { useFastField } from '@/utils/hooks'
-import { Omit } from '@/utils/types'
+import { useFastField } from '@/utils/hooks';
+import { Omit } from '@/utils/types';
 
-import { FieldRadioGroup, FieldRadioGroupProps } from '../Form/FieldRadioGroup'
-import { FormikError } from './FormikError'
+import { FieldRadioGroup, FieldRadioGroupProps } from '../Form/FieldRadioGroup';
+import { FormikError } from './FormikError';
 
 type FormikRadioGroupProps = Omit<FieldRadioGroupProps, 'onChange' | 'value'> & {
-  optimized?: boolean
-}
+  optimized?: boolean;
+};
 
 export const FormikRadioGroup: React.FC<FormikRadioGroupProps> = ({
   name,
   optimized,
   ...props
 }) => {
-  const [field, meta, helpers] = (optimized ? useFastField : useField)(name)
+  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
 
   return (
     <>
@@ -28,5 +28,5 @@ export const FormikRadioGroup: React.FC<FormikRadioGroupProps> = ({
 
       <FormikError name={name} />
     </>
-  )
-}
+  );
+};

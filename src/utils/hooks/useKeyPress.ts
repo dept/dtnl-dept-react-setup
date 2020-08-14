@@ -1,16 +1,16 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
 export function useKeyPress(targetKey: string, callback: () => void) {
   useEffect(() => {
     function downHandler({ key }: KeyboardEvent) {
       if (key === targetKey) {
-        callback()
+        callback();
       }
     }
 
-    window.addEventListener('keydown', downHandler)
+    window.addEventListener('keydown', downHandler);
     return () => {
-      window.removeEventListener('keydown', downHandler)
-    }
-  }, [callback, targetKey])
+      window.removeEventListener('keydown', downHandler);
+    };
+  }, [callback, targetKey]);
 }

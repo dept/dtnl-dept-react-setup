@@ -1,7 +1,7 @@
-import { Box, Flex, Grid, Heading, Text } from '@/components/atoms'
+import { Box, Flex, Grid, Heading, Text } from '@/components/atoms';
 
-import { Modal } from '../molecules'
-import { Footer, Header } from '../organisms'
+import { Modal } from '../molecules';
+import { Footer, Header } from '../organisms';
 
 interface BaseLayoutProps {}
 
@@ -21,5 +21,5 @@ export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
         </Box>
       </Modal>
     </Flex>
-  )
-}
+  );
+};

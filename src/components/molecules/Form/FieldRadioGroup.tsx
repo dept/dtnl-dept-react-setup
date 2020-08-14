@@ -1,21 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import { Column, Row } from '@/components/atoms'
+import { Column, Row } from '@/components/atoms';
 
-import { FieldRadio, FieldRadioProps } from './FieldRadio'
+import { FieldRadio, FieldRadioProps } from './FieldRadio';
 
 interface Option {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 export type FieldRadioGroupProps = FieldRadioProps & {
-  options: Option[]
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void
-  name: string
-  direction?: 'horizontal' | 'vertical'
-  value: string | undefined
-}
+  options: Option[];
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  name: string;
+  direction?: 'horizontal' | 'vertical';
+  value: string | undefined;
+};
 
 export const FieldRadioGroup: React.FC<FieldRadioGroupProps> = ({
   name,
@@ -39,8 +39,8 @@ export const FieldRadioGroup: React.FC<FieldRadioGroupProps> = ({
               {option.label}
             </FieldRadio>
           </Column>
-        )
+        );
       })}
     </Row>
-  )
-}
+  );
+};

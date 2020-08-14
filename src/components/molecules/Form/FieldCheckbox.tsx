@@ -1,21 +1,21 @@
-import css from '@styled-system/css'
-import { hideVisually } from 'polished'
-import React, { InputHTMLAttributes } from 'react'
-import styled, { useTheme } from 'styled-components'
+import css from '@styled-system/css';
+import { hideVisually } from 'polished';
+import React, { InputHTMLAttributes } from 'react';
+import styled, { useTheme } from 'styled-components';
 
-import { Box, Flex, Icon, Label, Text } from '@/components/atoms'
+import { Box, Flex, Icon, Label, Text } from '@/components/atoms';
 
 export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  checked?: boolean
-  hasError?: any
-  value?: string
-  name: string
-  disabled?: boolean
+  checked?: boolean;
+  hasError?: any;
+  value?: string;
+  name: string;
+  disabled?: boolean;
 }
 
 const HiddenInput = styled.input`
   ${hideVisually()};
-`
+`;
 
 export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
   children,
@@ -25,7 +25,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
   hasError,
   ...props
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <Label>
       <Flex opacity={props.disabled ? 0.2 : 1} alignItems="center">
@@ -67,5 +67,5 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
         </Box>
       </Flex>
     </Label>
-  )
-}
+  );
+};

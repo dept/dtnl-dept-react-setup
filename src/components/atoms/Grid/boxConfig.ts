@@ -1,7 +1,7 @@
-import { Config, get, system } from 'styled-system'
+import { Config, get, system } from 'styled-system';
 
-const isNumber = (n: any) => typeof n === 'number' && !isNaN(n)
-const getWidth = (n: any, scale: any) => get(scale, n, !isNumber(n) || n > 1 ? n : n * 100 + '%')
+const isNumber = (n: any) => typeof n === 'number' && !isNaN(n);
+const getWidth = (n: any, scale: any) => get(scale, n, !isNumber(n) || n > 1 ? n : n * 100 + '%');
 
 export const config: Config = {
   roundedTop: {
@@ -131,47 +131,47 @@ export const config: Config = {
   outline: true,
   float: true,
   willChange: true,
-}
+};
 
-config.bgAttachment = config.backgroundAttachment
-config.textDecor = config.textDecoration
-config.listStylePos = config.listStylePosition
-config.listStyleImg = config.listStyleImage
+config.bgAttachment = config.backgroundAttachment;
+config.textDecor = config.textDecoration;
+config.listStylePos = config.listStylePosition;
+config.listStyleImg = config.listStyleImage;
 
-export const boxConfig = system(config)
+export const boxConfig = system(config);
 
 // Create an issue on @styled-system/css to allow custom alias to be passed to the `css` function
 
 // Transform the custom alias to a format that styled-system CSS supports
 const transformAlias = (prop: string, propValue: any) => {
-  const configKeys = Object.keys(config)
-  const result: any = {}
+  const configKeys = Object.keys(config);
+  const result: any = {};
 
   if (configKeys.includes(prop)) {
-    const { properties, property } = config[prop] as any
+    const { properties, property } = config[prop] as any;
     if (properties) {
-      properties.forEach((_cssProp: any) => (result[_cssProp] = propValue))
+      properties.forEach((_cssProp: any) => (result[_cssProp] = propValue));
     }
     if (property) {
-      result[property] = propValue
+      result[property] = propValue;
     }
     if (config[prop] === true) {
-      result[prop] = propValue
+      result[prop] = propValue;
     }
   } else {
-    result[prop] = propValue
+    result[prop] = propValue;
   }
-  return result
-}
+  return result;
+};
 
 export const transformAliasProps = (props: any) => {
-  let result = {}
+  let result = {};
   for (const prop in props) {
     if (typeof props[prop] === 'object' && !Array.isArray(props[prop])) {
-      result = { ...result, [prop]: transformAliasProps(props[prop]) }
+      result = { ...result, [prop]: transformAliasProps(props[prop]) };
     } else {
-      result = { ...result, ...transformAlias(prop, props[prop]) }
+      result = { ...result, ...transformAlias(prop, props[prop]) };
     }
   }
-  return result
-}
+  return result;
+};
