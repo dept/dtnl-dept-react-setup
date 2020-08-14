@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { Box, Flex } from '../Grid'
-import { Skeleton } from './Skeleton'
+import { Box, Flex } from '../Grid';
+import { Skeleton } from './Skeleton';
 
-export default { title: 'Atoms|Skeleton', component: Skeleton }
+export default { title: 'Atoms/Skeleton', component: Skeleton };
 
 export const example = () => (
   <Box borderRadius={10} border="1px solid #ddd" p={4}>
@@ -20,10 +20,10 @@ export const example = () => (
       <Skeleton width="60%" count={1}></Skeleton>
     </Box>
   </Box>
-)
+);
 
 example.story = {
   parameters: {
     info: 'Perfect for loading placeholders',
   },
-}
+};

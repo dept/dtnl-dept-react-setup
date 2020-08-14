@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { FieldRadio } from './FieldRadio'
+import { FieldRadio } from './FieldRadio';
 
-export default { title: 'Forms|Radio', component: FieldRadio }
+export default { title: 'Forms/Radio', component: FieldRadio };
 
 export const example = () => (
   <>
@@ -16,4 +16,4 @@ export const example = () => (
       Other
     </FieldRadio>
   </>
-)
+);

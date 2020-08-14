@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import { Divider } from '.'
+import { Divider } from '.';
 
-export default { title: 'Atoms|Divider', component: Divider }
+export default { title: 'Atoms/Divider', component: Divider };
 
-export const example = () => <Divider />
+export const example = () => <Divider />;

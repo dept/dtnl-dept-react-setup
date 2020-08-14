@@ -1,9 +1,9 @@
-import { text } from '@storybook/addon-knobs'
-import React from 'react'
+import { text } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { Image } from './Image'
+import { Image } from './Image';
 
-export default { title: 'Atoms|Image', component: Image }
+export default { title: 'Atoms/Image', component: Image };
 
 export const Default = () => (
   <Image
@@ -24,4 +24,4 @@ export const Default = () => (
     )}
     alt={text('alt', 'Cat picture')}
   />
-)
+);

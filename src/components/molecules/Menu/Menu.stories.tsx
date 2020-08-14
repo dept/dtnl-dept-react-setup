@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { Box, Button } from '@/components/atoms'
+import { Box, Button } from '@/components/atoms';
 
-import { Menu } from './Menu'
+import { Menu } from './Menu';
 
-export default { title: 'Molecules|Menu' }
+export default { title: 'Molecules/Menu' };
 
 export const example = () => {
   return (
@@ -24,5 +24,5 @@ export const example = () => {
         </Button>
       </Box>
     </Menu>
-  )
-}
+  );
+};

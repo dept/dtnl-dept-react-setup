@@ -1,9 +1,9 @@
-import { number } from '@storybook/addon-knobs'
-import React from 'react'
+import { number } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { Pagination } from './Pagination'
+import { Pagination } from './Pagination';
 
-export default { title: 'Molecules|Pagination', component: Pagination }
+export default { title: 'Molecules/Pagination', component: Pagination };
 
 export const example = () => {
   return (
@@ -13,5 +13,5 @@ export const example = () => {
       perPage={number('Items per page', 10)}
       onNavigate={val => console.log(val)}
     />
-  )
-}
+  );
+};

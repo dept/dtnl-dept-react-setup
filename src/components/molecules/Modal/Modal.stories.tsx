@@ -1,12 +1,12 @@
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs } from '@storybook/addon-knobs';
 
-import { Box, Button } from '@/components/atoms'
-import { useModalActions } from '@/context/ModalContext'
+import { Box, Button } from '@/components/atoms';
+import { useModalActions } from '@/context/ModalContext';
 
-import { Modal } from '.'
+import { Modal } from '.';
 
 export default {
-  title: 'Molecules|Modal',
+  title: 'Molecules/Modal',
   decorators: [
     withKnobs,
     (storyFn: any) => {
@@ -15,21 +15,21 @@ export default {
           <ModalButton>Open modal</ModalButton>
           {storyFn()}
         </>
-      )
+      );
     },
   ],
   component: Modal,
-}
+};
 
 const ModalButton: React.FC = ({ children }) => {
-  const modalActions = useModalActions()
-  return <Button onClick={() => modalActions.show('storybook')}>{children}</Button>
-}
+  const modalActions = useModalActions();
+  return <Button onClick={() => modalActions.show('storybook')}>{children}</Button>;
+};
 
 export const component = () => {
   return (
     <Modal id="storybook">
       <Box p={50}>Content of modal</Box>
     </Modal>
-  )
-}
+  );
+};

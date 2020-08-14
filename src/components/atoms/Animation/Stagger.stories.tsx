@@ -1,16 +1,16 @@
-import { number } from '@storybook/addon-knobs'
-import React from 'react'
+import { number } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { Box } from '../Grid'
-import { Stagger } from './Stagger'
+import { Box } from '../Grid';
+import { Stagger } from './Stagger';
 
-export default { title: 'Atoms|Animation', component: Stagger }
+export default { title: 'Atoms/Animation', component: Stagger };
 
 export const stagger = () => {
   const props = {
     duration: number('Duration', 2),
     staggerDelay: number('Stagger delay', 0.2),
-  }
+  };
 
   return (
     <Stagger key={Object.values(props).join('-')} {...props}>
@@ -33,5 +33,5 @@ export const stagger = () => {
         Child
       </Box>
     </Stagger>
-  )
-}
+  );
+};

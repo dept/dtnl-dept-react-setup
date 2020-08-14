@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { Rte } from './Rte'
+import { Rte } from './Rte';
 
-export default { title: 'Atoms|Rte', component: Rte }
+export default { title: 'Atoms/Rte', component: Rte };
 
 export const example = () => (
   <Rte>
@@ -15,4 +15,4 @@ export const example = () => (
       </ul>
     `}
   </Rte>
-)
+);

@@ -1,14 +1,14 @@
-import { withKnobs } from '@storybook/addon-knobs'
-import React, { useState } from 'react'
+import { withKnobs } from '@storybook/addon-knobs';
+import React, { useState } from 'react';
 
-import { Box, Button } from '@/components/atoms'
+import { Box, Button } from '@/components/atoms';
 
-import { Collapse } from '.'
+import { Collapse } from '.';
 
-export default { title: 'Molecules|Collapse', decorators: [withKnobs], component: Collapse }
+export default { title: 'Molecules/Collapse', decorators: [withKnobs], component: Collapse };
 
 export const Component = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
 
   return (
     <div>
@@ -19,5 +19,5 @@ export const Component = () => {
         </Box>
       </Collapse>
     </div>
-  )
-}
+  );
+};
