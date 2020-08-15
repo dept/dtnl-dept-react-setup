@@ -1,6 +1,6 @@
 import { format, isValid, parse, parseISO } from 'date-fns';
 import React, { useEffect, useRef, useState } from 'react';
-import Calendar, { OnChangeDateCallback } from 'react-calendar/dist/entry.nostyle';
+import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import useClickAway from 'react-use/lib/useClickAway';
 import styled from 'styled-components';
 

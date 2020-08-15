@@ -9,7 +9,7 @@ import { Box, Flex } from '../Grid';
 import { Text } from '../Text';
 
 interface TooltipProps {
-  placement?: PopperProps['placement'];
+  placement?: PopperProps<any>['placement'];
   trigger?: any;
 }
 
