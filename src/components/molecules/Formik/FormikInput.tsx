@@ -1,7 +1,5 @@
-import { useField } from 'formik';
+import { FastField, Field, FieldProps } from 'formik';
 import React from 'react';
-
-import { useFastField } from '@/utils/hooks';
 
 import { FieldInput, FieldInputProps } from '../Form/FieldInput';
 import { FormikError } from './FormikError';
@@ -12,19 +10,23 @@ type FormikInput = FieldInputProps & {
 };
 
 export const FormikInput: React.FC<FormikInput> = ({ name, optimized, ...props }) => {
-  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+  const Component = optimized ? FastField : Field;
 
   return (
     <>
-      <FieldInput
-        {...props}
-        {...field}
-        hasError={Boolean(meta.touched && meta.error)}
-        onClear={() => {
-          helpers.setValue('');
-          field.onBlur(undefined);
-        }}
-      />
+      <Component name={name}>
+        {({ field, meta, form }: FieldProps<any>) => (
+          <FieldInput
+            {...props}
+            {...field}
+            hasError={Boolean(meta.touched && meta.error)}
+            onClear={() => {
+              form.setFieldValue(name, '');
+              field.onBlur(undefined);
+            }}
+          />
+        )}
+      </Component>
       <FormikError name={name} />
     </>
   );

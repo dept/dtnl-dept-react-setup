@@ -11,16 +11,15 @@ interface FormikErrorProps {
 export const FormikError: React.FC<FormikErrorProps> = ({ name }) => {
   return (
     <Box mt={1}>
-      <ErrorMessage
-        name={name}
-        render={(message: string) => {
+      <ErrorMessage name={name}>
+        {message => {
           return (
             <Text display="block" fontSize="xxxs" color={colors.error}>
               {message}
             </Text>
           );
         }}
-      />
+      </ErrorMessage>
     </Box>
   );
 };

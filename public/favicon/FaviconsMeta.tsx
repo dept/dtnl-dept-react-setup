@@ -141,5 +141,5 @@ export const FaviconsMeta: React.FC = () => {
       <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
     </>
-  )
-}
+  );
+};
