@@ -15,7 +15,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 export function useFastField<Val = any>(
   propsOrFieldName: string | FieldHookConfig<Val>,
 ): [FieldInputProps<Val>, FieldMetaProps<Val>, FieldHelperProps<Val>] {
-  const INTERVAL = 250;
+  const INTERVAL = 150;
 
   const [field, meta, helpers] = useField(propsOrFieldName);
   const [value, setValue] = useState(field.value);
@@ -35,7 +35,7 @@ export function useFastField<Val = any>(
   field.value = value;
 
   field.onChange = (e: ChangeEvent<any>) => {
-    if (e && e.target) {
+    if (e?.currentTarget) {
       setValue(e.currentTarget.value);
 
       e.persist();
