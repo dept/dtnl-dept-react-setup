@@ -7,11 +7,11 @@ export interface ErrorProps {
   statusCode?: number | null;
 }
 
-const Error: NextPage<ErrorProps> = props => <ErrorPage {...props} />;
+const MyError: NextPage<ErrorProps> = props => <ErrorPage {...props} />;
 
-Error.getInitialProps = async ({ res, err }: NextPageContext) => {
+MyError.getInitialProps = async ({ res, err }: NextPageContext) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : null;
   return { statusCode };
 };
 
-export default Error;
+export default MyError;
