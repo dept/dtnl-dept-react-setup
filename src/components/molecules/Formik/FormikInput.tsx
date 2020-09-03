@@ -9,7 +9,12 @@ type FormikInput = FieldInputProps & {
   optimized?: boolean;
 };
 
-export const FormikInput: React.FC<FormikInput> = ({ name, optimized, ...props }) => {
+export const FormikInput: React.FC<FormikInput> = ({
+  name,
+  type = 'text',
+  optimized,
+  ...props
+}) => {
   const Component = optimized ? FastField : Field;
 
   return (
@@ -17,6 +22,7 @@ export const FormikInput: React.FC<FormikInput> = ({ name, optimized, ...props }
       <Component name={name}>
         {({ field, meta, form }: FieldProps<any>) => (
           <FieldInput
+            type={type}
             {...props}
             {...field}
             hasError={Boolean(meta.touched && meta.error)}
