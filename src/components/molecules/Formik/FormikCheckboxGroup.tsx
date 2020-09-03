@@ -1,7 +1,6 @@
-import { useField } from 'formik';
+import { FastField, Field, FieldProps } from 'formik';
 import React, { FC } from 'react';
 
-import { useFastField } from '@/utils/hooks';
 import { Omit } from '@/utils/types';
 
 import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup';
@@ -16,29 +15,32 @@ export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({
   optimized,
   ...props
 }) => {
-  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+  const Component = optimized ? FastField : Field;
 
   return (
     <>
-      <FieldCheckboxGroup
-        {...props}
-        {...field}
-        onChange={(e: React.FormEvent<HTMLInputElement>) => {
-          const target = e.currentTarget;
-          const newValue = [...field.value] || [];
-          if (target.checked) {
-            newValue.push(target.value);
-          } else {
-            newValue.splice(
-              newValue.findIndex(item => item === target.value),
-              1,
-            );
-          }
-          helpers.setValue(newValue);
-        }}
-        hasError={meta.touched && meta.error}
-      />
-
+      <Component>
+        {({ field, meta, form }: FieldProps<any>) => (
+          <FieldCheckboxGroup
+            {...props}
+            {...field}
+            onChange={(e: React.FormEvent<HTMLInputElement>) => {
+              const target = e.currentTarget;
+              const newValue = [...field.value] || [];
+              if (target.checked) {
+                newValue.push(target.value);
+              } else {
+                newValue.splice(
+                  newValue.findIndex(item => item === target.value),
+                  1,
+                );
+              }
+              form.setFieldValue(name, newValue);
+            }}
+            hasError={meta.touched && meta.error}
+          />
+        )}
+      </Component>
       <FormikError name={name} />
     </>
   );

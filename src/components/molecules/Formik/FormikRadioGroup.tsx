@@ -1,7 +1,6 @@
-import { useField } from 'formik';
+import { FastField, Field, FieldProps } from 'formik';
 import React from 'react';
 
-import { useFastField } from '@/utils/hooks';
 import { Omit } from '@/utils/types';
 
 import { FieldRadioGroup, FieldRadioGroupProps } from '../Form/FieldRadioGroup';
@@ -16,15 +15,21 @@ export const FormikRadioGroup: React.FC<FormikRadioGroupProps> = ({
   optimized,
   ...props
 }) => {
-  const [field, meta, helpers] = (optimized ? useFastField : useField)(name);
+  const Component = optimized ? FastField : Field;
 
   return (
     <>
-      <FieldRadioGroup
-        {...props}
-        {...field}
-        onChange={(e: React.FormEvent<HTMLInputElement>) => helpers.setValue(e.currentTarget.value)}
-      />
+      <Component name={name}>
+        {({ field, form }: FieldProps<any>) => (
+          <FieldRadioGroup
+            {...props}
+            {...field}
+            onChange={(e: React.FormEvent<HTMLInputElement>) =>
+              form.setFieldValue(name, e.currentTarget.value)
+            }
+          />
+        )}
+      </Component>
 
       <FormikError name={name} />
     </>
