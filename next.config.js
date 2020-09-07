@@ -1,10 +1,10 @@
-require('dotenv').config()
-const withPlugins = require('next-compose-plugins')
+require('dotenv').config();
+const withPlugins = require('next-compose-plugins');
 
-const { plugins } = require('./config/plugins')
-const { includePolyfills } = require('./config/includePolyfills')
+const { plugins } = require('./config/plugins');
+const { includePolyfills } = require('./config/includePolyfills');
 
-const dev = process.env.NODE_ENV !== 'production'
+const dev = process.env.NODE_ENV !== 'production';
 
 /**
  * Next config
@@ -21,10 +21,10 @@ module.exports = withPlugins(plugins, {
   },
   poweredByHeader: false,
   reactStrictMode: true,
-  compression: true, // true to enable gzipping
+  compress: true,
   webpack(config, options) {
     if (!options.isServer) {
-      const CircularDependencyPlugin = require('circular-dependency-plugin')
+      const CircularDependencyPlugin = require('circular-dependency-plugin');
 
       config.plugins.push(
         new CircularDependencyPlugin({
@@ -33,11 +33,11 @@ module.exports = withPlugins(plugins, {
           allowAsyncCycles: false,
           cwd: process.cwd(),
         }),
-      )
+      );
     }
 
-    includePolyfills(config)
+    includePolyfills(config);
 
-    return config
+    return config;
   },
-})
+});
