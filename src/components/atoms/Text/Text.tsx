@@ -25,7 +25,6 @@ export type TextProps = BoxProps &
       | 'h6'
       | 'label';
     target?: string;
-    singleLine?: boolean;
     variant?: keyof typeof textVariants;
   };
 
@@ -34,19 +33,13 @@ export type HeadingProps = TextProps &
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   };
 
-export const Text = React.forwardRef<any, TextProps>(({ variant, singleLine, ...props }, ref) => {
+export const Text = React.forwardRef<any, TextProps>(({ variant, ...props }, ref) => {
   const theme = useTheme();
   const textVariant = variant && theme.textVariants[variant];
 
   return (
     <Box
       css={css({
-        ...(singleLine && {
-          maxWidth: '100%',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }),
         ...textVariant,
       })}
       {...props}
