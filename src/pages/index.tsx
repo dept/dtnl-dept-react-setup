@@ -11,7 +11,7 @@ const Page: NextPage<PageProps> = () => {
     <>
       <NextSeo title="Homepage" description="This is the homepage" />
       <Box>
-        <Heading as="h1" color="primary">
+        <Heading as="h1" color="primary" variant="heading1">
           Homepage
         </Heading>
         <Paragraph>Run `yarn storybook` to view all components</Paragraph>
