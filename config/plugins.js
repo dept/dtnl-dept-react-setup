@@ -1,24 +1,25 @@
-const path = require('path')
+const path = require('path');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.BUNDLE_ANALYZE === 'true',
-})
+});
 
-const withOffline = require('next-offline')
+const withPWA = require('next-pwa');
 
 const plugins = [
   [
-    withOffline,
+    withPWA,
     {
-      generateSw: false,
-      workboxOpts: {
-        swSrc: path.resolve(__dirname, '../src/service-worker.js'),
+      pwa: {
+        disable: process.env.NODE_ENV !== 'production',
+        register: true,
+        dest: 'public',
       },
     },
   ],
   withBundleAnalyzer,
-]
+];
 
 module.exports = {
   plugins,
-}
+};
