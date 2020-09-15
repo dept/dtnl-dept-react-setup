@@ -84,6 +84,13 @@ const input = {
   },
 };
 
+export const textVariants = {
+  heading1: {
+    fontSize: ['2rem', '3rem', '4rem'],
+    color: 'black',
+  },
+};
+
 export const icons = iconComponents;
 
 export type IconOption = keyof typeof icons;
@@ -110,6 +117,7 @@ export interface CustomTheme {
   space: typeof space;
   shadows: typeof shadows;
   buttons: typeof buttons;
+  textVariants: typeof textVariants;
   outline?: string;
   grid: ThemeGrid;
   input: typeof input;
@@ -125,4 +133,5 @@ export const theme: DefaultTheme = {
   buttons,
   grid,
   input,
+  textVariants,
 };
