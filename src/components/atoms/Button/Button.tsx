@@ -61,12 +61,18 @@ export const Button = React.forwardRef<any, ButtonProps>(
         {...conditionalProps}
         disabled={disabled}
         css={css({
-          display: 'inline-block',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           textAlign: 'center',
           lineHeight: 1.5,
           userSelect: 'none',
           position: 'relative',
           cursor: 'pointer',
+          transitionProperty:
+            'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+          transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+          transitionDuration: '.15s',
           border: 0,
           ...buttonVariant,
         })}
@@ -84,30 +90,30 @@ export const Button = React.forwardRef<any, ButtonProps>(
         ) : (
           <>
             {ripple && <Ink />}
-            <PseudoBox display="flex" alignItems="center" justifyContent="space-between">
-              {loading ? (
-                <motion.div
-                  animate={{ transform: 'rotate(350deg)' }}
-                  style={{ width: '24px', height: '24px' }}
-                  transition={{ duration: 1, loop: Infinity, ease: 'linear' }}>
-                  <AiOutlineLoading size={20} />
-                </motion.div>
-              ) : (
-                <>
-                  {startIcon && (
-                    <Box mr={2}>
-                      <Icon size={20} icon={startIcon}></Icon>
-                    </Box>
-                  )}
-                  <span>{children}</span>
-                  {endIcon && (
-                    <Box ml={2}>
-                      <Icon size={20} icon={endIcon}></Icon>
-                    </Box>
-                  )}
-                </>
-              )}
-            </PseudoBox>
+            {loading ? (
+              <motion.div
+                animate={{ transform: 'rotate(350deg)' }}
+                style={{ width: '24px', height: '24px' }}
+                transition={{ duration: 1, loop: Infinity, ease: 'linear' }}>
+                <AiOutlineLoading size={20} />
+              </motion.div>
+            ) : (
+              <>
+                {startIcon && (
+                  <Box mr={2}>
+                    <Icon size={20} icon={startIcon}></Icon>
+                  </Box>
+                )}
+
+                <span>{children}</span>
+
+                {endIcon && (
+                  <Box ml={2}>
+                    <Icon size={20} icon={endIcon}></Icon>
+                  </Box>
+                )}
+              </>
+            )}
           </>
         )}
       </PseudoBox>

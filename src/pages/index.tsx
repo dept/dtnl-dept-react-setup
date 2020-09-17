@@ -14,6 +14,7 @@ const Page: NextPage<PageProps> = () => {
         <Heading as="h1" color="primary" variant="heading1">
           Homepage
         </Heading>
+
         <Paragraph>Run `yarn storybook` to view all components</Paragraph>
         <Paragraph>Run `yarn route [name]` to create a page</Paragraph>
         <Paragraph>Run `yarn component [name]` to create a component</Paragraph>

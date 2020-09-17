@@ -231,7 +231,24 @@ export const boxStyles = compose(
   boxConfig,
 );
 
-export const Box = styled('div')<BoxProps>(
+const props = boxStyles.propNames;
+const regex = new RegExp(`^(${props!.join('|')})$`);
+
+function memoize(fn: (string: string) => any) {
+  const cache: any = {};
+
+  return (arg: string) => {
+    if (cache[arg] === undefined) cache[arg] = fn(arg);
+    return cache[arg];
+  };
+}
+
+const isStyledSystemProp = memoize(prop => regex.test(prop));
+
+export const Box = styled('div').withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) =>
+    !isStyledSystemProp(prop) && defaultValidatorFn(prop),
+})<BoxProps>(
   {
     boxSizing: 'border-box',
   },
