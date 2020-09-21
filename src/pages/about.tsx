@@ -2,7 +2,8 @@ import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-import { Box, Heading, Text } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
+import { Heading, Paragraph } from '@/components/atoms/Text';
 
 interface PageProps {}
 
@@ -14,7 +15,7 @@ const Page: NextPage<PageProps> = () => {
         <Heading as="h1" color="primary">
           About
         </Heading>
-        <Text as="p">This is the about page</Text>
+        <Paragraph>This is the about page</Paragraph>
       </Box>
     </>
   );

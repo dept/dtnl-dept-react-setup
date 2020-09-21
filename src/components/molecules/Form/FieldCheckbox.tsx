@@ -3,7 +3,10 @@ import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { Box, Flex, Icon, Label, Text } from '@/components/atoms';
+import { Box, Flex } from '@/components/atoms/Grid';
+import { Icon } from '@/components/atoms/Icon';
+import { Label } from '@/components/atoms/Label';
+import { Text } from '@/components/atoms/Text';
 
 export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;

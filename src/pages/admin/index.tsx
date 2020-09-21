@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-import { Box } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
 import { useAuth } from '@/context/AuthContext';
 import { withAuth } from '@/utils/withAuth';
 

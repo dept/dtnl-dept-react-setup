@@ -1,4 +1,6 @@
-import { Heading, Paragraph } from '@/components/atoms';
+import React from 'react';
+
+import { Heading, Paragraph } from '@/components/atoms/Text';
 import { ErrorProps } from '@/pages/_error';
 
 export const ErrorPage: React.FC<ErrorProps> = ({ statusCode }) => {

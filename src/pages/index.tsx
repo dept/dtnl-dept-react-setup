@@ -2,7 +2,8 @@ import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-import { Box, Heading, Paragraph } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
+import { Heading, Paragraph } from '@/components/atoms/Text';
 
 interface PageProps {}
 
@@ -11,9 +12,10 @@ const Page: NextPage<PageProps> = () => {
     <>
       <NextSeo title="Homepage" description="This is the homepage" />
       <Box>
-        <Heading as="h1" color="primary">
+        <Heading as="h1" color="primary" variant="heading1">
           Homepage
         </Heading>
+
         <Paragraph>Run `yarn storybook` to view all components</Paragraph>
         <Paragraph>Run `yarn route [name]` to create a page</Paragraph>
         <Paragraph>Run `yarn component [name]` to create a component</Paragraph>

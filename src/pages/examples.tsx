@@ -1,22 +1,17 @@
 import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+import React from 'react';
 import * as Yup from 'yup';
 
-import {
-  Box,
-  Button,
-  Column,
-  Flex,
-  Heading,
-  Hyperlink,
-  Icon,
-  Reveal,
-  Row,
-  Text,
-} from '@/components/atoms';
-import { Modal } from '@/components/molecules';
+import { Button } from '@/components/atoms/Button';
+import { Box, Column, Flex, Row } from '@/components/atoms/Grid';
+import { Hyperlink } from '@/components/atoms/Hyperlink';
+import { Icon } from '@/components/atoms/Icon';
+import { Reveal } from '@/components/atoms/Reveal';
+import { Heading, Text } from '@/components/atoms/Text';
 import { FormikDate, FormikInput } from '@/components/molecules/Formik';
+import { Modal } from '@/components/molecules/Modal';
 import { useModalActions } from '@/context/ModalContext';
 import { icons } from '@/theme';
 

@@ -4,7 +4,7 @@ import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import useClickAway from 'react-use/lib/useClickAway';
 import styled from 'styled-components';
 
-import { Box } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
 import { colors } from '@/theme/colors';
 import { Omit } from '@/utils/types';
 

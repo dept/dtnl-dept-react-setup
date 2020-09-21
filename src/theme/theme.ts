@@ -36,11 +36,13 @@ breakpoints.xl = breakpoints[3];
 
 export const buttons = {
   primary: {
+    border: '1px solid',
+    borderColor: 'transparant',
     bg: 'primary',
     borderRadius: 4,
     color: 'white',
     fontWeight: 'bold',
-    padding: '8px 16px',
+    padding: '0.75rem 1.5rem',
     '&:hover': {
       bg: darken(0.2, colors.primary),
     },
@@ -52,10 +54,11 @@ export const buttons = {
   secondary: {
     border: '1px solid',
     borderColor: 'currentColor',
+    bg: 'white',
     borderRadius: 4,
     color: 'primary',
     fontWeight: 'bold',
-    padding: '8px 16px',
+    padding: '0.75rem 1.5rem',
     '&:hover': {
       bg: rgba(colors.primary, 0.05),
     },
@@ -81,6 +84,13 @@ const input = {
   height: '50px',
   hover: {
     borderColor: '#7b7b7b',
+  },
+};
+
+export const textVariants = {
+  heading1: {
+    fontSize: ['2rem', '3rem', '4rem'],
+    color: 'black',
   },
 };
 
@@ -110,6 +120,7 @@ export interface CustomTheme {
   space: typeof space;
   shadows: typeof shadows;
   buttons: typeof buttons;
+  textVariants: typeof textVariants;
   outline?: string;
   grid: ThemeGrid;
   input: typeof input;
@@ -125,4 +136,5 @@ export const theme: DefaultTheme = {
   buttons,
   grid,
   input,
+  textVariants,
 };

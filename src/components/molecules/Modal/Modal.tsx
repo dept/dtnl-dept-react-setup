@@ -2,7 +2,10 @@ import React, { FC } from 'react';
 import ReactModal from 'react-modal';
 import { createGlobalStyle } from 'styled-components';
 
-import { Box, Button, Heading, IconButton } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Box } from '@/components/atoms/Grid';
+import { IconButton } from '@/components/atoms/IconButton';
+import { Heading } from '@/components/atoms/Text';
 import { useModalActions, useModalState } from '@/context/ModalContext';
 import { colors } from '@/theme/colors';
 import { media } from '@/utils/media';
