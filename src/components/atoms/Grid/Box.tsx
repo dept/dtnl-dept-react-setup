@@ -234,7 +234,9 @@ export const boxStyles = compose(
 const props = boxStyles.propNames;
 const regex = new RegExp(`^(${props!.join('|')})$`);
 
-function memoize(fn: (string: string) => any) {
+type MemoizeFn = (string: string) => any;
+
+function memoize(fn: MemoizeFn) {
   const cache: any = {};
 
   return (arg: string) => {
