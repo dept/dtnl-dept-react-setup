@@ -1,9 +1,11 @@
 import { withKnobs } from '@storybook/addon-knobs';
+import React from 'react';
 
-import { Box, Button } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Box } from '@/components/atoms/Grid';
 import { useModalActions } from '@/context/ModalContext';
 
-import { Modal } from '.';
+import { Modal } from './Modal';
 
 export default {
   title: 'Molecules/Modal',

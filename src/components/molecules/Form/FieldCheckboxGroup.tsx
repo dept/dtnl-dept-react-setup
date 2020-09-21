@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Column, Row } from '@/components/atoms';
+import { Column, Row } from '@/components/atoms/Grid';
 
 import { FieldCheckbox, FieldCheckboxProps } from './FieldCheckbox';
 

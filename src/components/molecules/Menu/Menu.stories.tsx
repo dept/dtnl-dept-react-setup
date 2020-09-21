@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Box, Button } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Box } from '@/components/atoms/Grid';
 
 import { Menu } from './Menu';
 

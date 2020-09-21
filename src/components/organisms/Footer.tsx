@@ -1,4 +1,4 @@
-import { Box } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
 
 export const Footer: React.FC = () => {
   return (

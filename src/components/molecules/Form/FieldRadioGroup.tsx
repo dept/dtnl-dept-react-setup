@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Column, Row } from '@/components/atoms';
+import { Column, Row } from '@/components/atoms/Grid';
 
 import { FieldRadio, FieldRadioProps } from './FieldRadio';
 

@@ -1,4 +1,6 @@
-import { Heading, Paragraph } from '@/components/atoms';
+import React from 'react';
+
+import { Heading, Paragraph } from '../atoms/Text';
 
 export const NotFoundPage: React.FC = () => {
   return (

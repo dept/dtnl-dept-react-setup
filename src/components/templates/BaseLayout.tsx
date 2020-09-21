@@ -1,7 +1,10 @@
-import { Box, Flex, Grid, Heading, Text } from '@/components/atoms';
+import React from 'react';
 
-import { Modal } from '../molecules';
-import { Footer, Header } from '../organisms';
+import { Box, Flex, Grid } from '../atoms/Grid';
+import { Heading, Text } from '../atoms/Text';
+import { Modal } from '../molecules/Modal';
+import { Footer } from '../organisms/Footer';
+import { Header } from '../organisms/Header';
 
 interface BaseLayoutProps {}
 

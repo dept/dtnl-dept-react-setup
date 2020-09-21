@@ -1,7 +1,8 @@
 import { NextPage, NextPageContext } from 'next';
 import React, { useEffect, useState } from 'react';
 
-import { Button, Paragraph } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Paragraph } from '@/components/atoms/Text';
 import { useAuth } from '@/context/AuthContext';
 
 export const withAuth = (Page: NextPage<any>) => {

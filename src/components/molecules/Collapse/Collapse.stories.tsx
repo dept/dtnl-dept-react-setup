@@ -1,9 +1,10 @@
 import { withKnobs } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 
-import { Box, Button } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Box } from '@/components/atoms/Grid';
 
-import { Collapse } from '.';
+import { Collapse } from './Collapse';
 
 export default { title: 'Molecules/Collapse', decorators: [withKnobs], component: Collapse };
 

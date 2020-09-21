@@ -1,6 +1,9 @@
+import Link from 'next/link';
+import React from 'react';
 import styled from 'styled-components';
 
-import { Box, Flex, Link, NavLink } from '@/components/atoms';
+import { Box, Flex } from '../atoms/Grid';
+import { NavLink } from '../atoms/Link';
 
 interface HeaderProps {}
 
@@ -63,7 +66,7 @@ export const Header: React.FC<HeaderProps> = () => {
         </Link>
       </Box>
 
-      <Navigation></Navigation>
+      <Navigation />
     </Flex>
   );
 };

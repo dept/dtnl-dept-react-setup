@@ -1,7 +1,8 @@
 import { ErrorMessage } from 'formik';
 import React from 'react';
 
-import { Box, Text } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
+import { Text } from '@/components/atoms/Text';
 import { colors } from '@/theme/colors';
 
 interface FormikErrorProps {

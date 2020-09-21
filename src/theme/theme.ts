@@ -52,6 +52,7 @@ export const buttons = {
   secondary: {
     border: '1px solid',
     borderColor: 'currentColor',
+    bg: 'white',
     borderRadius: 4,
     color: 'primary',
     fontWeight: 'bold',

@@ -2,7 +2,8 @@ import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 
-import { Button, Flex } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Flex } from '@/components/atoms/Grid';
 import { SubmitHandler } from '@/utils/types';
 
 import { FormikInput } from './FormikInput';
