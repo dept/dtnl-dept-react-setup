@@ -1,6 +1,6 @@
 import React from 'react';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
-  size: number;
+  size?: number;
 }
 
 const ArrowIcon = ({ size, ...props }: CustomIconProps) => {
