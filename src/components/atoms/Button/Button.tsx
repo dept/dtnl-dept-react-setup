@@ -73,7 +73,6 @@ export const Button = React.forwardRef<any, ButtonProps>(
             'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
           transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
           transitionDuration: '.15s',
-          border: 0,
           ...buttonVariant,
         })}
         _disabled={{
@@ -101,7 +100,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
               <>
                 {startIcon && (
                   <Box mr={2}>
-                    <Icon size={20} icon={startIcon}></Icon>
+                    <Icon size={18} icon={startIcon}></Icon>
                   </Box>
                 )}
 
@@ -109,7 +108,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
 
                 {endIcon && (
                   <Box ml={2}>
-                    <Icon size={20} icon={endIcon}></Icon>
+                    <Icon size={18} icon={endIcon}></Icon>
                   </Box>
                 )}
               </>

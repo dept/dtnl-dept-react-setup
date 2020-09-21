@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { Alert } from '.';
+import { Alert } from './Alert';
 
 export default { title: 'Atoms/Alert', component: Alert };
 
-export const withSuccess = () => <Alert type="succes">Succes alert</Alert>;
-export const withWarning = () => <Alert type="warning">Succes warning</Alert>;
-export const withNeutral = () => <Alert type="neutral">Succes neutral</Alert>;
+export const withSuccess = () => <Alert type="succes">Alert success</Alert>;
+export const withWarning = () => <Alert type="warning">Alert warning</Alert>;
+export const withInfo = () => <Alert type="info">Alert neutral</Alert>;
+export const withError = () => <Alert type="error">Alert error</Alert>;

@@ -36,11 +36,13 @@ breakpoints.xl = breakpoints[3];
 
 export const buttons = {
   primary: {
+    border: '1px solid',
+    borderColor: 'transparant',
     bg: 'primary',
     borderRadius: 4,
     color: 'white',
     fontWeight: 'bold',
-    padding: '8px 16px',
+    padding: '0.75rem 1.5rem',
     '&:hover': {
       bg: darken(0.2, colors.primary),
     },
@@ -56,7 +58,7 @@ export const buttons = {
     borderRadius: 4,
     color: 'primary',
     fontWeight: 'bold',
-    padding: '8px 16px',
+    padding: '0.75rem 1.5rem',
     '&:hover': {
       bg: rgba(colors.primary, 0.05),
     },
