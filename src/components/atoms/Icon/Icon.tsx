@@ -31,11 +31,9 @@ export const Icon: FC<IconProps> = ({ size = 22, icon, ...props }) => {
         role="presentation"
         aria-hidden="true"
         focusable="false"
-        style={{
-          fill: 'currentColor',
-        }}
         width="100%"
         height="100%"
+        size={size}
       />
     </StyledIconWrapper>
   );

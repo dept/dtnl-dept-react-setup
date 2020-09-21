@@ -148,7 +148,11 @@ const Page: NextPage = () => {
         <Flex flexWrap="wrap">
           {Object.keys(icons).map(icon => (
             <Box key={icon} p={1}>
-              <Icon icon={icon as keyof typeof icons} size={50} color="secondary"></Icon>
+              <Icon
+                icon={icon as keyof typeof icons}
+                size={30}
+                title={icon}
+                color="secondary"></Icon>
             </Box>
           ))}
         </Flex>

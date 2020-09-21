@@ -1,4 +1,5 @@
 import { darken, rgba } from 'polished';
+import * as heroIcons from 'react-icons/hi';
 import { DefaultTheme } from 'styled-components';
 
 import * as iconComponents from '../../public/icons/components';
@@ -94,7 +95,7 @@ export const textVariants = {
   },
 };
 
-export const icons = iconComponents;
+export const icons = { ...iconComponents, ...heroIcons };
 
 export type IconOption = keyof typeof icons;
 export type ButtonOption = keyof typeof buttons;
