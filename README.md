@@ -30,6 +30,10 @@ The project includes generators for components en context provider. Simply run e
 - `yarn component Slider`
 - `yarn context User`
 
+## Custom server
+
+By default, Next will start a server with `next start`. However it's possible to launch Next with a [custom server](https://nextjs.org/docs/advanced-features/custom-server). To switch to the custom server setup remove the `start` and `dev` scripts from `package.json` and rename `start:custom-server` and `dev:custom-server` to `start` and `dev`. The custom server is located at `./server/server.ts`. If you think you do not need it you can delete it.
+
 ## Generate icons from svg
 
 Place all your icons in `/public/icons`. Run `yarn svgr`. This generates jsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.

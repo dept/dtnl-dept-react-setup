@@ -27,7 +27,5 @@ COPY --from=build /usr/src/app/.next ./.next
 USER node
 # enable run as production
 ENV NODE_ENV=production
-# enable full-icu
-ENV NODE_ICU_DATA=node_modules/full-icu
 # start app
-CMD ["node", ".next/server"]
+CMD ["npm", "start"]

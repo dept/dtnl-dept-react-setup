@@ -1,12 +1,10 @@
-import fetch from 'isomorphic-fetch';
+import fetchMock from 'jest-fetch-mock';
 
 import { HttpClient } from '../Http';
 
-jest.mock('isomorphic-fetch');
+fetchMock.enableMocks();
 
 jest.spyOn(console, 'error');
-
-const fetchMock = (fetch as unknown) as jest.Mock<typeof fetch>;
 
 const defaultConfig = {
   headers: { 'Content-Type': 'application/json' },
@@ -40,6 +38,10 @@ afterAll(() => {
 
 afterEach(() => {
   jest.resetAllMocks();
+});
+
+beforeEach(() => {
+  fetchMock.resetMocks();
 });
 
 test('it makes requests', () => {
