@@ -79,7 +79,7 @@
     "lodash.throttle": "^4.1.1",
     "next": "^9.5.3",
     "next-compose-plugins": "^2.2.0",
-    "next-offline": "^5.0.2",
+    "next-pwa": "^3.1.4",
     "next-seo": "^4.7.3",
     "polished": "^3.6.7",
     "react": "^16.13.1",
