@@ -2,7 +2,8 @@ import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-import { Box, Heading, Paragraph } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
+import { Heading, Paragraph } from '@/components/atoms/Text';
 
 interface PageProps {}
 

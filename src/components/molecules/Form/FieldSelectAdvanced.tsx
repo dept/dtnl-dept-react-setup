@@ -3,7 +3,8 @@ import Select from 'react-select';
 import { ValueType } from 'react-select/src/types';
 import styled from 'styled-components';
 
-import { Box, IconButton } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
+import { IconButton } from '@/components/atoms/IconButton';
 import { colors } from '@/theme/colors';
 
 interface Option {

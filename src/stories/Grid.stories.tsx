@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Column, Grid, Row } from '@/components/atoms';
+import { Box, Column, Grid, Row } from '@/components/atoms/Grid';
 
 export default { title: 'Grid/Grid' };
 

@@ -1,7 +1,9 @@
 import React, { InputHTMLAttributes, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Box, BoxProps, IconButton, Label } from '@/components/atoms';
+import { Box, BoxProps } from '@/components/atoms/Grid';
+import { IconButton } from '@/components/atoms/IconButton';
+import { Label } from '@/components/atoms/Label';
 import { colors } from '@/theme/colors';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

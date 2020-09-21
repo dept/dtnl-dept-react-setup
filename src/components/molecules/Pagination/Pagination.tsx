@@ -1,6 +1,8 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
-import { Box, Button, Flex, Paragraph } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Box, Flex } from '@/components/atoms/Grid';
+import { Paragraph } from '@/components/atoms/Text';
 
 interface PaginationProps {
   total: number;

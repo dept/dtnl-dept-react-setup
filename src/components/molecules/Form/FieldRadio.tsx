@@ -3,7 +3,9 @@ import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { Box, Flex, Label, Text } from '@/components/atoms';
+import { Box, Flex } from '@/components/atoms/Grid';
+import { Label } from '@/components/atoms/Label';
+import { Text } from '@/components/atoms/Text';
 
 export interface FieldRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;

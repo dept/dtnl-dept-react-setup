@@ -1,8 +1,9 @@
 import { useSelect } from 'downshift';
-import { InputHTMLAttributes, useState } from 'react';
+import React, { InputHTMLAttributes, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Box, Icon } from '@/components/atoms';
+import { Box } from '@/components/atoms/Grid';
+import { Icon } from '@/components/atoms/Icon';
 import { Label } from '@/components/atoms/Label/Label';
 
 import { InputWrapper } from './FieldInput';
