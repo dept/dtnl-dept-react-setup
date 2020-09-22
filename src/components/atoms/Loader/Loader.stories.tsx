@@ -4,7 +4,7 @@ import { Loader } from './Loader';
 
 export default { title: 'Atoms/Loader', component: Loader };
 
-export const example = () => <Loader color="black"></Loader>;
+export const example = () => <Loader />;
 
 example.story = {
   parameters: {

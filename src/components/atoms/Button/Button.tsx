@@ -51,7 +51,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
     const theme = useTheme();
     const buttonVariant = theme.buttons[variant];
     const conditionalProps: ConditionalProps = { as };
-    const buttonSize = theme.buttonSizes[size];
+    const buttonSize = variant !== 'clear' ? theme.buttonSizes[size] : {};
 
     if (as === 'button') {
       conditionalProps.type = type;
@@ -70,8 +70,8 @@ export const Button = React.forwardRef<any, ButtonProps>(
             'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
           transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
           transitionDuration: '.15s',
-          ...buttonVariant,
           ...buttonSize,
+          ...buttonVariant,
         })}
         _disabled={{
           cursor: 'not-allowed',
