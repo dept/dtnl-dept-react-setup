@@ -4,7 +4,7 @@
   "description": "React setup for Dept",
   "main": "server.js",
   "scripts": {
-    "start": "next start -p $PORT",
+    "start": "NODE_ENV=production next start",
     "dev": "next dev",
     "build": "next build",
     "start:custom-server": "NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node .next/server/server",
