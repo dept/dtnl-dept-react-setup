@@ -38,10 +38,9 @@ export const buttons = {
     border: '1px solid',
     borderColor: 'transparant',
     bg: 'primary',
-    borderRadius: 4,
+    borderRadius: 5,
     color: 'white',
     fontWeight: 'bold',
-    padding: '0.75rem 1.5rem',
     '&:hover': {
       bg: darken(0.2, colors.primary),
     },
@@ -54,10 +53,9 @@ export const buttons = {
     border: '1px solid',
     borderColor: 'currentColor',
     bg: 'white',
-    borderRadius: 4,
+    borderRadius: 5,
     color: 'primary',
     fontWeight: 'bold',
-    padding: '0.75rem 1.5rem',
     '&:hover': {
       bg: rgba(colors.primary, 0.05),
     },
@@ -69,6 +67,22 @@ export const buttons = {
     borderRadius: 4,
     backgroundColor: 'transparent',
     border: 'none',
+  },
+};
+
+// buttonSizes based on sizes in spaces
+export const buttonSizes = {
+  small: {
+    py: 1,
+    px: 3,
+  },
+  medium: {
+    py: 2,
+    px: 4,
+  },
+  large: {
+    py: 3,
+    px: 6,
   },
 };
 
@@ -116,6 +130,7 @@ export interface CustomTheme {
   space: typeof space;
   shadows: typeof shadows;
   buttons: typeof buttons;
+  buttonSizes: typeof buttonSizes;
   textVariants: typeof textVariants;
   outline?: string;
   grid: ThemeGrid;
@@ -130,6 +145,7 @@ export const theme: DefaultTheme = {
   outline: `5px auto ${colors.gray[300]}`,
   colors,
   buttons,
+  buttonSizes,
   grid,
   input,
   textVariants,

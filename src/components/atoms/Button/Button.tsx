@@ -5,7 +5,7 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import Ink from 'react-ink';
 import { useTheme } from 'styled-components';
 
-import { buttons } from '@/theme';
+import { buttons, buttonSizes } from '@/theme';
 
 import { Box, BoxProps, PseudoBox } from '../Grid';
 
@@ -20,6 +20,7 @@ export type ButtonProps = BoxProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     as?: ButtonElements;
     variant?: keyof typeof buttons;
+    size?: keyof typeof buttonSizes;
     disabled?: boolean;
     startIcon?: any;
     endIcon?: any;
@@ -37,6 +38,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
       as = 'button',
       startIcon: StartIcon,
       endIcon: EndIcon,
+      size = 'medium',
       children,
       variant = 'primary',
       type = 'button',
@@ -50,6 +52,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
     const theme = useTheme();
     const buttonVariant = theme.buttons[variant];
     const conditionalProps: ConditionalProps = { as };
+    const buttonSize = theme.buttonSizes[size];
 
     if (as === 'button') {
       conditionalProps.type = type;
@@ -73,6 +76,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
           transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
           transitionDuration: '.15s',
           ...buttonVariant,
+          ...buttonSize,
         })}
         _disabled={{
           cursor: 'not-allowed',

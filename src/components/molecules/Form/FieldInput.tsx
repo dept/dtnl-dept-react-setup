@@ -159,7 +159,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   return (
     <FieldInputWrapper isFloating={shouldFloat}>
       {label && (
-        <Label htmlFor={name} color={color || colors.gray[800]}>
+        <Label htmlFor={name} color={color}>
           {label}
         </Label>
       )}

@@ -222,5 +222,4 @@ export const FieldSelect: React.FC<FieldSelectProps> = props => {
 
 FieldSelect.defaultProps = {
   placeholder: 'Choose option...',
-  color: 'black',
 };
