@@ -44,7 +44,15 @@ calendar.svg -> Calendar.tsx
 
 Usage:
 
-`<CalendarIcon color="magenta" />`
+`<CalendarIcon color="magenta" size={20} />`
+
+Or choose one of the awesome free iconsets from [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/) (already included)
+
+```
+import { FaBeer } from 'react-icons/fa';
+
+<FaBeer size={20} />
+```
 
 ## Generate favicons / app icons
 
