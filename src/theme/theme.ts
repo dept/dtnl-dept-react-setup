@@ -36,7 +36,7 @@ breakpoints.xl = breakpoints[3];
 export const buttons = {
   primary: {
     border: '1px solid',
-    borderColor: 'transparant',
+    borderColor: 'transparent',
     bg: 'primary',
     borderRadius: 5,
     color: 'white',

@@ -25,7 +25,7 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
       shallow={shallow}
       replace={replace}
       passHref>
-      <Button as="a" {...props}>
+      <Button as="a" display="inline-block" {...props}>
         {children}
       </Button>
     </Link>
