@@ -1,13 +1,12 @@
 import css from '@styled-system/css';
-import { motion } from 'framer-motion';
 import React, { ButtonHTMLAttributes } from 'react';
-import { AiOutlineLoading } from 'react-icons/ai';
 import Ink from 'react-ink';
 import { useTheme } from 'styled-components';
 
 import { buttons, buttonSizes } from '@/theme';
 
 import { Box, BoxProps, PseudoBox } from '../Grid';
+import { Loader } from '../Loader';
 
 type ButtonElements = 'button' | 'a';
 
@@ -63,10 +62,6 @@ export const Button = React.forwardRef<any, ButtonProps>(
         {...conditionalProps}
         disabled={disabled}
         css={css({
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          textAlign: 'center',
           lineHeight: 1.5,
           userSelect: 'none',
           position: 'relative',
@@ -92,30 +87,40 @@ export const Button = React.forwardRef<any, ButtonProps>(
         ) : (
           <>
             {ripple && <Ink />}
-            {loading ? (
-              <motion.div
-                animate={{ transform: 'rotate(350deg)' }}
-                style={{ width: '24px', height: '24px' }}
-                transition={{ duration: 1, loop: Infinity, ease: 'linear' }}>
-                <AiOutlineLoading size={20} />
-              </motion.div>
-            ) : (
-              <>
-                {StartIcon && (
-                  <Box mr={2}>
-                    <StartIcon size={20} />
-                  </Box>
-                )}
-
-                <span>{children}</span>
-
-                {EndIcon && (
-                  <Box ml={2}>
-                    <EndIcon size={20} />
-                  </Box>
-                )}
-              </>
+            {loading && (
+              <Box
+                position="absolute"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="100%"
+                width="100%"
+                left={0}
+                top={0}>
+                <Loader size={30} />
+              </Box>
             )}
+
+            <Box
+              display="inline-flex"
+              visibility={loading ? 'hidden' : null}
+              justifyContent="space-between"
+              alignItems="center"
+              textAlign="center">
+              {StartIcon && (
+                <Box mr={2}>
+                  <StartIcon size={20} />
+                </Box>
+              )}
+
+              <span>{children}</span>
+
+              {EndIcon && (
+                <Box ml={2}>
+                  <EndIcon size={20} />
+                </Box>
+              )}
+            </Box>
           </>
         )}
       </PseudoBox>

@@ -20,7 +20,7 @@ const HiddenInput = styled.input`
 export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) => {
   const theme = useTheme();
   return (
-    <Label style={{ cursor: 'pointer' }}>
+    <Label>
       <Flex opacity={props.disabled ? 0.2 : 1} alignItems="center">
         <HiddenInput type="radio" {...props} />
         <Box
