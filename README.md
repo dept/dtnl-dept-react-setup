@@ -44,7 +44,7 @@ calendar.svg -> Calendar.tsx
 
 Usage:
 
-`<Icon icon="Calendar" color="magenta" />`
+`<CalendarIcon color="magenta" />`
 
 ## Generate favicons / app icons
 

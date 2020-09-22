@@ -1,19 +1,17 @@
 import React, { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-import { IconOption } from '@/theme';
 import { colors } from '@/theme/colors';
 
 import { Box, BoxProps } from '../Grid';
-import { Icon } from '../Icon';
 
 type ButtonElements = 'button' | 'a' | 'span';
 
 interface IconButtonProps {
   as?: ButtonElements;
-  icon: IconOption;
   'aria-label': string;
   size?: number;
+  icon: any;
   height?: any;
   padding?: number;
   color?: string;
@@ -31,7 +29,6 @@ interface ConditionalProps {
 }
 
 interface IconButtonStyledProps {
-  size: number;
   height?: number;
   padding: number;
   radii?: number;
@@ -54,16 +51,15 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
 `;
 
 export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = ({
-  icon,
   as = 'button',
   size = 40,
   height,
-  color,
   border,
-  rotate,
   radii = 0,
   padding = 0,
   bg,
+  icon: Icon,
+  rotate,
   ...rest
 }) => {
   const conditionalProps: ConditionalProps = { as };
@@ -75,13 +71,12 @@ export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = 
     <StyledIconButton
       {...conditionalProps}
       radii={padding > 5 ? radii : 0}
-      size={size}
       height={height}
       padding={padding}
       border={border}
       bg={bg || 'transparent'}
       {...rest}>
-      <Icon color={color} icon={icon} rotate={rotate} size={size} />
+      <Icon size={size} rotate={rotate} />
     </StyledIconButton>
   );
 };

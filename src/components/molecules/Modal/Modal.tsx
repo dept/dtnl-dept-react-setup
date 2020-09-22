@@ -1,3 +1,4 @@
+import CloseLightIcon from '@public/icons/components/CloseLight';
 import React, { FC } from 'react';
 import ReactModal from 'react-modal';
 import { createGlobalStyle } from 'styled-components';
@@ -124,7 +125,12 @@ export const Modal: FC<ModalProps> = ({
           <>
             {modal.isClosable && (
               <Box top={0} right={0} zIndex={99} position="absolute" p={4}>
-                <IconButton aria-label="Close" onClick={onDismiss} size={20} icon="CloseLight" />
+                <IconButton
+                  aria-label="Close"
+                  onClick={onDismiss}
+                  size={20}
+                  icon={CloseLightIcon}
+                />
               </Box>
             )}
 

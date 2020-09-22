@@ -1,3 +1,4 @@
+import CloseLightIcon from '@public/icons/components/CloseLight';
 import React, { InputHTMLAttributes, useState } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -107,7 +108,13 @@ const AdornmentWrapper: React.FC<BoxProps> = props => (
 const Clear: React.FC<any> = ({ onClick }) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
-      <IconButton type="button" aria-label="Clear" icon="CloseLight" size={15} onClick={onClick} />
+      <IconButton
+        type="button"
+        aria-label="Clear"
+        icon={CloseLightIcon}
+        size={15}
+        onClick={onClick}
+      />
     </Box>
   );
 };

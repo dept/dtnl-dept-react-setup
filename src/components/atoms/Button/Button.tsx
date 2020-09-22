@@ -5,10 +5,9 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import Ink from 'react-ink';
 import { useTheme } from 'styled-components';
 
-import { buttons, IconOption } from '@/theme';
+import { buttons } from '@/theme';
 
 import { Box, BoxProps, PseudoBox } from '../Grid';
-import { Icon } from '../Icon';
 
 type ButtonElements = 'button' | 'a';
 
@@ -22,8 +21,8 @@ export type ButtonProps = BoxProps &
     as?: ButtonElements;
     variant?: keyof typeof buttons;
     disabled?: boolean;
-    startIcon?: IconOption;
-    endIcon?: IconOption;
+    startIcon?: any;
+    endIcon?: any;
     loading?: boolean;
     ripple?: boolean;
     href?: string;
@@ -36,8 +35,8 @@ export const Button = React.forwardRef<any, ButtonProps>(
   (
     {
       as = 'button',
-      startIcon,
-      endIcon,
+      startIcon: StartIcon,
+      endIcon: EndIcon,
       children,
       variant = 'primary',
       type = 'button',
@@ -98,17 +97,17 @@ export const Button = React.forwardRef<any, ButtonProps>(
               </motion.div>
             ) : (
               <>
-                {startIcon && (
+                {StartIcon && (
                   <Box mr={2}>
-                    <Icon size={18} icon={startIcon}></Icon>
+                    <StartIcon size={20} />
                   </Box>
                 )}
 
                 <span>{children}</span>
 
-                {endIcon && (
+                {EndIcon && (
                   <Box ml={2}>
-                    <Icon size={18} icon={endIcon}></Icon>
+                    <EndIcon size={20} />
                   </Box>
                 )}
               </>

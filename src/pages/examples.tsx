@@ -2,18 +2,17 @@ import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
+import * as icons from 'react-icons/hi';
 import * as Yup from 'yup';
 
 import { Button } from '@/components/atoms/Button';
 import { Box, Column, Flex, Row } from '@/components/atoms/Grid';
 import { Hyperlink } from '@/components/atoms/Hyperlink';
-import { Icon } from '@/components/atoms/Icon';
 import { Reveal } from '@/components/atoms/Reveal';
 import { Heading, Text } from '@/components/atoms/Text';
 import { FormikDate, FormikInput } from '@/components/molecules/Formik';
 import { Modal } from '@/components/molecules/Modal';
 import { useModalActions } from '@/context/ModalContext';
-import { icons } from '@/theme';
 
 import { FieldSelect } from '../components/molecules/Form/FieldSelect';
 
@@ -146,13 +145,9 @@ const Page: NextPage = () => {
         <SectionHeader>Icons</SectionHeader>
 
         <Flex flexWrap="wrap">
-          {Object.keys(icons).map(icon => (
-            <Box key={icon} p={1}>
-              <Icon
-                icon={icon as keyof typeof icons}
-                size={30}
-                title={icon}
-                color="secondary"></Icon>
+          {Object.entries(icons).map(([key, Icon]) => (
+            <Box key={key} p={1} color="secondary">
+              <Icon size={30} />
             </Box>
           ))}
         </Flex>

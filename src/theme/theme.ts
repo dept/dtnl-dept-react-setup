@@ -1,8 +1,6 @@
 import { darken, rgba } from 'polished';
-import * as heroIcons from 'react-icons/hi';
 import { DefaultTheme } from 'styled-components';
 
-import * as iconComponents from '../../public/icons/components';
 import { colors } from './colors';
 import { grid } from './grid';
 import { typography } from './typography';
@@ -95,9 +93,6 @@ export const textVariants = {
   },
 };
 
-export const icons = { ...iconComponents, ...heroIcons };
-
-export type IconOption = keyof typeof icons;
 export type ButtonOption = keyof typeof buttons;
 
 export interface ThemeGridContainer {

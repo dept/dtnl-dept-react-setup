@@ -85,10 +85,10 @@ export const Switch = ({ label, ...props }: SwitchProps) => {
           <LabelWrapper>
             <LabelPosition>
               <Flex ml={15} flexDirection="column">
-                <Text lineHeight={TOGGLE_HEIGHT} flex={'0 0'}>
+                <Text lineHeight={TOGGLE_HEIGHT} flex={'0 0'} margin={0}>
                   {label.inactive}
                 </Text>
-                <Text lineHeight={TOGGLE_HEIGHT} flex={'0 0'}>
+                <Text lineHeight={TOGGLE_HEIGHT} flex={'0 0'} margin={0}>
                   {label.active}
                 </Text>
               </Flex>

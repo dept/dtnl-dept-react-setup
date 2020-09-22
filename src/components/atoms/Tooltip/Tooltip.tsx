@@ -59,7 +59,9 @@ export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, t
             {trigger || (
               <Trigger>
                 <Flex ref={tooltipRef} justifyContent="center" alignItems="center">
-                  <Text fontWeight="bold">i</Text>
+                  <Text fontWeight="bold" margin={0}>
+                    i
+                  </Text>
                 </Flex>
               </Trigger>
             )}

@@ -1,9 +1,9 @@
+import ChevronIcon from '@public/icons/components/Chevron';
 import { useSelect } from 'downshift';
 import React, { InputHTMLAttributes, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Box } from '@/components/atoms/Grid';
-import { Icon } from '@/components/atoms/Icon';
 import { Label } from '@/components/atoms/Label/Label';
 
 import { InputWrapper } from './FieldInput';
@@ -99,7 +99,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           {...getToggleButtonProps()}>
           {(selectedItem && selectedItem.label) || placeholder || '-'}
           <IconWrapper position="absolute" right={3} top="50%">
-            <Icon icon="Chevron" size={15} rotate={isOpen ? -180 : 0} />
+            <ChevronIcon size={15} rotate={isOpen ? -180 : 0} />
           </IconWrapper>
         </Box>
       </InputWrapper>
@@ -205,7 +205,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
           ))}
         </Select>
         <IconWrapper position="absolute" right={3} top="50%">
-          <Icon icon="Chevron" size={15} />
+          <ChevronIcon size={15} />
         </IconWrapper>
       </InputWrapper>
     </>

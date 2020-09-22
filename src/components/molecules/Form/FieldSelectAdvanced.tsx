@@ -1,3 +1,4 @@
+import CloseLightIcon from '@public/icons/components/CloseLight';
 import React, { FocusEventHandler } from 'react';
 import Select from 'react-select';
 import { ValueType } from 'react-select/src/types';
@@ -120,7 +121,7 @@ export const FieldSelectAdvanced: React.FC<FieldSelectAdvancedProps> = ({
               <IconButton
                 aria-label={'Wissen'}
                 onClick={clearProps.clearValue}
-                icon={'CloseLight'}
+                icon={CloseLightIcon}
                 rotate={-180}
                 size={14}
                 padding={0}

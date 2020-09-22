@@ -1,10 +1,10 @@
+import CloseNormalIcon from '@public/icons/components/CloseNormal';
 import css from '@styled-system/css';
 import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { Box, Flex } from '@/components/atoms/Grid';
-import { Icon } from '@/components/atoms/Icon';
 import { Label } from '@/components/atoms/Label';
 import { Text } from '@/components/atoms/Text';
 
@@ -53,6 +53,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
             justifyContent: 'center',
             flexShrink: 0,
             boxSizing: 'border-box',
+            color: 'white',
             'input:checked + &': {
               bg: 'primary',
             },
@@ -61,7 +62,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
               boxShadow: theme.shadows.outline,
             },
           })}>
-          <Icon icon="CloseNormal" size={13} color="white" />
+          <CloseNormalIcon size={13} />
         </Box>
         <Box>
           <Text color="gray.800" fontSize={14}>
