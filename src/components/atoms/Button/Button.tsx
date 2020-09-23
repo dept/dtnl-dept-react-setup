@@ -1,4 +1,3 @@
-import css from '@styled-system/css';
 import React, { ButtonHTMLAttributes } from 'react';
 import Ink from 'react-ink';
 import { useTheme } from 'styled-components';
@@ -61,7 +60,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
       <PseudoBox
         {...conditionalProps}
         disabled={disabled}
-        css={css({
+        sx={{
           lineHeight: 1.5,
           userSelect: 'none',
           position: 'relative',
@@ -72,7 +71,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
           transitionDuration: '.15s',
           ...buttonSize,
           ...buttonVariant,
-        })}
+        }}
         _disabled={{
           cursor: 'not-allowed',
         }}

@@ -1,4 +1,3 @@
-import css from '@styled-system/css';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -85,14 +84,14 @@ export const Image: FC<ImageProps> = ({
         src={hasLoaded ? src : placeholderSrc || transparentPlaceholder}
         srcSet={hasLoaded ? srcSet : placeholderSrcSet}
         {...(ratioProps as any)}
-        css={css({
+        sx={{
           width: '100%',
           height: '100%',
           transition: 'opacity 0.4s ease-in-out',
           opacity: hasLoaded || placeholderSrc ? 1 : 0,
           objectFit: objectFit as any,
           objectPosition: objectPosition as any,
-        })}
+        }}
         alt={alt}
       />
     </Box>

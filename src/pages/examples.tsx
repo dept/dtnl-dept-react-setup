@@ -67,6 +67,20 @@ const Page: NextPage = () => {
       </Section>
 
       <Section>
+        <SectionHeader>Buttons</SectionHeader>
+
+        <Button variant="primary" size="small">
+          Button
+        </Button>
+        <Button variant="secondary" size="medium">
+          Button
+        </Button>
+        <Button variant="primary" size="large">
+          Button
+        </Button>
+      </Section>
+
+      <Section>
         <SectionHeader>Form</SectionHeader>
 
         <Formik

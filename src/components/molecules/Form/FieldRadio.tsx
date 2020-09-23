@@ -1,4 +1,3 @@
-import css from '@styled-system/css';
 import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
@@ -26,7 +25,7 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) =>
         <Box
           mr={3}
           my={1}
-          css={css({
+          sx={{
             display: 'inline-flex',
             flexShrink: 0,
             height: 25,
@@ -41,7 +40,7 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) =>
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },
-          })}
+          }}
         />
         <Text>{children}</Text>
       </Flex>

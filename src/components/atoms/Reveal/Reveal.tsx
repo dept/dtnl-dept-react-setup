@@ -1,4 +1,3 @@
-import { css } from '@styled-system/css';
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -16,12 +15,12 @@ export const Reveal: React.FC<RevealProps> = ({ children }) => {
   return (
     <PseudoBox
       ref={ref}
-      css={css({
+      sx={{
         position: 'relative',
         transition: 'opacity 300ms, top 700ms',
         opacity: inView ? 1 : 0,
         top: inView ? '0px' : '15px',
-      })}>
+      }}>
       {children}
     </PseudoBox>
   );

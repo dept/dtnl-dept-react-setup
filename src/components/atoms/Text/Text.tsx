@@ -1,4 +1,3 @@
-import css from '@styled-system/css';
 import React, { HTMLAttributes } from 'react';
 import { useTheme } from 'styled-components';
 import { TypographyProps } from 'styled-system';
@@ -39,9 +38,9 @@ export const Text = React.forwardRef<any, TextProps>(({ variant, ...props }, ref
 
   return (
     <Box
-      css={css({
+      sx={{
         ...textVariant,
-      })}
+      }}
       {...props}
       ref={ref}
     />

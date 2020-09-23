@@ -1,11 +1,10 @@
 import CloseLightIcon from '@public/icons/components/CloseLight';
 import React, { InputHTMLAttributes, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Label } from '@/components/atoms/Label';
-import { colors } from '@/theme/colors';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel';
@@ -24,72 +23,93 @@ export type FieldInputProps = InputProps & {
   name: string;
 };
 
-const StyledInput = styled.input<InputProps>`
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: transparent;
-  border: none;
-  margin: 0;
-  color: ${props => props.color || 'black'};
-  padding: 12px 14px;
+const Input = React.forwardRef<any, InputProps>(({ hasError, color, ...props }, ref) => {
+  let additionalProps: any = {};
 
-  &[type='number']::-webkit-inner-spin-button,
-  &[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  if (props.readOnly) {
+    additionalProps = {
+      ...additionalProps,
+      opacity: '0.3',
+      userSelect: 'none',
+      cursor: 'not-allowed',
+    };
   }
 
-  &:focus {
-    outline: none;
+  if (hasError) {
+    additionalProps = {
+      ...additionalProps,
+      color: 'error',
+    };
   }
 
-  ${props =>
-    props.hasError &&
-    css`
-      color: ${colors.error};
-    `};
-
-  ${props =>
-    props.readOnly &&
-    css`
-      opacity: 0.3;
-      user-select: none;
-      cursor: not-allowed;
-    `};
-`;
+  return (
+    <Box
+      ref={ref}
+      as="input"
+      sx={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'transparent',
+        border: 'none',
+        margin: '0',
+        color: color || 'black',
+        padding: '12px 14px',
+        ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]: {
+          appearance: 'none',
+          margin: 0,
+        },
+        '&:focus': {
+          outline: 'none',
+        },
+        ...additionalProps,
+      }}
+      {...props}
+    />
+  );
+});
 
 type InputWrapperProps = InputProps & { hasFocus?: boolean };
 
-export const InputWrapper = styled(Box)<InputWrapperProps>`
-  display: flex;
-  align-items: center;
-  border: 1px solid ${colors.gray[200]};
-  border-radius: 4px;
-  height: ${({ theme }) => theme.input.height || '50px'};
-  position: relative;
-  transition: all 0.3s ease;
-  overflow: hidden;
+export const InputWrapper: React.FC<InputWrapperProps> = ({ hasFocus, hasError, ...props }) => {
+  const theme = useTheme();
 
-  &:hover {
-    border-color: ${colors.gray[300]};
+  let additionalProps: any = {};
+
+  if (hasFocus) {
+    additionalProps = {
+      ...additionalProps,
+      outline: 'none',
+      boxShadow: theme.shadows.outline || 'inherit',
+      borderColor: 'gray.300',
+    };
   }
 
-  ${props =>
-    props.hasFocus &&
-    css`
-      outline: none;
-      box-shadow: ${props.theme.shadows.outline || 'inherit'};
-      border-color: ${colors.gray[300]};
-    `};
+  if (hasError) {
+    additionalProps = {
+      ...additionalProps,
+      color: 'error',
+      borderColor: 'error',
+    };
+  }
 
-  ${props =>
-    props.hasError &&
-    css`
-      color: ${colors.error};
-      border-color: ${colors.error} !important;
-    `};
-`;
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        border: '1px solid',
+        borderColor: 'gray.200',
+        borderRadius: '5px',
+        height: '42px',
+        position: 'relative',
+        transition: 'all 0.3s ease',
+        overflow: 'hidden',
+        ...additionalProps,
+      }}
+      {...props}
+    />
+  );
+};
 
 const AdornmentWrapper: React.FC<BoxProps> = props => (
   <Box
@@ -119,14 +139,13 @@ const Clear: React.FC<any> = ({ onClick }) => {
   );
 };
 
-const floatingLabelStyles = css``;
-
-const FieldInputWrapper = styled(Box)<{ isFloating: boolean }>`
-  position: relative;
-  label {
-    ${props => props.isFloating && floatingLabelStyles}
+const FieldInputWrapper: React.FC<{ isFloating: boolean }> = ({ isFloating, children }) => {
+  if (isFloating) {
+    // TODO: create floating logic
   }
-`;
+
+  return <Box position="relative">{children}</Box>;
+};
 
 export const FieldInput: React.FC<FieldInputProps> = ({
   label,
@@ -165,8 +184,9 @@ export const FieldInput: React.FC<FieldInputProps> = ({
       )}
       <InputWrapper color={color} hasFocus={hasFocus} hasError={hasError}>
         {start && <AdornmentWrapper>{start}</AdornmentWrapper>}
-        <StyledInput
+        <Input
           type={type}
+          hasError={hasError}
           {...props}
           id={name}
           ref={inputRef}

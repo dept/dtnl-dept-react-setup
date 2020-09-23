@@ -1,5 +1,4 @@
 import CloseNormalIcon from '@public/icons/components/CloseNormal';
-import css from '@styled-system/css';
 import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
@@ -41,7 +40,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
         />
         <Box
           mr={3}
-          css={css({
+          sx={{
             height: 25,
             width: 25,
             bg: 'white',
@@ -61,7 +60,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },
-          })}>
+          }}>
           <CloseNormalIcon size={13} />
         </Box>
         <Box>
