@@ -1,3 +1,11 @@
+import css, {
+  CSSPseudoSelectorProps,
+  CSSSelectorObject,
+  EmotionLabel,
+  SystemCssProperties,
+  UseThemeFunction,
+  VariantProperty,
+} from '@styled-system/css';
 import styled, { DefaultTheme } from 'styled-components';
 import {
   background,
@@ -197,6 +205,15 @@ type BoxHTMLProps = React.RefAttributes<any> & React.HTMLAttributes<any>;
 
 type OtherHTMLProps = {
   disabled?: boolean;
+  sx?:
+    | SystemCssProperties
+    | CSSPseudoSelectorProps
+    | CSSSelectorObject
+    | VariantProperty
+    | UseThemeFunction
+    | EmotionLabel
+    | null
+    | undefined;
 };
 
 export type BoxProps = BoxHTMLProps &
@@ -216,6 +233,8 @@ export const truncate = (props: BoxProps): any => {
 
   return null;
 };
+
+const sx = (props: BoxProps) => css(props.sx)((props as any).theme);
 
 export const boxStyles = compose(
   layout,
@@ -253,8 +272,11 @@ export const Box = styled('div').withConfig({
 })<BoxProps>(
   {
     boxSizing: 'border-box',
+    margin: 0,
+    minWidth: 0,
   },
   truncate,
+  sx,
   boxStyles,
 );
 
