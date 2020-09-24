@@ -1,4 +1,3 @@
-import CloseLightIcon from '@public/icons/components/CloseLight';
 import React, { FC } from 'react';
 import ReactModal from 'react-modal';
 import { createGlobalStyle } from 'styled-components';
@@ -8,6 +7,7 @@ import { Box } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Heading } from '@/components/atoms/Text';
 import { useModalActions, useModalState } from '@/context/ModalContext';
+import CloseLightIcon from '@/icons/components/CloseLight';
 import { colors } from '@/theme/colors';
 import { media } from '@/utils/media';
 

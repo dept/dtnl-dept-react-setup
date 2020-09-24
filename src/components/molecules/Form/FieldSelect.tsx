@@ -1,10 +1,10 @@
-import ChevronIcon from '@public/icons/components/Chevron';
 import { useSelect } from 'downshift';
 import React, { InputHTMLAttributes, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Box } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label/Label';
+import ChevronIcon from '@/icons/components/Chevron';
 
 import { InputWrapper } from './FieldInput';
 

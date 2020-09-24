@@ -1,6 +1,7 @@
-import HomeIcon from '@public/icons/components/Home';
 import { render } from '@test/utils';
 import React from 'react';
+
+import HomeIcon from '@/icons/components/Home';
 
 import { IconButton } from './IconButton';
 

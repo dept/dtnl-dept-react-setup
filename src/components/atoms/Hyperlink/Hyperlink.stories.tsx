@@ -1,5 +1,6 @@
-import ClockIcon from '@public/icons/components/Clock';
 import React from 'react';
+
+import ClockIcon from '@/icons/components/Clock';
 
 import { Hyperlink } from '.';
 

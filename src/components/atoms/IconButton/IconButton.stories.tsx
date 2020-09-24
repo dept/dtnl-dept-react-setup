@@ -1,6 +1,7 @@
-import HomeIcon from '@public/icons/components/Home';
 import { number, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
+
+import HomeIcon from '@/icons/components/Home';
 
 import { IconButton } from '.';
 

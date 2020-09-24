@@ -1,4 +1,3 @@
-import CloseNormalIcon from '@public/icons/components/CloseNormal';
 import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
@@ -6,6 +5,7 @@ import styled, { useTheme } from 'styled-components';
 import { Box, Flex } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label';
 import { Text } from '@/components/atoms/Text';
+import CloseNormalIcon from '@/icons/components/CloseNormal';
 
 export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;

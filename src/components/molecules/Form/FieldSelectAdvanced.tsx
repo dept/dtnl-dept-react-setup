@@ -1,4 +1,3 @@
-import CloseLightIcon from '@public/icons/components/CloseLight';
 import React, { FocusEventHandler } from 'react';
 import Select from 'react-select';
 import { ValueType } from 'react-select/src/types';
@@ -6,6 +5,7 @@ import styled from 'styled-components';
 
 import { Box } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
+import CloseLightIcon from '@/icons/components/CloseLight';
 import { colors } from '@/theme/colors';
 
 interface Option {

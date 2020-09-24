@@ -36,7 +36,7 @@ By default, Next will start a server with `next start`. However it's possible to
 
 ## Generate icons from svg
 
-Place all your icons in `/public/icons`. Run `yarn svgr`. This generates jsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.
+Place all your icons in `/src/icons`. Run `yarn svgr`. This generates jsx components from your svg's and optimizes them with SVGO. SVGO config is located in the root of the project. The CamelCased filename will be the name of the icon.
 
 Example:
 
