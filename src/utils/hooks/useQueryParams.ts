@@ -1,4 +1,4 @@
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 import produce from 'immer';
 import Router, { useRouter } from 'next/router';
 import qs from 'qs';
@@ -19,10 +19,6 @@ type PossibleOptions =
   | Options<ParamType.Date, Date | undefined>
   | Options<ParamType.Number, number | undefined>
   | Options<ParamType.String, string | undefined>;
-
-interface QueryParamsHookConfig {
-  [key: string]: PossibleOptions;
-}
 
 interface QueryParamSetterConfig {
   [key: string]: PossibleValue;
