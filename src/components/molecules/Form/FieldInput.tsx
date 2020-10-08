@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';

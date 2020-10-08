@@ -20,10 +20,6 @@ type PossibleOptions =
   | Options<ParamType.Number, number | undefined>
   | Options<ParamType.String, string | undefined>;
 
-interface QueryParamsHookConfig {
-  [key: string]: PossibleOptions;
-}
-
 interface QueryParamSetterConfig {
   [key: string]: PossibleValue;
 }

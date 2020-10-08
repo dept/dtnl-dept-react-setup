@@ -1,4 +1,4 @@
-function template({ template }, opts, { imports, componentName, props, jsx, exports }) {
+function template({ template }, _opts, { componentName, jsx }) {
   const typeScriptTpl = template.smart({ plugins: ['typescript'] });
 
   componentName.name = componentName.name.slice(3) + 'Icon';
