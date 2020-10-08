@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 import produce from 'immer';
 import Router, { useRouter } from 'next/router';
 import qs from 'qs';
