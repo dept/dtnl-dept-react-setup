@@ -4,8 +4,6 @@ const withPlugins = require('next-compose-plugins');
 const { plugins } = require('./config/plugins');
 const { includePolyfills } = require('./config/includePolyfills');
 
-const dev = process.env.NODE_ENV !== 'production';
-
 /**
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
