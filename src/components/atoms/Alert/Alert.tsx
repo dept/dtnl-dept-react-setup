@@ -40,9 +40,9 @@ export const Alert: FC<AlertProps> = ({ type, title, children, icon, ...props })
   return (
     <Box p="1rem" borderRadius="5px" bg={theme.bg} color={theme.color} {...props}>
       <Flex alignItems="center">
-        <Box display="inline-block">
+        <Flex>
           <Icon size={20} />
-        </Box>
+        </Flex>
         <Box ml={3}>
           {title && <Heading as="h3">{title}</Heading>}
           {children && <Paragraph m={0}>{children}</Paragraph>}

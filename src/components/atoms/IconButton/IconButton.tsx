@@ -42,6 +42,7 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   cursor: pointer;
 
   &:focus {

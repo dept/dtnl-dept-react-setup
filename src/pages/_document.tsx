@@ -3,28 +3,6 @@ import { ServerStyleSheet } from 'styled-components';
 
 import { FaviconsMeta } from '@public/favicon/FaviconsMeta';
 
-function checkUnsupported() {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-
-  const ua = window.navigator.userAgent;
-
-  // test if browser is  <= IE10
-  const msie = ua.indexOf('MSIE ');
-  if (msie > 0) {
-    return true;
-  }
-
-  // test if browser is IE11
-  const trident = ua.indexOf('Trident/');
-  if (trident > 0) {
-    return true;
-  }
-
-  return false;
-}
-
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();

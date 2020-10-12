@@ -34,9 +34,9 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
           ref={ref}>
           <Flex alignItems="center" height="100%" as="span">
             {Icon && (
-              <Box mr={'0.5em'} as="span" color={iconColor}>
+              <Flex mr={'0.5em'} as="span" color={iconColor}>
                 <Icon size={18} />
-              </Box>
+              </Flex>
             )}
             {children}
           </Flex>

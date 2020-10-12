@@ -273,7 +273,6 @@ export const Box = styled('div').withConfig({
   {
     boxSizing: 'border-box',
     margin: 0,
-    minWidth: 0,
   },
   truncate,
   sx,

@@ -1,4 +1,5 @@
 import React, { InputHTMLAttributes, useState } from 'react';
+import { HiOutlineX } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
@@ -128,13 +129,7 @@ const AdornmentWrapper: React.FC<BoxProps> = props => (
 const Clear: React.FC<any> = ({ onClick }) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
-      <IconButton
-        type="button"
-        aria-label="Clear"
-        icon={CloseLightIcon}
-        size={15}
-        onClick={onClick}
-      />
+      <IconButton type="button" aria-label="Clear" icon={HiOutlineX} size={18} onClick={onClick} />
     </Box>
   );
 };

@@ -96,6 +96,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           display="block"
           p="8px 14px"
           as="label"
+          cursor="pointer"
           {...getToggleButtonProps()}>
           {(selectedItem && selectedItem.label) || placeholder || '-'}
           <IconWrapper position="absolute" right={3} top="50%">
@@ -115,6 +116,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           <ListItem
             color="black"
             as="li"
+            cursor="pointer"
             bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : null}
             p="12px 14px"
             key={`${item}${index}`}
