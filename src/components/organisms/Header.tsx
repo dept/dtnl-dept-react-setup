@@ -2,13 +2,14 @@ import Link from 'next/link';
 import React from 'react';
 import { FaReact } from 'react-icons/fa';
 
-import { Box, Flex, Grid, PseudoBox } from '../atoms/Grid';
+import { Box, BoxProps, Flex, Grid, PseudoBox } from '../atoms/Grid';
 import { NavLink } from '../atoms/Link';
 
 interface HeaderProps {}
 
-const NavigationLink: React.FC = props => (
+const NavigationLink = React.forwardRef<any, BoxProps>((props, ref) => (
   <PseudoBox
+    ref={ref}
     as="a"
     px={4}
     py={1}
@@ -28,7 +29,7 @@ const NavigationLink: React.FC = props => (
     }}
     {...props}
   />
-);
+));
 
 const items = [
   {

@@ -3,37 +3,52 @@ import React, { Children } from 'react';
 import { Box, BoxProps } from './Box';
 import { Flex, FlexProps } from './Flex';
 
+type Align = 'left' | 'center' | 'right' | null;
+
 interface StackProps {
   space: BoxProps['paddingTop'];
   divider?: JSX.Element;
-  direction?: 'horizontal' | 'vertical';
+  align?: Align | Align[];
 }
 
-export const Stack: React.FC<StackProps> = ({
-  children,
-  divider,
-  space,
-  direction = 'vertical',
-}) => {
-  const isVertical = direction === 'vertical';
+function mapAlign(align: Align) {
+  switch (align) {
+    case 'left':
+      return 'flex-start';
+    case 'right':
+      return 'flex-end';
+    default:
+      return align;
+  }
+}
+
+export const Stack: React.FC<StackProps> = ({ children, divider, space, align = 'left' }) => {
+  const spaceProps: BoxProps = {
+    pb: space,
+  };
 
   const containerProps: FlexProps = {
-    flexDirection: direction === 'vertical' ? 'column' : 'row',
+    flexDirection: 'column',
   };
-  const spaceProps: BoxProps = { [isVertical ? 'pb' : 'pr']: space };
+
+  if (Array.isArray(align)) {
+    containerProps.alignItems = align.map(mapAlign);
+  } else {
+    containerProps.alignItems = mapAlign(align);
+  }
 
   const childComponents = Children.toArray(children).map((child, i, arr) => {
     const isLast = i === arr.length - 1;
 
     if (isLast) {
-      return <Box>{child}</Box>;
+      return <Box key={i}>{child}</Box>;
     }
 
     return (
-      <>
+      <React.Fragment key={i}>
         <Box {...spaceProps}>{child}</Box>
-        {divider && <Box {...spaceProps}>{divider}</Box>}
-      </>
+        {divider && i > 0 && <Box {...spaceProps}>{divider}</Box>}
+      </React.Fragment>
     );
   });
 
