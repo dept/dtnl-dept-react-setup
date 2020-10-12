@@ -11,9 +11,7 @@ import { BaseLayout } from '@/components/templates';
 import { ContextProvider } from '@/context/ContextProvider';
 import { GlobalStyle } from '@/theme/GlobalStyle';
 import { theme } from '@/theme/theme';
-import { appConfigurator } from '@/utils/appConfigurator';
 import { isBrowser } from '@/utils/isBrowser';
-import yn from '@/utils/yn';
 
 if (process.browser) {
   require('@/utils/detectTouch');
@@ -42,6 +40,10 @@ if (isBrowser && process.env.ENVIRONMENT_NAME !== 'production') {
 ReactModal.setAppElement('#__next');
 
 const MyApp: AppType = ({ Component: Page, pageProps }) => {
+  if (pageProps.renderWithoutLayout) {
+    return <Page {...pageProps} />;
+  }
+
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
@@ -60,7 +62,4 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
   );
 };
 
-export default appConfigurator(MyApp, {
-  supportIE: yn(process.env.IE_SUPPORT, false),
-  ssr: true,
-});
+export default MyApp;

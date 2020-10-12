@@ -6,7 +6,7 @@ import * as icons from 'react-icons/hi';
 import * as Yup from 'yup';
 
 import { Button } from '@/components/atoms/Button';
-import { Box, Column, Flex, Row } from '@/components/atoms/Grid';
+import { Box, Column, Flex, Grid, Row } from '@/components/atoms/Grid';
 import { Hyperlink } from '@/components/atoms/Hyperlink';
 import { Reveal } from '@/components/atoms/Reveal';
 import { Heading, Text } from '@/components/atoms/Text';

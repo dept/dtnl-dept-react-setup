@@ -32,9 +32,7 @@ const Page: NextPage<PageProps> = () => {
     <>
       <NextSeo title="Blog" description="An overview of our blog posts" />
       <Box>
-        <Heading as="h1" color="primary">
-          Blogs
-        </Heading>
+        <Heading as="h1">Blogs</Heading>
         <ul>
           {blogPosts.map(item => {
             return (

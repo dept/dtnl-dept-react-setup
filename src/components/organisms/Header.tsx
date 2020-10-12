@@ -1,22 +1,34 @@
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
+import { FaReact } from 'react-icons/fa';
 
-import { Box, Flex } from '../atoms/Grid';
+import { Box, Flex, Grid, PseudoBox } from '../atoms/Grid';
 import { NavLink } from '../atoms/Link';
 
 interface HeaderProps {}
 
-const NavigationLink = styled(Box)`
-  --border-color: transparent;
-  display: block;
-  padding-top: 15px;
-  padding-bottom: 10px;
-  border-bottom: 5px solid var(--border-color);
-  &.active {
-    --border-color: rgba(0, 0, 0, 0.2);
-  }
-`;
+const NavigationLink: React.FC = props => (
+  <PseudoBox
+    as="a"
+    px={4}
+    py={1}
+    mx={3}
+    my={5}
+    display="block"
+    fontSize="sm"
+    borderRadius={5}
+    fontWeight="medium"
+    _hover={{
+      bg: 'gray.700',
+    }}
+    sx={{
+      '&.active': {
+        bg: 'gray.900',
+      },
+    }}
+    {...props}
+  />
+);
 
 const items = [
   {
@@ -44,9 +56,7 @@ const Navigation: React.FC = () => {
         return (
           <Box key={item.title}>
             <NavLink href={item.href} passHref>
-              <NavigationLink as="a" px={4} mx={3}>
-                {item.title}
-              </NavigationLink>
+              <NavigationLink>{item.title}</NavigationLink>
             </NavLink>
           </Box>
         );
@@ -57,16 +67,18 @@ const Navigation: React.FC = () => {
 
 export const Header: React.FC<HeaderProps> = () => {
   return (
-    <Flex as="header" bg="primary" color="white" px={8} flexShrink={0} alignItems="center">
-      <Box mr={8}>
-        <Link href="/">
-          <a>
-            <Box>Logo</Box>
-          </a>
-        </Link>
-      </Box>
+    <Box as="header" bg="gray.800" color="white">
+      <Grid>
+        <Flex flexShrink={0} alignItems="center">
+          <Link href="/">
+            <Flex as="a" mr={8} cursor="pointer">
+              <FaReact size={30} />
+            </Flex>
+          </Link>
 
-      <Navigation />
-    </Flex>
+          <Navigation />
+        </Flex>
+      </Grid>
+    </Box>
   );
 };
