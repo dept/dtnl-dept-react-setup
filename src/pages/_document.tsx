@@ -3,6 +3,28 @@ import { ServerStyleSheet } from 'styled-components';
 
 import { FaviconsMeta } from '@public/favicon/FaviconsMeta';
 
+function checkUnsupported() {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const ua = window.navigator.userAgent;
+
+  // test if browser is  <= IE10
+  const msie = ua.indexOf('MSIE ');
+  if (msie > 0) {
+    return true;
+  }
+
+  // test if browser is IE11
+  const trident = ua.indexOf('Trident/');
+  if (trident > 0) {
+    return true;
+  }
+
+  return false;
+}
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -40,6 +62,27 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="disabled-adaptations" content="watch" />
           <FaviconsMeta />
+          {this.props.dangerousAsPath !== '/unsupported' && (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function() {
+                var host = window.location.hostname;
+                var ua = window.navigator.userAgent;
+                var redirect = '/not-supported.html';
+                // test if browser is  <= IE10
+                var msie = ua.indexOf('MSIE');
+                if (msie > 0) {
+                    window.location.href = redirect;
+                }
+                // test if browser is IE11
+                var trident = ua.indexOf('Trident/');
+                if (trident > 0) {
+                  window.location.href = redirect;
+                }
+              })();`,
+              }}
+            />
+          )}
         </Head>
         <body>
           <Main />

@@ -1,43 +1,19 @@
-import React, { useMemo } from 'react';
+import { NextPage, NextPageContext } from 'next';
+import { NextSeo } from 'next-seo';
 
-function checkUnsupported() {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-
-  const ua = window.navigator.userAgent;
-
-  // test if browser is  <= IE10
-  const msie = ua.indexOf('MSIE ');
-  if (msie > 0) {
-    return true;
-  }
-
-  // test if browser is IE11
-  const trident = ua.indexOf('Trident/');
-  if (trident > 0) {
-    return true;
-  }
-
-  return false;
+export async function getStaticProps(ctx: NextPageContext) {
+  return {
+    props: {
+      renderWithoutLayout: true,
+    },
+  };
 }
 
-interface UnsupportedBrowserProps {
-  supportIE?: boolean;
-}
-
-export const UnsupportedBrowser: React.FC<UnsupportedBrowserProps> = ({
-  children,
-  supportIE = false,
-}) => {
-  const isUnsupported = useMemo(checkUnsupported, []);
-
-  if (!isUnsupported || supportIE) {
-    return <>{children}</>;
-  }
-
+const UnsupportedBrowser: NextPage = () => {
   return (
     <>
+      <NextSeo title="Unsupported" description="Your browser is not supported" />
+
       <div className="wrapper">
         <h1>Browser not supported!</h1>
         <p>
@@ -149,3 +125,5 @@ export const UnsupportedBrowser: React.FC<UnsupportedBrowserProps> = ({
     </>
   );
 };
+
+export default UnsupportedBrowser;

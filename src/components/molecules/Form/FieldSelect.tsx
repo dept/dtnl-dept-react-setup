@@ -94,7 +94,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           height="100%"
           width="100%"
           display="block"
-          p="11px 14px"
+          p="8px 14px"
           as="label"
           {...getToggleButtonProps()}>
           {(selectedItem && selectedItem.label) || placeholder || '-'}

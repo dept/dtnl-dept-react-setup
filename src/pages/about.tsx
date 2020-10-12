@@ -12,9 +12,7 @@ const Page: NextPage<PageProps> = () => {
     <>
       <NextSeo title="About" description="This is the about page" />
       <Box>
-        <Heading as="h1" color="primary">
-          About
-        </Heading>
+        <Heading as="h1">About</Heading>
         <Paragraph>This is the about page</Paragraph>
       </Box>
     </>
