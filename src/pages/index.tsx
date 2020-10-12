@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-import { Button } from '@/components/atoms/Button';
 import { Box } from '@/components/atoms/Grid';
 import { Heading, Paragraph } from '@/components/atoms/Text';
 
