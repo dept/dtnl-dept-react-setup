@@ -1,10 +1,8 @@
 require('dotenv').config();
 const withPlugins = require('next-compose-plugins');
 
-const { plugins } = require('./config/plugins');
 const { includePolyfills } = require('./config/includePolyfills');
-
-const dev = process.env.NODE_ENV !== 'production';
+const { plugins } = require('./config/plugins');
 
 /**
  * Next config

@@ -1,5 +1,6 @@
-import { render } from '@test/utils';
 import { axe } from 'jest-axe';
+
+import { render } from '@test/utils';
 
 import { Button } from './Button';
 
