@@ -46,7 +46,7 @@ export default class MyDocument extends Document {
                 __html: `(function() {
                 var host = window.location.hostname;
                 var ua = window.navigator.userAgent;
-                var redirect = '/not-supported.html';
+                var redirect = '/unsupported';
                 // test if browser is  <= IE10
                 var msie = ua.indexOf('MSIE');
                 if (msie > 0) {

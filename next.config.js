@@ -14,7 +14,6 @@ module.exports = withPlugins(plugins, {
    * documentation: https://nextjs.org/docs/api-reference/next.config.js/environment-variables
    */
   env: {
-    IE_SUPPORT: process.env.IE_SUPPORT,
     ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
   },
   poweredByHeader: false,
