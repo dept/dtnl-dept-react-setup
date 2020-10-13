@@ -206,7 +206,7 @@ export const useQueryParams = <T>(
   return [values, setter];
 };
 
-const useQueryParamValues = <T>(config: T) => {
+export const useQueryParamValues = <T>(config: T) => {
   const router = useRouter();
   const keys = Object.keys(config) as Array<keyof T>;
 

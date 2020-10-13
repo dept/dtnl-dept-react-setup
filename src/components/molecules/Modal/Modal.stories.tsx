@@ -3,9 +3,9 @@ import React from 'react';
 
 import { Button } from '@/components/atoms/Button';
 import { Box } from '@/components/atoms/Grid';
-import { useModalActions } from '@/context/ModalContext';
 
 import { Modal } from './Modal';
+import { useModal } from './modalStore';
 
 export default {
   title: 'Molecules/Modal',
@@ -24,8 +24,8 @@ export default {
 };
 
 const ModalButton: React.FC = ({ children }) => {
-  const modalActions = useModalActions();
-  return <Button onClick={() => modalActions.show('storybook')}>{children}</Button>;
+  const { show } = useModal('storybook');
+  return <Button onClick={() => show()}>{children}</Button>;
 };
 
 export const component = () => {

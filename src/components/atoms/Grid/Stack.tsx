@@ -22,7 +22,7 @@ function mapAlign(align: Align) {
   }
 }
 
-export const Stack: React.FC<StackProps> = ({ children, divider, space, align = 'left' }) => {
+export const Stack: React.FC<StackProps> = ({ children, divider, space, align }) => {
   const spaceProps: BoxProps = {
     pb: space,
   };
@@ -34,7 +34,9 @@ export const Stack: React.FC<StackProps> = ({ children, divider, space, align = 
   if (Array.isArray(align)) {
     containerProps.alignItems = align.map(mapAlign);
   } else {
-    containerProps.alignItems = mapAlign(align);
+    if (align) {
+      containerProps.alignItems = mapAlign(align);
+    }
   }
 
   const childComponents = Children.toArray(children).map((child, i, arr) => {

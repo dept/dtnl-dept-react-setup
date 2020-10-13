@@ -6,10 +6,11 @@ import { Button } from '@/components/atoms/Button';
 import { Box } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Heading } from '@/components/atoms/Text';
-import { useModalActions, useModalState } from '@/context/ModalContext';
 import CloseLightIcon from '@/icons/components/CloseLight';
 import { colors } from '@/theme/colors';
 import { media } from '@/utils/media';
+
+import { useModal, useModalState } from './modalStore';
 
 const duration = 300;
 
@@ -82,13 +83,13 @@ export const Modal: FC<ModalProps> = ({
   width = '500px',
   height = 'auto',
 }) => {
-  const modalActions = useModalActions();
-  const modalState = useModalState();
+  const { hide } = useModal(id);
+  const modal = useModalState(id);
 
-  const modal = modalState.getModal(id);
+  const isShown = modal?.isShown || false;
 
   const onDismiss = () => {
-    modalActions.hide(id);
+    hide();
 
     if (onClose) {
       setTimeout(onClose, duration);
@@ -118,7 +119,7 @@ export const Modal: FC<ModalProps> = ({
           beforeClose: 'c-modal__overlay--before-close',
         }}
         closeTimeoutMS={duration}
-        isOpen={Boolean(modal && modal.isShown)}
+        isOpen={isShown}
         contentLabel="Modal"
         onRequestClose={onDismiss}>
         {modal && (

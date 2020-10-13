@@ -2,17 +2,17 @@ import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
-import * as icons from 'react-icons/hi';
+import * as icons from 'react-icons/md';
 import * as Yup from 'yup';
 
 import { Button } from '@/components/atoms/Button';
-import { Box, Column, Flex, Grid, Row } from '@/components/atoms/Grid';
+import { Box, Column, Flex, Row, Stack } from '@/components/atoms/Grid';
 import { Hyperlink } from '@/components/atoms/Hyperlink';
 import { Reveal } from '@/components/atoms/Reveal';
 import { Heading, Text } from '@/components/atoms/Text';
 import { FormikDate, FormikInput } from '@/components/molecules/Formik';
 import { Modal } from '@/components/molecules/Modal';
-import { useModalActions } from '@/context/ModalContext';
+import { useModal } from '@/components/molecules/Modal/modalStore';
 
 import { FieldSelect } from '../components/molecules/Form/FieldSelect';
 
@@ -33,7 +33,7 @@ const GridExampleBox: React.FC = props => (
 );
 
 const Page: NextPage = () => {
-  const modalActions = useModalActions();
+  const { show: showModal } = useModal('uniqueModalId');
 
   return (
     <>
@@ -103,43 +103,45 @@ const Page: NextPage = () => {
           onSubmit={values => console.log(values)}>
           {() => (
             <Form>
-              <FormikInput label="Text field" name="text" placeholder="This is a text field" />
-              <FormikInput
-                type="email"
-                label="Email field"
-                name="email"
-                placeholder="This is a email field"
-              />
-              <FormikInput
-                type="number"
-                label="Number field"
-                name="number"
-                placeholder="This is a number field"
-              />
-              <FormikDate name="date" label="Date field" placeholder="This is a date field" />
-              <FieldSelect
-                name="select"
-                // native
-                placeholder={''}
-                label="Dingen"
-                defaultValue={2}
-                onChange={e => console.log(e)}
-                items={[
-                  {
-                    value: 1,
-                    label: 'Test 1',
-                  },
-                  {
-                    value: 2,
-                    label: 'Test 2',
-                  },
-                  {
-                    value: 3,
-                    label: 'Test 3',
-                  },
-                ]}
-              />{' '}
-              <Button type="submit">Submit</Button>
+              <Stack space={4}>
+                <FormikInput label="Text field" name="text" placeholder="This is a text field" />
+                <FormikInput
+                  type="email"
+                  label="Email field"
+                  name="email"
+                  placeholder="This is a email field"
+                />
+                <FormikInput
+                  type="number"
+                  label="Number field"
+                  name="number"
+                  placeholder="This is a number field"
+                />
+                <FormikDate name="date" label="Date field" placeholder="This is a date field" />
+                <FieldSelect
+                  name="select"
+                  // native
+                  placeholder={''}
+                  label="Dingen"
+                  defaultValue={2}
+                  onChange={e => console.log(e)}
+                  items={[
+                    {
+                      value: 1,
+                      label: 'Test 1',
+                    },
+                    {
+                      value: 2,
+                      label: 'Test 2',
+                    },
+                    {
+                      value: 3,
+                      label: 'Test 3',
+                    },
+                  ]}
+                />
+                <Button type="submit">Submit</Button>
+              </Stack>
             </Form>
           )}
         </Formik>
@@ -148,7 +150,7 @@ const Page: NextPage = () => {
       <Section>
         <SectionHeader>Modal</SectionHeader>
 
-        <Button onClick={() => modalActions.show('uniqueModalId')}>Open modal</Button>
+        <Button onClick={() => showModal()}>Open modal</Button>
 
         <Modal id="uniqueModalId">
           <Box p={50}>This is a modal</Box>
