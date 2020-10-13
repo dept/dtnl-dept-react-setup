@@ -8,7 +8,6 @@ import { IconButton } from '@/components/atoms/IconButton';
 import { Heading } from '@/components/atoms/Text';
 import CloseLightIcon from '@/icons/components/CloseLight';
 import { colors } from '@/theme/colors';
-import { useQueryParamValue } from '@/utils/hooks/useQueryParams';
 import { media } from '@/utils/media';
 
 import { useModal, useModalState } from './modalStore';
@@ -86,9 +85,8 @@ export const Modal: FC<ModalProps> = ({
 }) => {
   const { hide } = useModal(id);
   const modal = useModalState(id);
-  const modalKey = useQueryParamValue('modal');
 
-  const isShown = modal?.isShown || id === modalKey;
+  const isShown = modal?.isShown || false;
 
   const onDismiss = () => {
     hide();
