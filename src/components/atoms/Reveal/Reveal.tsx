@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { PseudoBox } from '../Grid';
+import { Box } from '../Grid';
 
 export interface RevealProps {}
 
@@ -13,7 +13,7 @@ export const Reveal: React.FC<RevealProps> = ({ children }) => {
   });
 
   return (
-    <PseudoBox
+    <Box
       ref={ref}
       sx={{
         position: 'relative',
@@ -22,6 +22,6 @@ export const Reveal: React.FC<RevealProps> = ({ children }) => {
         top: inView ? '0px' : '15px',
       }}>
       {children}
-    </PseudoBox>
+    </Box>
   );
 };
