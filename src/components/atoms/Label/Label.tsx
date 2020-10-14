@@ -1,14 +1,14 @@
 import React, { HTMLAttributes } from 'react';
 
-import { PseudoBox, PseudoBoxProps } from '../Grid';
+import { Box, BoxProps } from '../Grid';
 
 interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   htmlFor?: string;
 }
 
-export const Label: React.FC<LabelProps & PseudoBoxProps> = ({ children, color, ...props }) => {
+export const Label: React.FC<LabelProps & BoxProps> = ({ children, color, ...props }) => {
   return (
-    <PseudoBox
+    <Box
       as="label"
       sx={{
         cursor: 'pointer',
@@ -19,6 +19,6 @@ export const Label: React.FC<LabelProps & PseudoBoxProps> = ({ children, color, 
       }}
       {...props}>
       {children}
-    </PseudoBox>
+    </Box>
   );
 };

@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components';
 
 import { buttons, buttonSizes } from '@/theme';
 
-import { Box, BoxProps, PseudoBox } from '../Grid';
+import { Box, BoxProps } from '../Grid';
 import { Loader } from '../Loader';
 
 type ButtonElements = 'button' | 'a';
@@ -57,7 +57,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
     }
 
     return (
-      <PseudoBox
+      <Box
         {...conditionalProps}
         disabled={disabled}
         sx={{
@@ -122,7 +122,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
             </Box>
           </>
         )}
-      </PseudoBox>
+      </Box>
     );
   },
 );

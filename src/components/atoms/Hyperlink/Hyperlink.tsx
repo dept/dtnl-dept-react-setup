@@ -2,7 +2,7 @@ import { LinkProps } from 'next/link';
 import React from 'react';
 import { useTheme } from 'styled-components';
 
-import { Box, BoxProps, Flex, PseudoBox } from '../Grid';
+import { Box, BoxProps, Flex } from '../Grid';
 import { Link } from '../Link';
 
 interface HyperLinkElementProps {
@@ -21,7 +21,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
 
     return (
       <Link href={href} as={as} passHref>
-        <PseudoBox
+        <Box
           as="a"
           display="inline-block"
           color={color}
@@ -40,7 +40,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
             )}
             {children}
           </Flex>
-        </PseudoBox>
+        </Box>
       </Link>
     );
   },
