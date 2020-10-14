@@ -50,7 +50,7 @@ export const useModal = (key: string, options?: ModalOptions) => {
       const currentModalState = state.modals[key] || {};
       state.modals[key] = { isClosable: true, isShown: false, ...currentModalState, ...options };
     });
-  }, [key, options]);
+  }, [key, options, set]);
 
   function show() {
     // setQueryParam(key);

@@ -5,7 +5,6 @@ import { useTheme } from 'styled-components';
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Label } from '@/components/atoms/Label';
-import CloseLightIcon from '@/icons/components/CloseLight';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel';
