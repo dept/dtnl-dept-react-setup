@@ -1,8 +1,24 @@
-import css from '@styled-system/css';
+import css, {
+  CSSPseudoSelectorProps,
+  CSSSelectorObject,
+  EmotionLabel,
+  SystemCssProperties,
+  UseThemeFunction,
+  VariantProperty,
+} from '@styled-system/css';
 import styled from 'styled-components';
 
 import { Box, BoxProps } from './Box';
-import { transformAliasProps as tx } from './boxConfig';
+
+type CssProps =
+  | SystemCssProperties
+  | CSSPseudoSelectorProps
+  | CSSSelectorObject
+  | VariantProperty
+  | UseThemeFunction
+  | EmotionLabel
+  | null
+  | undefined;
 
 interface PseudoBoxPropsList {
   /**
@@ -14,9 +30,7 @@ interface PseudoBoxPropsList {
    * <PseudoBox _after={{content:`""` }}/>
    * ```
    */
-  _after?: BoxProps & {
-    content: string;
-  };
+  _after?: CssProps;
   /**
    * Styles for CSS selector `&:before`
    *
@@ -26,43 +40,45 @@ interface PseudoBoxPropsList {
    * <PseudoBox _before={{content:`""` }}/>
    * ```
    */
-  _before?: BoxProps & {
-    content: string;
-  };
+  _before?: CssProps;
   /**
    * Styles for CSS selector `&:focus`
    *
    */
-  _focus?: BoxProps;
+  _focus?: CssProps;
   /**
    * Styles for CSS selector `&:hover`
    */
-  _hover?: BoxProps;
+  _hover?: CssProps;
+  /**
+   * Styles for CSS selector `&:focus, &:hover`
+   */
+  _hocus?: CssProps;
   /**
    * Styles for CSS Selector `&:active`
    */
-  _active?: BoxProps;
+  _active?: CssProps;
   /**
    * Styles for CSS Selector `&[aria-pressed=true]`
    * Typically used to style the current "pressed" state of toggle buttons
    */
-  _pressed?: BoxProps;
+  _pressed?: CssProps;
   /**
    * Styles to apply when the ARIA attribute `aria-selected` is `true`
    * - CSS selector `&[aria-selected=true]`
    */
-  _selected?: BoxProps;
+  _selected?: CssProps;
   /**
    * Styles to apply when a child of this element has received focus
    * - CSS Selector `&:focus-within`
    */
-  _focusWithin?: BoxProps;
+  _focusWithin?: CssProps;
 
   /**
    * Styles to apply when the ARIA attribute `aria-invalid` is `true`
    * - CSS selector `&[aria-invalid=true]`
    */
-  _invalid?: BoxProps;
+  _invalid?: CssProps;
   /**
    * Styles to apply when this element is disabled. The passed styles are applied to these CSS selectors:
    * - `&[aria-disabled=true]`
@@ -72,68 +88,72 @@ interface PseudoBoxPropsList {
    * - `&:focus[aria-disabled=true]`
    * - `&:hover[aria-disabled=true]`
    */
-  _disabled?: BoxProps;
+  _disabled?: CssProps;
   /**
    * Styles to apply when the ARIA attribute `aria-grabbed` is `true`
    * - CSS selector `&[aria-grabbed=true]`
    */
-  _grabbed?: BoxProps;
+  _grabbed?: CssProps;
   /**
    * Styles to apply when the ARIA attribute `aria-expanded` is `true`
    * - CSS selector `&[aria-expanded=true]`
    */
-  _expanded?: BoxProps;
+  _expanded?: CssProps;
   /**
    * Styles to apply when the ARIA attribute `aria-checked` is `true`
    * - CSS selector `&[aria-checked=true]`
    */
-  _checked?: BoxProps;
+  _checked?: CssProps;
   /**
    * Styles to apply when the ARIA attribute `aria-checked` is `mixed`
    * - CSS selector `&[aria-checked=mixed]`
    */
-  _mixed?: BoxProps;
+  _mixed?: CssProps;
   /**
    * Styles for CSS Selector `&:nth-child(odd)`
    */
-  _odd?: BoxProps;
+  _odd?: CssProps;
   /**
    * Styles for CSS Selector `&:nth-child(even)`
    */
-  _even?: BoxProps;
+  _even?: CssProps;
   /**
    * Styles for CSS Selector `&:visited`
    */
-  _visited?: BoxProps;
+  _visited?: CssProps;
   /**
    * Styles for CSS Selector `&:readonly`
    */
-  _readOnly?: BoxProps;
+  _readOnly?: CssProps;
   /**
    * Styles for CSS Selector `&:first-of-type`
    */
-  _first?: BoxProps;
+  _first?: CssProps;
   /**
    * Styles for CSS Selector `&:last-of-type`
    */
-  _last?: BoxProps;
+  _last?: CssProps;
   /**
    * Styles to apply when you hover on a parent that has `role=group`.
    */
-  _groupHover?: BoxProps;
+  _groupHover?: CssProps;
+  /**
+   * Styles to apply when you hover or focus on a parent that has `role=group`.
+   */
+  _groupHocus?: CssProps;
   /**
    * Styles for CSS Selector `&:not(:first-of-type)`
    */
-  _notFirst?: BoxProps;
+  _notFirst?: CssProps;
   /**
    * Styles for CSS Selector `&:not(:last-of-type)`
    */
-  _notLast?: BoxProps;
+  _notLast?: CssProps;
   /**
    * Styles for CSS Selector `&::placeholder`.
    * Useful for inputs
    */
-  _placeholder?: BoxProps;
+  _placeholder?: CssProps;
 }
 
 export type PseudoBoxProps = PseudoBoxPropsList & BoxProps;
@@ -142,6 +162,7 @@ export type PseudoBoxProps = PseudoBoxPropsList & BoxProps;
  * The selectors are based on [WAI-ARIA state properties](https://www.w3.org/WAI/PF/aria-1.1/states_and_properties) and common CSS Selectors
  */
 const hover = '&:hover';
+const hocus = '&:focus, &:hover';
 const active = '&:active, &[data-active=true]';
 const focus = '&:focus';
 const visited = '&:visited';
@@ -162,6 +183,11 @@ const grabbed = '&[aria-grabbed=true]';
 const notFirst = '&:not(:first-of-type)';
 const notLast = '&:not(:last-of-type)';
 const groupHover = '[role=group]:hover &';
+const groupHocus = '[role=group]:hover &';
+
+function tx(cssProps?: CssProps) {
+  return cssProps || {};
+}
 
 export const PseudoBox = styled(Box)<PseudoBoxProps>(
   ({
@@ -189,9 +215,12 @@ export const PseudoBox = styled(Box)<PseudoBoxProps>(
     _mixed,
     _odd,
     _even,
+    _hocus,
+    _groupHocus,
   }) => {
     return css({
       [hover]: tx(_hover),
+      [hocus]: tx(_hocus),
       [focus]: tx(_focus),
       [active]: tx(_active),
       [visited]: tx(_visited),
@@ -211,6 +240,7 @@ export const PseudoBox = styled(Box)<PseudoBoxProps>(
       [checked]: tx(_checked),
       [pressed]: tx(_pressed),
       [groupHover]: tx(_groupHover),
+      [groupHocus]: tx(_groupHocus),
       '&:before': tx(_before),
       '&:after': tx(_after),
       '&:focus-within': tx(_focusWithin),
