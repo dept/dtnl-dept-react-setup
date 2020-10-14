@@ -2,7 +2,7 @@ import { LinkProps } from 'next/link';
 import React from 'react';
 import { useTheme } from 'styled-components';
 
-import { Box, BoxProps, Flex, PseudoBox } from '../Grid';
+import { BoxProps, Flex, PseudoBox } from '../Grid';
 import { Link } from '../Link';
 
 interface HyperLinkElementProps {
