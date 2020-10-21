@@ -14,7 +14,7 @@ export const example = () => (
   <FieldSelect
     native={boolean('native', true)}
     hasError={boolean('error', false)}
-    items={frameworks}
+    options={frameworks}
     name="framework"
     placeholder={text('placeholder', 'Choose framework')}
     label={text('label', 'Framework')}></FieldSelect>

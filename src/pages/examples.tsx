@@ -125,7 +125,7 @@ const Page: NextPage = () => {
                   label="Dingen"
                   defaultValue={2}
                   onChange={e => console.log(e)}
-                  items={[
+                  options={[
                     {
                       value: 1,
                       label: 'Test 1',
