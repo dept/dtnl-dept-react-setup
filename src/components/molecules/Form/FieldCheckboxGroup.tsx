@@ -4,7 +4,7 @@ import { Column, Row } from '@/components/atoms/Grid';
 
 import { FieldCheckbox, FieldCheckboxProps } from './FieldCheckbox';
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
@@ -28,11 +28,11 @@ export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
     <Row flexDirection={direction === 'horizontal' ? 'row' : 'column'} flexWrap="wrap">
       {options.map((option, index) => {
         return (
-          <Column key={index}>
+          <Column key={index} mb={direction === 'vertical' ? 2 : 0}>
             <FieldCheckbox
               name={name}
               value={option.value}
-              checked={value.includes(option.value)}
+              checked={value && value.includes(option.value)}
               onChange={onChange}
               {...props}>
               {option.label}

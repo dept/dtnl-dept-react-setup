@@ -28,6 +28,9 @@ export const FormikDate: React.FC<FormikDate> = ({ name, optimized, ...props }) 
                 form.setFieldValue(name, date);
               }
             }}
+            onClear={() => {
+              form.setFieldValue(name, '');
+            }}
             hasError={Boolean(meta.touched && meta.error)}
           />
         )}

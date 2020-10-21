@@ -19,7 +19,7 @@ export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({
 
   return (
     <>
-      <Component>
+      <Component name={name}>
         {({ field, meta, form }: FieldProps<any>) => (
           <FieldCheckboxGroup
             {...props}

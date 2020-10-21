@@ -1,10 +1,10 @@
 import { useSelect } from 'downshift';
 import React, { InputHTMLAttributes, useState } from 'react';
+import { HiSelector } from 'react-icons/hi';
 import styled, { css } from 'styled-components';
 
 import { Box } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label/Label';
-import ChevronIcon from '@/icons/components/Chevron';
 
 import { InputWrapper } from './FieldInput';
 
@@ -17,7 +17,7 @@ interface Option {
 
 export interface FieldSelectProps extends Omit<InputHTMLAttributes<HTMLSelectElement>, 'onChange'> {
   name: string;
-  items: Option[];
+  options: Option[];
   color?: string;
   label?: string;
   placeholder?: string;
@@ -57,12 +57,13 @@ const ListItem = Box;
 
 const CustomSelect: React.FC<FieldSelectProps> = ({
   name,
-  items,
+  options: items,
   color,
   label,
   onChange,
   placeholder,
   hasError,
+  required,
 }) => {
   const {
     isOpen,
@@ -85,7 +86,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
   return (
     <Box position="relative">
       {label && (
-        <Label color={color} {...getLabelProps()}>
+        <Label color={color} required={required} {...getLabelProps()}>
           {label}
         </Label>
       )}
@@ -94,13 +95,13 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           height="100%"
           width="100%"
           display="block"
-          p="8px 14px"
+          p="6px 14px"
           as="label"
           cursor="pointer"
           {...getToggleButtonProps()}>
           {(selectedItem && selectedItem.label) || placeholder || '-'}
           <IconWrapper position="absolute" right={3} top="50%">
-            <ChevronIcon size={15} rotate={isOpen ? -180 : 0} />
+            <HiSelector size={18} />
           </IconWrapper>
         </Box>
       </InputWrapper>
@@ -151,13 +152,16 @@ const Select = styled.select`
 const IconWrapper = styled(Box)`
   transform: translateY(-50%);
   pointer-events: none;
+  display: flex;
+  color: #888;
 `;
 
 const NativeSelect: React.FC<FieldSelectProps> = ({
   name,
-  items,
+  options: items,
   color,
   label,
+  required,
   placeholder,
   hasError,
   defaultValue = '',
@@ -182,7 +186,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
   return (
     <>
       {label && (
-        <Label htmlFor={name} color={color}>
+        <Label htmlFor={name} color={color} required={required}>
           {label}
         </Label>
       )}
@@ -194,6 +198,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
           onBlur={onBlur}
           onChange={e => onChange(e.target.value)}
           disabled={disabled}
+          required={required}
           defaultValue={defaultValue}>
           {placeholder && (
             <option disabled value="">
@@ -207,7 +212,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
           ))}
         </Select>
         <IconWrapper position="absolute" right={3} top="50%">
-          <ChevronIcon size={15} />
+          <HiSelector size={18} />
         </IconWrapper>
       </InputWrapper>
     </>

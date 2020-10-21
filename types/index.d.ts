@@ -1,18 +1,20 @@
 declare namespace NodeJS {
   interface Global {
-    fetch: any
-    console: any
+    fetch: any;
+    console: any;
   }
   interface Process {
-    browser: boolean
+    browser: boolean;
   }
 }
 
+declare module 'dot-object';
+
 declare module 'console' {
-  export = typeof import('console')
+  export = typeof import('console');
 }
 
 declare module '*.json' {
-  const value: any
-  export default value
+  const value: any;
+  export default value;
 }

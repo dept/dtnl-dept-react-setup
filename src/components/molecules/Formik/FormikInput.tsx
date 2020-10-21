@@ -28,7 +28,6 @@ export const FormikInput: React.FC<FormikInput> = ({
             hasError={Boolean(meta.touched && meta.error)}
             onClear={() => {
               form.setFieldValue(name, '');
-              field.onBlur(undefined);
             }}
           />
         )}

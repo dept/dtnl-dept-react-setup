@@ -29,7 +29,7 @@ export const FieldRadioGroup: React.FC<FieldRadioGroupProps> = ({
     <Row flexDirection={direction === 'horizontal' ? 'row' : 'column'} flexWrap="wrap">
       {options.map((option, index) => {
         return (
-          <Column key={index} my={5}>
+          <Column key={index} mb={direction === 'vertical' ? 2 : 0}>
             <FieldRadio
               name={`${name}[]`}
               value={option.value}

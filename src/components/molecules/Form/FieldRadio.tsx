@@ -23,8 +23,10 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) =>
       <Flex opacity={props.disabled ? 0.2 : 1} alignItems="center">
         <HiddenInput type="radio" {...props} />
         <Box
+          className="field-radio"
           mr={3}
           my={1}
+          css={{}}
           sx={{
             display: 'inline-flex',
             flexShrink: 0,
@@ -33,10 +35,11 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) =>
             borderRadius: '50%',
             border: '2px solid',
             borderColor: 'primary',
-            'input:checked + &': {
+            'input[type=radio]:checked + &': {
               borderWidth: '6px',
+              bg: 'white',
             },
-            'input:focus + &': {
+            'input[type=radio]:focus + &': {
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },

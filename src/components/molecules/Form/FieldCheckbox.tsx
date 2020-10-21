@@ -53,10 +53,10 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
             flexShrink: 0,
             boxSizing: 'border-box',
             color: 'white',
-            'input:checked + &': {
+            'input[type=checkbox]:checked + &': {
               bg: 'primary',
             },
-            'input:focus + &': {
+            'input[type=checkbox]::focus + &': {
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },

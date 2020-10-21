@@ -4,9 +4,10 @@ import { Box, BoxProps } from '../Grid';
 
 interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   htmlFor?: string;
+  required?: boolean;
 }
 
-export const Label: React.FC<LabelProps & BoxProps> = ({ children, color, ...props }) => {
+export const Label: React.FC<LabelProps & BoxProps> = ({ children, color, required, ...props }) => {
   return (
     <Box
       as="label"
@@ -19,6 +20,7 @@ export const Label: React.FC<LabelProps & BoxProps> = ({ children, color, ...pro
       }}
       {...props}>
       {children}
+      {required ? ' *' : null}
     </Box>
   );
 };

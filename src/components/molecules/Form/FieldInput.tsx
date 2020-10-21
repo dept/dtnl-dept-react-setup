@@ -155,15 +155,17 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   onFocus,
   onChange,
   inputRef,
+  required,
+  value,
   ...props
 }) => {
   const initFloat = Boolean(
-    props.value !== undefined ||
+    value !== undefined ||
       props.defaultValue !== undefined ||
       start !== undefined ||
       end !== undefined,
   );
-  const initHasValue = Boolean(props.value !== undefined || props.defaultValue !== undefined);
+  const initHasValue = Boolean(value !== undefined || props.defaultValue !== undefined);
   const [hasValue, setHasValue] = useState(initHasValue);
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -172,7 +174,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
   return (
     <FieldInputWrapper isFloating={shouldFloat}>
       {label && (
-        <Label htmlFor={name} color={color}>
+        <Label htmlFor={name} color={color} required={required}>
           {label}
         </Label>
       )}
@@ -183,7 +185,10 @@ export const FieldInput: React.FC<FieldInputProps> = ({
           hasError={hasError}
           {...props}
           id={name}
+          name={name}
           ref={inputRef}
+          required={required}
+          value={value || ''}
           onChange={e => {
             const { value } = e.currentTarget;
             setHasValue(Boolean(value));
