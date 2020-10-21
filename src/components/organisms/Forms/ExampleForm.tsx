@@ -177,6 +177,7 @@ export const ExampleForm: React.FC = () => {
                   label="First name"
                   placeholder="First name"
                   required
+                  clearable
                 />
               </Column>
               <Column col={6}>

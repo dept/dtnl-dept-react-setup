@@ -165,8 +165,11 @@ export const FieldInput: React.FC<FieldInputProps> = ({
       start !== undefined ||
       end !== undefined,
   );
-  const initHasValue = Boolean(value !== undefined || props.defaultValue !== undefined);
-  const [hasValue, setHasValue] = useState(initHasValue);
+  const hasValue = Boolean(
+    (value !== undefined && value !== '') ||
+      (props.defaultValue !== undefined && props.defaultValue !== ''),
+  );
+
   const [hasFocus, setHasFocus] = useState(false);
 
   const shouldFloat = initFloat || hasValue || hasFocus;
@@ -190,8 +193,6 @@ export const FieldInput: React.FC<FieldInputProps> = ({
           required={required}
           value={value || ''}
           onChange={e => {
-            const { value } = e.currentTarget;
-            setHasValue(Boolean(value));
             if (onChange) onChange(e);
           }}
           onBlur={e => {

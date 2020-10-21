@@ -29,9 +29,9 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
   const outputFormat = 'yyyy-MM-dd';
   const inputFormat = 'dd-MM-yyyy';
 
-  const [date, setDate] = useState<Date | undefined>(value ? parseISO(value) : undefined);
-  const [outputDate, setOutputDate] = useState(date ? format(date, outputFormat) : '');
-  const [inputDate, setInputDate] = useState(date ? format(date, inputFormat) : '');
+  const date = value ? parseISO(value) : undefined;
+  const inputDate = date ? format(date, inputFormat) : '';
+
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -52,30 +52,18 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
     }
   }
 
-  useEffect(() => {
-    onChange(outputDate);
-  }, [onChange, outputDate]);
-
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.currentTarget.value;
-    setInputDate(inputValue);
-
     const parsedDate = parse(inputValue, 'dd-MM-yyyy', new Date());
-
-    if (isValid(parsedDate)) {
-      setOutputDate(format(parsedDate, outputFormat));
-      setDate(parsedDate);
-    } else {
-      setOutputDate('');
-      setDate(undefined);
-    }
+    const isValidDate = isValid(parsedDate);
+    const outputDate = isValidDate ? format(parsedDate, outputFormat) : '';
+    onChange(outputDate);
   }
 
   const handleCalendarChange: OnChangeDateCallback = newDate => {
     if (!Array.isArray(newDate)) {
-      setDate(newDate);
-      setInputDate(format(newDate, inputFormat));
-      setOutputDate(format(newDate, outputFormat));
+      const outputDate = format(newDate, outputFormat);
+      onChange(outputDate);
       setIsOpen(false);
     }
   };
