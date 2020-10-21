@@ -3,9 +3,19 @@ import { useFormikContext } from 'formik';
 import { useEffect } from 'react';
 import scrollToElement from 'scroll-to-element';
 
-const duration = 500;
+type FormikScrollToErrorsProps = {
+  offset?: number;
+  align?: 'top' | 'middle' | 'bottom';
+  ease?: string;
+  duration?: number;
+};
 
-export const FormikScrollToErrors: React.FC = () => {
+export const FormikScrollToErrors: React.FC<FormikScrollToErrorsProps> = ({
+  offset = -50,
+  duration = 500,
+  ease = 'linear',
+  align = 'top',
+}) => {
   const { errors, isSubmitting, isValidating } = useFormikContext();
 
   useEffect(() => {
@@ -23,8 +33,9 @@ export const FormikScrollToErrors: React.FC = () => {
         if (element) {
           scrollToElement(element, {
             duration,
-            offset: 0,
-            ease: 'linear',
+            offset,
+            ease,
+            align,
           });
 
           timeout = setTimeout(() => element.focus(), duration + 200);
@@ -37,7 +48,7 @@ export const FormikScrollToErrors: React.FC = () => {
         clearTimeout(timeout);
       }
     };
-  }, [errors, isSubmitting, isValidating]);
+  }, [align, duration, ease, errors, isSubmitting, isValidating, offset]);
 
   return null;
 };
