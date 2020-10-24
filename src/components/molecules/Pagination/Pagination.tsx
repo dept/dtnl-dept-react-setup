@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Button } from '@/components/atoms/Button';
 import { Box, Flex } from '@/components/atoms/Grid';
@@ -11,7 +11,7 @@ interface PaginationProps {
   onNavigate: (page: number) => void;
 }
 
-export const Pagination: FC<PaginationProps> = ({
+export const Pagination: React.FC<PaginationProps> = ({
   current = 1,
   perPage = 10,
   total,

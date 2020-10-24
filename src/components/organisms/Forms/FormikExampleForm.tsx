@@ -156,7 +156,7 @@ const ProgrammingLanguageFields: React.FC<ProgrammingLanguageFieldsProps> = ({
   );
 };
 
-export const ExampleForm: React.FC = () => {
+export const FormikExampleForm: React.FC = () => {
   const submitHandler: SubmitHandler<FormValues> = (values, formHelpers) => {
     console.log(values, formHelpers);
   };

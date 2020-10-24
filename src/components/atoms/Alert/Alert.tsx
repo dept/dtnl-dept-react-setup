@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { HiCheckCircle, HiExclamation, HiInformationCircle, HiXCircle } from 'react-icons/hi';
 
 import { Box, BoxProps, Flex } from '../Grid';
@@ -33,7 +33,7 @@ const colors = {
   },
 };
 
-export const Alert: FC<AlertProps> = ({ type, title, children, icon, ...props }) => {
+export const Alert: React.FC<AlertProps> = ({ type, title, children, icon, ...props }) => {
   const theme = colors[type];
   const Icon = icon || theme.icon;
 

@@ -1,8 +1,6 @@
 import { FastField, Field, FieldProps } from 'formik';
 import React from 'react';
 
-import { Omit } from '@/utils/types';
-
 import { FieldDate, FieldDateProps } from '../Form/FieldDate';
 import { FormikError } from './FormikError';
 

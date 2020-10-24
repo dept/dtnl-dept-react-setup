@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
@@ -45,7 +45,7 @@ const CollapseWrapper = styled.div<{ height: number }>`
   }
 `;
 
-export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
+export const Collapse: React.FC<Props> = ({ children, isOpen = false }) => {
   const { ref, bounds } = useMeasure();
   const { height: elementHeight } = bounds;
 
