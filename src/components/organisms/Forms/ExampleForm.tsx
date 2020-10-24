@@ -113,6 +113,7 @@ const validationSchema = Yup.object({
     .label('Date of birth')
     .max(subYears(new Date(), 18), 'You need to be 18 years or older')
     .required(),
+  phoneNumber: Yup.string().label('Phone number').required(),
   country: Yup.string().label('Country').required(),
   languages: Yup.array(Yup.string()).label('Languages').min(1),
   programmingLanguages: Yup.array(
@@ -210,6 +211,16 @@ export const ExampleForm: React.FC = () => {
                   label="Country"
                   options={countries}
                   placeholder="Choose country"
+                  required
+                />
+              </Column>
+              <Column col={6}>
+                <FormikInput
+                  name="phoneNumber"
+                  label="Phone number"
+                  type="tel"
+                  placeholder="+31 06 12 34 56 78"
+                  mask="+31 99 99 99 99 99"
                   required
                 />
               </Column>
