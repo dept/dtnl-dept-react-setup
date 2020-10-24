@@ -88,7 +88,7 @@ const Page: NextPage = () => {
             text: '',
             email: '',
             number: 0,
-            date: '2019-01-01',
+            date: null,
             select: null,
             check: true,
             radio: 'test',

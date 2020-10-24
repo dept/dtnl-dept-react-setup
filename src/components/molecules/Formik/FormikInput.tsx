@@ -12,7 +12,7 @@ type FormikInput = FieldInputProps & {
 export const FormikInput: React.FC<FormikInput> = ({
   name,
   type = 'text',
-  optimized,
+  optimized = true,
   ...props
 }) => {
   const Component = optimized ? FastField : Field;

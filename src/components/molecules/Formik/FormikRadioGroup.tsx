@@ -12,7 +12,7 @@ type FormikRadioGroupProps = Omit<FieldRadioGroupProps, 'onChange' | 'value'> & 
 
 export const FormikRadioGroup: React.FC<FormikRadioGroupProps> = ({
   name,
-  optimized,
+  optimized = true,
   ...props
 }) => {
   const Component = optimized ? FastField : Field;

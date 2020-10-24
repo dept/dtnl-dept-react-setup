@@ -9,7 +9,7 @@ type FormikSelectProps = FieldSelectProps & {
   optimized?: boolean;
 };
 
-export const FormikSelect: React.FC<FormikSelectProps> = ({ name, optimized, ...props }) => {
+export const FormikSelect: React.FC<FormikSelectProps> = ({ name, optimized = true, ...props }) => {
   const Component = optimized ? FastField : Field;
 
   return (
