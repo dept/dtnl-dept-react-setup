@@ -1,72 +1,82 @@
+import { SystemCssProperties } from '@styled-system/css';
+import dynamic from 'next/dynamic';
 import React, { InputHTMLAttributes, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
+import { Props as MaskProps } from 'react-input-mask';
 import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Label } from '@/components/atoms/Label';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel';
-  color?: string;
-  inputRef?: any;
-  clearable?: boolean;
-  hasError?: boolean;
-  readonly?: boolean;
-  onClear?: () => void;
-  start?: string | number | JSX.Element;
-  end?: string | number | JSX.Element;
-}
+const InputMask = dynamic(() => import('react-input-mask'));
+
+type InputProps = InputHTMLAttributes<HTMLInputElement> &
+  Partial<MaskProps> & {
+    type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel';
+    color?: string;
+    inputRef?: any;
+    clearable?: boolean;
+    hasError?: boolean;
+    readonly?: boolean;
+    onClear?: () => void;
+    start?: string | number | JSX.Element;
+    end?: string | number | JSX.Element;
+  };
 
 export type FieldInputProps = InputProps & {
   label?: string;
   name: string;
 };
 
-const Input = React.forwardRef<any, InputProps>(({ hasError, color, ...props }, ref) => {
-  let additionalProps: any = {};
+const Input = React.forwardRef<any, InputProps>(
+  ({ hasError, color, mask, maskChar = null, ...props }, ref) => {
+    let additionalProps: any = {};
 
-  if (props.readOnly) {
-    additionalProps = {
-      ...additionalProps,
-      opacity: '0.3',
-      userSelect: 'none',
-      cursor: 'not-allowed',
-    };
-  }
-
-  if (hasError) {
-    additionalProps = {
-      ...additionalProps,
-      color: 'error',
-    };
-  }
-
-  return (
-    <Box
-      ref={ref}
-      as="input"
-      sx={{
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'transparent',
-        border: 'none',
-        margin: '0',
-        color: color || 'black',
-        padding: '12px 14px',
-        ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]: {
-          appearance: 'none',
-          margin: 0,
-        },
-        '&:focus': {
-          outline: 'none',
-        },
+    if (props.readOnly) {
+      additionalProps = {
         ...additionalProps,
-      }}
-      {...props}
-    />
-  );
-});
+        opacity: '0.3',
+        userSelect: 'none',
+        cursor: 'not-allowed',
+      };
+    }
+
+    if (hasError) {
+      additionalProps = {
+        ...additionalProps,
+        color: 'error',
+      };
+    }
+
+    const styles: SystemCssProperties = {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'transparent',
+      border: 'none',
+      margin: '0',
+      color: color || 'black',
+      padding: '12px 14px',
+      ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]: {
+        appearance: 'none',
+        margin: 0,
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+      ...additionalProps,
+    };
+
+    if (mask)
+      return (
+        <InputMask mask={mask} maskChar={maskChar} {...props}>
+          {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}
+        </InputMask>
+      );
+
+    return <Box ref={ref} as="input" sx={styles} {...props} />;
+  },
+);
 
 type InputWrapperProps = InputProps & { hasFocus?: boolean };
 
