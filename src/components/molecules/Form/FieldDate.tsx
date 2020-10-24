@@ -28,6 +28,12 @@ const CalendarWrapper = styled(Box)`
     0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 `;
 
+function assertDate(date: any) {
+  if (!(date instanceof Date)) {
+    throw new Error('Value should be an instance of Date');
+  }
+}
+
 export const FieldDate: React.FC<FieldDateProps> = ({
   value,
   onClose,
@@ -36,14 +42,24 @@ export const FieldDate: React.FC<FieldDateProps> = ({
   inputFormat = 'dd-MM-yyyy',
   ...props
 }) => {
-  const [inputDate, setInputDate] = useState(value ? format(value, inputFormat) : '');
+  const [inputDate, setInputDate] = useState(() => {
+    if (value) {
+      assertDate(value);
+      return format(value, inputFormat);
+    }
+
+    return '';
+  });
 
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (value) {
+      assertDate(value);
+    }
     setInputDate(value ? format(value, inputFormat) : '');
-  }, [value, setInputDate]);
+  }, [value, setInputDate, inputFormat]);
 
   useClickAway(ref, () => {
     if (isOpen) {
@@ -107,7 +123,7 @@ export const FieldDate: React.FC<FieldDateProps> = ({
         }
       />
       <CalendarWrapper display={isOpen ? 'block' : 'none'} position="absolute">
-        <Calendar locale="nl" value={value} onChange={handleCalendarChange} />
+        <Calendar locale="nl" value={value || new Date()} onChange={handleCalendarChange} />
       </CalendarWrapper>
     </Wrapper>
   );

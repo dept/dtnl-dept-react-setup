@@ -11,7 +11,7 @@ type FormikCheckboxProps = FieldCheckboxProps & {
 
 export const FormikCheckbox: React.FC<FormikCheckboxProps> = ({
   name,
-  optimized,
+  optimized = true,
   children,
   ...props
 }) => {

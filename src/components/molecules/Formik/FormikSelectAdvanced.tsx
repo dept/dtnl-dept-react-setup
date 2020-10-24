@@ -11,7 +11,7 @@ type FormikSelectAdvancedProps = FieldSelectAdvancedProps & {
 
 export const FormikSelectAdvanced: React.FC<FormikSelectAdvancedProps> = ({
   name,
-  optimized,
+  optimized = true,
   ...props
 }) => {
   const Component = optimized ? FastField : Field;

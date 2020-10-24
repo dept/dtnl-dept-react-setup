@@ -1,7 +1,7 @@
 import { subYears } from 'date-fns';
 import { FieldArray, Form, Formik } from 'formik';
 import React from 'react';
-import { HiOutlineCalendar, HiOutlineMail } from 'react-icons/hi';
+import { HiOutlineMail } from 'react-icons/hi';
 import * as Yup from 'yup';
 
 import { Button } from '@/components/atoms/Button';

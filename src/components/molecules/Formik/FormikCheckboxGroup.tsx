@@ -12,7 +12,7 @@ type FormikCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'valu
 
 export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({
   name,
-  optimized,
+  optimized = true,
   ...props
 }) => {
   const Component = optimized ? FastField : Field;

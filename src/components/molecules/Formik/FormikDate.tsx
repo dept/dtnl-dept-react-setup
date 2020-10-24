@@ -11,7 +11,7 @@ type FormikDate = Omit<FieldDateProps, 'onChange' | 'value'> & {
   optimized?: boolean;
 };
 
-export const FormikDate: React.FC<FormikDate> = ({ name, optimized, ...props }) => {
+export const FormikDate: React.FC<FormikDate> = ({ name, optimized = true, ...props }) => {
   const Component = optimized ? FastField : Field;
 
   return (
