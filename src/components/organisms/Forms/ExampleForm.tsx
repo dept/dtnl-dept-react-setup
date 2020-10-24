@@ -111,7 +111,7 @@ const validationSchema = Yup.object({
   email: Yup.string().email().label('E-mail').required(),
   dob: Yup.date()
     .label('Date of birth')
-    .min(subYears(new Date(), 18), 'You need to be 18 years or older')
+    .max(subYears(new Date(), 18), 'You need to be 18 years or older')
     .required(),
   country: Yup.string().label('Country').required(),
   languages: Yup.array(Yup.string()).label('Languages').min(1),
@@ -197,7 +197,6 @@ export const ExampleForm: React.FC = () => {
               </Column>
               <Column col={6}>
                 <FormikDate
-                  start={<HiOutlineCalendar />}
                   name="dob"
                   label="Date of birth"
                   placeholder="Date of birth"
