@@ -8,6 +8,7 @@ import { Text } from '@/components/atoms/Text';
 
 export interface FieldRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  hasError?: any;
   checked?: boolean;
   value?: string;
 }
@@ -16,7 +17,7 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 `;
 
-export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) => {
+export const FieldRadio: React.FC<FieldRadioProps> = ({ children, hasError, ...props }) => {
   const theme = useTheme();
   return (
     <Label>
@@ -34,7 +35,7 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, ...props }) =>
             width: 25,
             borderRadius: '50%',
             border: '2px solid',
-            borderColor: 'primary',
+            borderColor: hasError ? 'error' : 'primary',
             'input[type=radio]:checked + &': {
               borderWidth: '6px',
               bg: 'white',

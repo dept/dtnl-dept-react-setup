@@ -12,7 +12,6 @@ export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement
   hasError?: any;
   value?: string;
   name: string;
-  disabled?: boolean;
 }
 
 const HiddenInput = styled.input`

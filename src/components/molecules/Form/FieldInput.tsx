@@ -128,7 +128,14 @@ const AdornmentWrapper: React.FC<BoxProps> = props => (
 const Clear: React.FC<any> = ({ onClick }) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
-      <IconButton type="button" aria-label="Clear" icon={HiOutlineX} size={18} onClick={onClick} />
+      <IconButton
+        type="button"
+        aria-label="Clear"
+        icon={HiOutlineX}
+        size={18}
+        onClick={onClick}
+        tabIndex={-1}
+      />
     </Box>
   );
 };
@@ -191,7 +198,7 @@ export const FieldInput: React.FC<FieldInputProps> = ({
           name={name}
           ref={inputRef}
           required={required}
-          value={value || ''}
+          value={value}
           onChange={e => {
             if (onChange) onChange(e);
           }}

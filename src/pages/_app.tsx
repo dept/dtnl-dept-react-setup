@@ -47,15 +47,12 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
-
       <ContextProvider>
         <ThemeProvider theme={theme}>
-          <>
-            <GlobalStyle />
-            <BaseLayout>
-              <Page {...pageProps} />
-            </BaseLayout>
-          </>
+          <GlobalStyle />
+          <BaseLayout>
+            <Page {...pageProps} />
+          </BaseLayout>
         </ThemeProvider>
       </ContextProvider>
     </>

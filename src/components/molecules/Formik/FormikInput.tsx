@@ -25,6 +25,7 @@ export const FormikInput: React.FC<FormikInput> = ({
             type={type}
             {...props}
             {...field}
+            value={field.value ?? ''}
             hasError={Boolean(meta.touched && meta.error)}
             onClear={() => {
               form.setFieldValue(name, '');
