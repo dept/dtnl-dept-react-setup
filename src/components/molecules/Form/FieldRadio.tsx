@@ -27,7 +27,6 @@ export const FieldRadio: React.FC<FieldRadioProps> = ({ children, hasError, ...p
           className="field-radio"
           mr={3}
           my={1}
-          css={{}}
           sx={{
             display: 'inline-flex',
             flexShrink: 0,

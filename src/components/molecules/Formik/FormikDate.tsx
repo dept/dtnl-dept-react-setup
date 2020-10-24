@@ -24,12 +24,10 @@ export const FormikDate: React.FC<FormikDate> = ({ name, optimized, ...props }) 
             onBlur={undefined}
             onClose={() => form.setFieldTouched(name, true)}
             onChange={date => {
-              if (date !== field.value) {
-                form.setFieldValue(name, date);
-              }
+              form.setFieldValue(name, date);
             }}
             onClear={() => {
-              form.setFieldValue(name, '');
+              form.setFieldValue(name, undefined);
             }}
             hasError={Boolean(meta.touched && meta.error)}
           />

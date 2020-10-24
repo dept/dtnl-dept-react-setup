@@ -1,19 +1,22 @@
-import { format, isValid, parse, parseISO } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 import React, { useEffect, useRef, useState } from 'react';
 import Calendar, { OnChangeDateCallback } from 'react-calendar';
+import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
 import styled from 'styled-components';
 
 import { Box } from '@/components/atoms/Grid';
+import { IconButton } from '@/components/atoms/IconButton';
 import { colors } from '@/theme/colors';
-import { Omit } from '@/utils/types';
 
 import { FieldInput, FieldInputProps } from './FieldInput';
 
-export type FieldDateProps = Omit<FieldInputProps, 'onChange' | 'value'> & {
-  value?: string | undefined;
-  onChange: (date: string) => void;
+export type FieldDateProps = Omit<FieldInputProps, 'value' | 'onChange'> & {
+  value?: Date | undefined;
+  openOnFocus?: boolean;
+  onChange: (date: Date) => void;
   onClose?: () => void;
+  inputFormat?: string;
 };
 
 const CalendarWrapper = styled(Box)`
@@ -25,15 +28,22 @@ const CalendarWrapper = styled(Box)`
     0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 `;
 
-export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, ...props }) => {
-  const outputFormat = 'yyyy-MM-dd';
-  const inputFormat = 'dd-MM-yyyy';
-
-  const date = value ? parseISO(value) : undefined;
-  const inputDate = date ? format(date, inputFormat) : '';
+export const FieldDate: React.FC<FieldDateProps> = ({
+  value,
+  onClose,
+  onChange,
+  openOnFocus,
+  inputFormat = 'dd-MM-yyyy',
+  ...props
+}) => {
+  const [inputDate, setInputDate] = useState(value ? format(value, inputFormat) : '');
 
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setInputDate(value ? format(value, inputFormat) : '');
+  }, [value, setInputDate]);
 
   useClickAway(ref, () => {
     if (isOpen) {
@@ -45,8 +55,9 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
   });
 
   function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
-    setIsOpen(true);
-
+    if (openOnFocus) {
+      setIsOpen(true);
+    }
     if (props.onFocus) {
       props.onFocus(e);
     }
@@ -54,16 +65,23 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = e.currentTarget.value;
-    const parsedDate = parse(inputValue, 'dd-MM-yyyy', new Date());
-    const isValidDate = isValid(parsedDate);
-    const outputDate = isValidDate ? format(parsedDate, outputFormat) : '';
-    onChange(outputDate);
+
+    setInputDate(inputValue);
+
+    if (inputValue.length === inputFormat.length) {
+      const parsedDate = parse(inputValue, inputFormat, new Date());
+
+      const isValidDate = isValid(parsedDate);
+
+      if (isValidDate) {
+        onChange(parsedDate);
+      }
+    }
   }
 
   const handleCalendarChange: OnChangeDateCallback = newDate => {
     if (!Array.isArray(newDate)) {
-      const outputDate = format(newDate, outputFormat);
-      onChange(outputDate);
+      onChange(newDate);
       setIsOpen(false);
     }
   };
@@ -74,11 +92,22 @@ export const FieldDate: React.FC<FieldDateProps> = ({ value, onChange, onClose, 
         autoComplete={'off'}
         {...props}
         value={inputDate}
-        onFocus={handleFocus}
         onChange={handleInputChange}
+        onFocus={handleFocus}
+        end={
+          <IconButton
+            onClick={() => {
+              setIsOpen(true);
+            }}
+            size={30}
+            color="gray.800"
+            icon={HiOutlineCalendar}
+            aria-label="Open calendar"
+          />
+        }
       />
       <CalendarWrapper display={isOpen ? 'block' : 'none'} position="absolute">
-        <Calendar locale="nl" value={date} onChange={handleCalendarChange} />
+        <Calendar locale="nl" value={value} onChange={handleCalendarChange} />
       </CalendarWrapper>
     </Wrapper>
   );
