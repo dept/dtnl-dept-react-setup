@@ -12,6 +12,12 @@ interface FinalFormErrorProps {
 export const FinalFormError: React.FC<FinalFormErrorProps> = ({ name }) => {
   const { meta } = useField(name);
 
+  const showError = meta.error && meta.touched;
+
+  if (!showError) {
+    return null;
+  }
+
   return (
     <Box mt={1}>
       <Text display="block" fontSize="xxxs" color={colors.error}>

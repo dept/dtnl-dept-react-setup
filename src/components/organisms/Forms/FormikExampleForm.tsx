@@ -79,6 +79,7 @@ interface FormValues {
   firstname: string;
   lastname: string;
   country: string;
+  phoneNumber: string;
   email: string;
   dob: string;
   languages: string[];
@@ -96,7 +97,8 @@ const initialValues: FormValues = {
   lastname: '',
   email: '',
   country: '',
-  dob: '',
+  phoneNumber: '',
+  dob: null,
   languages: [],
   programmingLanguages: [],
   favoriteAnimal: '',
@@ -110,6 +112,7 @@ const validationSchema = Yup.object({
   lastname: Yup.string().label('Last name').required(),
   email: Yup.string().email().label('E-mail').required(),
   dob: Yup.date()
+    .typeError('Must be a valid date')
     .label('Date of birth')
     .max(subYears(new Date(), 18), 'You need to be 18 years or older')
     .required(),

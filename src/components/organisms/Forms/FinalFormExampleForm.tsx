@@ -75,16 +75,7 @@ interface ProgrammingLanguageValues {
   years: number | undefined;
 }
 
-type FormValues = {
-  firstname: string;
-  lastname: string;
-  country: string;
-  email: string;
-  dob: string;
-  languages: string[];
-  favoriteAnimal: string;
-  programmingLanguages: ProgrammingLanguageValues[];
-};
+type FormValues = z.infer<typeof validationSchema>;
 
 const initialProgrammingLanguage: ProgrammingLanguageValues = {
   name: '',
@@ -96,7 +87,8 @@ const initialValues: FormValues = {
   lastname: '',
   email: '',
   country: '',
-  dob: '',
+  phoneNumber: '',
+  dob: null,
   languages: [],
   programmingLanguages: [],
   favoriteAnimal: '',
@@ -110,6 +102,7 @@ const validationSchema = Yup.object({
   lastname: Yup.string().label('Last name').required(),
   email: Yup.string().email().label('E-mail').required(),
   dob: Yup.date()
+    .typeError('Must be a valid date')
     .label('Date of birth')
     .max(subYears(new Date(), 18), 'You need to be 18 years or older')
     .required(),
@@ -164,7 +157,7 @@ export const FinalFormExampleForm: React.FC = () => {
   return (
     <FinalForm<FormValues>
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={submitHandler}>
       {({ form }) => (
         <Stack space={4}>
