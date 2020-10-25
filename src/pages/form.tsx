@@ -5,8 +5,9 @@ import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 
+import { Alert } from '@/components/atoms/Alert';
 import { Divider } from '@/components/atoms/Divider';
-import { Box } from '@/components/atoms/Grid';
+import { Box, Stack } from '@/components/atoms/Grid';
 import { Text } from '@/components/atoms/Text';
 import { FieldRadioGroup } from '@/components/molecules/Form';
 import { FinalFormExampleForm } from '@/components/organisms/Forms/FinalFormExampleForm';
@@ -175,14 +176,15 @@ const Page: NextPage = () => {
       <NextSeo title="Form example" description="Page description" />
 
       <Box py={10}>
-        <Box mb={10}>
-          <Text>
+        <Stack space={10}>
+          <Alert type="warning">
             {`Two form libraries are supported. Final form (recommended) and Formik. The api's are really
         similar. When you've decided to which library you'd like to use, make sure you the delete
         the other library's dependencies and components.`}
-          </Text>
+          </Alert>
 
           <FieldRadioGroup
+            direction="horizontal"
             name="formLib"
             options={[
               {
@@ -199,13 +201,11 @@ const Page: NextPage = () => {
               setFormLib(e.currentTarget.value);
             }}
           />
-        </Box>
 
-        <Box mb={10}>
           <Divider />
-        </Box>
 
-        {renderForm()}
+          {renderForm()}
+        </Stack>
       </Box>
     </>
   );
