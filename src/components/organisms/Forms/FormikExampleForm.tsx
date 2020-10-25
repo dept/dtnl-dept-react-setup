@@ -1,12 +1,11 @@
-import { subYears } from 'date-fns';
-import { FieldArray, Form, Formik } from 'formik';
+import { FieldArray, Form, Formik, FormikConfig } from 'formik';
 import React from 'react';
 import { HiOutlineMail } from 'react-icons/hi';
-import * as Yup from 'yup';
 
 import { Button } from '@/components/atoms/Button';
 import { Column, Row, Stack } from '@/components/atoms/Grid';
 import { Heading } from '@/components/atoms/Text';
+import { Option } from '@/components/molecules/Form';
 import {
   FormikCheckboxGroup,
   FormikDate,
@@ -15,120 +14,6 @@ import {
   FormikSelect,
 } from '@/components/molecules/Formik';
 import { FormikScrollToErrors } from '@/components/molecules/Formik/FormikScrollToErrors';
-import { SubmitHandler } from '@/utils/types';
-
-const languages = [
-  {
-    value: 'en',
-    label: 'English',
-  },
-  {
-    value: 'nl',
-    label: 'Dutch',
-  },
-  {
-    value: 'de',
-    label: 'German',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-  },
-];
-
-const countries = [
-  {
-    value: 'nl',
-    label: 'The Netherlands',
-  },
-  {
-    value: 'de',
-    label: 'Germany',
-  },
-  {
-    value: 'uk',
-    label: 'United Kingdom',
-  },
-];
-
-const animals = [
-  {
-    value: 'dog',
-    label: 'Dog',
-  },
-  {
-    value: 'cat',
-    label: 'Cat',
-  },
-  {
-    value: 'chicken',
-    label: 'Chicken',
-  },
-  {
-    value: 'fish',
-    label: 'Fish',
-  },
-];
-
-interface ProgrammingLanguageValues {
-  name: string;
-  years: number | undefined;
-}
-
-interface FormValues {
-  firstname: string;
-  lastname: string;
-  country: string;
-  phoneNumber: string;
-  email: string;
-  dob: Date | null;
-  languages: string[];
-  favoriteAnimal: string;
-  programmingLanguages: ProgrammingLanguageValues[];
-}
-
-const initialProgrammingLanguage: ProgrammingLanguageValues = {
-  name: '',
-  years: undefined,
-};
-
-const initialValues: FormValues = {
-  firstname: '',
-  lastname: '',
-  email: '',
-  country: '',
-  phoneNumber: '',
-  dob: null,
-  languages: [],
-  programmingLanguages: [],
-  favoriteAnimal: '',
-};
-
-/**
- * https://github.com/jquense/yup
- */
-const validationSchema = Yup.object({
-  firstname: Yup.string().label('First name').required(),
-  lastname: Yup.string().label('Last name').required(),
-  email: Yup.string().email().label('E-mail').required(),
-  dob: Yup.date()
-    .typeError('Must be a valid date')
-    .label('Date of birth')
-    .max(subYears(new Date(), 18), 'You need to be 18 years or older')
-    .required(),
-  phoneNumber: Yup.string().label('Phone number').required(),
-  country: Yup.string().label('Country').required(),
-  languages: Yup.array(Yup.string()).label('Languages').min(1),
-  programmingLanguages: Yup.array(
-    Yup.object({
-      name: Yup.string().label('Name').required(),
-      years: Yup.number().label('Years').min(0).required(),
-    }),
-  )
-    .label('Programming languages')
-    .required(),
-  favoriteAnimal: Yup.string().label('Favorite animal').required(),
-});
 
 interface ProgrammingLanguageFieldsProps {
   index: number;
@@ -159,16 +44,22 @@ const ProgrammingLanguageFields: React.FC<ProgrammingLanguageFieldsProps> = ({
   );
 };
 
-export const FormikExampleForm: React.FC = () => {
-  const submitHandler: SubmitHandler<FormValues> = (values, formHelpers) => {
-    console.log(values, formHelpers);
-  };
+type FormikExampleFormProps = FormikConfig<any> & {
+  countries: Option[];
+  languages: Option[];
+  animals: Option[];
+  initialProgrammingLanguage: any;
+};
 
+export const FormikExampleForm: React.FC<FormikExampleFormProps> = ({
+  initialProgrammingLanguage,
+  countries,
+  languages,
+  animals,
+  ...props
+}) => {
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={submitHandler}>
+    <Formik {...props}>
       {({ values, resetForm }) => (
         <Form noValidate>
           <FormikScrollToErrors />
@@ -243,7 +134,7 @@ export const FormikExampleForm: React.FC = () => {
               {helpers => {
                 return (
                   <>
-                    {values.programmingLanguages.map((lang, index) => {
+                    {values.programmingLanguages.map((lang: any, index: number) => {
                       return (
                         <ProgrammingLanguageFields
                           key={index}

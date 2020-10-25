@@ -4,9 +4,14 @@ import React from 'react';
 import { Form, FormProps, FormRenderProps } from 'react-final-form';
 import * as Yup from 'yup';
 
-type FinalFormProps<FormValues> = FormProps<FormValues> & {
-  children: (props: FormRenderProps<FormValues>) => React.ReactElement;
+import { createScrollToErrorDecorator } from './utils/scrollToError';
+
+export type FinalFormProps<FormValues> = FormProps<FormValues> & {
   validationSchema?: Yup.ObjectSchema<any, any>;
+};
+
+type RenderProps<FormValues> = {
+  children: (props: FormRenderProps<FormValues>) => React.ReactElement;
 };
 
 async function validateYup(
@@ -25,19 +30,21 @@ async function validateYup(
   return errors;
 }
 
-export function FinalForm<FormValues extends Record<string, unknown>>({
+export function FinalForm<FormValues = any>({
   onSubmit,
   initialValues,
   children,
+  decorators,
   mutators,
   validate,
   validationSchema,
   ...props
-}: FinalFormProps<FormValues>) {
+}: FinalFormProps<FormValues> & RenderProps<FormValues>) {
   return (
     <Form<FormValues>
       onSubmit={onSubmit}
       initialValues={initialValues}
+      decorators={[createScrollToErrorDecorator(), ...(decorators || [])]}
       validate={async values => {
         if (!validationSchema && !validate) return;
 
