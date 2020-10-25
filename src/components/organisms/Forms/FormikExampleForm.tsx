@@ -8,11 +8,11 @@ import { Heading } from '@/components/atoms/Text';
 import { Option } from '@/components/molecules/Form';
 import {
   FormikCheckboxGroup,
-  FormikDate,
   FormikInput,
   FormikRadioGroup,
   FormikSelect,
 } from '@/components/molecules/Formik';
+import { FormikDate } from '@/components/molecules/Formik/FormikDate';
 import { FormikScrollToErrors } from '@/components/molecules/Formik/FormikScrollToErrors';
 
 interface ProgrammingLanguageFieldsProps {

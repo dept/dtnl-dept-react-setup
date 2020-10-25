@@ -1,9 +1,9 @@
 import { useSelect } from 'downshift';
 import React, { InputHTMLAttributes, useState } from 'react';
 import { HiSelector } from 'react-icons/hi';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { Box } from '@/components/atoms/Grid';
+import { Box, BoxProps } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label/Label';
 
 import { InputWrapper } from './FieldInput';
@@ -26,32 +26,41 @@ export interface FieldSelectProps extends Omit<InputHTMLAttributes<HTMLSelectEle
   onChange?: (value: Value) => void;
 }
 
-const activeListStyles = css`
-  --list-scale: 1;
-  opacity: 1;
-  pointer-events: all;
-`;
+export const List = React.forwardRef<any, BoxProps & { isOpen: boolean }>(
+  ({ isOpen, ...props }, ref) => {
+    const activeProps: BoxProps = isOpen
+      ? {
+          transform: `scale(1) translateX(-50%)`,
+          opacity: 1,
+          pointerEvents: 'all',
+        }
+      : {};
 
-const List = styled(Box)<{ isOpen: boolean }>`
-  --list-scale: 0.8;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  z-index: 100;
-  pointer-events: none;
-  transform-origin: left center;
-  transition: transform 0.1s ease-out, opacity 0.1s ease;
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  opacity: 0;
-  outline: none;
-  transform: scale(var(--list-scale)) translateX(-50%);
-  ${props => props.isOpen && activeListStyles};
-`;
+    return (
+      <Box
+        padding={0}
+        margin={0}
+        listStyleType="none"
+        position="absolute"
+        top="15px"
+        left="50%"
+        maxHeight="300px"
+        overflow="auto"
+        zIndex={100}
+        pointerEvents="none"
+        transformOrigin="left center"
+        transition="transform 0.1s ease-out, opacity 0.1s ease"
+        boxShadow="0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)"
+        borderRadius="4px"
+        opacity="0"
+        transform="scale(0.8) translateX(-50%)"
+        {...props}
+        {...activeProps}
+        ref={ref}
+      />
+    );
+  },
+);
 
 const ListItem = Box;
 

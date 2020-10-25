@@ -47,42 +47,48 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
   cursor: pointer;
 `;
 
-export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = ({
-  as = 'button',
-  size = 40,
-  height,
-  border,
-  radii = 0,
-  padding = 0,
-  bg,
-  icon: Icon,
-  rotate,
-  hideOutline,
-  ...rest
-}) => {
-  const theme = useTheme();
-  const conditionalProps: ConditionalProps = { as };
-  if (as === 'button') {
-    conditionalProps.type = 'button';
-  }
+export const IconButton = React.forwardRef<any, IconButtonProps & HTMLAttributes<any> & BoxProps>(
+  (
+    {
+      as = 'button',
+      size = 40,
+      height,
+      border,
+      radii = 0,
+      padding = 0,
+      bg,
+      icon: Icon,
+      rotate,
+      hideOutline,
+      ...rest
+    },
+    ref,
+  ) => {
+    const theme = useTheme();
+    const conditionalProps: ConditionalProps = { as };
+    if (as === 'button') {
+      conditionalProps.type = 'button';
+    }
 
-  return (
-    <StyledIconButton
-      {...conditionalProps}
-      radii={padding > 5 ? radii : 0}
-      height={height}
-      padding={padding}
-      border={border}
-      bg={bg || 'transparent'}
-      _focus={{
-        outline: 'none',
-        boxShadow: !hideOutline ? theme.shadows.outline : 'none',
-      }}
-      _hocus={{
-        opacity: 0.8,
-      }}
-      {...rest}>
-      <Icon size={size} rotate={rotate} />
-    </StyledIconButton>
-  );
-};
+    return (
+      <StyledIconButton
+        {...conditionalProps}
+        radii={padding > 5 ? radii : 0}
+        height={height}
+        padding={padding}
+        border={border}
+        bg={bg || 'transparent'}
+        _focus={{
+          outline: 'none',
+          boxShadow: !hideOutline ? theme.shadows.outline : 'none',
+        }}
+        _hocus={{
+          opacity: 0.8,
+        }}
+        {...rest}
+        ref={ref}>
+        <Icon size={size} rotate={rotate} />
+      </StyledIconButton>
+    );
+  },
+);

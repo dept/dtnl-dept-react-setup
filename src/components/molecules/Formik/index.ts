@@ -1,7 +1,5 @@
 export * from './FormikCheckboxGroup';
-export * from './FormikDate';
 export * from './FormikError';
 export * from './FormikInput';
 export * from './FormikRadioGroup';
 export * from './FormikSelect';
-export * from './FormikSelectAdvanced';
