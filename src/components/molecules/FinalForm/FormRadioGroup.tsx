@@ -2,11 +2,11 @@ import React from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldRadioGroup, FieldRadioGroupProps } from '../Form/FieldRadioGroup';
-import { FinalFormError } from './FinalFormError';
+import { FormError } from './FormError';
 
-type FinalFormRadioGroupProps = Omit<FieldRadioGroupProps, 'onChange' | 'value'>;
+type FormRadioGroupProps = Omit<FieldRadioGroupProps, 'onChange' | 'value'>;
 
-export const FinalFormRadioGroup: React.FC<FinalFormRadioGroupProps> = ({ name, ...props }) => {
+export const FormRadioGroup: React.FC<FormRadioGroupProps> = ({ name, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 
@@ -21,7 +21,7 @@ export const FinalFormRadioGroup: React.FC<FinalFormRadioGroupProps> = ({ name, 
         hasError={meta.touched && meta.error}
       />
 
-      <FinalFormError name={name} />
+      <FormError name={name} />
     </>
   );
 };

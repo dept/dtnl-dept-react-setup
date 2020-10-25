@@ -2,13 +2,13 @@ import React from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldInput, FieldInputProps } from '../Form/FieldInput';
-import { FinalFormError } from './FinalFormError';
+import { FormError } from './FormError';
 
-type FinalFormInput = FieldInputProps & {
+type FormInputProps = FieldInputProps & {
   name: string;
 };
 
-export const FinalFormInput: React.FC<FinalFormInput> = ({ name, type = 'text', ...props }) => {
+export const FormInput: React.FC<FormInputProps> = ({ name, type = 'text', ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name, {
     type,
@@ -27,7 +27,7 @@ export const FinalFormInput: React.FC<FinalFormInput> = ({ name, type = 'text', 
         }}
       />
 
-      <FinalFormError name={name} />
+      <FormError name={name} />
     </>
   );
 };

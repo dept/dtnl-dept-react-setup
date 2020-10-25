@@ -6,11 +6,11 @@ import { Button } from '@/components/atoms/Button';
 import { Column, Row, Stack } from '@/components/atoms/Grid';
 import { Heading } from '@/components/atoms/Text';
 import { FinalForm, FinalFormProps } from '@/components/molecules/FinalForm/FinalForm';
-import { FinalFormCheckboxGroup } from '@/components/molecules/FinalForm/FinalFormCheckboxGroup';
-import { FinalFormDate } from '@/components/molecules/FinalForm/FinalFormDate';
-import { FinalFormInput } from '@/components/molecules/FinalForm/FinalFormInput';
-import { FinalFormRadioGroup } from '@/components/molecules/FinalForm/FinalFormRadioGroup';
-import { FinalFormSelect } from '@/components/molecules/FinalForm/FinalFormSelect';
+import { FormCheckboxGroup } from '@/components/molecules/FinalForm/FormCheckboxGroup';
+import { FormDate } from '@/components/molecules/FinalForm/FormDate';
+import { FormInput } from '@/components/molecules/FinalForm/FormInput';
+import { FormRadioGroup } from '@/components/molecules/FinalForm/FormRadioGroup';
+import { FormSelect } from '@/components/molecules/FinalForm/FormSelect';
 import { Option } from '@/components/molecules/Form';
 
 interface ProgrammingLanguageFieldsProps {
@@ -25,10 +25,10 @@ const ProgrammingLanguageFields: React.FC<ProgrammingLanguageFieldsProps> = ({
   return (
     <Row>
       <Column col={4}>
-        <FinalFormInput label="Name" name={`programmingLanguages[${index}].name`} required />
+        <FormInput label="Name" name={`programmingLanguages[${index}].name`} required />
       </Column>
       <Column col={4}>
-        <FinalFormInput
+        <FormInput
           label="Years experience"
           type="number"
           name={`programmingLanguages[${index}].years`}
@@ -63,7 +63,7 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
           <Heading>General</Heading>
           <Row>
             <Column col={6}>
-              <FinalFormInput
+              <FormInput
                 name="firstname"
                 label="First name"
                 placeholder="First name"
@@ -72,11 +72,11 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
               />
             </Column>
             <Column col={6}>
-              <FinalFormInput name="lastname" label="Last name" placeholder="Last name" required />
+              <FormInput name="lastname" label="Last name" placeholder="Last name" required />
             </Column>
 
             <Column col={6}>
-              <FinalFormInput
+              <FormInput
                 start={<HiOutlineMail />}
                 type="email"
                 name="email"
@@ -87,7 +87,7 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
               />
             </Column>
             <Column col={6}>
-              <FinalFormDate
+              <FormDate
                 name="dob"
                 label="Date of birth"
                 placeholder="Date of birth"
@@ -96,7 +96,7 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
               />
             </Column>
             <Column col={6}>
-              <FinalFormSelect
+              <FormSelect
                 name="country"
                 label="Country"
                 options={countries}
@@ -105,7 +105,7 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
               />
             </Column>
             <Column col={6}>
-              <FinalFormInput
+              <FormInput
                 name="phoneNumber"
                 label="Phone number"
                 type="tel"
@@ -118,12 +118,7 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
 
           <Heading>Skills</Heading>
           <Heading as="h3">Languages</Heading>
-          <FinalFormCheckboxGroup
-            name="languages"
-            options={languages}
-            direction="horizontal"
-            required
-          />
+          <FormCheckboxGroup name="languages" options={languages} direction="horizontal" required />
 
           <Heading as="h3">Programming languages</Heading>
           <FieldArray name="programmingLanguages">
@@ -150,12 +145,7 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
 
           <Heading>Interests</Heading>
           <Heading as="h3">Favorite animal</Heading>
-          <FinalFormRadioGroup
-            name="favoriteAnimal"
-            required
-            options={animals}
-            direction="horizontal"
-          />
+          <FormRadioGroup name="favoriteAnimal" required options={animals} direction="horizontal" />
 
           <Row>
             <Column>

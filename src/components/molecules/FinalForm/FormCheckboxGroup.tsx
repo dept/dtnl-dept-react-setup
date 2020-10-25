@@ -2,16 +2,13 @@ import React from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup';
-import { FinalFormError } from './FinalFormError';
+import { FormError } from './FormError';
 
-type FinalFormCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'value'> & {
+type FormCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'value'> & {
   optimized?: boolean;
 };
 
-export const FinalFormCheckboxGroup: React.FC<FinalFormCheckboxGroupProps> = ({
-  name,
-  ...props
-}) => {
+export const FormCheckboxGroup: React.FC<FormCheckboxGroupProps> = ({ name, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 
@@ -36,7 +33,7 @@ export const FinalFormCheckboxGroup: React.FC<FinalFormCheckboxGroupProps> = ({
         hasError={meta.touched && meta.error}
       />
 
-      <FinalFormError name={name} />
+      <FormError name={name} />
     </>
   );
 };

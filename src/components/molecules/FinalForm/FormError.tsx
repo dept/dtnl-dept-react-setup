@@ -5,11 +5,11 @@ import { Box } from '@/components/atoms/Grid';
 import { Text } from '@/components/atoms/Text';
 import { colors } from '@/theme/colors';
 
-interface FinalFormErrorProps {
+interface FormErrorProps {
   name: string;
 }
 
-export const FinalFormError: React.FC<FinalFormErrorProps> = ({ name }) => {
+export const FormError: React.FC<FormErrorProps> = ({ name }) => {
   const { meta } = useField(name);
 
   const showError = meta.error && meta.touched;

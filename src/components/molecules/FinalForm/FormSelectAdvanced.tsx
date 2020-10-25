@@ -2,13 +2,13 @@ import React from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldSelectAdvanced, FieldSelectAdvancedProps } from '../Form/FieldSelectAdvanced';
-import { FinalFormError } from './FinalFormError';
+import { FormError } from './FormError';
 
-type FinalFormSelectAdvancedProps = FieldSelectAdvancedProps & {
+type FormSelectAdvancedProps = FieldSelectAdvancedProps & {
   name: string;
 };
 
-export const FinalFormSelectAdvanced: React.FC<FinalFormSelectAdvancedProps> = ({
+export const FormSelectAdvanced: React.FC<FormSelectAdvancedProps> = ({
   name,
 
   ...props
@@ -28,7 +28,7 @@ export const FinalFormSelectAdvanced: React.FC<FinalFormSelectAdvancedProps> = (
         hasError={Boolean(meta.touched && meta.error)}
       />
 
-      <FinalFormError name={name} />
+      <FormError name={name} />
     </>
   );
 };

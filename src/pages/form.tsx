@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import { Alert } from '@/components/atoms/Alert';
 import { Divider } from '@/components/atoms/Divider';
 import { Box, Stack } from '@/components/atoms/Grid';
-import { Text } from '@/components/atoms/Text';
 import { FieldRadioGroup } from '@/components/molecules/Form';
 import { FinalFormExampleForm } from '@/components/organisms/Forms/FinalFormExampleForm';
 import { FormikExampleForm } from '@/components/organisms/Forms/FormikExampleForm';

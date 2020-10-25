@@ -2,17 +2,13 @@ import React from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldCheckbox, FieldCheckboxProps } from '../Form/FieldCheckbox';
-import { FinalFormError } from './FinalFormError';
+import { FormError } from './FormError';
 
-type FinalFormCheckboxProps = FieldCheckboxProps & {
+type FormCheckboxProps = FieldCheckboxProps & {
   name: string;
 };
 
-export const FinalFormCheckbox: React.FC<FinalFormCheckboxProps> = ({
-  name,
-  children,
-  ...props
-}) => {
+export const FormCheckbox: React.FC<FormCheckboxProps> = ({ name, children, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 
@@ -28,7 +24,7 @@ export const FinalFormCheckbox: React.FC<FinalFormCheckboxProps> = ({
         {children}
       </FieldCheckbox>
 
-      <FinalFormError name={name} />
+      <FormError name={name} />
     </>
   );
 };
