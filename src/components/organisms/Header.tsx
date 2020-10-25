@@ -45,6 +45,10 @@ const items = [
     title: 'Examples',
   },
   {
+    href: '/form',
+    title: 'Example form',
+  },
+  {
     href: '/admin',
     title: 'Admin',
   },

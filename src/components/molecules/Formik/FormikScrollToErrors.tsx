@@ -13,7 +13,7 @@ type FormikScrollToErrorsProps = {
 export const FormikScrollToErrors: React.FC<FormikScrollToErrorsProps> = ({
   offset = -50,
   duration = 500,
-  ease = 'linear',
+  ease,
   align = 'top',
 }) => {
   const { errors, isSubmitting, isValidating } = useFormikContext();

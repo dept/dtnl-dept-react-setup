@@ -1,0 +1,34 @@
+import React from 'react';
+import { useField, useForm } from 'react-final-form';
+
+import { FieldDate, FieldDateProps } from '../Form/FieldDate';
+import { FormError } from './FormError';
+
+type FormDate = Omit<FieldDateProps, 'onChange' | 'value'> & {
+  name: string;
+};
+
+export const FormDate: React.FC<FormDate> = ({ name, ...props }) => {
+  const form = useForm();
+  const { input, meta } = useField(name);
+
+  return (
+    <>
+      <FieldDate
+        {...props}
+        {...input}
+        onBlur={undefined}
+        onClose={() => form.change(name, true)}
+        onChange={date => {
+          form.change(name, date);
+        }}
+        onClear={() => {
+          form.change(name, undefined);
+        }}
+        hasError={Boolean(meta.touched && meta.error)}
+      />
+
+      <FormError name={name} />
+    </>
+  );
+};

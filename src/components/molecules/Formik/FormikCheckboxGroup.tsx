@@ -1,7 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React, { FC } from 'react';
-
-import { Omit } from '@/utils/types';
+import React from 'react';
 
 import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup';
 import { FormikError } from './FormikError';
@@ -10,7 +8,7 @@ type FormikCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'valu
   optimized?: boolean;
 };
 
-export const FormikCheckboxGroup: FC<FormikCheckboxGroupProps> = ({
+export const FormikCheckboxGroup: React.FC<FormikCheckboxGroupProps> = ({
   name,
   optimized = true,
   ...props

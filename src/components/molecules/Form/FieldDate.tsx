@@ -11,7 +11,7 @@ import { colors } from '@/theme/colors';
 
 import { FieldInput, FieldInputProps } from './FieldInput';
 
-export type FieldDateProps = Omit<FieldInputProps, 'value' | 'onChange'> & {
+export type FieldDateProps = Omit<FieldInputProps, 'value' | 'onChange' | 'type'> & {
   value?: Date | undefined;
   openOnFocus?: boolean;
   onChange: (date: Date) => void;
@@ -107,6 +107,7 @@ export const FieldDate: React.FC<FieldDateProps> = ({
       <FieldInput
         autoComplete={'off'}
         {...props}
+        type="text"
         value={inputDate}
         onChange={handleInputChange}
         onFocus={handleFocus}

@@ -24,6 +24,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
   onChange,
   onBlur,
   hasError,
+  required,
   ...props
 }) => {
   const theme = useTheme();

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import ReactModal from 'react-modal';
 import { createGlobalStyle } from 'styled-components';
 
@@ -76,7 +76,7 @@ const ModalStyles = createGlobalStyle<any>`
   }
 `;
 
-export const Modal: FC<ModalProps> = ({
+export const Modal: React.FC<ModalProps> = ({
   children,
   id,
   onClose,
