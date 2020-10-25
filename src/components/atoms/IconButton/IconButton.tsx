@@ -1,5 +1,5 @@
 import React, { FC, HTMLAttributes } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 import { colors } from '@/theme/colors';
 
@@ -21,6 +21,7 @@ interface IconButtonProps {
   disabled?: boolean;
   border?: boolean;
   type?: string;
+  hideOutline?: boolean;
 }
 
 interface ConditionalProps {
@@ -44,11 +45,6 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
   justify-content: center;
   flex-shrink: 0;
   cursor: pointer;
-
-  &:focus {
-    outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
-  }
 `;
 
 export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = ({
@@ -61,8 +57,10 @@ export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = 
   bg,
   icon: Icon,
   rotate,
+  hideOutline,
   ...rest
 }) => {
+  const theme = useTheme();
   const conditionalProps: ConditionalProps = { as };
   if (as === 'button') {
     conditionalProps.type = 'button';
@@ -76,6 +74,13 @@ export const IconButton: FC<IconButtonProps & HTMLAttributes<any> & BoxProps> = 
       padding={padding}
       border={border}
       bg={bg || 'transparent'}
+      _focus={{
+        outline: 'none',
+        boxShadow: !hideOutline ? theme.shadows.outline : 'none',
+      }}
+      _hocus={{
+        opacity: 0.8,
+      }}
       {...rest}>
       <Icon size={size} rotate={rotate} />
     </StyledIconButton>

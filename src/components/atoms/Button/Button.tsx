@@ -26,6 +26,7 @@ export type ButtonProps = BoxProps &
     ripple?: boolean;
     href?: string;
     target?: string;
+    hideOutline?: boolean;
     // adds a test id so it's easier to find in integration/e2e tests
     'data-testid'?: string;
   };
@@ -43,6 +44,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
       ripple = true,
       loading,
       disabled,
+      hideOutline,
       ...props
     },
     ref,
@@ -77,7 +79,7 @@ export const Button = React.forwardRef<any, ButtonProps>(
         }}
         _focus={{
           outline: 'none',
-          boxShadow: theme.shadows.outline,
+          boxShadow: !hideOutline ? theme.shadows.outline : 'none',
         }}
         {...props}
         ref={ref}>

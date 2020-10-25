@@ -30,7 +30,7 @@ export type FieldInputProps = InputProps & {
 };
 
 const Input = React.forwardRef<any, InputProps>(
-  ({ hasError, color, mask, maskChar = null, ...props }, ref) => {
+  ({ hasError, color, mask, maskChar = null, start, end, ...props }, ref) => {
     let additionalProps: any = {};
 
     if (props.readOnly) {
@@ -56,7 +56,9 @@ const Input = React.forwardRef<any, InputProps>(
       border: 'none',
       margin: '0',
       color: color || 'black',
-      padding: '12px 14px',
+      pl: start ? 0 : '12px',
+      pr: end ? 0 : '12px',
+      py: '14px',
       ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]: {
         appearance: 'none',
         margin: 0,
@@ -67,12 +69,13 @@ const Input = React.forwardRef<any, InputProps>(
       ...additionalProps,
     };
 
-    if (mask)
+    if (mask) {
       return (
         <InputMask mask={mask} maskChar={maskChar} {...props}>
-          {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}
+          {(inputProps: any) => <Box innerRef={ref} as="input" sx={styles} {...inputProps} />}
         </InputMask>
       );
+    }
 
     return <Box ref={ref} as="input" sx={styles} {...props} />;
   },
@@ -145,6 +148,7 @@ const Clear: React.FC<any> = ({ onClick }) => {
         size={18}
         onClick={onClick}
         tabIndex={-1}
+        hideOutline
       />
     </Box>
   );
@@ -205,6 +209,8 @@ export const FieldInput: React.FC<FieldInputProps> = ({
           hasError={hasError}
           {...props}
           id={name}
+          start={start}
+          end={end}
           name={name}
           ref={inputRef}
           required={required}

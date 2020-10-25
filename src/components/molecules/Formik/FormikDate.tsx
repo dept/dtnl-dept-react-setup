@@ -19,7 +19,6 @@ export const FormikDate: React.FC<FormikDate> = ({ name, optimized = true, ...pr
           <FieldDate
             {...props}
             {...field}
-            onBlur={undefined}
             onClose={() => form.setFieldTouched(name, true)}
             onChange={date => {
               form.setFieldValue(name, date);

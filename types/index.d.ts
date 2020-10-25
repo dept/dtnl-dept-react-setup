@@ -9,6 +9,7 @@ declare namespace NodeJS {
 }
 
 declare module 'dot-object';
+declare module 'react-imask';
 
 declare module 'console' {
   export = typeof import('console');

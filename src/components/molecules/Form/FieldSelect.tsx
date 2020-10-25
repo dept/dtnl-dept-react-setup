@@ -64,6 +64,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
   placeholder,
   hasError,
   required,
+  ...rest
 }) => {
   const {
     isOpen,
@@ -83,6 +84,18 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
     },
   });
 
+  const [hasFocus, setFocus] = useState(false);
+
+  function onFocus(e: React.FocusEvent<HTMLButtonElement>) {
+    if (rest.onFocus) rest.onFocus(e as any);
+    setFocus(true);
+  }
+
+  function onBlur(e: React.FocusEvent<HTMLButtonElement>) {
+    if (rest.onBlur) rest.onBlur(e as any);
+    setFocus(false);
+  }
+
   return (
     <Box position="relative">
       {label && (
@@ -90,15 +103,23 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
           {label}
         </Label>
       )}
-      <InputWrapper color={color} hasError={hasError}>
+      <InputWrapper color={color} hasError={hasError} hasFocus={hasFocus}>
         <Box
           height="100%"
           width="100%"
           display="block"
           p="6px 14px"
-          as="label"
+          as="button"
+          type="button"
+          textAlign="left"
+          bg="white"
+          border="none"
+          outline="none"
           cursor="pointer"
-          {...getToggleButtonProps()}>
+          {...getToggleButtonProps({
+            onFocus,
+            onBlur,
+          })}>
           {(selectedItem && selectedItem.label) || placeholder || '-'}
           <IconWrapper position="absolute" right={3} top="50%">
             <HiSelector size={18} />

@@ -17,8 +17,6 @@ export const FormDate: React.FC<FormDate> = ({ name, ...props }) => {
       <FieldDate
         {...props}
         {...input}
-        onBlur={undefined}
-        onClose={() => form.change(name, true)}
         onChange={date => {
           form.change(name, date);
         }}

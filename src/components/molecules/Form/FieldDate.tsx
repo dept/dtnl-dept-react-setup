@@ -121,6 +121,7 @@ export const FieldDate: React.FC<FieldDateProps> = ({
             color="gray.800"
             icon={HiOutlineCalendar}
             aria-label="Open calendar"
+            hideOutline
           />
         }
       />
