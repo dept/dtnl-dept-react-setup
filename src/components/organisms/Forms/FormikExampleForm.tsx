@@ -81,7 +81,7 @@ interface FormValues {
   country: string;
   phoneNumber: string;
   email: string;
-  dob: string;
+  dob: Date | null;
   languages: string[];
   favoriteAnimal: string;
   programmingLanguages: ProgrammingLanguageValues[];

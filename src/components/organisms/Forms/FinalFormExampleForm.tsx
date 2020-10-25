@@ -75,7 +75,17 @@ interface ProgrammingLanguageValues {
   years: number | undefined;
 }
 
-type FormValues = z.infer<typeof validationSchema>;
+interface FormValues {
+  firstname: string;
+  lastname: string;
+  country: string;
+  phoneNumber: string;
+  email: string;
+  dob: Date | null;
+  languages: string[];
+  favoriteAnimal: string;
+  programmingLanguages: ProgrammingLanguageValues[];
+}
 
 const initialProgrammingLanguage: ProgrammingLanguageValues = {
   name: '',
