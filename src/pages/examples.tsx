@@ -1,20 +1,15 @@
-import { Form, Formik } from 'formik';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 import * as icons from 'react-icons/md';
-import * as Yup from 'yup';
 
 import { Button } from '@/components/atoms/Button';
-import { Box, Column, Flex, Row, Stack } from '@/components/atoms/Grid';
+import { Box, Column, Flex, Row } from '@/components/atoms/Grid';
 import { Hyperlink } from '@/components/atoms/Hyperlink';
 import { Reveal } from '@/components/atoms/Reveal';
 import { Heading, Text } from '@/components/atoms/Text';
-import { FormikDate, FormikInput } from '@/components/molecules/Formik';
 import { Modal } from '@/components/molecules/Modal';
 import { useModal } from '@/components/molecules/Modal/modalStore';
-
-import { FieldSelect } from '../components/molecules/Form/FieldSelect';
 
 const Section: React.FC = props => (
   <Reveal>
@@ -78,73 +73,6 @@ const Page: NextPage = () => {
         <Button variant="primary" size="large">
           Button
         </Button>
-      </Section>
-
-      <Section>
-        <SectionHeader>Form</SectionHeader>
-
-        <Formik
-          initialValues={{
-            text: '',
-            email: '',
-            number: 0,
-            date: null,
-            select: null,
-            check: true,
-            radio: 'test',
-          }}
-          validationSchema={Yup.object({
-            text: Yup.string().required('This field is required'),
-            number: Yup.string().required('This field is required'),
-            email: Yup.string().email().required('This field is required'),
-            date: Yup.date().required('This field is required'),
-            select: Yup.string().required('This field is required').nullable(),
-          })}
-          onSubmit={values => console.log(values)}>
-          {() => (
-            <Form>
-              <Stack space={4}>
-                <FormikInput label="Text field" name="text" placeholder="This is a text field" />
-                <FormikInput
-                  type="email"
-                  label="Email field"
-                  name="email"
-                  placeholder="This is a email field"
-                />
-                <FormikInput
-                  type="number"
-                  label="Number field"
-                  name="number"
-                  placeholder="This is a number field"
-                />
-                <FormikDate name="date" label="Date field" placeholder="This is a date field" />
-                <FieldSelect
-                  name="select"
-                  // native
-                  placeholder={''}
-                  label="Dingen"
-                  defaultValue={2}
-                  onChange={e => console.log(e)}
-                  options={[
-                    {
-                      value: 1,
-                      label: 'Test 1',
-                    },
-                    {
-                      value: 2,
-                      label: 'Test 2',
-                    },
-                    {
-                      value: 3,
-                      label: 'Test 3',
-                    },
-                  ]}
-                />
-                <Button type="submit">Submit</Button>
-              </Stack>
-            </Form>
-          )}
-        </Formik>
       </Section>
 
       <Section>
