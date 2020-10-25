@@ -11,12 +11,12 @@ interface Props {
 
 const duration = 300;
 
-const CollapseWrapper = styled.div<{ height: number }>`
+const CollapseWrapper = styled.div<{ height: number; isOpen: boolean }>`
   overflow: hidden;
   transition: opacity ${duration}ms 100ms, height ${duration}ms;
   transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
-  opacity: 0;
-  height: 0px;
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
 
   &.collapse-enter {
     opacity: 0;
@@ -52,7 +52,7 @@ export const Collapse: React.FC<Props> = ({ children, isOpen = false }) => {
   return (
     <>
       <CSSTransition appear classNames="collapse" in={isOpen} timeout={duration}>
-        <CollapseWrapper height={elementHeight}>
+        <CollapseWrapper height={elementHeight} isOpen={isOpen}>
           <div ref={ref}>{children}</div>
         </CollapseWrapper>
       </CSSTransition>

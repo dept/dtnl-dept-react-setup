@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { colors } from '@/theme/colors';

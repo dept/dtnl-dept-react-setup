@@ -132,6 +132,7 @@
     "@types/react-input-mask": "^2.0.5",
     "@types/react-modal": "^3.10.6",
     "@types/react-scroll": "^1.8.1",
+    "@types/react-transition-group": "^4.4.0",
     "@types/scroll-to-element": "^2.0.0",
     "@types/styled-components": "^5.1.4",
     "@types/styled-system": "^5.1.10",
