@@ -1,11 +1,11 @@
 import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
+import { GrFormClose } from 'react-icons/gr';
 import styled, { useTheme } from 'styled-components';
 
 import { Box, Flex } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label';
 import { Text } from '@/components/atoms/Text';
-import CloseNormalIcon from '@/icons/components/CloseNormal';
 
 export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;
@@ -61,7 +61,7 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
               boxShadow: theme.shadows.outline,
             },
           }}>
-          <CloseNormalIcon size={13} />
+          <GrFormClose size={13} />
         </Box>
         <Box>
           <Text color="gray.800" fontSize={14}>

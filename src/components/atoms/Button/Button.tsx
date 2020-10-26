@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, ReactElement } from 'react';
 import Ink from 'react-ink';
 import { useTheme } from 'styled-components';
 
@@ -20,8 +20,8 @@ export type ButtonProps = BoxProps &
     variant?: keyof typeof buttons;
     size?: keyof typeof buttonSizes;
     disabled?: boolean;
-    startIcon?: any;
-    endIcon?: any;
+    startIcon?: ReactElement;
+    endIcon?: ReactElement;
     loading?: boolean;
     ripple?: boolean;
     href?: string;
@@ -35,8 +35,8 @@ export const Button = React.forwardRef<any, ButtonProps>(
   (
     {
       as = 'button',
-      startIcon: StartIcon,
-      endIcon: EndIcon,
+      startIcon,
+      endIcon,
       size = 'medium',
       children,
       variant = 'primary',
@@ -108,19 +108,11 @@ export const Button = React.forwardRef<any, ButtonProps>(
               justifyContent="space-between"
               alignItems="center"
               textAlign="center">
-              {StartIcon && (
-                <Box mr={2}>
-                  <StartIcon size={20} />
-                </Box>
-              )}
+              {startIcon && <Box mr={2}>{startIcon}</Box>}
 
               <span>{children}</span>
 
-              {EndIcon && (
-                <Box ml={2}>
-                  <EndIcon size={20} />
-                </Box>
-              )}
+              {endIcon && <Box ml={2}>{endIcon}</Box>}
             </Box>
           </>
         )}

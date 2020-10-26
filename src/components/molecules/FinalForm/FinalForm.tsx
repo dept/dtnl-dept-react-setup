@@ -1,7 +1,7 @@
 import { ValidationErrors, setIn } from 'final-form';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
-import { Form, FormProps, FormRenderProps } from 'react-final-form';
+import { Form, FormProps } from 'react-final-form';
 import * as Yup from 'yup';
 
 import { createScrollToErrorDecorator } from './utils/scrollToError';
@@ -11,7 +11,8 @@ export type FinalFormProps<FormValues> = FormProps<FormValues> & {
 };
 
 type RenderProps<FormValues> = {
-  children: (props: FormRenderProps<FormValues>) => React.ReactElement;
+  children: React.ReactNode | FinalFormProps<FormValues>['render'];
+  render?: FinalFormProps<FormValues>['render'];
 };
 
 async function validateYup(
@@ -38,6 +39,7 @@ export function FinalForm<FormValues = any>({
   mutators,
   validate,
   validationSchema,
+  render,
   ...props
 }: FinalFormProps<FormValues> & RenderProps<FormValues>) {
   return (
@@ -68,7 +70,8 @@ export function FinalForm<FormValues = any>({
         const { handleSubmit } = formProps;
         return (
           <form onSubmit={handleSubmit} noValidate={true} {...props}>
-            {children(formProps)}
+            {render && render(formProps)}
+            {!render && typeof children === 'function' ? (children as any)(formProps) : children}
           </form>
         );
       }}
