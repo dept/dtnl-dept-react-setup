@@ -509,7 +509,7 @@ export const Box = styled('div').withConfig({
       '&:before': tx(_before),
       '&:after': tx(_after),
       '&:focus-within': tx(_focusWithin),
-      '&::placeholder': tx(_placeholder),
+      '&:placeholder': tx(_placeholder),
     });
   },
 );

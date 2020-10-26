@@ -41,8 +41,10 @@ export const buttons = {
     borderRadius: 5,
     color: 'white',
     fontWeight: 'bold',
-    '&:hover': {
-      bg: darken(0.2, colors.primary),
+    '@media (hover: hover)': {
+      '&:hover': {
+        bg: darken(0.2, colors.primary),
+      },
     },
     '&:disabled': {
       bg: 'gray.300',
@@ -56,8 +58,10 @@ export const buttons = {
     borderRadius: 5,
     color: 'primary',
     fontWeight: 'bold',
-    '&:hover': {
-      bg: rgba(colors.primary, 0.05),
+    '@media (hover: hover)': {
+      '&:hover': {
+        bg: rgba(colors.primary, 0.05),
+      },
     },
     '&:disabled': {
       color: 'gray.300',
