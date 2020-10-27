@@ -19,6 +19,24 @@ module.exports = withPlugins(plugins, {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
+  /**
+   * https://nextjs.org/docs/basic-features/image-optimization
+   * Settings are the defaults
+   */
+  images: {
+    deviceSizes: [320, 420, 768, 1024, 1200],
+    iconSizes: [],
+    domains: [],
+    path: '/_next/image',
+    loader: 'default',
+  },
+  /**
+   * https://nextjs.org/docs/advanced-features/i18n-routing
+   */
+  // i18n: {
+  //   locales: ['en-US'],
+  //   defaultLocale: 'en-US',
+  // },
   webpack(config, options) {
     if (!options.isServer) {
       const CircularDependencyPlugin = require('circular-dependency-plugin');

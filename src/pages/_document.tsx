@@ -30,6 +30,9 @@ export default class MyDocument extends Document {
   }
 
   public render() {
+    /**
+     * Remove lang from <Html> when using https://nextjs.org/docs/advanced-features/i18n-routing
+     */
     return (
       <Html lang="en">
         <Head>
