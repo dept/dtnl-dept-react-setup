@@ -34,8 +34,8 @@ module.exports = withPlugins(plugins, {
    * https://nextjs.org/docs/advanced-features/i18n-routing
    */
   // i18n: {
-  //   locales: ['en-US'],
-  //   defaultLocale: 'en-US',
+  //   locales: ['en', 'nl'],
+  //   defaultLocale: 'en',
   // },
   webpack(config, options) {
     if (!options.isServer) {
