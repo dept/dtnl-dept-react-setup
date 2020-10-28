@@ -1,8 +1,5 @@
 {
   "watch": ["server", "public", "config", ".env"],
   "ext": "ts, js",
-  "exec": "ts-node --project ./server/tsconfig.json server/server.ts",
-  "env": {
-    "NODE_ICU_DATA": "node_modules/full-icu"
-  }
+  "exec": "ts-node --project ./server/tsconfig.json server/server.ts"
 }
