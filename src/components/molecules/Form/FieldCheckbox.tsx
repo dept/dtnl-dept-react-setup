@@ -1,6 +1,6 @@
 import { hideVisually } from 'polished';
 import React, { InputHTMLAttributes } from 'react';
-import { GrFormClose } from 'react-icons/gr';
+import { FaCheck } from 'react-icons/fa';
 import styled, { useTheme } from 'styled-components';
 
 import { Box, Flex } from '@/components/atoms/Grid';
@@ -56,12 +56,12 @@ export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
             'input[type=checkbox]:checked + &': {
               bg: 'primary',
             },
-            'input[type=checkbox]::focus + &': {
+            'input[type=checkbox]:focus + &': {
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },
           }}>
-          <GrFormClose size={13} />
+          <FaCheck size={13} />
         </Box>
         <Box>
           <Text color="gray.800" fontSize={14}>
