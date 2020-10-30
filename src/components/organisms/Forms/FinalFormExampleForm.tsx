@@ -9,6 +9,7 @@ import { FinalForm, FinalFormProps } from '@/components/molecules/FinalForm/Fina
 import { FormCheckboxGroup } from '@/components/molecules/FinalForm/FormCheckboxGroup';
 import { FormDate } from '@/components/molecules/FinalForm/FormDate';
 import { FormInput } from '@/components/molecules/FinalForm/FormInput';
+import { FormNumberFormat } from '@/components/molecules/FinalForm/FormNumberFormat';
 import { FormRadioGroup } from '@/components/molecules/FinalForm/FormRadioGroup';
 import { FormSelect } from '@/components/molecules/FinalForm/FormSelect';
 import { Option } from '@/components/molecules/Form';
@@ -112,6 +113,15 @@ export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
                 placeholder="+31 06 12 34 56 78"
                 mask="+31 99 99 99 99 99"
                 required
+              />
+            </Column>
+
+            <Column col={6}>
+              <FormNumberFormat
+                prefix="€"
+                label="Money?"
+                name="currency"
+                placeholder="How much money would you like?"
               />
             </Column>
           </Row>

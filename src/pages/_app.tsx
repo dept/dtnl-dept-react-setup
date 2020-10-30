@@ -14,8 +14,8 @@ import { theme } from '@/theme/theme';
 import { isBrowser } from '@/utils/isBrowser';
 
 if (process.browser) {
-  require('@/utils/detectTouch');
-  require('@/utils/detectKeyboardFocus');
+  import('@/utils/detectTouch');
+  import('@/utils/detectKeyboardFocus');
 }
 
 if (isBrowser && process.env.ENVIRONMENT_NAME !== 'production') {

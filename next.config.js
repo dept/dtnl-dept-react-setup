@@ -17,7 +17,7 @@ module.exports = withPlugins(plugins, {
     ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
   },
   poweredByHeader: false,
-  reactStrictMode: true,
+  // reactStrictMode: true,
   compress: true,
   /**
    * https://nextjs.org/docs/basic-features/image-optimization

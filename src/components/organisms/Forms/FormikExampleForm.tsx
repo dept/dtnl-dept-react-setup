@@ -13,6 +13,7 @@ import {
   FormikSelect,
 } from '@/components/molecules/Formik';
 import { FormikDate } from '@/components/molecules/Formik/FormikDate';
+import { FormikNumberFormat } from '@/components/molecules/Formik/FormikNumberFormat';
 import { FormikScrollToErrors } from '@/components/molecules/Formik/FormikScrollToErrors';
 
 interface ProgrammingLanguageFieldsProps {
@@ -116,6 +117,15 @@ export const FormikExampleForm: React.FC<FormikExampleFormProps> = ({
                   placeholder="+31 06 12 34 56 78"
                   mask="+31 99 99 99 99 99"
                   required
+                />
+              </Column>
+              <Column col={6}>
+                <FormikNumberFormat
+                  prefix="€"
+                  thousandSeparator
+                  label="Money?"
+                  name="currency"
+                  placeholder="How much money would you like?"
                 />
               </Column>
             </Row>
