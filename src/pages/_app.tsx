@@ -1,6 +1,5 @@
 import '@public/fonts/fonts.css';
 
-import whyDidYouRender from '@welldone-software/why-did-you-render';
 import { DefaultSeo } from 'next-seo';
 import { AppType } from 'next/dist/next-server/lib/utils';
 import React from 'react';
@@ -23,7 +22,7 @@ if (isBrowser && process.env.ENVIRONMENT_NAME !== 'production') {
    * why-did-you-render README
    * https://github.com/welldone-software/why-did-you-render
    */
-
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
   whyDidYouRender(React);
 
   /**
