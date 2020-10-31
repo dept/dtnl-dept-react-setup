@@ -15,7 +15,7 @@ interface Option {
   label: Value;
 }
 
-export type FieldComboboxProps = FieldInputProps & {
+export type FieldComboboxProps = Omit<FieldInputProps, 'type' | 'onChange'> & {
   options: Option[];
   onChange?: (value: Value) => void;
 };
@@ -98,6 +98,7 @@ export const FieldCombobox: React.FC<FieldComboboxProps> = ({
             icon={HiSelector}
             size={18}
             aria-label="Toggle menu"
+            hideOutline
           />
         }
       />

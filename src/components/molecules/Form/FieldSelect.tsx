@@ -54,6 +54,9 @@ export const List = React.forwardRef<any, BoxProps & { isOpen: boolean }>(
         borderRadius="4px"
         opacity="0"
         transform="scale(0.8) translateX(-50%)"
+        _focus={{
+          outline: 'none',
+        }}
         {...props}
         {...activeProps}
         ref={ref}
