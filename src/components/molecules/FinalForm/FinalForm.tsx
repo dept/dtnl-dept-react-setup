@@ -1,6 +1,6 @@
 import { ValidationErrors, setIn } from 'final-form';
 import arrayMutators from 'final-form-arrays';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Form, FormProps } from 'react-final-form';
 import * as Yup from 'yup';
 
@@ -31,22 +31,30 @@ async function validateYup(
   return errors;
 }
 
-export function FinalForm<FormValues = any>({
+interface BaseValues {
+  [field: string]: any;
+}
+
+export function FinalForm<FormValues extends BaseValues = BaseValues>({
   onSubmit,
   initialValues,
   children,
-  decorators,
+  decorators = [],
   mutators,
   validate,
   validationSchema,
   render,
   ...props
 }: FinalFormProps<FormValues> & RenderProps<FormValues>) {
+  const formDecorators = useMemo(() => {
+    return [createScrollToErrorDecorator(), ...decorators];
+  }, [decorators]);
+
   return (
     <Form<FormValues>
       onSubmit={onSubmit}
       initialValues={initialValues}
-      decorators={[createScrollToErrorDecorator(), ...(decorators || [])]}
+      decorators={formDecorators}
       validate={async values => {
         if (!validationSchema && !validate) return;
 
