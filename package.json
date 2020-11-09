@@ -109,6 +109,7 @@
     "scroll-to-element": "^2.0.3",
     "styled-components": "5.2.0",
     "styled-system": "^5.1.5",
+    "webpack": "^4",
     "yup": "^0.29.3",
     "zustand": "^3.1.3"
   },
