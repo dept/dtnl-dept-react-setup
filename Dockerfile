@@ -28,4 +28,4 @@ USER node
 # enable run as production
 ENV NODE_ENV=production
 # start app
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
