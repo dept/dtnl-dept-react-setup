@@ -1,9 +1,10 @@
-const favicons = require('favicons')
-const fs = require('fs')
-const prettier = require('prettier')
+const fs = require('fs');
 
-const folder = 'public/favicon'
-const source = 'public/logo.png' // Source image(s). `string`, `buffer` or array of `string`
+const favicons = require('favicons');
+const prettier = require('prettier');
+
+const folder = 'public/favicon';
+const source = 'public/logo.png'; // Source image(s). `string`, `buffer` or array of `string`
 
 const configuration = {
   path: '/favicon', // Path for overriding default icons path. `string`
@@ -45,27 +46,27 @@ const configuration = {
     windows: true, // Create Windows 8 tile icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
     yandex: false, // Create Yandex browser icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
   },
-}
+};
 
 const callback = function (error, response) {
   if (error) {
-    console.log(error.message) // Error description e.g. "An unknown error has occurred"
-    return
+    console.log(error.message); // Error description e.g. "An unknown error has occurred"
+    return;
   }
 
   response.images.forEach(image => {
-    fs.writeFileSync(`${folder}/${image.name}`, image.contents)
-  })
+    fs.writeFileSync(`${folder}/${image.name}`, image.contents);
+  });
 
   response.files.forEach(file => {
-    fs.writeFileSync(`${folder}/${file.name}`, file.contents)
-  })
+    fs.writeFileSync(`${folder}/${file.name}`, file.contents);
+  });
 
   const metaTags = response.html
     .map(html => {
-      return html.replace('">', '" />')
+      return html.replace('">', '" />');
     })
-    .join('\n')
+    .join('\n');
 
   prettier.resolveConfigFile().then(filePath => {
     prettier.resolveConfig(filePath).then(options => {
@@ -80,11 +81,11 @@ const callback = function (error, response) {
       }
       `,
         options,
-      )
+      );
 
-      fs.writeFileSync(`${folder}/FaviconsMeta.tsx`, formatted)
-    })
-  })
-}
+      fs.writeFileSync(`src/utils/FaviconsMeta.tsx`, formatted);
+    });
+  });
+};
 
-favicons(source, configuration, callback)
+favicons(source, configuration, callback);
