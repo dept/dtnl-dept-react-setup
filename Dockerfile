@@ -23,6 +23,8 @@ RUN yarn build
 FROM dependencies as release
 # copy build
 COPY --from=build /usr/src/app/.next ./.next
+COPY --from=build /usr/src/app/public ./public
+
 # dont run as root
 USER node
 # enable run as production
