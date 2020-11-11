@@ -76,6 +76,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
   placeholder,
   hasError,
   required,
+  value,
   ...rest
 }) => {
   const {
@@ -89,6 +90,7 @@ const CustomSelect: React.FC<FieldSelectProps> = ({
   } = useSelect({
     items,
     id: name,
+    selectedItem: items.find(item => item.value === value),
     onSelectedItemChange: e => {
       if (e?.selectedItem?.value && onChange) {
         onChange(e?.selectedItem?.value);
@@ -232,7 +234,8 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
           onChange={e => onChange(e.target.value)}
           disabled={disabled}
           required={required}
-          defaultValue={defaultValue}>
+          defaultValue={defaultValue}
+          {...rest}>
           {placeholder && (
             <option disabled value="">
               {placeholder}
