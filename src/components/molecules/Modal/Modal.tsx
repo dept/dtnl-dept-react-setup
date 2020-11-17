@@ -120,6 +120,7 @@ export const Modal: React.FC<ModalProps> = ({
         }}
         closeTimeoutMS={duration}
         isOpen={isShown}
+        shouldCloseOnOverlayClick={modal?.isClosable}
         contentLabel="Modal"
         onRequestClose={onDismiss}>
         {modal && (
