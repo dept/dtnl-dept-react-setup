@@ -48,10 +48,6 @@ const items = [
     href: '/form',
     title: 'Example form',
   },
-  {
-    href: '/admin',
-    title: 'Admin',
-  },
 ];
 
 const Navigation: React.FC = () => {

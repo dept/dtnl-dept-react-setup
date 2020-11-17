@@ -7,7 +7,6 @@ import ReactModal from 'react-modal';
 import { ThemeProvider } from 'styled-components';
 
 import { BaseLayout } from '@/components/templates';
-import { ContextProvider } from '@/context/ContextProvider';
 import { GlobalStyle } from '@/theme/GlobalStyle';
 import { theme } from '@/theme/theme';
 import { isBrowser } from '@/utils/isBrowser';
@@ -46,14 +45,12 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
-      <ContextProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <BaseLayout>
-            <Page {...pageProps} />
-          </BaseLayout>
-        </ThemeProvider>
-      </ContextProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BaseLayout>
+          <Page {...pageProps} />
+        </BaseLayout>
+      </ThemeProvider>
     </>
   );
 };

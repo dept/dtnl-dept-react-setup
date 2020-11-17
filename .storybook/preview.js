@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 
 import { theme } from '../src/theme';
 import { GlobalStyle } from '../src/theme/GlobalStyle';
-import { ContextProvider } from '../src/context/ContextProvider';
 import { Box } from '../src/components/atoms/Grid';
 
 addDecorator(withKnobs);
@@ -17,5 +16,3 @@ addDecorator(story => (
     </ThemeProvider>
   </>
 ));
-
-addDecorator(story => <ContextProvider>{story()}</ContextProvider>);
