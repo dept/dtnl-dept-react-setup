@@ -1,4 +1,5 @@
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes , FC } from 'react';
+
 
 import { Box, BoxProps } from '../Grid';
 
@@ -7,7 +8,7 @@ interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   required?: boolean;
 }
 
-export const Label: React.FC<LabelProps & BoxProps> = ({ children, color, required, ...props }) => {
+export const Label: FC<LabelProps & BoxProps> = ({ children, color, required, ...props }) => {
   return (
     <Box
       as="label"

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldNumberFormat, FieldNumberFormatProps } from '../Form/FieldNumberFormat';
@@ -8,7 +8,7 @@ type FormNumberFormatProps = FieldNumberFormatProps & {
   name: string;
 };
 
-export const FormNumberFormat: React.FC<FormNumberFormatProps> = ({ name, type, ...props }) => {
+export const FormNumberFormat: FC<FormNumberFormatProps> = ({ name, type, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 

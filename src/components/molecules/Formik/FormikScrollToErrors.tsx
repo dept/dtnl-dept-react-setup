@@ -1,6 +1,6 @@
 import dot from 'dot-object';
 import { useFormikContext } from 'formik';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import scrollToElement from 'scroll-to-element';
 
 type FormikScrollToErrorsProps = {
@@ -10,7 +10,7 @@ type FormikScrollToErrorsProps = {
   duration?: number;
 };
 
-export const FormikScrollToErrors: React.FC<FormikScrollToErrorsProps> = ({
+export const FormikScrollToErrors: FC<FormikScrollToErrorsProps> = ({
   offset = -50,
   duration = 500,
   ease,

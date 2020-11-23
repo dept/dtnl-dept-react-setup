@@ -1,6 +1,6 @@
 import { SystemCssProperties } from '@styled-system/css';
 import dynamic from 'next/dynamic';
-import React, { InputHTMLAttributes, useState } from 'react';
+import { forwardRef, InputHTMLAttributes, useState, FC } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Props as MaskProps } from 'react-input-mask';
 import { useTheme } from 'styled-components';
@@ -30,7 +30,7 @@ export type FieldInputProps = InputProps & {
   name: string;
 };
 
-export const Input = React.forwardRef<any, InputProps>(
+export const Input = forwardRef<any, InputProps>(
   ({ hasError, color, mask, maskChar = null, start, end, ...props }, ref) => {
     let additionalProps: any = {};
 
@@ -84,7 +84,7 @@ export const Input = React.forwardRef<any, InputProps>(
 
 type InputWrapperProps = InputProps & { hasFocus?: boolean };
 
-export const InputWrapper: React.FC<InputWrapperProps> = ({ hasFocus, hasError, ...props }) => {
+export const InputWrapper: FC<InputWrapperProps> = ({ hasFocus, hasError, ...props }) => {
   const theme = useTheme();
 
   let additionalProps: any = {};
@@ -125,7 +125,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = ({ hasFocus, hasError, 
   );
 };
 
-export const AdornmentWrapper: React.FC<BoxProps> = props => (
+export const AdornmentWrapper: FC<BoxProps> = props => (
   <Box
     minWidth={40}
     display="flex"
@@ -139,7 +139,7 @@ export const AdornmentWrapper: React.FC<BoxProps> = props => (
   />
 );
 
-const Clear: React.FC<any> = ({ onClick }) => {
+const Clear: FC<any> = ({ onClick }) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
       <IconButton
@@ -155,7 +155,7 @@ const Clear: React.FC<any> = ({ onClick }) => {
   );
 };
 
-const FieldInputWrapper: React.FC<{ isFloating: boolean }> = ({ isFloating, children }) => {
+const FieldInputWrapper: FC<{ isFloating: boolean }> = ({ isFloating, children }) => {
   if (isFloating) {
     // TODO: create floating logic
   }
@@ -163,7 +163,7 @@ const FieldInputWrapper: React.FC<{ isFloating: boolean }> = ({ isFloating, chil
   return <Box position="relative">{children}</Box>;
 };
 
-export const FieldInput = React.forwardRef<any, FieldInputProps>(
+export const FieldInput = forwardRef<any, FieldInputProps>(
   (
     {
       label,

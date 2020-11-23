@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Rte } from './Rte';
 
 export default { title: 'Atoms/Rte', component: Rte };

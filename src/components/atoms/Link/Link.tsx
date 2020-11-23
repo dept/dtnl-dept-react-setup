@@ -1,6 +1,7 @@
 import { default as NextLink, LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import * as React from 'react';
+import { FC } from 'react';
 
 export const Link = NextLink;
 
@@ -11,7 +12,7 @@ type NavLinkProps = LinkProps & {
   children?: React.ReactElement;
 };
 
-export const NavLink: React.FC<NavLinkProps> = ({
+export const NavLink: FC<NavLinkProps> = ({
   children,
   href,
   exact,

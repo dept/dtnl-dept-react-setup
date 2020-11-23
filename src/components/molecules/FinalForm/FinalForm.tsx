@@ -1,13 +1,13 @@
 import { ValidationErrors, setIn } from 'final-form';
 import arrayMutators from 'final-form-arrays';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Form, FormProps } from 'react-final-form';
 import * as Yup from 'yup';
 
 import { createScrollToErrorDecorator } from './utils/scrollToError';
 
 export type FinalFormProps<FormValues> = FormProps<FormValues> & {
-  validationSchema?: Yup.ObjectSchema<any, any>;
+  validationSchema?: Yup.ObjectSchema<any>;
 };
 
 type RenderProps<FormValues> = {
@@ -16,7 +16,7 @@ type RenderProps<FormValues> = {
 };
 
 async function validateYup(
-  schema: Yup.ObjectSchema<any, any>,
+  schema: Yup.ObjectSchema<any>,
   values: any,
   errors: ValidationErrors | undefined = {},
 ) {

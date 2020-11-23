@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Manager, Popper, PopperProps, Reference } from 'react-popper';
 import useClickAway from 'react-use/lib/useClickAway';
 import styled from 'styled-components';
@@ -36,7 +36,7 @@ const Trigger = styled.button`
   position: relative;
 `;
 
-export const Tooltip: React.FC<TooltipProps> = ({ placement = 'top', children, trigger }) => {
+export const Tooltip: FC<TooltipProps> = ({ placement = 'top', children, trigger }) => {
   const [active, setActive] = useState(false);
   const tooltipRef = useRef(null);
 

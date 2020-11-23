@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useTheme } from 'styled-components';
 import { DisplayProps, HeightProps } from 'styled-system';
 
@@ -5,7 +6,7 @@ import { Box } from './Box';
 
 type GridProps = DisplayProps & HeightProps;
 
-export const Grid: React.FC<GridProps> = props => {
+export const Grid: FC<GridProps> = props => {
   const themeContext = useTheme();
 
   return (

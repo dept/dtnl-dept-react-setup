@@ -4,8 +4,6 @@ function template({ template }, _opts, { componentName, jsx }) {
   componentName.name = componentName.name.slice(3) + 'Icon';
 
   return typeScriptTpl.ast`
-  import React from 'react';
-
   interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
     size?: number
   }

@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactElement } from 'react';
+import { forwardRef, ButtonHTMLAttributes, ReactElement } from 'react';
 import Ink from 'react-ink';
 import { useTheme } from 'styled-components';
 
@@ -31,7 +31,7 @@ export type ButtonProps = BoxProps &
     'data-testid'?: string;
   };
 
-export const Button = React.forwardRef<any, ButtonProps>(
+export const Button = forwardRef<any, ButtonProps>(
   (
     {
       as = 'button',

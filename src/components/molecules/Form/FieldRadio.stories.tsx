@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FieldRadio } from './FieldRadio';
 
 export default { title: 'Forms/Radio', component: FieldRadio };

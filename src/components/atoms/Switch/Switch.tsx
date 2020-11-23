@@ -1,5 +1,5 @@
 import { hideVisually } from 'polished';
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 import { colors } from '@/theme/colors';

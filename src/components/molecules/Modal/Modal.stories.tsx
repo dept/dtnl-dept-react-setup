@@ -1,5 +1,5 @@
 import { withKnobs } from '@storybook/addon-knobs';
-import React from 'react';
+import { FC } from 'react';
 
 import { Button } from '@/components/atoms/Button';
 import { Box } from '@/components/atoms/Grid';
@@ -23,7 +23,7 @@ export default {
   component: Modal,
 };
 
-const ModalButton: React.FC = ({ children }) => {
+const ModalButton: FC = ({ children }) => {
   const { show } = useModal('storybook');
   return <Button onClick={() => show()}>{children}</Button>;
 };

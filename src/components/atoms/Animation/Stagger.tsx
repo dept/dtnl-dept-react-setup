@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import React from 'react';
-
+import { FC } from 'react';
+import * as React from 'react';
 interface StaggerProps {
   /** Duration in seconds */
   duration?: number;
@@ -8,11 +8,7 @@ interface StaggerProps {
   staggerDelay?: number;
 }
 
-export const Stagger: React.FC<StaggerProps> = ({
-  children,
-  duration = 2,
-  staggerDelay = 0.15,
-}) => {
+export const Stagger: FC<StaggerProps> = ({ children, duration = 2, staggerDelay = 0.15 }) => {
   const container = {
     hidden: { opacity: 0 },
     show: {

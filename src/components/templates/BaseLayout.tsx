@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { Box, Flex, Grid } from '../atoms/Grid';
 import { Heading, Text } from '../atoms/Text';
@@ -8,7 +8,7 @@ import { Header } from '../organisms/Header';
 
 interface BaseLayoutProps {}
 
-export const BaseLayout: React.FC<BaseLayoutProps> = ({ children }) => {
+export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
   return (
     <Flex flexDirection="column" height="100vh">
       <Header />

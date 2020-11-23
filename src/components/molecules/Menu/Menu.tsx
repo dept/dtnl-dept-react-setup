@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
 import styled from 'styled-components';
 
@@ -25,7 +25,7 @@ const MenuPopup = styled(Box)<MenuPopupProps>`
   transition: all 200ms ease-in-out;
 `;
 
-export const Menu: React.FC<MenuProps> = ({ trigger, children, placement = 'start' }) => {
+export const Menu: FC<MenuProps> = ({ trigger, children, placement = 'start' }) => {
   const [open, setOpen] = useState(false);
   const popupRef = useRef(null);
   const position = useWindowScrollPosition({ throttle: 200 });

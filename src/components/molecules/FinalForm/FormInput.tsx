@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldInput, FieldInputProps } from '../Form/FieldInput';
@@ -8,7 +8,7 @@ type FormInputProps = FieldInputProps & {
   name: string;
 };
 
-export const FormInput: React.FC<FormInputProps> = ({ name, type = 'text', ...props }) => {
+export const FormInput: FC<FormInputProps> = ({ name, type = 'text', ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name, {
     type,

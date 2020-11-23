@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { Column, Row } from '@/components/atoms/Grid';
 
@@ -16,7 +16,7 @@ export type FieldCheckboxGroupProps = FieldCheckboxProps & {
   value: string[];
 };
 
-export const FieldCheckboxGroup: React.FC<FieldCheckboxGroupProps> = ({
+export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
   name,
   options,
   value,

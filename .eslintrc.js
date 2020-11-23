@@ -7,4 +7,8 @@
 
 module.exports = {
   extends: ['./node_modules/dept-react-scripts/config/eslint/react'],
+  rules: {
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+  },
 };

@@ -1,5 +1,5 @@
 import { FieldArray, Form, Formik, FormikConfig } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 import { HiOutlineMail } from 'react-icons/hi';
 
 import { Button } from '@/components/atoms/Button';
@@ -21,10 +21,7 @@ interface ProgrammingLanguageFieldsProps {
   onRemove: () => void;
 }
 
-const ProgrammingLanguageFields: React.FC<ProgrammingLanguageFieldsProps> = ({
-  index,
-  onRemove,
-}) => {
+const ProgrammingLanguageFields: FC<ProgrammingLanguageFieldsProps> = ({ index, onRemove }) => {
   return (
     <Row>
       <Column col={4}>
@@ -52,7 +49,7 @@ type FormikExampleFormProps = FormikConfig<any> & {
   initialProgrammingLanguage: any;
 };
 
-export const FormikExampleForm: React.FC<FormikExampleFormProps> = ({
+export const FormikExampleForm: FC<FormikExampleFormProps> = ({
   initialProgrammingLanguage,
   countries,
   languages,

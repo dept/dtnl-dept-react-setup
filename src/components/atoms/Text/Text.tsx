@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes, FC, forwardRef } from 'react';
 import { useTheme } from 'styled-components';
 import { TypographyProps } from 'styled-system';
 
@@ -32,7 +32,7 @@ export type HeadingProps = TextProps &
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   };
 
-export const Text = React.forwardRef<any, TextProps>(({ variant, ...props }, ref) => {
+export const Text = forwardRef<any, TextProps>(({ variant, ...props }, ref) => {
   const theme = useTheme();
   const textVariant = variant && theme.textVariants[variant];
 
@@ -48,7 +48,7 @@ export const Text = React.forwardRef<any, TextProps>(({ variant, ...props }, ref
 });
 
 export const Paragraph = Text;
-export const Heading: React.FC<HeadingProps> = props => <Text {...props} />;
+export const Heading: FC<HeadingProps> = props => <Text {...props} />;
 
 Heading.defaultProps = {
   as: 'h2',

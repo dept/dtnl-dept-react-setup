@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import { Children, FC, Fragment } from 'react';
 
 import { Box, BoxProps } from './Box';
 import { Flex, FlexProps } from './Flex';
@@ -22,7 +22,7 @@ function mapAlign(align: Align) {
   }
 }
 
-export const Stack: React.FC<StackProps> = ({ children, divider, space, align }) => {
+export const Stack: FC<StackProps> = ({ children, divider, space, align }) => {
   const spaceProps: BoxProps = {
     pb: space,
   };
@@ -47,10 +47,10 @@ export const Stack: React.FC<StackProps> = ({ children, divider, space, align })
     }
 
     return (
-      <React.Fragment key={i}>
+      <Fragment key={i}>
         <Box {...spaceProps}>{child}</Box>
         {divider && i > 0 && <Box {...spaceProps}>{divider}</Box>}
-      </React.Fragment>
+      </Fragment>
     );
   });
 

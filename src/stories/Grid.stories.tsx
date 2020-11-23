@@ -1,10 +1,10 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { Box, Column, Grid, Row } from '@/components/atoms/Grid';
 
 export default { title: 'Grid/Grid' };
 
-const GridExampleBox: React.FC = props => (
+const GridExampleBox: FC = props => (
   <Box bg="primary" my={1} color="white" p={4} fontSize={14} {...props} />
 );
 

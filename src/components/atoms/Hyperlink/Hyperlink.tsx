@@ -1,5 +1,5 @@
 import { LinkProps } from 'next/link';
-import React from 'react';
+import { forwardRef } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Box, BoxProps, Flex } from '../Grid';
@@ -15,7 +15,7 @@ type HyperlinkProps = BoxProps &
   Pick<LinkProps, 'href' | 'as' | 'prefetch'> &
   HyperLinkElementProps;
 
-export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
+export const Hyperlink = forwardRef<HTMLAnchorElement, HyperlinkProps>(
   ({ children, icon: Icon, href, as, iconColor, color = 'primary', ...props }, ref) => {
     const theme = useTheme();
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useTheme } from 'styled-components';
 import { FlexboxProps, SpaceProps, WidthProps } from 'styled-system';
 
@@ -11,7 +11,7 @@ interface GutterProps {
 
 type RowProps = FlexboxProps & GutterProps & SpaceProps & WidthProps;
 
-export const Row: React.FC<RowProps> = ({ gutter, children, ...props }) => {
+export const Row: FC<RowProps> = ({ gutter, children, ...props }) => {
   const themeContext = useTheme();
 
   if (!gutter && themeContext && themeContext.grid) {

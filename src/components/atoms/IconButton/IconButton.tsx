@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import { forwardRef, HTMLAttributes } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { colors } from '@/theme/colors';
@@ -47,7 +47,7 @@ const StyledIconButton = styled(Box)<IconButtonStyledProps>`
   cursor: pointer;
 `;
 
-export const IconButton = React.forwardRef<any, IconButtonProps & HTMLAttributes<any> & BoxProps>(
+export const IconButton = forwardRef<any, IconButtonProps & HTMLAttributes<any> & BoxProps>(
   (
     {
       as = 'button',

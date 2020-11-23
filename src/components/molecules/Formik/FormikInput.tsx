@@ -1,5 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { FieldInput, FieldInputProps } from '../Form/FieldInput';
 import { FormikError } from './FormikError';
@@ -9,7 +9,7 @@ type FormikInput = FieldInputProps & {
   optimized?: boolean;
 };
 
-export const FormikInput: React.FC<FormikInput> = ({
+export const FormikInput: FC<FormikInput> = ({
   name,
   type = 'text',
   optimized = true,

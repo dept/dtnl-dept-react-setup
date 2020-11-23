@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FieldDate } from './FieldDate';
 
 export default { title: 'Forms/Date field', component: FieldDate };

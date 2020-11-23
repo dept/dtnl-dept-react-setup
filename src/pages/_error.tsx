@@ -1,5 +1,4 @@
 import { NextPage, NextPageContext } from 'next';
-import React from 'react';
 
 import { ErrorPage } from '@/components/templates';
 

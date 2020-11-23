@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldDate, FieldDateProps } from '../Form/FieldDate';
@@ -8,7 +8,7 @@ type FormDate = Omit<FieldDateProps, 'onChange' | 'value'> & {
   name: string;
 };
 
-export const FormDate: React.FC<FormDate> = ({ name, ...props }) => {
+export const FormDate: FC<FormDate> = ({ name, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 

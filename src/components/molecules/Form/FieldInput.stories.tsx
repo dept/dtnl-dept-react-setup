@@ -1,5 +1,4 @@
 import { boolean, text } from '@storybook/addon-knobs';
-import React from 'react';
 
 import { FieldInput } from './FieldInput';
 

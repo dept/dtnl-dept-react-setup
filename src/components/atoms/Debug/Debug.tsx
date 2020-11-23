@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const Code = styled.code`
@@ -15,7 +15,7 @@ const Pre = styled.pre`
   overflow: auto;
 `;
 
-export const Debug: React.FC = ({ children }) => (
+export const Debug: FC = ({ children }) => (
   <Pre>
     <Code>{JSON.stringify(children, undefined, 2)}</Code>
   </Pre>

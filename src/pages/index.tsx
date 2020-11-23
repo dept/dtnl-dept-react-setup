@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React from 'react';
 
 import { Stack } from '@/components/atoms/Grid/Stack';
 import { Heading, Paragraph } from '@/components/atoms/Text';

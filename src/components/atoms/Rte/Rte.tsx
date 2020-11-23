@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 interface RteProps {
@@ -27,6 +27,6 @@ const StyledRte = styled.div`
   li {
   }
 `;
-export const Rte: React.FC<RteProps> = ({ children }) => (
+export const Rte: FC<RteProps> = ({ children }) => (
   <StyledRte dangerouslySetInnerHTML={{ __html: children }} />
 );

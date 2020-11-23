@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { FieldArray } from 'react-final-form-arrays';
 import { HiOutlineMail } from 'react-icons/hi';
 
@@ -19,10 +19,7 @@ interface ProgrammingLanguageFieldsProps {
   onRemove: () => void;
 }
 
-const ProgrammingLanguageFields: React.FC<ProgrammingLanguageFieldsProps> = ({
-  index,
-  onRemove,
-}) => {
+const ProgrammingLanguageFields: FC<ProgrammingLanguageFieldsProps> = ({ index, onRemove }) => {
   return (
     <Row>
       <Column col={4}>
@@ -50,7 +47,7 @@ type FinalFormExampleFormProps = FinalFormProps<any> & {
   initialProgrammingLanguage: any;
 };
 
-export const FinalFormExampleForm: React.FC<FinalFormExampleFormProps> = ({
+export const FinalFormExampleForm: FC<FinalFormExampleFormProps> = ({
   initialProgrammingLanguage,
   countries,
   languages,

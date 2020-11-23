@@ -1,5 +1,5 @@
 import { ErrorMessage } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { Box } from '@/components/atoms/Grid';
 import { Text } from '@/components/atoms/Text';
@@ -9,7 +9,7 @@ interface FormikErrorProps {
   name: string;
 }
 
-export const FormikError: React.FC<FormikErrorProps> = ({ name }) => {
+export const FormikError: FC<FormikErrorProps> = ({ name }) => {
   return (
     <Box mt={1}>
       <ErrorMessage name={name}>

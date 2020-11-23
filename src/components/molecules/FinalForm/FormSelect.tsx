@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldSelect, FieldSelectProps } from '../Form/FieldSelect';
@@ -8,7 +8,7 @@ type FormSelectProps = FieldSelectProps & {
   name: string;
 };
 
-export const FormSelect: React.FC<FormSelectProps> = ({ name, ...props }) => {
+export const FormSelect: FC<FormSelectProps> = ({ name, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 

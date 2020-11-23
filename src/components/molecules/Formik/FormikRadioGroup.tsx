@@ -1,5 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { FieldRadioGroup, FieldRadioGroupProps } from '../Form/FieldRadioGroup';
 import { FormikError } from './FormikError';
@@ -8,7 +8,7 @@ type FormikRadioGroupProps = Omit<FieldRadioGroupProps, 'onChange' | 'value'> & 
   optimized?: boolean;
 };
 
-export const FormikRadioGroup: React.FC<FormikRadioGroupProps> = ({
+export const FormikRadioGroup: FC<FormikRadioGroupProps> = ({
   name,
   optimized = true,
   ...props

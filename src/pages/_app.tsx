@@ -2,7 +2,7 @@ import '@public/fonts/fonts.css';
 
 import { DefaultSeo } from 'next-seo';
 import { AppType } from 'next/dist/next-server/lib/utils';
-import React from 'react';
+import * as React from 'react';
 import ReactModal from 'react-modal';
 import { ThemeProvider } from 'styled-components';
 

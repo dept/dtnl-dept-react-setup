@@ -1,5 +1,5 @@
 import { hideVisually } from 'polished';
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes , FC } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { Box, Flex } from '@/components/atoms/Grid';
@@ -17,7 +17,7 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 `;
 
-export const FieldRadio: React.FC<FieldRadioProps> = ({ children, hasError, ...props }) => {
+export const FieldRadio: FC<FieldRadioProps> = ({ children, hasError, ...props }) => {
   const theme = useTheme();
   return (
     <Label>
