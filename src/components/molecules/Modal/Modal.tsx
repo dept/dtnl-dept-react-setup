@@ -23,23 +23,22 @@ interface ModalProps {
 
 const ModalStyles = createGlobalStyle<any>`
   .c-modal__overlay {
-    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     overflow: auto;
-    transition: opacity ${duration}ms 50ms;
-    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+    transition: background-color ${duration}ms;
+    transition-timing-function: ease-in-out;
     z-index: 99;
 
     &--after-open {
-      opacity: 1;
+      background-color: rgba(0,0,0,0.3);
     }
 
     &--before-close {
-      opacity: 0;
+      background-color: transparent;
     }
   }
 

@@ -13,7 +13,7 @@ const InputMask = dynamic(() => import('react-input-mask'));
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> &
   Partial<MaskProps> & {
-    type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel';
+    type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel' | 'search';
     color?: string;
     inputRef?: any;
     clearable?: boolean;
