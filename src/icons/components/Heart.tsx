@@ -1,4 +1,3 @@
-import { FC } from 'react';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
