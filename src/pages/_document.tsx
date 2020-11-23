@@ -1,7 +1,7 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import { FaviconsMeta } from '@/utils/FaviconsMeta';
+import { renderFavicons } from '@/utils/favicons';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -42,7 +42,7 @@ export default class MyDocument extends Document {
           />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="disabled-adaptations" content="watch" />
-          <FaviconsMeta />
+          {renderFavicons()}
           {this.props.dangerousAsPath !== '/unsupported' && (
             <script
               dangerouslySetInnerHTML={{

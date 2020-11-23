@@ -1,4 +1,4 @@
-export const FaviconsMeta: React.FC = () => {
+export const renderFavicons = () => {
   return (
     <>
       <link rel="shortcut icon" href="/favicon/favicon.ico" />

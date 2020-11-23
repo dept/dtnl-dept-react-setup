@@ -72,7 +72,7 @@ const callback = function (error, response) {
     prettier.resolveConfig(filePath).then(options => {
       const formatted = prettier.format(
         `
-      export const FaviconsMeta: React.FC = () => {
+      export const renderFavicons = () => {
         return (
           <>
             ${metaTags}
@@ -83,7 +83,7 @@ const callback = function (error, response) {
         options,
       );
 
-      fs.writeFileSync(`src/utils/FaviconsMeta.tsx`, formatted);
+      fs.writeFileSync(`src/utils/favicons.tsx`, formatted);
     });
   });
 };
