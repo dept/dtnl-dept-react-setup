@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldCombobox, FieldComboboxProps } from '../Form/FieldCombobox';
@@ -8,7 +8,7 @@ type FormComboboxProps = FieldComboboxProps & {
   name: string;
 };
 
-export const FormCombobox: React.FC<FormComboboxProps> = ({ name, ...props }) => {
+export const FormCombobox: FC<FormComboboxProps> = ({ name, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 

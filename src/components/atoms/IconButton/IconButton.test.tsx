@@ -1,5 +1,3 @@
-import React from 'react';
-
 import HomeIcon from '@/icons/components/Home';
 
 import { render } from '@test/utils';

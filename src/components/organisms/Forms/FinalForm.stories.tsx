@@ -1,6 +1,5 @@
 import { subYears } from 'date-fns';
 import { FormApi } from 'final-form';
-import React from 'react';
 import * as Yup from 'yup';
 
 import { FinalFormExampleForm } from './FinalFormExampleForm';

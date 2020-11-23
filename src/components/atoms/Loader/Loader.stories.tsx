@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Loader } from './Loader';
 
 export default { title: 'Atoms/Loader', component: Loader };

@@ -1,5 +1,4 @@
 import { number } from '@storybook/addon-knobs';
-import React from 'react';
 
 import { Box } from '../Grid';
 import { Stagger } from './Stagger';

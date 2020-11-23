@@ -1,5 +1,5 @@
 import { useCombobox, UseComboboxProps } from 'downshift';
-import React, { useState } from 'react';
+import { useState , FC } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import { Box } from '@/components/atoms/Grid';
@@ -42,11 +42,7 @@ const stateReducer: UseComboboxProps<Option>['stateReducer'] = (state, actionAnd
   }
 };
 
-export const FieldCombobox: React.FC<FieldComboboxProps> = ({
-  options: items,
-  onChange,
-  ...rest
-}) => {
+export const FieldCombobox: FC<FieldComboboxProps> = ({ options: items, onChange, ...rest }) => {
   const [inputItems, setInputItems] = useState(items);
 
   const {

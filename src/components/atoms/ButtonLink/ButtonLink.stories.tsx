@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ButtonLink } from './ButtonLink';
 
 export default { title: 'Atoms/ButtonLink', component: ButtonLink };

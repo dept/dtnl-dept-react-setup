@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, Flex } from '../Grid';
 import { Skeleton } from './Skeleton';
 

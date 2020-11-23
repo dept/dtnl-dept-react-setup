@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldCheckbox, FieldCheckboxProps } from '../Form/FieldCheckbox';
@@ -8,7 +8,7 @@ type FormCheckboxProps = FieldCheckboxProps & {
   name: string;
 };
 
-export const FormCheckbox: React.FC<FormCheckboxProps> = ({ name, children, ...props }) => {
+export const FormCheckbox: FC<FormCheckboxProps> = ({ name, children, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 

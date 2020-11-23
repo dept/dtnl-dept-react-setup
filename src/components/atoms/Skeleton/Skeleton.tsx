@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const defaultBaseColor = '#eee';
@@ -40,7 +40,7 @@ interface Props {
   circle?: boolean;
 }
 
-export const Skeleton: React.FC<Props> = props => {
+export const Skeleton: FC<Props> = props => {
   const { count = 1, width, height, circle, wrapper } = props;
 
   const elements = [];

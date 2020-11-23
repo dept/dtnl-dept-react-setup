@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { Heading, Paragraph } from '../atoms/Text';
 
-export const NotFoundPage: React.FC = () => {
+export const NotFoundPage: FC = () => {
   return (
     <>
       <Heading>404</Heading>

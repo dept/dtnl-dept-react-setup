@@ -1,7 +1,6 @@
 import { NextPageContext } from 'next';
 import { AppContext, AppProps } from 'next/app';
 import { AppType } from 'next/dist/next-server/lib/utils';
-import React from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
 
 type WithUniversalCookieProps = AppProps & {

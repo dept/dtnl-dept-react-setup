@@ -1,5 +1,4 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
-import React from 'react';
 
 import { Switch } from '.';
 

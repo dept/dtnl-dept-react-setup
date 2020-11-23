@@ -1,4 +1,5 @@
 import { render as rtlRender } from '@testing-library/react';
+import { FC } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@/theme';
@@ -7,7 +8,7 @@ type ArgumentTypes<F> = F extends (...args: infer A) => any ? A : never;
 
 type RenderArgs = ArgumentTypes<typeof rtlRender>;
 
-export const Wrapper: React.FC = ({ children }) => {
+export const Wrapper: FC = ({ children }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 

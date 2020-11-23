@@ -1,5 +1,5 @@
 import { withKnobs } from '@storybook/addon-knobs';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Button } from '@/components/atoms/Button';
 import { Box } from '@/components/atoms/Grid';

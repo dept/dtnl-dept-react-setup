@@ -1,5 +1,5 @@
 import { NextPage, NextPageContext } from 'next';
-import React from 'react';
+import { FC } from 'react';
 
 /**
  * Use this to only wrap one Page with a Provider instead of the entire app

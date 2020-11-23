@@ -1,5 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { FieldDate, FieldDateProps } from '../Form/FieldDate';
 import { FormikError } from './FormikError';
@@ -9,7 +9,7 @@ type FormikDate = Omit<FieldDateProps, 'onChange' | 'value'> & {
   optimized?: boolean;
 };
 
-export const FormikDate: React.FC<FormikDate> = ({ name, optimized = true, ...props }) => {
+export const FormikDate: FC<FormikDate> = ({ name, optimized = true, ...props }) => {
   const Component = optimized ? FastField : Field;
 
   return (

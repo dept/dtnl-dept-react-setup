@@ -1,5 +1,4 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import React from 'react';
 
 import { ButtonOption, buttons } from '@/theme';
 

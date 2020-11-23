@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React from 'react';
 
 import { Box } from '@/components/atoms/Grid';
 import { Hyperlink } from '@/components/atoms/Hyperlink';

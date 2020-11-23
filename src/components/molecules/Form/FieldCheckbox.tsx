@@ -1,5 +1,5 @@
 import { hideVisually } from 'polished';
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes , FC } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import styled, { useTheme } from 'styled-components';
 
@@ -18,7 +18,7 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 `;
 
-export const FieldCheckbox: React.FC<FieldCheckboxProps> = ({
+export const FieldCheckbox: FC<FieldCheckboxProps> = ({
   children,
   onFocus,
   onChange,

@@ -1,5 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { FieldNumberFormat, FieldNumberFormatProps } from '../Form/FieldNumberFormat';
 import { FormikError } from './FormikError';
@@ -9,7 +9,7 @@ type FormikNumberFormatProps = FieldNumberFormatProps & {
   optimized?: boolean;
 };
 
-export const FormikNumberFormat: React.FC<FormikNumberFormatProps> = ({
+export const FormikNumberFormat: FC<FormikNumberFormatProps> = ({
   name,
   type,
   optimized = true,

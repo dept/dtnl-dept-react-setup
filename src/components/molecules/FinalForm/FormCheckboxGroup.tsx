@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField, useForm } from 'react-final-form';
 
 import { FieldCheckboxGroup, FieldCheckboxGroupProps } from '../Form/FieldCheckboxGroup';
@@ -8,7 +8,7 @@ type FormCheckboxGroupProps = Omit<FieldCheckboxGroupProps, 'onChange' | 'value'
   optimized?: boolean;
 };
 
-export const FormCheckboxGroup: React.FC<FormCheckboxGroupProps> = ({ name, ...props }) => {
+export const FormCheckboxGroup: FC<FormCheckboxGroupProps> = ({ name, ...props }) => {
   const form = useForm();
   const { input, meta } = useField(name);
 

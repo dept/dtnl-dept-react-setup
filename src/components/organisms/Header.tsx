@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import { FC, forwardRef } from 'react';
 import { FaReact } from 'react-icons/fa';
 
 import { Box, BoxProps, Flex, Grid } from '../atoms/Grid';
@@ -7,7 +7,7 @@ import { NavLink } from '../atoms/Link';
 
 interface HeaderProps {}
 
-const NavigationLink = React.forwardRef<any, BoxProps>((props, ref) => (
+const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
   <Box
     ref={ref}
     as="a"
@@ -50,7 +50,7 @@ const items = [
   },
 ];
 
-const Navigation: React.FC = () => {
+const Navigation: FC = () => {
   return (
     <Flex as="nav">
       {items.map(item => {
@@ -66,7 +66,7 @@ const Navigation: React.FC = () => {
   );
 };
 
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: FC<HeaderProps> = () => {
   return (
     <Box as="header" bg="gray.800" color="white">
       <Grid>

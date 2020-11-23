@@ -1,5 +1,4 @@
 import { subYears } from 'date-fns';
-import React from 'react';
 import * as Yup from 'yup';
 
 import { SubmitHandler } from '@/utils/types';

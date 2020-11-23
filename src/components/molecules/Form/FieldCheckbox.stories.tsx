@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FieldCheckbox } from './FieldCheckbox';
 
 export default { title: 'Forms/Checkbox', component: FieldCheckbox };

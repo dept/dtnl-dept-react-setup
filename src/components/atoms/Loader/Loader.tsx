@@ -1,10 +1,12 @@
+import { FC } from 'react';
+
 import { Box } from '../Grid';
 
 interface LoaderProps {
   size?: number;
 }
 
-export const Loader: React.FC<LoaderProps> = ({ size = 100 }) => (
+export const Loader: FC<LoaderProps> = ({ size = 100 }) => (
   <Box textAlign="center">
     <svg
       xmlns="http://www.w3.org/2000/svg"

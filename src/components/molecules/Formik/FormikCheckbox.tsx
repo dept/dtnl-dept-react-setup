@@ -1,5 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { FieldCheckbox, FieldCheckboxProps } from '../Form/FieldCheckbox';
 import { FormikError } from './FormikError';
@@ -9,7 +9,7 @@ type FormikCheckboxProps = FieldCheckboxProps & {
   optimized?: boolean;
 };
 
-export const FormikCheckbox: React.FC<FormikCheckboxProps> = ({
+export const FormikCheckbox: FC<FormikCheckboxProps> = ({
   name,
   optimized = true,
   children,

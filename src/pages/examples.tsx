@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React from 'react';
+import { FC } from 'react';
 import * as icons from 'react-icons/md';
 
 import { Button } from '@/components/atoms/Button';
@@ -11,19 +11,19 @@ import { Heading, Text } from '@/components/atoms/Text';
 import { Modal } from '@/components/molecules/Modal';
 import { useModal } from '@/components/molecules/Modal/modalStore';
 
-const Section: React.FC = props => (
+const Section: FC = props => (
   <Reveal>
     <Box p={30} {...props} />
   </Reveal>
 );
 
-const SectionHeader: React.FC = props => (
+const SectionHeader: FC = props => (
   <Box borderBottom="1px solid" borderColor="primary" mb={30}>
     <Heading {...props} />
   </Box>
 );
 
-const GridExampleBox: React.FC = props => (
+const GridExampleBox: FC = props => (
   <Box bg="primary" color="white" p={15} my={5} fontSize={14} {...props} />
 );
 

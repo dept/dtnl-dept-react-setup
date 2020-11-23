@@ -1,11 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import { Box } from '../Grid';
 
 export interface RevealProps {}
 
-export const Reveal: React.FC<RevealProps> = ({ children }) => {
+export const Reveal: FC<RevealProps> = ({ children }) => {
   const [ref, inView] = useInView({
     /* Optional options */
     threshold: 0,

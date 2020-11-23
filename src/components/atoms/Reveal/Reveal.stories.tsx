@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Reveal } from './Reveal';
 
 export default { title: 'Atoms/Reveal', component: Reveal };

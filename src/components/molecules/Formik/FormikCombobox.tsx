@@ -1,5 +1,5 @@
 import { FastField, Field, FieldProps } from 'formik';
-import React from 'react';
+import { FC } from 'react';
 
 import { FieldCombobox, FieldComboboxProps } from '../Form/FieldCombobox';
 import { FormikError } from './FormikError';
@@ -9,11 +9,7 @@ type FormikComboboxProps = FieldComboboxProps & {
   optimized?: boolean;
 };
 
-export const FormikCombobox: React.FC<FormikComboboxProps> = ({
-  name,
-  optimized = true,
-  ...props
-}) => {
+export const FormikCombobox: FC<FormikComboboxProps> = ({ name, optimized = true, ...props }) => {
   const Component = optimized ? FastField : Field;
 
   return (

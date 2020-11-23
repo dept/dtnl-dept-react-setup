@@ -1,5 +1,5 @@
 import { format, isValid, parse } from 'date-fns';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState , FC } from 'react';
 import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
@@ -34,7 +34,7 @@ function assertDate(date: any) {
   }
 }
 
-export const FieldDate: React.FC<FieldDateProps> = ({
+export const FieldDate: FC<FieldDateProps> = ({
   value,
   onClose,
   onChange,

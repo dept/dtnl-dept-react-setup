@@ -1,5 +1,5 @@
 import { useSelect } from 'downshift';
-import React, { InputHTMLAttributes, useState } from 'react';
+import { forwardRef, InputHTMLAttributes, useState, FC } from 'react';
 import { HiSelector } from 'react-icons/hi';
 import styled from 'styled-components';
 
@@ -26,48 +26,46 @@ export interface FieldSelectProps extends Omit<InputHTMLAttributes<HTMLSelectEle
   onChange?: (value: Value) => void;
 }
 
-export const List = React.forwardRef<any, BoxProps & { isOpen: boolean }>(
-  ({ isOpen, ...props }, ref) => {
-    const activeProps: BoxProps = isOpen
-      ? {
-          transform: `scale(1) translateX(-50%)`,
-          opacity: 1,
-          pointerEvents: 'all',
-        }
-      : {};
+export const List = forwardRef<any, BoxProps & { isOpen: boolean }>(({ isOpen, ...props }, ref) => {
+  const activeProps: BoxProps = isOpen
+    ? {
+        transform: `scale(1) translateX(-50%)`,
+        opacity: 1,
+        pointerEvents: 'all',
+      }
+    : {};
 
-    return (
-      <Box
-        padding={0}
-        margin={0}
-        listStyleType="none"
-        position="absolute"
-        top="15px"
-        left="50%"
-        maxHeight="300px"
-        overflow="auto"
-        zIndex={100}
-        pointerEvents="none"
-        transformOrigin="left center"
-        transition="transform 0.1s ease-out, opacity 0.1s ease"
-        boxShadow="0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)"
-        borderRadius="4px"
-        opacity="0"
-        transform="scale(0.8) translateX(-50%)"
-        _focus={{
-          outline: 'none',
-        }}
-        {...props}
-        {...activeProps}
-        ref={ref}
-      />
-    );
-  },
-);
+  return (
+    <Box
+      padding={0}
+      margin={0}
+      listStyleType="none"
+      position="absolute"
+      top="15px"
+      left="50%"
+      maxHeight="300px"
+      overflow="auto"
+      zIndex={100}
+      pointerEvents="none"
+      transformOrigin="left center"
+      transition="transform 0.1s ease-out, opacity 0.1s ease"
+      boxShadow="0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)"
+      borderRadius="4px"
+      opacity="0"
+      transform="scale(0.8) translateX(-50%)"
+      _focus={{
+        outline: 'none',
+      }}
+      {...props}
+      {...activeProps}
+      ref={ref}
+    />
+  );
+});
 
 const ListItem = Box;
 
-const CustomSelect: React.FC<FieldSelectProps> = ({
+const CustomSelect: FC<FieldSelectProps> = ({
   name,
   options: items,
   color,
@@ -191,7 +189,7 @@ const IconWrapper = styled(Box)`
   color: #888;
 `;
 
-const NativeSelect: React.FC<FieldSelectProps> = ({
+const NativeSelect: FC<FieldSelectProps> = ({
   name,
   options: items,
   color,
@@ -255,7 +253,7 @@ const NativeSelect: React.FC<FieldSelectProps> = ({
   );
 };
 
-export const FieldSelect: React.FC<FieldSelectProps> = props => {
+export const FieldSelect: FC<FieldSelectProps> = props => {
   if (props.native) {
     return <NativeSelect {...props}> </NativeSelect>;
   } else {

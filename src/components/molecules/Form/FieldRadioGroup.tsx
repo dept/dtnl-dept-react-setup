@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { Column, Row } from '@/components/atoms/Grid';
 
@@ -17,7 +17,7 @@ export type FieldRadioGroupProps = FieldRadioProps & {
   value: string | undefined;
 };
 
-export const FieldRadioGroup: React.FC<FieldRadioGroupProps> = ({
+export const FieldRadioGroup: FC<FieldRadioGroupProps> = ({
   name,
   options,
   value,

@@ -1,6 +1,8 @@
+import { FC } from 'react';
+
 import { Box } from '@/components/atoms/Grid';
 
-export const Footer: React.FC = () => {
+export const Footer: FC = () => {
   return (
     <Box
       textAlign="center"

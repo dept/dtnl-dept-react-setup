@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useField } from 'react-final-form';
 
 import { Box } from '@/components/atoms/Grid';
@@ -9,7 +9,7 @@ interface FormErrorProps {
   name: string;
 }
 
-export const FormError: React.FC<FormErrorProps> = ({ name }) => {
+export const FormError: FC<FormErrorProps> = ({ name }) => {
   const { meta } = useField(name);
 
   const showError = meta.error && meta.touched;

@@ -2,7 +2,7 @@ import { subYears } from 'date-fns';
 import { FormApi } from 'final-form';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as Yup from 'yup';
 
 import { Alert } from '@/components/atoms/Alert';
