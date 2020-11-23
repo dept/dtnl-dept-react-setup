@@ -54,8 +54,6 @@ export const FinalFormExampleForm: FC<FinalFormExampleFormProps> = ({
   animals,
   ...props
 }) => {
-  console.log(props);
-
   return (
     <FinalForm {...props}>
       {({ form }) => (
