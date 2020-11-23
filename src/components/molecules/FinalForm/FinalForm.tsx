@@ -39,7 +39,7 @@ export function FinalForm<FormValues extends BaseValues = BaseValues>({
   onSubmit,
   initialValues,
   children,
-  decorators = [],
+  decorators,
   mutators,
   validate,
   validationSchema,
@@ -47,7 +47,7 @@ export function FinalForm<FormValues extends BaseValues = BaseValues>({
   ...props
 }: FinalFormProps<FormValues> & RenderProps<FormValues>) {
   const formDecorators = useMemo(() => {
-    return [createScrollToErrorDecorator(), ...decorators];
+    return [createScrollToErrorDecorator(), ...(decorators || [])];
   }, [decorators]);
 
   return (
