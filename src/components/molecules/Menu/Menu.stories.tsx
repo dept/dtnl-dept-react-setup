@@ -1,27 +1,20 @@
-import { Button } from '@/components/atoms/Button';
-import { Box } from '@/components/atoms/Grid';
+import * as React from 'react';
 
-import { Menu } from './Menu';
+import { Menu, MenuButton, MenuItem, MenuLink, MenuList } from './Menu';
 
-export default { title: 'Molecules/Menu' };
+export default { title: 'Molecules/Menu', component: Menu };
 
-export const example = () => {
-  return (
-    <Menu
-      trigger={(clickHandler, isOpen) => (
-        <Button onClick={clickHandler}>{isOpen ? 'Close menu' : 'Open menu'}</Button>
-      )}>
-      <Box bg="white" border="1px solid #ddd" width={200}>
-        <Button variant="clear" display="block">
-          Option 1
-        </Button>
-        <Button variant="clear" display="block">
-          Option 2
-        </Button>
-        <Button variant="clear" display="block">
-          Option 3
-        </Button>
-      </Box>
-    </Menu>
-  );
-};
+export const example = () => (
+  <Menu>
+    <MenuButton>
+      Actions <span aria-hidden>▾</span>
+    </MenuButton>
+    <MenuList>
+      <MenuItem onSelect={() => alert('Download')}>Download</MenuItem>
+      <MenuItem onSelect={() => alert('Copy')}>Create a Copy</MenuItem>
+      <MenuItem onSelect={() => alert('Mark as Draft')}>Mark as Draft</MenuItem>
+      <MenuItem onSelect={() => alert('Delete')}>Delete</MenuItem>
+      <MenuLink href="https://reacttraining.com/workshops/">Attend a Workshop</MenuLink>
+    </MenuList>
+  </Menu>
+);
