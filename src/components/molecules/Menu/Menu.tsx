@@ -1,55 +1,52 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import useClickAway from 'react-use/lib/useClickAway';
-import styled from 'styled-components';
+import {
+  Menu as ReachMenu,
+  MenuButton as ReactMenuButton,
+  MenuList as ReactMenuList,
+  MenuItem as ReachMenuItem,
+  MenuLink as ReachMenuLink,
+} from '@reach/menu-button';
+import React, { AnchorHTMLAttributes, FC } from 'react';
 
-import { Box } from '@/components/atoms/Grid';
-import { useWindowScrollPosition } from '@/utils/hooks';
-import { useKeyPress } from '@/utils/hooks/useKeyPress';
+import { Button, ButtonProps } from '@/components/atoms/Button';
+import { Box, BoxProps } from '@/components/atoms/Grid';
 
-type ClickHandler = () => void;
-
-interface MenuProps {
-  placement?: 'start' | 'end';
-  trigger: (clickHandler: ClickHandler, isOpen: boolean) => any;
-  children: any;
+interface MenuItemProps {
+  onSelect: () => void;
+  valueText?: string;
 }
 
-interface MenuPopupProps {
-  isOpen: boolean;
-}
+export const MenuButton: FC<ButtonProps> = props => <Button {...props} as={ReactMenuButton} />;
 
-const MenuPopup = styled(Box)<MenuPopupProps>`
-  opacity: ${props => (props.isOpen ? 1 : 0)};
-  transform: translateY(${props => (props.isOpen ? '10px' : 0)});
-  pointer-events: ${props => (props.isOpen ? 'all' : 'none')};
-  transition: all 200ms ease-in-out;
-`;
+export const MenuList: FC<BoxProps> = props => (
+  <Box
+    {...props}
+    border="1px solid"
+    borderColor="gray.100"
+    _focus={{
+      outline: 'none',
+    }}
+    as={ReactMenuList}
+  />
+);
 
-export const Menu: FC<MenuProps> = ({ trigger, children, placement = 'start' }) => {
-  const [open, setOpen] = useState(false);
-  const popupRef = useRef(null);
-  const position = useWindowScrollPosition({ throttle: 200 });
-  useKeyPress('Escape', () => {
-    setOpen(false);
-  });
-  useClickAway(popupRef, () => {
-    setOpen(false);
-  });
-  useEffect(() => {
-    setOpen(false);
-  }, [position]);
+export const Item: FC<any> = props => (
+  <Box
+    as="a"
+    display="block"
+    sx={{
+      '&[data-selected]': {
+        bg: 'gray.100',
+      },
+    }}
+    {...props}></Box>
+);
 
-  const positionProps = {
-    right: placement === 'end' ? 0 : undefined,
-    left: placement === 'start' ? 0 : undefined,
-  };
+export const MenuItem: FC<BoxProps & MenuItemProps> = props => (
+  <Item {...props} as={ReachMenuItem} />
+);
 
-  return (
-    <Box position="relative" ref={popupRef}>
-      {trigger(() => setOpen(!open), open)}
-      <MenuPopup isOpen={open} position="absolute" {...positionProps}>
-        {children}
-      </MenuPopup>
-    </Box>
-  );
-};
+export const MenuLink: FC<BoxProps & AnchorHTMLAttributes<any>> = props => (
+  <Item {...props} as={ReachMenuLink} />
+);
+
+export const Menu = ReachMenu;

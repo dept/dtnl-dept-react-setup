@@ -7,7 +7,7 @@ import { buttons, buttonSizes } from '@/theme';
 import { Box, BoxProps } from '../Grid';
 import { Loader } from '../Loader';
 
-type ButtonElements = 'button' | 'a';
+type ButtonElements = 'button' | 'a' | any;
 
 interface ConditionalProps {
   as: ButtonElements;
