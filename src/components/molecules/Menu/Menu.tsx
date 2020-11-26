@@ -5,7 +5,7 @@ import {
   MenuItem as ReachMenuItem,
   MenuLink as ReachMenuLink,
 } from '@reach/menu-button';
-import React, { AnchorHTMLAttributes, FC } from 'react';
+import { AnchorHTMLAttributes, FC } from 'react';
 
 import { Button, ButtonProps } from '@/components/atoms/Button';
 import { Box, BoxProps } from '@/components/atoms/Grid';
