@@ -10,38 +10,45 @@ import CloseLightIcon from '@/icons/components/CloseLight';
 
 import { useModal, useModalState } from './modalStore';
 
-const duration = 300;
+type CustomComponentProps = BoxProps & { isShown: boolean };
+
+type CustomComponent = FC<CustomComponentProps>;
 
 interface ModalProps {
   id: string;
   onClose?: () => void;
   width?: string;
   height?: string;
+  overlayComponent?: CustomComponent;
+  contentComponent?: CustomComponent;
+  duration?: number;
 }
 
-const Overlay: FC<BoxProps & { isShown: boolean }> = forwardRef(({ isShown, ...props }, ref) => {
-  return (
-    <Box
-      {...props}
-      sx={{
-        position: 'fixed',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        overflow: 'auto',
-        transitionTimingFunction: `ease-in-out`,
-        transition: `background-color ${duration}ms`,
-        zIndex: 99,
-        backgroundColor: isShown ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0)',
-      }}
-      ref={ref}
-    />
-  );
-});
+const Overlay: FC<CustomComponentProps & { duration?: number }> = forwardRef(
+  ({ isShown, duration, ...props }, ref) => {
+    return (
+      <Box
+        {...props}
+        sx={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          overflow: 'auto',
+          transitionTimingFunction: `ease-in-out`,
+          transition: `background-color ${duration}ms`,
+          zIndex: 99,
+          backgroundColor: isShown ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0)',
+        }}
+        ref={ref}
+      />
+    );
+  },
+);
 
-const Content: FC<BoxProps & { isShown: boolean }> = forwardRef(
-  ({ isShown, width, height, ...props }, ref) => {
+const Content: FC<CustomComponentProps & { duration?: number }> = forwardRef(
+  ({ isShown, width, height, duration, ...props }, ref) => {
     return (
       <Box
         {...props}
@@ -73,6 +80,9 @@ export const Modal: FC<ModalProps> = ({
   onClose,
   width = '500px',
   height = 'auto',
+  duration = 300,
+  contentComponent = Content,
+  overlayComponent = Overlay,
 }) => {
   const { hide } = useModal(id);
   const modal = useModalState(id);
@@ -100,20 +110,25 @@ export const Modal: FC<ModalProps> = ({
       in={isOpen}
       timeout={{
         enter: 0,
-        exit: 300,
+        exit: duration,
       }}
       unmountOnExit>
       {state => {
         const isShown = state === 'entered';
 
         return (
-          <DialogOverlay as={Overlay} onDismiss={onDismiss} isShown={isShown}>
+          <DialogOverlay
+            as={overlayComponent as any}
+            onDismiss={onDismiss}
+            isShown={isShown}
+            duration={duration}>
             <DialogContent
-              as={Content as any}
+              as={contentComponent as any}
               isShown={isShown}
               aria-label="Modal"
               width={width}
-              height={height}>
+              height={height}
+              duration={duration}>
               {modal && (
                 <>
                   {modal.isClosable && (
