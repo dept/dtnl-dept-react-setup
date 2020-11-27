@@ -56,6 +56,7 @@ const Content: FC<BoxProps & { isShown: boolean }> = forwardRef(
           height: height,
           maxWidth: [null, '90%'],
           my: [null, '100px'],
+          mx: [null, 'auto'],
           position: ['fixed', 'relative'],
           bottom: [0, null],
           transform: isShown ? 'translateY(0px)' : 'translateY(40px)',
