@@ -1,7 +1,8 @@
-import { FC } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import styled from 'styled-components';
+import React, { FC } from 'react';
+import { Transition } from 'react-transition-group';
+import { TransitionStatus } from 'react-transition-group/Transition';
 
+import { Box } from '@/components/atoms/Grid';
 import { useMeasure } from '@/utils/hooks';
 
 interface Props {
@@ -11,51 +12,54 @@ interface Props {
 
 const duration = 300;
 
-const CollapseWrapper = styled.div<{ height: number; isOpen: boolean }>`
-  overflow: hidden;
-  transition: opacity ${duration}ms 100ms, height ${duration}ms;
-  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
-
-  &.collapse-enter {
-    opacity: 0;
-    height: 0px;
-  }
-  &.collapse-enter-active {
-    opacity: 1;
-    height: ${props => props.height}px;
-  }
-  &.collapse-enter-done {
-    opacity: 1;
-    height: auto;
-    overflow: auto;
-  }
-  &.collapse-exit {
-    opacity: 1;
-    height: ${props => props.height}px;
-  }
-  &.collapse-exit-active {
-    opacity: 0;
-    height: 0px;
-  }
-  &.collapse-exit-done {
-    opacity: 0;
-    height: 0px;
-  }
-`;
-
 export const Collapse: FC<Props> = ({ children, isOpen = false }) => {
   const { ref, bounds } = useMeasure();
   const { height: elementHeight } = bounds;
 
+  function getHeight(state: TransitionStatus) {
+    switch (state) {
+      case 'entered':
+        return 'auto';
+      case 'entering':
+        return elementHeight;
+      case 'exiting':
+        return elementHeight;
+      default:
+        return '0px';
+    }
+  }
+
+  function getOpacity(state: TransitionStatus) {
+    switch (state) {
+      case 'entered':
+        return 1;
+      case 'entering':
+        return 1;
+      case 'exiting':
+        return 1;
+      default:
+        return 0;
+    }
+  }
+
   return (
     <>
-      <CSSTransition appear classNames="collapse" in={isOpen} timeout={duration}>
-        <CollapseWrapper height={elementHeight} isOpen={isOpen}>
-          <div ref={ref}>{children}</div>
-        </CollapseWrapper>
-      </CSSTransition>
+      <Transition in={isOpen} timeout={duration}>
+        {state => {
+          return (
+            <Box
+              sx={{
+                overflow: 'hidden',
+                transition: `opacity ${duration}ms, height ${duration}ms`,
+                transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
+                opacity: getOpacity(state),
+                height: getHeight(state),
+              }}>
+              <div ref={ref}>{children}</div>
+            </Box>
+          );
+        }}
+      </Transition>
     </>
   );
 };

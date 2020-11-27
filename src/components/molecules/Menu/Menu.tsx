@@ -4,6 +4,8 @@ import {
   MenuList as ReactMenuList,
   MenuItem as ReachMenuItem,
   MenuLink as ReachMenuLink,
+  MenuPopover as ReachMenuPopover,
+  MenuItems as ReachMenuItems,
 } from '@reach/menu-button';
 import { AnchorHTMLAttributes, FC } from 'react';
 
@@ -17,21 +19,31 @@ interface MenuItemProps {
 
 export const MenuButton: FC<ButtonProps> = props => <Button {...props} as={ReactMenuButton} />;
 
-export const MenuList: FC<BoxProps> = props => (
+const List: FC<BoxProps & { as: any }> = props => (
   <Box
     {...props}
-    border="1px solid"
-    borderColor="gray.100"
+    sx={{
+      border: '1px solid',
+      borderColor: 'gray.200',
+      borderRadius: '6px',
+      py: 1,
+      display: 'block',
+      ...props.sx,
+    }}
     _focus={{
       outline: 'none',
     }}
-    as={ReactMenuList}
   />
 );
+
+export const MenuList: FC<BoxProps> = props => <List {...props} as={ReactMenuList} />;
+export const MenuItems: FC<BoxProps> = props => <List {...props} as={ReachMenuItems} />;
 
 export const Item: FC<any> = props => (
   <Box
     as="a"
+    py={2}
+    px={4}
     display="block"
     sx={{
       '&[data-selected]': {
@@ -50,3 +62,4 @@ export const MenuLink: FC<BoxProps & AnchorHTMLAttributes<any>> = props => (
 );
 
 export const Menu = ReachMenu;
+export const MenuPopover = ReachMenuPopover;

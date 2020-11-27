@@ -1,5 +1,5 @@
 import { withKnobs } from '@storybook/addon-knobs';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
 
 import { Button } from '@/components/atoms/Button';
 import { Box } from '@/components/atoms/Grid';
@@ -9,29 +9,52 @@ import { useModal } from './modalStore';
 
 export default {
   title: 'Molecules/Modal',
-  decorators: [
-    withKnobs,
-    (storyFn: any) => {
-      return (
-        <>
-          <ModalButton>Open modal</ModalButton>
-          {storyFn()}
-        </>
-      );
-    },
-  ],
+  decorators: [withKnobs],
   component: Modal,
 };
 
-const ModalButton: FC = ({ children }) => {
-  const { show } = useModal('storybook');
+const ModalButton: FC<{ id: string }> = ({ children, id }) => {
+  const { show } = useModal(id);
   return <Button onClick={() => show()}>{children}</Button>;
 };
 
-export const component = () => {
+export const example = () => {
   return (
-    <Modal id="storybook">
-      <Box p={50}>Content of modal</Box>
-    </Modal>
+    <>
+      <ModalButton id="storybook">Open modal</ModalButton>
+      <Modal id="storybook">
+        <Box p={50}>Content of modal</Box>
+      </Modal>
+    </>
+  );
+};
+
+export const custom = () => {
+  return (
+    <>
+      <ModalButton id="storybook2">Open modal</ModalButton>
+      <Modal
+        id="storybook2"
+        contentComponent={forwardRef(({ isShown, ...props }, ref) => (
+          <Box
+            {...props}
+            sx={{
+              p: 10,
+              bg: 'red.100',
+              outline: 'none',
+              transition: `opacity 300ms`,
+              transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
+              opacity: isShown ? 1 : 0,
+              width: '500px',
+              my: '100px',
+              mx: 'auto',
+              position: 'relative',
+            }}
+            ref={ref}
+          />
+        ))}>
+        Test
+      </Modal>
+    </>
   );
 };

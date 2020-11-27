@@ -3,7 +3,6 @@ import '@public/fonts/fonts.css';
 import { DefaultSeo } from 'next-seo';
 import { AppType } from 'next/dist/next-server/lib/utils';
 import * as React from 'react';
-import ReactModal from 'react-modal';
 import { ThemeProvider } from 'styled-components';
 
 import { BaseLayout } from '@/components/templates';
@@ -34,8 +33,6 @@ if (isBrowser && process.env.ENVIRONMENT_NAME !== 'production') {
    * export { Whatever }
    */
 }
-
-ReactModal.setAppElement('#__next');
 
 const MyApp: AppType = ({ Component: Page, pageProps }) => {
   if (pageProps.renderWithoutLayout) {
