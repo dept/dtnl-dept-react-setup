@@ -6,6 +6,10 @@ import { theme } from './theme';
 export const GlobalStyle = createGlobalStyle`
   ${normalize()}
 
+  :root {
+    --reach-dialog: 1; // disables warning
+  }
+
   body {
     font-family: ${theme.fonts.body};
     -webkit-font-smoothing: antialiased;

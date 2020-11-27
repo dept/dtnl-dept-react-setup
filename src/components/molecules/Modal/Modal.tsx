@@ -1,14 +1,12 @@
-import { FC } from 'react';
-import ReactModal from 'react-modal';
-import { createGlobalStyle } from 'styled-components';
+import { DialogContent, DialogOverlay } from '@reach/dialog';
+import React, { FC, forwardRef } from 'react';
+import { Transition } from 'react-transition-group';
 
 import { Button } from '@/components/atoms/Button';
-import { Box } from '@/components/atoms/Grid';
+import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Heading } from '@/components/atoms/Text';
 import CloseLightIcon from '@/icons/components/CloseLight';
-import { colors } from '@/theme/colors';
-import { media } from '@/utils/media';
 
 import { useModal, useModalState } from './modalStore';
 
@@ -21,59 +19,52 @@ interface ModalProps {
   height?: string;
 }
 
-const ModalStyles = createGlobalStyle<any>`
-  .c-modal__overlay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
-    transition: background-color ${duration}ms;
-    transition-timing-function: ease-in-out;
-    z-index: 99;
+const Overlay: FC<BoxProps & { isShown: boolean }> = forwardRef(({ isShown, ...props }, ref) => {
+  return (
+    <Box
+      {...props}
+      sx={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        overflow: 'auto',
+        transitionTimingFunction: `ease-in-out`,
+        transition: `background-color ${duration}ms`,
+        zIndex: 99,
+        backgroundColor: isShown ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0)',
+      }}
+      ref={ref}
+    />
+  );
+});
 
-    &--after-open {
-      background-color: rgba(0,0,0,0.3);
-    }
-
-    &--before-close {
-      background-color: transparent;
-    }
-  }
-
-  .c-modal__content {
-    width: 100%;
-    margin-top: auto;
-    background: ${colors.white};
-    outline: none;
-    padding: 0px;
-    position: fixed;
-    bottom: 0;
-    transition: opacity ${duration}ms, transform ${duration}ms;
-    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
-    opacity: 0;
-    transform: translateY(40px);
-
-    ${media.min('tablet')} {
-      position: relative;
-      width: ${props => props.width};
-      height: ${props => props.height};
-      margin: 100px auto 100px;
-      max-width: 90%;
-    }
-
-    &--after-open {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    &--before-close {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-  }
-`;
+const Content: FC<BoxProps & { isShown: boolean }> = forwardRef(
+  ({ isShown, width, height, ...props }, ref) => {
+    return (
+      <Box
+        {...props}
+        sx={{
+          bg: 'white',
+          outline: 'none',
+          transition: `opacity ${duration}ms, transform ${duration}ms`,
+          transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
+          opacity: isShown ? 1 : 0,
+          marginTop: ['auto', null],
+          width: ['100%', width],
+          height: height,
+          maxWidth: [null, '90%'],
+          my: [null, '100px'],
+          position: ['fixed', 'relative'],
+          bottom: [0, null],
+          transform: isShown ? 'translateY(0px)' : 'translateY(40px)',
+        }}
+        ref={ref}
+      />
+    );
+  },
+);
 
 export const Modal: FC<ModalProps> = ({
   children,
@@ -85,7 +76,7 @@ export const Modal: FC<ModalProps> = ({
   const { hide } = useModal(id);
   const modal = useModalState(id);
 
-  const isShown = modal?.isShown || false;
+  const isOpen = modal?.isShown || false;
 
   const onDismiss = () => {
     hide();
@@ -104,49 +95,52 @@ export const Modal: FC<ModalProps> = ({
   };
 
   return (
-    <>
-      <ModalStyles width={width} height={height}></ModalStyles>
-      <ReactModal
-        className={{
-          base: 'c-modal__content',
-          afterOpen: 'c-modal__content--after-open',
-          beforeClose: 'c-modal__content--before-close',
-        }}
-        overlayClassName={{
-          base: 'c-modal__overlay',
-          afterOpen: 'c-modal__overlay--after-open',
-          beforeClose: 'c-modal__overlay--before-close',
-        }}
-        closeTimeoutMS={duration}
-        isOpen={isShown}
-        shouldCloseOnOverlayClick={modal?.isClosable}
-        contentLabel="Modal"
-        onRequestClose={onDismiss}>
-        {modal && (
-          <>
-            {modal.isClosable && (
-              <Box top={0} right={0} zIndex={99} position="absolute" p={4}>
-                <IconButton
-                  aria-label="Close"
-                  onClick={onDismiss}
-                  size={20}
-                  icon={CloseLightIcon}
-                />
-              </Box>
-            )}
+    <Transition
+      in={isOpen}
+      timeout={{
+        enter: 0,
+        exit: 300,
+      }}
+      unmountOnExit>
+      {state => {
+        const isShown = state === 'entered';
 
-            {modal.title && <Heading>{modal.title}</Heading>}
+        return (
+          <DialogOverlay as={Overlay} onDismiss={onDismiss} isShown={isShown}>
+            <DialogContent
+              as={Content as any}
+              isShown={isShown}
+              aria-label="Modal"
+              width={width}
+              height={height}>
+              {modal && (
+                <>
+                  {modal.isClosable && (
+                    <Box top={0} right={0} zIndex={99} position="absolute" p={4}>
+                      <IconButton
+                        aria-label="Close"
+                        onClick={onDismiss}
+                        size={20}
+                        icon={CloseLightIcon}
+                      />
+                    </Box>
+                  )}
 
-            {modal.content}
+                  {modal.title && <Heading>{modal.title}</Heading>}
 
-            {children}
+                  {modal.content}
 
-            {modal.callback && modal.callbackLabel && (
-              <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
-            )}
-          </>
-        )}
-      </ReactModal>
-    </>
+                  {children}
+
+                  {modal.callback && modal.callbackLabel && (
+                    <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
+                  )}
+                </>
+              )}
+            </DialogContent>
+          </DialogOverlay>
+        );
+      }}
+    </Transition>
   );
 };
