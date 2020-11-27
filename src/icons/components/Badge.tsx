@@ -1,15 +1,18 @@
+import * as React from 'react';
+import styled from 'styled-components';
+import { compose, color } from 'styled-system';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-const BadgeIcon = ({ size, ...props }: CustomIconProps) => {
+const SVGIcon = ({ size, ...props }: CustomIconProps) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg width={21} height={19} viewBox="0 0 21 19" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" width={21} height={19} viewBox="0 0 21 19" {...props}>
       <g fill="none" fillRule="evenodd" stroke="currentColor">
         <path
           strokeLinecap="round"
@@ -23,4 +26,5 @@ const BadgeIcon = ({ size, ...props }: CustomIconProps) => {
   );
 };
 
+const BadgeIcon = styled(SVGIcon)(compose(color));
 export default BadgeIcon;

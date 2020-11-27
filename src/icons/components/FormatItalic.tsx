@@ -1,15 +1,18 @@
+import * as React from 'react';
+import styled from 'styled-components';
+import { compose, color } from 'styled-system';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-const FormatItalicIcon = ({ size, ...props }: CustomIconProps) => {
+const SVGIcon = ({ size, ...props }: CustomIconProps) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg viewBox="0 0 320 512" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" {...props}>
       <path
         fill="currentColor"
         d="M204.758 416h-33.849l62.092-320h40.725a16 16 0 0015.704-12.937l6.242-32C297.599 41.184 290.034 32 279.968 32H120.235a16 16 0 00-15.704 12.937l-6.242 32C96.362 86.816 103.927 96 113.993 96h33.846l-62.09 320H46.278a16 16 0 00-15.704 12.935l-6.245 32C22.402 470.815 29.967 480 40.034 480h158.479a16 16 0 0015.704-12.935l6.245-32c1.927-9.88-5.638-19.065-15.704-19.065z"
@@ -18,4 +21,5 @@ const FormatItalicIcon = ({ size, ...props }: CustomIconProps) => {
   );
 };
 
+const FormatItalicIcon = styled(SVGIcon)(compose(color));
 export default FormatItalicIcon;
