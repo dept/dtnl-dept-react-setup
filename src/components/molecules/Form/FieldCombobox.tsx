@@ -1,5 +1,5 @@
 import { useCombobox, UseComboboxProps } from 'downshift';
-import { useState , FC } from 'react';
+import { useState, FC, useEffect } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import { Box } from '@/components/atoms/Grid';
@@ -18,6 +18,8 @@ interface Option {
 export type FieldComboboxProps = Omit<FieldInputProps, 'type' | 'onChange'> & {
   options: Option[];
   onChange?: (value: Value) => void;
+  showSelector?: boolean;
+  onTyping?: (inputValue: string) => void;
 };
 
 const ListItem = Box;
@@ -42,8 +44,18 @@ const stateReducer: UseComboboxProps<Option>['stateReducer'] = (state, actionAnd
   }
 };
 
-export const FieldCombobox: FC<FieldComboboxProps> = ({ options: items, onChange, ...rest }) => {
+export const FieldCombobox: FC<FieldComboboxProps> = ({
+  options: items,
+  onChange,
+  showSelector,
+  onTyping,
+  ...rest
+}) => {
   const [inputItems, setInputItems] = useState(items);
+
+  useEffect(() => {
+    setInputItems(items);
+  }, [items]);
 
   const {
     isOpen,
@@ -62,9 +74,15 @@ export const FieldCombobox: FC<FieldComboboxProps> = ({ options: items, onChange
     items: inputItems,
     stateReducer,
     onInputValueChange: ({ inputValue = '' }) => {
-      setInputItems(
-        items.filter(item => String(item.label).toLowerCase().startsWith(inputValue.toLowerCase())),
+      const matches = items.filter(item =>
+        String(item.label).toLowerCase().startsWith(inputValue.toLowerCase()),
       );
+
+      setInputItems(matches);
+
+      if (onTyping) {
+        onTyping(inputValue);
+      }
     },
     onSelectedItemChange: e => {
       if (e?.selectedItem?.value && onChange) {
@@ -89,13 +107,15 @@ export const FieldCombobox: FC<FieldComboboxProps> = ({ options: items, onChange
           reset();
         }}
         end={
-          <IconButton
-            {...getToggleButtonProps()}
-            icon={HiSelector}
-            size={18}
-            aria-label="Toggle menu"
-            hideOutline
-          />
+          showSelector && (
+            <IconButton
+              {...getToggleButtonProps()}
+              icon={HiSelector}
+              size={18}
+              aria-label="Toggle menu"
+              hideOutline
+            />
+          )
         }
       />
 

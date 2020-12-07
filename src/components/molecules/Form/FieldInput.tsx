@@ -134,7 +134,7 @@ export const AdornmentWrapper: FC<BoxProps> = props => (
     px={2}
     height="100%"
     flex="1"
-    bg="grey.lighter"
+    bg="gray.50"
     {...props}
   />
 );
