@@ -1,5 +1,5 @@
 import { DialogContent, DialogOverlay } from '@reach/dialog';
-import React, { FC, forwardRef } from 'react';
+import React, { FC, forwardRef, useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
 
 import { Button } from '@/components/atoms/Button';
@@ -86,8 +86,11 @@ export const Modal: FC<ModalProps> = ({
 }) => {
   const { hide } = useModal(id);
   const modal = useModalState(id);
+  const [isOpen, setOpen] = useState(false);
 
-  const isOpen = modal?.isShown || false;
+  useEffect(() => {
+    setOpen(modal?.isShown || false);
+  }, [setOpen, modal]);
 
   const onDismiss = () => {
     hide();
