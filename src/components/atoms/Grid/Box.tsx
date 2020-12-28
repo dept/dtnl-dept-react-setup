@@ -450,7 +450,6 @@ export const Box = styled('div').withConfig({
 })<BoxProps>(
   {
     boxSizing: 'border-box',
-    margin: 0,
   },
   truncate,
   sx,

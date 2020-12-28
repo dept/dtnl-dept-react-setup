@@ -39,6 +39,7 @@ export const Text = forwardRef<any, TextProps>(({ variant, ...props }, ref) => {
   return (
     <Box
       sx={{
+        margin: 0,
         ...textVariant,
       }}
       {...props}

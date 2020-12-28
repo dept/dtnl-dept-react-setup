@@ -73,6 +73,9 @@ export const Button = forwardRef<any, ButtonProps>(
           transitionDuration: '.15s',
           ...buttonSize,
           ...buttonVariant,
+          '& svg': {
+            lineHeight: 1,
+          },
         }}
         _disabled={{
           cursor: 'not-allowed',
