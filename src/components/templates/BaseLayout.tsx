@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { Box, Flex, Grid } from '../atoms/Grid';
 import { Heading, Text } from '../atoms/Text';
+import { CookiesBar } from '../molecules/Cookies';
 import { Modal } from '../molecules/Modal';
 import { Footer } from '../organisms/Footer';
 import { Header } from '../organisms/Header';
@@ -18,6 +19,8 @@ export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
       </Box>
 
       <Footer />
+
+      <CookiesBar />
 
       <Modal id="error">
         <Box p={60}>
