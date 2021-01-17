@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Cookies } from 'react-cookie';
 
@@ -9,19 +10,25 @@ import { CookiesConfig } from './CookiesConfig';
 
 export const CookiesBar = () => {
   const cookies = new Cookies();
-  const [visible, setVisible] = useState(!(cookies.get(`${CookiesConfig.prefix}accepted`) === '1'));
+  const date = new Date();
+  const expires = new Date(date.setDate(date.getDate() + 365));
+  const router = useRouter();
+  const [visible, setVisible] = useState(!cookies.get(`${CookiesConfig.prefix}accepted`));
 
   const AcceptCookies = () => {
-    const date = new Date();
-    const expires = new Date(date.setDate(date.getDate() + 365));
-
-    cookies.set(`${CookiesConfig.prefix}accepted`, 1, { expires, sameSite: 'lax' });
+    cookies.set(`${CookiesConfig.prefix}accepted`, true, { expires, sameSite: 'lax' });
 
     CookiesConfig.cookies?.map(cookie => {
       cookies.set(CookiesConfig.prefix + cookie.name, cookie.value, { expires, sameSite: 'lax' });
     });
 
     setVisible(false);
+  };
+
+  const DismissCookies = () => {
+    cookies.set(`${CookiesConfig.prefix}accepted`, false, { expires, sameSite: 'lax' });
+
+    router.push('/cookies');
   };
 
   return (
@@ -37,7 +44,7 @@ export const CookiesBar = () => {
                   blandit lectus. Fusce aliquam lectus purus, sit amet imperdiet nulla tincidunt id.
                 </Text>
                 <Flex flexWrap="wrap">
-                  <Button as="a" href="/cookies" mt={4} variant="secondary" w={['100%', 'auto']}>
+                  <Button mt={4} variant="secondary" onClick={DismissCookies} w={['100%', 'auto']}>
                     Cookie settings
                   </Button>
                   <Button
