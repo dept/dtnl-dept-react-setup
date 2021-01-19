@@ -8,30 +8,10 @@ import { ThemeProvider } from 'styled-components';
 import { BaseLayout } from '@/components/templates';
 import { GlobalStyle } from '@/theme/GlobalStyle';
 import { theme } from '@/theme/theme';
-import { isBrowser } from '@/utils/isBrowser';
 
 if (process.browser) {
   import('@/utils/detectTouch');
   import('@/utils/detectKeyboardFocus');
-}
-
-if (isBrowser && process.env.ENVIRONMENT_NAME !== 'production') {
-  /**
-   * why-did-you-render README
-   * https://github.com/welldone-software/why-did-you-render
-   */
-  const whyDidYouRender = require('@welldone-software/why-did-you-render');
-  whyDidYouRender(React);
-
-  /**
-   * To debug a component:
-   *
-   * const Whatever = () => <Box />
-   *
-   * Whatever.whyDidYouRender = true
-   *
-   * export { Whatever }
-   */
 }
 
 const MyApp: AppType = ({ Component: Page, pageProps }) => {

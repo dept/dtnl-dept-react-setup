@@ -1,7 +1,7 @@
 import { subYears } from 'date-fns';
 import * as Yup from 'yup';
 
-import { SubmitHandler } from '@/utils/types';
+import { SubmitHandler } from '@/components/molecules/Formik/types';
 
 import { FormikExampleForm } from './FormikExampleForm';
 
