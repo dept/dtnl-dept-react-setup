@@ -1,27 +1,19 @@
-import { HTMLAttributes , FC } from 'react';
+import { HTMLAttributes, FC } from 'react';
 
-
-import { Box, BoxProps } from '../Grid';
+import styles from './Label.module.scss';
 
 interface LabelProps extends HTMLAttributes<HTMLLabelElement> {
   htmlFor?: string;
   required?: boolean;
 }
 
-export const Label: FC<LabelProps & BoxProps> = ({ children, color, required, ...props }) => {
+export const Label: FC<LabelProps> = ({ children, className, required, ...props }) => {
+  const classes = [className, styles.label].join(' ');
+
   return (
-    <Box
-      as="label"
-      sx={{
-        cursor: 'pointer',
-        userSelect: 'none',
-        fontWeight: 'medium',
-        fontSize: 'sm',
-        color: color || 'gray.700',
-      }}
-      {...props}>
+    <label className={classes} {...props}>
       {children}
       {required ? ' *' : null}
-    </Box>
+    </label>
   );
 };

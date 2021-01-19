@@ -9,6 +9,8 @@ import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
 import { Label } from '@/components/atoms/Label';
 
+import styles from './FieldInput.module.scss';
+
 const InputMask = dynamic(() => import('react-input-mask'));
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> &
@@ -31,54 +33,22 @@ export type FieldInputProps = InputProps & {
 };
 
 export const Input = forwardRef<any, InputProps>(
-  ({ hasError, color, mask, maskChar = null, start, end, ...props }, ref) => {
-    let additionalProps: any = {};
-
-    if (props.readOnly) {
-      additionalProps = {
-        ...additionalProps,
-        opacity: '0.3',
-        userSelect: 'none',
-        cursor: 'not-allowed',
-      };
-    }
+  ({ hasError, color, className, mask, maskChar = null, start, end, ...props }, ref) => {
+    const classes = [className, styles.input];
 
     if (hasError) {
-      additionalProps = {
-        ...additionalProps,
-        color: 'error',
-      };
+      classes.push('has-error');
     }
-
-    const styles: SystemCssProperties = {
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'transparent',
-      border: 'none',
-      margin: '0',
-      color: color || 'black',
-      pl: start ? 0 : '12px',
-      pr: end ? 0 : '12px',
-      py: '14px',
-      ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]: {
-        appearance: 'none',
-        margin: 0,
-      },
-      '&:focus': {
-        outline: 'none',
-      },
-      ...additionalProps,
-    };
 
     if (mask) {
       return (
         <InputMask mask={mask} maskChar={maskChar} {...props}>
-          {(inputProps: any) => <Box innerRef={ref} as="input" sx={styles} {...inputProps} />}
+          {(inputProps: any) => <input ref={ref} className={styles.input} {...inputProps} />}
         </InputMask>
       );
     }
 
-    return <Box ref={ref} as="input" sx={styles} {...props} />;
+    return <input ref={ref} className={styles.input} {...props} />;
   },
 );
 

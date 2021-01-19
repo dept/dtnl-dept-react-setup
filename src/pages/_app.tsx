@@ -1,13 +1,11 @@
+import '@/sass/main.scss';
 import '@public/fonts/fonts.css';
 
 import { DefaultSeo } from 'next-seo';
 import { AppType } from 'next/dist/next-server/lib/utils';
 import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
 
 import { BaseLayout } from '@/components/templates';
-import { GlobalStyle } from '@/theme/GlobalStyle';
-import { theme } from '@/theme/theme';
 import { isBrowser } from '@/utils/isBrowser';
 
 if (process.browser) {
@@ -42,12 +40,10 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <BaseLayout>
-          <Page {...pageProps} />
-        </BaseLayout>
-      </ThemeProvider>
+
+      <BaseLayout>
+        <Page {...pageProps} />
+      </BaseLayout>
     </>
   );
 };
