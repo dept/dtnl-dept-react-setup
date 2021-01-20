@@ -63,7 +63,7 @@ export const InputWrapper: FC<InputWrapperProps> = ({ hasFocus, hasError, ...pro
     additionalProps = {
       ...additionalProps,
       outline: 'none',
-      boxShadow: theme.shadows.outline || 'inherit',
+      boxShadow: theme?.shadows.outline || 'inherit',
       borderColor: 'gray.300',
     };
   }

@@ -1,4 +1,6 @@
 require('dotenv').config();
+const path = require('path');
+
 const withPlugins = require('next-compose-plugins');
 
 const { includePolyfills } = require('./config/includePolyfills');
@@ -37,6 +39,12 @@ module.exports = withPlugins(plugins, {
   //   locales: ['en', 'nl'],
   //   defaultLocale: 'en',
   // },
+  sassOptions: {
+    additionalData: `
+    @import 'src/sass/00_settings/all';
+    @import 'src/sass/01_tools/all';
+    `,
+  },
   webpack(config, options) {
     if (!options.isServer) {
       const CircularDependencyPlugin = require('circular-dependency-plugin');

@@ -1,5 +1,5 @@
 import { hideVisually } from 'polished';
-import { InputHTMLAttributes , FC } from 'react';
+import { InputHTMLAttributes, FC } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { Box, Flex } from '@/components/atoms/Grid';
@@ -41,7 +41,7 @@ export const FieldRadio: FC<FieldRadioProps> = ({ children, hasError, ...props }
             },
             'input[type=radio]:focus + &': {
               outline: 'none',
-              boxShadow: theme.shadows.outline,
+              boxShadow: theme?.shadows.outline,
             },
           }}
         />

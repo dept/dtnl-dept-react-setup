@@ -80,7 +80,7 @@ export const IconButton = forwardRef<any, IconButtonProps & HTMLAttributes<any> 
         bg={bg || 'transparent'}
         _focus={{
           outline: 'none',
-          boxShadow: !hideOutline ? theme.shadows.outline : 'none',
+          boxShadow: !hideOutline ? theme?.shadows.outline : 'none',
         }}
         _hocus={{
           opacity: 0.8,

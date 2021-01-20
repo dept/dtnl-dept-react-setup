@@ -120,6 +120,7 @@
     "@storybook/addon-knobs": "^6.1.14",
     "@storybook/addon-links": "^6.1.14",
     "@storybook/addon-storysource": "^6.1.14",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.1.14",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -147,6 +148,7 @@
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-styled-components": "^1.12.0",
     "circular-dependency-plugin": "^5.2.2",
+    "css-loader": "^5.0.1",
     "dept-react-scripts": "^1.1.1",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
@@ -160,6 +162,8 @@
     "nodemon": "^2.0.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }

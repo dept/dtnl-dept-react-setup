@@ -5,5 +5,16 @@ module.exports = {
     '@storybook/addon-links/register',
     '@storybook/addon-knobs/register',
     '@storybook/addon-storysource/register',
+    {
+      name: '@storybook/preset-scss',
+      options: {
+        sassLoaderOptions: {
+          additionalData: `
+            @import 'src/sass/00_settings/all';
+            @import 'src/sass/01_tools/all';
+            `,
+        },
+      },
+    },
   ],
 };

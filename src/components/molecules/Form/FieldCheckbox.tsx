@@ -1,5 +1,5 @@
 import { hideVisually } from 'polished';
-import { InputHTMLAttributes , FC } from 'react';
+import { InputHTMLAttributes, FC } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import styled, { useTheme } from 'styled-components';
 
@@ -58,7 +58,7 @@ export const FieldCheckbox: FC<FieldCheckboxProps> = ({
             },
             'input[type=checkbox]:focus + &': {
               outline: 'none',
-              boxShadow: theme.shadows.outline,
+              boxShadow: theme?.shadows.outline,
             },
           }}>
           <FaCheck size={13} />

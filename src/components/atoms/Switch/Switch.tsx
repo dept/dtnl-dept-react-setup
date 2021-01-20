@@ -68,7 +68,7 @@ const HiddenInput = styled.input`
 
   &:focus ~ ${SwitchBackground} {
     outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
+    box-shadow: ${props => props.theme?.shadows.outline || 'inherit'};
   }
 `;
 

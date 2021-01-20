@@ -1,16 +1,16 @@
 import { forwardRef, ButtonHTMLAttributes, ReactElement } from 'react';
 import Ink from 'react-ink';
-import { useTheme } from 'styled-components';
 
 import { buttons, buttonSizes } from '@/theme';
+import { classNames } from '@/utils/classNames';
 
 import { Box, BoxProps } from '../Grid';
 import { Loader } from '../Loader';
+import styles from './Button.module.scss';
 
 type ButtonElements = 'button' | 'a' | any;
 
 interface ConditionalProps {
-  as: ButtonElements;
   type?: 'submit' | 'button' | 'reset';
 }
 
@@ -34,9 +34,10 @@ export type ButtonProps = BoxProps &
 export const Button = forwardRef<any, ButtonProps>(
   (
     {
-      as = 'button',
+      as: Component = 'button',
       startIcon,
       endIcon,
+      className,
       size = 'medium',
       children,
       variant = 'primary',
@@ -44,82 +45,52 @@ export const Button = forwardRef<any, ButtonProps>(
       ripple = true,
       loading,
       disabled,
-      hideOutline,
       ...props
     },
     ref,
   ) => {
-    const theme = useTheme();
-    const buttonVariant = theme.buttons[variant];
-    const conditionalProps: ConditionalProps = { as };
-    const buttonSize = variant !== 'clear' ? theme.buttonSizes[size] : {};
+    const conditionalProps: ConditionalProps = {};
 
-    if (as === 'button') {
+    if (Component === 'button') {
       conditionalProps.type = type;
     }
 
+    console.log(styles);
+
+    const classes = classNames({
+      [styles.button]: true,
+      [className!]: Boolean(className),
+      [styles[`variant-${variant}`]]: true,
+      [styles[`size-${size}`]]: true,
+    });
+
     return (
-      <Box
-        {...conditionalProps}
-        disabled={disabled}
-        sx={{
-          lineHeight: 1.5,
-          userSelect: 'none',
-          position: 'relative',
-          cursor: 'pointer',
-          transitionProperty:
-            'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
-          transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-          transitionDuration: '.15s',
-          ...buttonSize,
-          ...buttonVariant,
-          '& svg': {
-            lineHeight: 1,
-          },
-        }}
-        _disabled={{
-          cursor: 'not-allowed',
-        }}
-        _focus={{
-          outline: 'none',
-          boxShadow: !hideOutline ? theme.shadows.outline : 'none',
-        }}
-        {...props}
-        ref={ref}>
+      <Component {...conditionalProps} className={classes} disabled={disabled} {...props} ref={ref}>
         {variant === 'clear' ? (
           children
         ) : (
           <>
             {ripple && <Ink />}
             {loading && (
-              <Box
-                position="absolute"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                height="100%"
-                width="100%"
-                left={0}
-                top={0}>
+              <div className={styles['button-loader']}>
                 <Loader size={30} />
-              </Box>
+              </div>
             )}
 
-            <Box
-              display="inline-flex"
-              visibility={loading ? 'hidden' : null}
-              justifyContent="space-between"
-              alignItems="center"
-              textAlign="center">
-              {startIcon && <Box mr={2}>{startIcon}</Box>}
+            <div
+              className={styles.inner}
+              style={{
+                visibility: loading ? 'hidden' : undefined,
+              }}>
+              {startIcon && <div className={styles['start-icon']}>{startIcon}</div>}
 
               <span>{children}</span>
 
-              {endIcon && <Box ml={2}>{endIcon}</Box>}
-            </Box>
+              {endIcon && <div className={styles['end-icon']}>{endIcon}</div>}
+            </div>
           </>
         )}
-      </Box>
+      </Component>
     );
   },
 );
