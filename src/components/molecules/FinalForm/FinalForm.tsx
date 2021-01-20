@@ -24,7 +24,7 @@ async function validateYup(
     await schema.validate(values, { abortEarly: false });
   } catch (e) {
     errors = (e as Yup.ValidationError).inner.reduce((acc, error) => {
-      return setIn(acc, error.path, error.message);
+      return setIn(acc, error.path!, error.message);
     }, errors);
   }
 

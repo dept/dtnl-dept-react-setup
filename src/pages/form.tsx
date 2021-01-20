@@ -9,9 +9,9 @@ import { Alert } from '@/components/atoms/Alert';
 import { Divider } from '@/components/atoms/Divider';
 import { Box, Stack } from '@/components/atoms/Grid';
 import { FieldRadioGroup } from '@/components/molecules/Form';
+import { SubmitHandler } from '@/components/molecules/Formik/types';
 import { FinalFormExampleForm } from '@/components/organisms/Forms/FinalFormExampleForm';
 import { FormikExampleForm } from '@/components/organisms/Forms/FormikExampleForm';
-import { SubmitHandler } from '@/utils/types';
 
 type FFSubmitHandler<FormValues> = (values: FormValues, formHelpers: FormApi<FormValues>) => void;
 
