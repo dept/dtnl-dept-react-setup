@@ -32,9 +32,10 @@ export const FieldCheckboxGroup: FC<FieldCheckboxGroupProps> = ({
             <FieldCheckbox
               name={name}
               value={option.value}
-              checked={value && value.includes(option.value)}
               onChange={onChange}
-              {...props}>
+              {...props}
+              // has to be after props
+              checked={value && value.includes(option.value)}>
               {option.label}
             </FieldCheckbox>
           </Column>

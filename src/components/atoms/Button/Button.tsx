@@ -4,7 +4,6 @@ import Ink from 'react-ink';
 import { buttons, buttonSizes } from '@/theme';
 import { classNames } from '@/utils/classNames';
 
-import { Box, BoxProps } from '../Grid';
 import { Loader } from '../Loader';
 import styles from './Button.module.scss';
 
@@ -14,22 +13,21 @@ interface ConditionalProps {
   type?: 'submit' | 'button' | 'reset';
 }
 
-export type ButtonProps = BoxProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    as?: ButtonElements;
-    variant?: keyof typeof buttons;
-    size?: keyof typeof buttonSizes;
-    disabled?: boolean;
-    startIcon?: ReactElement;
-    endIcon?: ReactElement;
-    loading?: boolean;
-    ripple?: boolean;
-    href?: string;
-    target?: string;
-    hideOutline?: boolean;
-    // adds a test id so it's easier to find in integration/e2e tests
-    'data-testid'?: string;
-  };
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  as?: ButtonElements;
+  variant?: keyof typeof buttons;
+  size?: keyof typeof buttonSizes;
+  disabled?: boolean;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
+  loading?: boolean;
+  ripple?: boolean;
+  href?: string;
+  target?: string;
+  hideOutline?: boolean;
+  // adds a test id so it's easier to find in integration/e2e tests
+  'data-testid'?: string;
+};
 
 export const Button = forwardRef<any, ButtonProps>(
   (
@@ -55,14 +53,12 @@ export const Button = forwardRef<any, ButtonProps>(
       conditionalProps.type = type;
     }
 
-    console.log(styles);
-
-    const classes = classNames({
-      [styles.button]: true,
-      [className!]: Boolean(className),
-      [styles[`variant-${variant}`]]: true,
-      [styles[`size-${size}`]]: true,
-    });
+    const classes = classNames(
+      styles.button,
+      className,
+      styles[`variant-${variant}`],
+      styles[`size-${size}`],
+    );
 
     return (
       <Component {...conditionalProps} className={classes} disabled={disabled} {...props} ref={ref}>
