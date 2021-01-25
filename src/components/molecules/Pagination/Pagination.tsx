@@ -108,8 +108,7 @@ export const Pagination: FC<PaginationProps> = ({
                 <Button
                   variant="clear"
                   onClick={() => handleNavigate(item)}
-                  disabled={current === item}
-                  p={2}>
+                  disabled={current === item}>
                   {item}
                 </Button>
               )}
