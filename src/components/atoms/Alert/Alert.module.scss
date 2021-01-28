@@ -1,0 +1,20 @@
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  &--warning {
+    background-color: purple;
+    color: black;
+  }
+  &--success {
+    background-color: blue;
+    color: black;
+  }
+  &--info {
+    background-color: yellow;
+    color: black;
+  }
+  &--error {
+    background-color: red;
+    color: black;
+  }
+}
