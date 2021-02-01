@@ -1,5 +1,9 @@
+@mixin focus-ring($color) {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px $color, 0 0 #0000;
+}
+
 .button {
-  line-height: 1.5;
+  line-height: 1;
   user-select: none;
   position: relative;
   cursor: pointer;
@@ -7,6 +11,8 @@
     transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
+  border: none;
+
   & svg {
     line-height: 1;
   }
@@ -16,30 +22,81 @@
   &:focus {
     outline: none;
   }
+}
 
-  &.size-large {
-    padding: 12px 24px;
+.size {
+  &--xsmall {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.75rem;
   }
-
-  &.size-medium {
-    padding: 8px 16px;
+  &--small {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
   }
-
-  &.size-small {
-    padding: 4px 12px;
+  &--medium {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
+  &--large {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  &--xlarge {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
 
-  &.variant-primary {
+.variant {
+  &--primary {
     background: $color-primary;
     border: 1px solid;
     border-color: transparent;
-    border-radius: 5px;
     color: white;
     font-weight: bold;
+    &:hover {
+      background: darken($color-primary, 10%);
+    }
+    &:focus {
+      @include focus-ring($color-primary);
+    }
   }
 
-  &.variant-secondary {
+  &--secondary {
     background: $color-secondary;
+    border: 1px solid;
+    border-color: transparent;
+    color: white;
+    font-weight: bold;
+    &:hover {
+      background: darken($color-secondary, 10%);
+    }
+    &:focus {
+      @include focus-ring($color-secondary);
+    }
+  }
+
+  &--clear {
+    padding: 0;
+    background: transparent;
+    &:focus {
+      @include focus-ring(grey);
+    }
+  }
+}
+
+.shape {
+  &--rounded {
+    border-radius: 4px;
+  }
+  &--square {
+    border-radius: 0px;
+  }
+  &--pill {
+    border-radius: 9999px;
   }
 }
 
@@ -48,17 +105,20 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  &[data-loading] {
+    visibility: hidden;
+  }
 }
 
-.start-icon {
+.start {
   margin-right: 8px;
 }
 
-.end-icon {
+.end {
   margin-left: 8px;
 }
 
-.button-loader {
+.loader {
   position: absolute;
   display: flex;
   justify-content: center;
