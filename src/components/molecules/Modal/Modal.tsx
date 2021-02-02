@@ -122,7 +122,7 @@ export const Modal: FC<ModalProps> = ({
         return (
           <DialogOverlay
             as={overlayComponent as any}
-            onDismiss={onDismiss}
+            {...(modal.isClosable && { onDismiss })}
             isShown={isShown}
             duration={duration}>
             <DialogContent
