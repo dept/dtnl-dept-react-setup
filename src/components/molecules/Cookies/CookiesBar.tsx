@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Cookies } from 'react-cookie';
 
 import { Button } from '@/components/atoms/Button';
-import { Box, Column, Grid, Flex, Row } from '@/components/atoms/Grid';
+import { Box, Column, Flex, Grid, Row } from '@/components/atoms/Grid';
 import { Text } from '@/components/atoms/Text';
 
 import { CookiesConfig } from './CookiesConfig';
@@ -19,7 +19,7 @@ export const CookiesBar = () => {
     cookies.set(`${CookiesConfig.prefix}accepted`, true, { expires, sameSite: 'lax' });
 
     CookiesConfig.cookies?.map(cookie => {
-      cookies.set(CookiesConfig.prefix + cookie.name, cookie.value, { expires, sameSite: 'lax' });
+      cookies.set(CookiesConfig.prefix + cookie.name, true, { expires, sameSite: 'lax' });
     });
 
     setVisible(false);
@@ -27,6 +27,10 @@ export const CookiesBar = () => {
 
   const DismissCookies = () => {
     cookies.set(`${CookiesConfig.prefix}accepted`, false, { expires, sameSite: 'lax' });
+
+    CookiesConfig.cookies?.map(cookie => {
+      cookies.set(CookiesConfig.prefix + cookie.name, cookie.value, { expires, sameSite: 'lax' });
+    });
 
     router.push('/cookies');
   };
@@ -44,7 +48,7 @@ export const CookiesBar = () => {
                   blandit lectus. Fusce aliquam lectus purus, sit amet imperdiet nulla tincidunt id.
                 </Text>
                 <Flex flexWrap="wrap">
-                  <Button mt={4} variant="secondary" onClick={DismissCookies} w={['100%', 'auto']}>
+                  <Button mt={4} onClick={DismissCookies} variant="secondary" w={['100%', 'auto']}>
                     Cookie settings
                   </Button>
                   <Button
