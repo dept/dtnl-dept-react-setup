@@ -31,11 +31,11 @@ export const FieldRadioGroup: FC<FieldRadioGroupProps> = ({
         return (
           <Column key={index} mb={direction === 'vertical' ? 2 : 0}>
             <FieldRadio
-              name={`${name}[]`}
+              name={name}
               value={option.value}
-              checked={value === option.value}
               onChange={onChange}
-              {...props}>
+              {...props}
+              checked={value === option.value}>
               {option.label}
             </FieldRadio>
           </Column>

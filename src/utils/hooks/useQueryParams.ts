@@ -106,6 +106,7 @@ export function setQueryParams(values: QueryParamSetterConfig) {
     newAsPath,
     {
       shallow: true,
+      scroll: false,
     },
   );
 }
