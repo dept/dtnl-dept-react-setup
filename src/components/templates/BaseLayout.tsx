@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Box, Flex, Grid } from '../atoms/Grid';
+import { Box, Flex, Container } from '../atoms/Grid';
 import { Heading, Text } from '../atoms/Text';
 import { Modal } from '../molecules/Modal';
 import { Footer } from '../organisms/Footer';
@@ -14,7 +14,7 @@ export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
       <Header />
 
       <Box as="main" flex="1 0 auto" display="block">
-        <Grid>{children}</Grid>
+        <Container>{children}</Container>
       </Box>
 
       <Footer />
