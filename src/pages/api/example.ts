@@ -1,5 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiHandler } from 'next';
 
-export default function handle(_req: NextApiRequest, res: NextApiResponse) {
+const handle: NextApiHandler = (req, res) => {
   res.end('Hello World');
-}
+};
+
+export default handle;

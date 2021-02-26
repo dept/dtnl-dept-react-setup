@@ -1,6 +1,8 @@
 import { darken, rgba } from 'polished';
 import { DefaultTheme } from 'styled-components';
 
+import { styledSystemVariants } from '@/utils/styledSystemVariants';
+
 import { colors } from './colors';
 import { grid } from './grid';
 import { typography } from './typography';
@@ -33,7 +35,7 @@ breakpoints.md = breakpoints[1];
 breakpoints.lg = breakpoints[2];
 breakpoints.xl = breakpoints[3];
 
-export const buttons = {
+export const buttons = styledSystemVariants({
   primary: {
     border: '1px solid',
     borderColor: 'transparent',
@@ -72,10 +74,10 @@ export const buttons = {
     backgroundColor: 'transparent',
     border: 'none',
   },
-};
+});
 
 // buttonSizes based on sizes in spaces
-export const buttonSizes = {
+export const buttonSizes = styledSystemVariants({
   small: {
     py: 1,
     px: 3,
@@ -88,7 +90,7 @@ export const buttonSizes = {
     py: 3,
     px: 6,
   },
-};
+});
 
 const shadows = {
   small: '0 0 4px rgba(0, 0, 0, .125)',
@@ -96,20 +98,12 @@ const shadows = {
   outline: '0px 0px 0px 4px rgba(0, 0, 0, 0.1);',
 };
 
-const input = {
-  borderColor: '#bdbdbd',
-  height: '50px',
-  hover: {
-    borderColor: '#7b7b7b',
-  },
-};
-
-export const textVariants = {
+export const textVariants = styledSystemVariants({
   heading1: {
     fontSize: ['2rem', '3rem', '4rem'],
     color: 'black',
   },
-};
+});
 
 export type ButtonOption = keyof typeof buttons;
 
@@ -138,7 +132,6 @@ export interface CustomTheme {
   textVariants: typeof textVariants;
   outline?: string;
   grid: ThemeGrid;
-  input: typeof input;
 }
 
 export const theme: DefaultTheme = {
@@ -151,6 +144,5 @@ export const theme: DefaultTheme = {
   buttons,
   buttonSizes,
   grid,
-  input,
   textVariants,
 };
