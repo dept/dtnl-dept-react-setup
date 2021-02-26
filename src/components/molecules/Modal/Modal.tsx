@@ -140,7 +140,7 @@ export const Modal: FC<ModalProps> = ({
                         aria-label="Close"
                         onClick={onDismiss}
                         size={20}
-                        icon={CloseLightIcon}
+                        icon={<CloseLightIcon size={15} />}
                       />
                     </Box>
                   )}

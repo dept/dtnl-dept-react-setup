@@ -6,31 +6,29 @@ import { Flex } from './Flex';
 import { Space } from './Space';
 
 interface GutterProps {
-  gutter?: any[] | number;
+  gap?: any[] | number;
 }
 
 type RowProps = FlexboxProps & GutterProps & SpaceProps & WidthProps;
 
-export const Row: FC<RowProps> = ({ gutter, children, ...props }) => {
+export const Row: FC<RowProps> = ({ gap, children, ...props }) => {
   const themeContext = useTheme();
 
-  if (!gutter && themeContext && themeContext.grid) {
-    gutter = themeContext.grid.gutter;
+  if (!gap && themeContext && themeContext.grid) {
+    gap = themeContext.grid.gap;
   }
 
-  if (!gutter) {
-    gutter = 15;
+  if (!gap) {
+    gap = 15;
   }
 
   const spacing =
-    gutter && Array.isArray(gutter)
-      ? gutter.map(space => space && space / 2)
-      : (gutter as number) / 2;
+    gap && Array.isArray(gap) ? gap.map(space => space && space / 2) : (gap as number) / 2;
 
   const mx =
-    gutter && Array.isArray(gutter)
-      ? gutter.map(space => space && (space / 2) * -1)
-      : ((gutter as number) / 2) * -1;
+    gap && Array.isArray(gap)
+      ? gap.map(space => space && (space / 2) * -1)
+      : ((gap as number) / 2) * -1;
 
   return (
     <Flex mx={mx} flexWrap="wrap" {...props}>

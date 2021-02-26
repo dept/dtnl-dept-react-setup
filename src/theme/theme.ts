@@ -119,7 +119,7 @@ export interface ThemeGridContainer {
 }
 
 export interface ThemeGrid {
-  gutter: number | any[];
+  gap: number | any[];
   container: ThemeGridContainer;
 }
 

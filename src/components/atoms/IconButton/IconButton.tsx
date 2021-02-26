@@ -1,7 +1,5 @@
-import { forwardRef, HTMLAttributes } from 'react';
-import styled, { useTheme } from 'styled-components';
-
-import { colors } from '@/theme/colors';
+import { forwardRef, ReactElement } from 'react';
+import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '../Grid';
 
@@ -10,16 +8,10 @@ type ButtonElements = 'button' | 'a' | 'span';
 interface IconButtonProps {
   as?: ButtonElements;
   'aria-label': string;
-  size?: number;
-  icon: any;
-  height?: any;
-  padding?: number;
-  color?: string;
-  radii?: number;
-  rotate?: number;
+  icon: ReactElement;
   selected?: boolean;
   disabled?: boolean;
-  border?: boolean;
+  size?: BoxProps['width'];
   type?: string;
   hideOutline?: boolean;
 }
@@ -29,66 +21,39 @@ interface ConditionalProps {
   type?: 'submit' | 'button' | 'reset';
 }
 
-interface IconButtonStyledProps {
-  height?: number;
-  padding: number;
-  radii?: number;
-  border?: boolean;
-}
+export const IconButton = forwardRef<any, IconButtonProps & BoxProps>((props, ref) => {
+  const { as = 'button', size = 50, icon, hideOutline, ...rest } = props;
 
-const StyledIconButton = styled(Box)<IconButtonStyledProps>`
-  border-radius: ${({ radii }) => radii}px;
-  border: ${({ border }) => (border ? `1px solid ${colors.black};` : 'none')};
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  cursor: pointer;
-`;
+  const theme = useTheme();
+  const conditionalProps: ConditionalProps = { as };
+  if (as === 'button') {
+    conditionalProps.type = 'button';
+  }
 
-export const IconButton = forwardRef<any, IconButtonProps & HTMLAttributes<any> & BoxProps>(
-  (
-    {
-      as = 'button',
-      size = 40,
-      height,
-      border,
-      radii = 0,
-      padding = 0,
-      bg,
-      icon: Icon,
-      rotate,
-      hideOutline,
-      ...rest
-    },
-    ref,
-  ) => {
-    const theme = useTheme();
-    const conditionalProps: ConditionalProps = { as };
-    if (as === 'button') {
-      conditionalProps.type = 'button';
-    }
-
-    return (
-      <StyledIconButton
-        {...conditionalProps}
-        radii={padding > 5 ? radii : 0}
-        height={height}
-        padding={padding}
-        border={border}
-        bg={bg || 'transparent'}
-        _focus={{
-          outline: 'none',
-          boxShadow: !hideOutline ? theme.shadows.outline : 'none',
-        }}
-        _hocus={{
-          opacity: 0.8,
-        }}
-        {...rest}
-        ref={ref}>
-        <Icon size={size} rotate={rotate} />
-      </StyledIconButton>
-    );
-  },
-);
+  return (
+    <Box
+      {...conditionalProps}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
+        borderRadius: '50%',
+        border: 'none',
+        bg: 'transparent',
+        width: size,
+        height: size,
+      }}
+      _focus={{
+        outline: 'none',
+        boxShadow: !hideOutline ? theme.shadows.outline : 'none',
+      }}
+      _hocus={{
+        bg: 'rgba(0,0,0,.05)',
+      }}
+      {...rest}
+      ref={ref}>
+      {icon}
+    </Box>
+  );
+});

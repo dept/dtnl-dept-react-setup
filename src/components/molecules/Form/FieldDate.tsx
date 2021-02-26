@@ -1,5 +1,5 @@
 import { format, isValid, parse } from 'date-fns';
-import { useEffect, useRef, useState , FC } from 'react';
+import { useEffect, useRef, useState, FC } from 'react';
 import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
@@ -119,7 +119,7 @@ export const FieldDate: FC<FieldDateProps> = ({
             }}
             size={30}
             color="gray.800"
-            icon={HiOutlineCalendar}
+            icon={<HiOutlineCalendar />}
             aria-label="Open calendar"
             hideOutline
           />

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FC, forwardRef } from 'react';
 import { FaReact } from 'react-icons/fa';
 
-import { Box, BoxProps, Flex, Grid } from '../atoms/Grid';
+import { Box, BoxProps, Flex, Container } from '../atoms/Grid';
 import { NavLink } from '../atoms/Link';
 
 interface HeaderProps {}
@@ -69,7 +69,7 @@ const Navigation: FC = () => {
 export const Header: FC<HeaderProps> = () => {
   return (
     <Box as="header" bg="gray.800" color="white">
-      <Grid>
+      <Container>
         <Flex flexShrink={0} alignItems="center">
           <Link href="/">
             <Flex as="a" mr={8} cursor="pointer">
@@ -79,7 +79,7 @@ export const Header: FC<HeaderProps> = () => {
 
           <Navigation />
         </Flex>
-      </Grid>
+      </Container>
     </Box>
   );
 };
