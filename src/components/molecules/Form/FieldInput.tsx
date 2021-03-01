@@ -140,8 +140,6 @@ export const AdornmentWrapper: FC<BoxProps> = props => (
 );
 
 const Clear: FC<any> = ({ onClick }) => {
-  console.log(HiOutlineX);
-
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
       <IconButton
