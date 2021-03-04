@@ -58,6 +58,7 @@ export const FieldCheckbox: FC<FieldCheckboxProps> = ({
               bg: 'primary',
             },
             'input[type=checkbox]:focus + &': {
+              outline: 'none',
               boxShadow: theme.shadows.outline,
             },
           }}>

@@ -45,6 +45,7 @@ export const IconButton = forwardRef<any, IconButtonProps & BoxProps>((props, re
         height: size,
       }}
       _focus={{
+        outline: 'none',
         boxShadow: !hideOutline ? theme.shadows.outline : 'none',
       }}
       _hocus={{
