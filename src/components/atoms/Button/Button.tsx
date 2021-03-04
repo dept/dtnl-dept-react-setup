@@ -1,5 +1,5 @@
 import { useTheme } from '@chakra-ui/system';
-import { forwardRef, ButtonHTMLAttributes, ReactElement } from 'react';
+import { forwardRef, ReactElement } from 'react';
 import Ink from 'react-ink';
 
 import { buttons, buttonSizes } from '@/theme';
@@ -14,22 +14,21 @@ interface ConditionalProps {
   type?: 'submit' | 'button' | 'reset';
 }
 
-export type ButtonProps = BoxProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    as?: ButtonElements;
-    variant?: keyof typeof buttons;
-    size?: keyof typeof buttonSizes;
-    disabled?: boolean;
-    startIcon?: ReactElement;
-    endIcon?: ReactElement;
-    loading?: boolean;
-    ripple?: boolean;
-    href?: string;
-    target?: string;
-    hideOutline?: boolean;
-    // adds a test id so it's easier to find in integration/e2e tests
-    'data-testid'?: string;
-  };
+export type ButtonProps = BoxProps & {
+  as?: ButtonElements;
+  variant?: keyof typeof buttons;
+  size?: keyof typeof buttonSizes;
+  disabled?: boolean;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
+  loading?: boolean;
+  ripple?: boolean;
+  href?: string;
+  target?: string;
+  hideOutline?: boolean;
+  // adds a test id so it's easier to find in integration/e2e tests
+  'data-testid'?: string;
+};
 
 export const Button = forwardRef<any, ButtonProps>(
   (

@@ -12,19 +12,17 @@ import { useModal, useModalState } from './modalStore';
 
 type CustomComponentProps = BoxProps & { isShown: boolean };
 
-type CustomComponent = FC<CustomComponentProps>;
-
 interface ModalProps {
   id: string;
   onClose?: () => void;
   width?: string;
   height?: string;
-  overlayComponent?: CustomComponent;
-  contentComponent?: CustomComponent;
+  overlayComponent?: React.ForwardRefExoticComponent<CustomComponentProps & { duration?: number }>;
+  contentComponent?: React.ForwardRefExoticComponent<CustomComponentProps & { duration?: number }>;
   duration?: number;
 }
 
-const Overlay: FC<CustomComponentProps & { duration?: number }> = forwardRef(
+const Overlay = forwardRef<any, CustomComponentProps & { duration?: number }>(
   ({ isShown, duration, ...props }, ref) => {
     return (
       <Box
@@ -47,7 +45,7 @@ const Overlay: FC<CustomComponentProps & { duration?: number }> = forwardRef(
   },
 );
 
-const Content: FC<CustomComponentProps & { duration?: number }> = forwardRef(
+const Content = forwardRef<any, CustomComponentProps & { duration?: number }>(
   ({ isShown, width, height, duration, ...props }, ref) => {
     return (
       <Box
@@ -59,7 +57,7 @@ const Content: FC<CustomComponentProps & { duration?: number }> = forwardRef(
           transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
           opacity: isShown ? 1 : 0,
           marginTop: ['auto', null],
-          width: ['100%', width],
+          width: ['100%', width as any],
           height: height,
           maxWidth: [null, '90%'],
           my: [null, '100px'],

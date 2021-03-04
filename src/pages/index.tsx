@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 
-import { Box } from '@/components/atoms/Grid';
 import { Stack } from '@/components/atoms/Grid/Stack';
 import { Heading, Paragraph } from '@/components/atoms/Text';
 
@@ -23,8 +22,6 @@ const Page: NextPage<PageProps> = () => {
           <code>Running on environment: {process.env.ENVIRONMENT_NAME}</code>
         )}
       </Stack>
-
-      <Box p={20}>Hello</Box>
     </>
   );
 };

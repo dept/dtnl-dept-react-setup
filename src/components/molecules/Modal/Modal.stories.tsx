@@ -35,7 +35,7 @@ export const custom = () => {
       <ModalButton id="storybook2">Open modal</ModalButton>
       <Modal
         id="storybook2"
-        contentComponent={forwardRef(({ isShown, ...props }, ref) => (
+        contentComponent={forwardRef<any, any>(({ isShown, ...props }, ref) => (
           <Box
             {...props}
             sx={{

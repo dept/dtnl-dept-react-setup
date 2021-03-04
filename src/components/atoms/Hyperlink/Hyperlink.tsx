@@ -31,7 +31,7 @@ export const Hyperlink = forwardRef<HTMLAnchorElement, HyperlinkProps>(
             outline: 'none',
             boxShadow: theme.shadows.outline,
           }}
-          ref={ref}>
+          ref={ref as any}>
           <Flex alignItems="center" height="100%" as="span">
             {Icon && (
               <Flex mr={'0.5em'} as="span" color={iconColor}>

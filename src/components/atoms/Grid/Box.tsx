@@ -1,5 +1,5 @@
-import { chakra, ChakraProps } from '@chakra-ui/system';
+import { chakra, HTMLChakraProps } from '@chakra-ui/system';
 
-export type BoxProps = React.ComponentProps<any> & ChakraProps;
+export interface BoxProps extends HTMLChakraProps<any> {}
 
-export const Box = chakra.div;
+export const Box = chakra('div');
