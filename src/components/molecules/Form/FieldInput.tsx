@@ -72,7 +72,7 @@ export const Input = forwardRef<any, InputProps>(
     if (mask) {
       return (
         <InputMask mask={mask} maskChar={maskChar} {...props}>
-          {(inputProps: any) => <Box innerRef={ref} as="input" sx={styles} {...inputProps} />}
+          {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}
         </InputMask>
       );
     }
