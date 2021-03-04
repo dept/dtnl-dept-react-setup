@@ -81,6 +81,7 @@ export const Button = forwardRef<any, ButtonProps>(
           cursor: 'not-allowed',
         }}
         _focus={{
+          outline: 'none',
           boxShadow: !hideOutline ? theme.shadows.outline : 'none',
         }}
         {...props}

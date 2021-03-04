@@ -53,6 +53,9 @@ export const List = forwardRef<any, BoxProps & { isOpen: boolean }>(({ isOpen, .
       borderRadius="4px"
       opacity="0"
       transform="scale(0.8) translateX(-50%)"
+      _focus={{
+        outline: 'none',
+      }}
       {...props}
       {...activeProps}
       ref={ref}
@@ -123,10 +126,8 @@ const CustomSelect: FC<FieldSelectProps> = ({
           textAlign="left"
           bg="white"
           border="none"
+          outline="none"
           cursor="pointer"
-          style={{
-            outline: 'none',
-          }}
           {...getToggleButtonProps({
             onFocus,
             onBlur,

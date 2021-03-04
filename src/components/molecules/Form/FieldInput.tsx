@@ -64,7 +64,7 @@ export const Input = forwardRef<any, InputProps>(
         margin: 0,
       },
       '&:focus': {
-        // outline: 'none',
+        outline: 'none',
       },
       ...additionalProps,
     };
@@ -91,7 +91,7 @@ export const InputWrapper: FC<InputWrapperProps> = ({ hasFocus, hasError, ...pro
   if (hasFocus) {
     additionalProps = {
       ...additionalProps,
-      // outline: 'none',
+      outline: 'none',
       boxShadow: theme.shadows.outline || 'inherit',
       borderColor: 'gray.300',
     };

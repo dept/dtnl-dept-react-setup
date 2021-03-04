@@ -41,7 +41,7 @@ export const FieldRadio: FC<FieldRadioProps> = ({ children, hasError, ...props }
               bg: 'white',
             },
             'input[type=radio]:focus + &': {
-              // outline: 'none',
+              outline: 'none',
               boxShadow: theme.shadows.outline,
             },
           }}

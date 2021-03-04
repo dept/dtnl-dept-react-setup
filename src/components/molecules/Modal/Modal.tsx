@@ -54,7 +54,7 @@ const Content: FC<CustomComponentProps & { duration?: number }> = forwardRef(
         {...props}
         sx={{
           bg: 'white',
-          // outline: 'none',
+          outline: 'none',
           transition: `opacity ${duration}ms, transform ${duration}ms`,
           transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
           opacity: isShown ? 1 : 0,

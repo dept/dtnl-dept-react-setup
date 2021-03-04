@@ -138,7 +138,6 @@ export const theme: CustomTheme = {
   breakpoints,
   space,
   shadows,
-  outline: `5px auto ${colors.gray[300]}`,
   colors,
   buttons,
   buttonSizes,

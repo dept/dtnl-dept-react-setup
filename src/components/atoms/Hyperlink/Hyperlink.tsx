@@ -21,7 +21,17 @@ export const Hyperlink = forwardRef<HTMLAnchorElement, HyperlinkProps>(
 
     return (
       <Link href={href} as={as} passHref>
-        <Box as="a" display="inline-block" color={color} borderRadius={4} {...props} ref={ref}>
+        <Box
+          as="a"
+          display="inline-block"
+          color={color}
+          borderRadius={4}
+          {...props}
+          _focus={{
+            outline: 'none',
+            // boxShadow: theme.shadows.outline,
+          }}
+          ref={ref}>
           <Flex alignItems="center" height="100%" as="span">
             {Icon && (
               <Flex mr={'0.5em'} as="span" color={iconColor}>
