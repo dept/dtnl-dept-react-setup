@@ -6,7 +6,7 @@ import { AppType } from 'next/dist/next-server/lib/utils';
 import * as React from 'react';
 
 import { BaseLayout } from '@/components/templates';
-import { GlobalStyles } from '@/theme/GlobalStyle';
+import { GlobalStyle } from '@/theme/GlobalStyle';
 import { theme } from '@/theme/theme';
 
 if (process.browser) {
@@ -23,7 +23,7 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />
       <ThemeProvider theme={theme}>
-        <GlobalStyles />
+        <GlobalStyle />
         <BaseLayout>
           <Page {...pageProps} />
         </BaseLayout>

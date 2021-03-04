@@ -29,7 +29,7 @@ export const Hyperlink = forwardRef<HTMLAnchorElement, HyperlinkProps>(
           {...props}
           _focus={{
             outline: 'none',
-            // boxShadow: theme.shadows.outline,
+            boxShadow: theme.shadows.outline,
           }}
           ref={ref}>
           <Flex alignItems="center" height="100%" as="span">

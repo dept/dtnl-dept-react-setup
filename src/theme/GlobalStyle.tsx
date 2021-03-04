@@ -4,7 +4,7 @@ import React from 'react';
 
 import { theme } from './theme';
 
-export const GlobalStyles = () => (
+export const GlobalStyle = () => (
   <Global
     styles={css`
       ${normalize()}
