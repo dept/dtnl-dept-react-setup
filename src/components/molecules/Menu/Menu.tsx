@@ -30,9 +30,11 @@ const List: FC<BoxProps & { as: any }> = props => (
       display: 'block',
       ...props.sx,
     }}
-    _focus={{
-      outline: 'none',
-    }}
+    _focus={
+      {
+        // outline: 'none',
+      }
+    }
   />
 );
 

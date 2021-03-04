@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { useSelect } from 'downshift';
 import { forwardRef, InputHTMLAttributes, useState, FC } from 'react';
 import { HiSelector } from 'react-icons/hi';
-import styled from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label/Label';
@@ -53,9 +53,6 @@ export const List = forwardRef<any, BoxProps & { isOpen: boolean }>(({ isOpen, .
       borderRadius="4px"
       opacity="0"
       transform="scale(0.8) translateX(-50%)"
-      _focus={{
-        outline: 'none',
-      }}
       {...props}
       {...activeProps}
       ref={ref}
@@ -126,8 +123,10 @@ const CustomSelect: FC<FieldSelectProps> = ({
           textAlign="left"
           bg="white"
           border="none"
-          outline="none"
           cursor="pointer"
+          style={{
+            outline: 'none',
+          }}
           {...getToggleButtonProps({
             onFocus,
             onBlur,

@@ -1,6 +1,5 @@
+import { chakra } from '@chakra-ui/system';
 import * as React from 'react';
-import styled from 'styled-components';
-import { compose, color } from 'styled-system';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
@@ -22,5 +21,5 @@ const SVGIcon = ({ size, ...props }: CustomIconProps) => {
   );
 };
 
-const InfoIcon = styled(SVGIcon)(compose(color));
+const InfoIcon = chakra(SVGIcon);
 export default InfoIcon;

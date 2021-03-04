@@ -1,13 +1,11 @@
+import { useTheme } from '@chakra-ui/system';
 import { HTMLAttributes, FC, forwardRef } from 'react';
-import { useTheme } from 'styled-components';
-import { TypographyProps } from 'styled-system';
 
 import { textVariants } from '@/theme';
 
 import { Box, BoxProps } from '../Grid/Box';
 
 export type TextProps = BoxProps &
-  TypographyProps &
   HTMLAttributes<HTMLParagraphElement> &
   HTMLAttributes<HTMLLabelElement> & {
     as?:

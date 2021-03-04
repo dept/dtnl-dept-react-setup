@@ -1,13 +1,11 @@
-import styled from 'styled-components';
+import { chakra } from '@chakra-ui/system';
 
-import { Box, BoxProps } from './Box';
+import { BoxProps } from './Box';
 
 export type FlexProps = BoxProps;
 
-export const Flex = styled(Box)({});
-
-Flex.defaultProps = {
-  display: 'flex',
-};
-
-Flex.displayName = 'Flex';
+export const Flex = chakra('div', {
+  baseStyle: {
+    display: 'flex',
+  },
+});

@@ -1,7 +1,17 @@
 {
-  "presets": ["next/babel"],
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
+        }
+      }
+    ]
+  ],
   "plugins": [
-    ["styled-components", { "displayName": true }],
+    ["@emotion/babel-plugin"],
     [
       "import",
       {
@@ -10,10 +20,5 @@
         "camel2DashComponentName": false
       }
     ]
-  ],
-  "env": {
-    "production": {
-      "plugins": [["styled-components", { "displayName": false }]]
-    }
-  }
+  ]
 }

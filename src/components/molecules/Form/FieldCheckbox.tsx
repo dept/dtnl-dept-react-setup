@@ -1,7 +1,8 @@
+import { useTheme } from '@chakra-ui/system';
+import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
-import { InputHTMLAttributes , FC } from 'react';
+import { InputHTMLAttributes, FC } from 'react';
 import { FaCheck } from 'react-icons/fa';
-import styled, { useTheme } from 'styled-components';
 
 import { Box, Flex } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label';
@@ -57,7 +58,6 @@ export const FieldCheckbox: FC<FieldCheckboxProps> = ({
               bg: 'primary',
             },
             'input[type=checkbox]:focus + &': {
-              outline: 'none',
               boxShadow: theme.shadows.outline,
             },
           }}>

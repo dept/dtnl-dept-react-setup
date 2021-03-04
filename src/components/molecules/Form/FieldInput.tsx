@@ -1,9 +1,8 @@
-import { SystemCssProperties } from '@styled-system/css';
+import { useTheme } from '@chakra-ui/system';
 import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, FC } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Props as MaskProps } from 'react-input-mask';
-import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
@@ -50,7 +49,7 @@ export const Input = forwardRef<any, InputProps>(
       };
     }
 
-    const styles: SystemCssProperties = {
+    const styles = {
       width: '100%',
       height: '100%',
       backgroundColor: 'transparent',
@@ -65,7 +64,7 @@ export const Input = forwardRef<any, InputProps>(
         margin: 0,
       },
       '&:focus': {
-        outline: 'none',
+        // outline: 'none',
       },
       ...additionalProps,
     };
@@ -92,7 +91,7 @@ export const InputWrapper: FC<InputWrapperProps> = ({ hasFocus, hasError, ...pro
   if (hasFocus) {
     additionalProps = {
       ...additionalProps,
-      outline: 'none',
+      // outline: 'none',
       boxShadow: theme.shadows.outline || 'inherit',
       borderColor: 'gray.300',
     };

@@ -1,5 +1,4 @@
 import { darken, rgba } from 'polished';
-import { DefaultTheme } from 'styled-components';
 
 import { styledSystemVariants } from '@/utils/styledSystemVariants';
 
@@ -134,7 +133,7 @@ export interface CustomTheme {
   grid: ThemeGrid;
 }
 
-export const theme: DefaultTheme = {
+export const theme: CustomTheme = {
   ...typography,
   breakpoints,
   space,

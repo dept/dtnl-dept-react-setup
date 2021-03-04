@@ -1,11 +1,4 @@
 import {} from 'react';
-import { CSSProp } from 'styled-components';
-
-import { CustomTheme } from '@/theme/theme';
-
-declare module 'styled-components' {
-  export interface DefaultTheme extends CustomTheme {}
-}
 
 declare module 'react' {
   interface Attributes {

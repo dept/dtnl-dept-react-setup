@@ -41,7 +41,7 @@ export const custom = () => {
             sx={{
               p: 10,
               bg: 'red.100',
-              outline: 'none',
+              // outline: 'none',
               transition: `opacity 300ms`,
               transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
               opacity: isShown ? 1 : 0,

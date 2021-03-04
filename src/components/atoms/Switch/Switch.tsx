@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { HTMLAttributes } from 'react';
-import styled from 'styled-components';
 
 import { colors } from '@/theme/colors';
 
@@ -68,7 +68,7 @@ const HiddenInput = styled.input`
 
   &:focus ~ ${SwitchBackground} {
     outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
+    box-shadow: ${props => (props.theme as any).shadows.outline || 'inherit'};
   }
 `;
 

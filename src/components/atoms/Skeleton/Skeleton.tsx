@@ -1,5 +1,6 @@
+import { keyframes } from '@chakra-ui/system';
+import styled from '@emotion/styled';
 import { FC, ReactNode } from 'react';
-import styled, { keyframes } from 'styled-components';
 
 const defaultBaseColor = '#eee';
 

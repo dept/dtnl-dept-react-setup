@@ -1,6 +1,6 @@
+import { useTheme } from '@chakra-ui/system';
 import { forwardRef, ButtonHTMLAttributes, ReactElement } from 'react';
 import Ink from 'react-ink';
-import { useTheme } from 'styled-components';
 
 import { buttons, buttonSizes } from '@/theme';
 
@@ -81,7 +81,6 @@ export const Button = forwardRef<any, ButtonProps>(
           cursor: 'not-allowed',
         }}
         _focus={{
-          outline: 'none',
           boxShadow: !hideOutline ? theme.shadows.outline : 'none',
         }}
         {...props}
@@ -107,7 +106,7 @@ export const Button = forwardRef<any, ButtonProps>(
 
             <Box
               display="inline-flex"
-              visibility={loading ? 'hidden' : null}
+              visibility={loading ? 'hidden' : undefined}
               justifyContent="space-between"
               alignItems="center"
               textAlign="center">

@@ -1,6 +1,6 @@
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@chakra-ui/system';
 
 import { theme } from '../src/theme';
 import { GlobalStyle } from '../src/theme/GlobalStyle';

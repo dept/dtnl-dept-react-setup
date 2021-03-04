@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { FC } from 'react';
-import styled from 'styled-components';
 
 const Code = styled.code`
   font-size: 16px;
