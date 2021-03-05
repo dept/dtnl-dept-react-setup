@@ -131,7 +131,6 @@ export interface CustomTheme {
   buttons: typeof buttons;
   buttonSizes: typeof buttonSizes;
   textVariants: typeof textVariants;
-  outline?: string;
   grid: ThemeGrid;
 }
 
