@@ -101,7 +101,7 @@ export const Pagination: FC<PaginationProps> = ({
 
         <Flex alignItems="center" mx={4}>
           {getItems().map((item: number | string) => (
-            <Box key={item} bg="red" mx={1}>
+            <Box key={item} mx={1}>
               {typeof item !== 'number' ? (
                 <Paragraph opacity={0.3}>{item}</Paragraph>
               ) : (
