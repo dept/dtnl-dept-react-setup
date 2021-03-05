@@ -254,13 +254,13 @@ const NativeSelect: FC<FieldSelectProps> = ({
 };
 
 export const FieldSelect: FC<FieldSelectProps> = props => {
+  if (props.placeholder) {
+    props.placeholder = 'Choose option...';
+  }
+
   if (props.native) {
     return <NativeSelect {...props}> </NativeSelect>;
   } else {
     return <CustomSelect {...props}></CustomSelect>;
   }
-};
-
-FieldSelect.defaultProps = {
-  placeholder: 'Choose option...',
 };
