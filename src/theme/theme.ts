@@ -1,3 +1,4 @@
+import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { darken, rgba } from 'polished';
 
 import { styledSystemVariants } from '@/utils/styledSystemVariants';
@@ -27,12 +28,13 @@ const space = {
   '64': '16rem',
 };
 
-const breakpoints: any = ['40em', '52em', '64em', '80em'];
-
-breakpoints.sm = breakpoints[0];
-breakpoints.md = breakpoints[1];
-breakpoints.lg = breakpoints[2];
-breakpoints.xl = breakpoints[3];
+const breakpoints = createBreakpoints({
+  sm: '40em',
+  md: '52em',
+  lg: '64em',
+  xl: '80em',
+  '2xl': '96em',
+});
 
 export const buttons = styledSystemVariants({
   primary: {

@@ -69,11 +69,11 @@ export const Image: FC<ImageProps> = ({
   }, [src, srcSet, onLoad, onError, inView, lazyload]);
 
   const ratioProps = ratio
-    ? {
+    ? ({
         position: 'absolute',
         top: 0,
         left: 0,
-      }
+      } as BoxProps)
     : {};
 
   return (
@@ -83,14 +83,14 @@ export const Image: FC<ImageProps> = ({
         display="block"
         src={hasLoaded ? src : placeholderSrc || transparentPlaceholder}
         srcSet={hasLoaded ? srcSet : placeholderSrcSet}
-        {...(ratioProps as any)}
+        {...ratioProps}
         sx={{
           width: '100%',
           height: '100%',
           transition: 'opacity 0.4s ease-in-out',
           opacity: hasLoaded || placeholderSrc ? 1 : 0,
-          objectFit: objectFit as any,
-          objectPosition: objectPosition as any,
+          objectFit,
+          objectPosition,
         }}
         alt={alt}
       />
