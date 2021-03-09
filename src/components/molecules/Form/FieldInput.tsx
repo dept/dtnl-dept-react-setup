@@ -1,9 +1,8 @@
-import { SystemCssProperties } from '@styled-system/css';
+import { useTheme } from '@chakra-ui/system';
 import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, FC } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Props as MaskProps } from 'react-input-mask';
-import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { IconButton } from '@/components/atoms/IconButton';
@@ -50,7 +49,7 @@ export const Input = forwardRef<any, InputProps>(
       };
     }
 
-    const styles: SystemCssProperties = {
+    const styles = {
       width: '100%',
       height: '100%',
       backgroundColor: 'transparent',
@@ -73,7 +72,7 @@ export const Input = forwardRef<any, InputProps>(
     if (mask) {
       return (
         <InputMask mask={mask} maskChar={maskChar} {...props}>
-          {(inputProps: any) => <Box innerRef={ref} as="input" sx={styles} {...inputProps} />}
+          {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}
         </InputMask>
       );
     }

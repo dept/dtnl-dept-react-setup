@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { FC, useRef, useState } from 'react';
 import { Manager, Popper, PopperProps, Reference } from 'react-popper';
 import useClickAway from 'react-use/lib/useClickAway';
-import styled from 'styled-components';
 
 import { colors } from '@/theme/colors';
 

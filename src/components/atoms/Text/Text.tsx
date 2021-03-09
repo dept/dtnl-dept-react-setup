@@ -1,13 +1,11 @@
+import { useTheme } from '@chakra-ui/system';
 import { HTMLAttributes, FC, forwardRef } from 'react';
-import { useTheme } from 'styled-components';
-import { TypographyProps } from 'styled-system';
 
 import { textVariants } from '@/theme';
 
 import { Box, BoxProps } from '../Grid/Box';
 
 export type TextProps = BoxProps &
-  TypographyProps &
   HTMLAttributes<HTMLParagraphElement> &
   HTMLAttributes<HTMLLabelElement> & {
     as?:
@@ -32,12 +30,13 @@ export type HeadingProps = TextProps &
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   };
 
-export const Text = forwardRef<any, TextProps>(({ variant, ...props }, ref) => {
+export const Text = forwardRef<any, TextProps>(({ as = 'span', variant, ...props }, ref) => {
   const theme = useTheme();
   const textVariant = variant && theme.textVariants[variant];
 
   return (
     <Box
+      as={as}
       sx={{
         margin: 0,
         ...textVariant,
@@ -48,17 +47,9 @@ export const Text = forwardRef<any, TextProps>(({ variant, ...props }, ref) => {
   );
 });
 
-export const Paragraph = Text;
-export const Heading: FC<HeadingProps> = props => <Text {...props} />;
-
-Heading.defaultProps = {
-  as: 'h2',
-};
-
-Text.defaultProps = {
-  as: 'span',
-};
-
-Paragraph.defaultProps = {
-  as: 'p',
-};
+export const Paragraph = forwardRef<any, TextProps>(({ as = 'p', ...props }, ref) => (
+  <Text as={as} ref={ref} {...props} />
+));
+export const Heading = forwardRef<any, HeadingProps>(({ as = 'h2', ...props }, ref) => (
+  <Text as={as} ref={ref} {...props} />
+));

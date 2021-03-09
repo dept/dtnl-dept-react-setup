@@ -1,12 +1,10 @@
-import {} from 'react';
-import { CSSProp } from 'styled-components';
-
 import { CustomTheme } from '@/theme/theme';
 
-declare module 'styled-components' {
-  export interface DefaultTheme extends CustomTheme {}
-}
+import '@emotion/react';
 
+declare module '@emotion/react' {
+  export interface Theme extends CustomTheme {}
+}
 declare module 'react' {
   interface Attributes {
     // NOTE: unlike the plain javascript version, it is not possible to get access

@@ -49,6 +49,8 @@ export const FieldCombobox: FC<FieldComboboxProps> = ({
   onChange,
   showSelector,
   onTyping,
+  placeholder = 'Choose option...',
+  clearable = true,
   ...rest
 }) => {
   const [inputItems, setInputItems] = useState(items);
@@ -97,6 +99,8 @@ export const FieldCombobox: FC<FieldComboboxProps> = ({
     <Box position="relative" {...getComboboxProps()}>
       <FieldInput
         {...rest}
+        placeholder={placeholder}
+        clearable={clearable}
         {...getInputProps({
           onFocus: () => {
             openMenu();
@@ -144,9 +148,4 @@ export const FieldCombobox: FC<FieldComboboxProps> = ({
       </Box>
     </Box>
   );
-};
-
-FieldCombobox.defaultProps = {
-  placeholder: 'Choose option...',
-  clearable: true,
 };

@@ -1,9 +1,9 @@
 import '@public/fonts/fonts.css';
 
+import { ThemeProvider } from '@chakra-ui/system';
 import { DefaultSeo } from 'next-seo';
 import { AppType } from 'next/dist/next-server/lib/utils';
 import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
 
 import { BaseLayout } from '@/components/templates';
 import { GlobalStyle } from '@/theme/GlobalStyle';

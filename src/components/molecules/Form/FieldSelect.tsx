@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { useSelect } from 'downshift';
 import { forwardRef, InputHTMLAttributes, useState, FC } from 'react';
 import { HiSelector } from 'react-icons/hi';
-import styled from 'styled-components';
 
 import { Box, BoxProps } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label/Label';
@@ -254,13 +254,13 @@ const NativeSelect: FC<FieldSelectProps> = ({
 };
 
 export const FieldSelect: FC<FieldSelectProps> = props => {
+  if (props.placeholder) {
+    props.placeholder = 'Choose option...';
+  }
+
   if (props.native) {
     return <NativeSelect {...props}> </NativeSelect>;
   } else {
     return <CustomSelect {...props}></CustomSelect>;
   }
-};
-
-FieldSelect.defaultProps = {
-  placeholder: 'Choose option...',
 };

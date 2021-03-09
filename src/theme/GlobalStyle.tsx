@@ -1,25 +1,34 @@
+import { css, Global } from '@emotion/react';
 import { normalize } from 'polished';
-import { createGlobalStyle } from 'styled-components';
+import React from 'react';
 
 import { theme } from './theme';
 
-export const GlobalStyle = createGlobalStyle`
-  ${normalize()}
+export const GlobalStyle = () => (
+  <Global
+    styles={css`
+      ${normalize()}
 
-  :root {
-    --reach-dialog: 1; // disables warning
-  }
+      * {
+        box-sizing: border-box;
+      }
 
-  body {
-    font-family: ${theme.fonts.body};
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.8;
-    min-width: 320px;
-  }
+      :root {
+        --reach-dialog: 1;
+      }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-`;
+      body {
+        font-family: ${theme.fonts.body};
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.8;
+        min-width: 320px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    `}
+  />
+);

@@ -1,10 +1,9 @@
+import { useTheme } from '@chakra-ui/system';
 import { FC } from 'react';
-import { useTheme } from 'styled-components';
-import { DisplayProps, HeightProps } from 'styled-system';
 
-import { Box } from './Box';
+import { Box, BoxProps } from './Box';
 
-type ContainerProps = DisplayProps & HeightProps;
+type ContainerProps = BoxProps;
 
 export const Container: FC<ContainerProps> = props => {
   const themeContext = useTheme();

@@ -4,12 +4,6 @@ import { HiCheckCircle, HiExclamation, HiInformationCircle, HiXCircle } from 're
 import { Box, BoxProps, Flex } from '../Grid';
 import { Heading, Paragraph } from '../Text';
 
-type AlertProps = BoxProps & {
-  type: keyof typeof colors;
-  title?: string;
-  icon?: any;
-};
-
 const colors = {
   succes: {
     bg: 'green.50',
@@ -31,6 +25,12 @@ const colors = {
     color: 'red.700',
     icon: HiXCircle,
   },
+};
+
+type AlertProps = Omit<BoxProps, 'type'> & {
+  type: keyof typeof colors;
+  title?: string;
+  icon?: any;
 };
 
 export const Alert: FC<AlertProps> = ({ type, title, children, icon, ...props }) => {

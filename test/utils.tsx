@@ -1,6 +1,6 @@
+import { ThemeProvider } from '@emotion/react';
 import { render as rtlRender } from '@testing-library/react';
-import { FC } from 'react';
-import { ThemeProvider } from 'styled-components';
+import React, { FC } from 'react';
 
 import { theme } from '@/theme';
 

@@ -1,6 +1,7 @@
+import { useTheme } from '@chakra-ui/system';
+import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
-import { InputHTMLAttributes , FC } from 'react';
-import styled, { useTheme } from 'styled-components';
+import { InputHTMLAttributes, FC } from 'react';
 
 import { Box, Flex } from '@/components/atoms/Grid';
 import { Label } from '@/components/atoms/Label';

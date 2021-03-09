@@ -1,5 +1,6 @@
+import { keyframes } from '@chakra-ui/system';
+import styled from '@emotion/styled';
 import { FC, ReactNode } from 'react';
-import styled, { keyframes } from 'styled-components';
 
 const defaultBaseColor = '#eee';
 
@@ -41,7 +42,7 @@ interface Props {
 }
 
 export const Skeleton: FC<Props> = props => {
-  const { count = 1, width, height, circle, wrapper } = props;
+  const { count = 1, width, height, circle = false, wrapper = null } = props;
 
   const elements = [];
   for (let i = 0; i < count; i++) {
@@ -76,11 +77,4 @@ export const Skeleton: FC<Props> = props => {
         : elements}
     </span>
   );
-};
-
-Skeleton.defaultProps = {
-  count: 1,
-  duration: 1.2,
-  wrapper: null,
-  circle: false,
 };

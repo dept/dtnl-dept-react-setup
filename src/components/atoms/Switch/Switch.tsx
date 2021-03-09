@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { HTMLAttributes } from 'react';
-import styled from 'styled-components';
 
 import { colors } from '@/theme/colors';
 

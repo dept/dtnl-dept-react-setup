@@ -34,9 +34,3 @@ export const GridExample = () => {
     </Grid>
   );
 };
-
-FlexGrid.story = {
-  parameters: {
-    info: 'More information: https://styled-system.com/getting-started',
-  },
-};

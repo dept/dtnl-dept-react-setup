@@ -1,6 +1,6 @@
+import { useTheme } from '@chakra-ui/system';
 import { LinkProps } from 'next/link';
 import { forwardRef } from 'react';
-import { useTheme } from 'styled-components';
 
 import { Box, BoxProps, Flex } from '../Grid';
 import { Link } from '../Link';
@@ -31,7 +31,7 @@ export const Hyperlink = forwardRef<HTMLAnchorElement, HyperlinkProps>(
             outline: 'none',
             boxShadow: theme.shadows.outline,
           }}
-          ref={ref}>
+          ref={ref as any}>
           <Flex alignItems="center" height="100%" as="span">
             {Icon && (
               <Flex mr={'0.5em'} as="span" color={iconColor}>

@@ -1,5 +1,5 @@
+import { useTheme } from '@chakra-ui/system';
 import { forwardRef, ReactElement } from 'react';
-import { useTheme } from 'styled-components';
 
 import { Box, BoxProps } from '../Grid';
 
@@ -47,8 +47,9 @@ export const IconButton = forwardRef<any, IconButtonProps & BoxProps>((props, re
       _focus={{
         outline: 'none',
         boxShadow: !hideOutline ? theme.shadows.outline : 'none',
+        bg: 'rgba(0,0,0,.05)',
       }}
-      _hocus={{
+      _hover={{
         bg: 'rgba(0,0,0,.05)',
       }}
       {...rest}

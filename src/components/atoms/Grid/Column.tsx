@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-import { compose, style } from 'styled-system';
+import { FC } from 'react';
 
 import { Box, BoxProps } from './Box';
 
-type ColumnProps = BoxProps & {
+type ColumnProps = Omit<BoxProps, 'inset'> & {
   col?: number | (number | null | string)[];
   inset?: number | (number | null | string)[];
 };
@@ -17,18 +16,14 @@ function transformValue(n: string | number | null) {
   return (cols / 12) * 100 + '%';
 }
 
-const inset = style({
-  prop: 'inset',
-  cssProperty: 'marginLeft',
-  transformValue,
-});
+export const Column: FC<ColumnProps> = ({ col, inset, ...props }) => {
+  const width =
+    col && Array.isArray(col) ? col.map(transformValue) : transformValue(col!) || undefined;
 
-const col = style({
-  prop: 'col',
-  cssProperty: 'width',
-  transformValue,
-});
+  const ml =
+    inset && Array.isArray(inset) ? inset.map(transformValue) : transformValue(inset!) || undefined;
 
-export const Column = styled(Box)<Omit<ColumnProps, 'width'>>(compose(col, inset));
+  return <Box {...props} width={width} ml={ml} />;
+};
 
 Column.displayName = 'Column';

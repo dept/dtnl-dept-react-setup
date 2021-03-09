@@ -1,7 +1,7 @@
+import { useTheme } from '@chakra-ui/system';
 import { FC } from 'react';
-import { useTheme } from 'styled-components';
-import { FlexboxProps, SpaceProps, WidthProps } from 'styled-system';
 
+import { BoxProps } from './Box';
 import { Flex } from './Flex';
 import { Space } from './Space';
 
@@ -9,7 +9,7 @@ interface GutterProps {
   gap?: any[] | number;
 }
 
-type RowProps = FlexboxProps & GutterProps & SpaceProps & WidthProps;
+type RowProps = BoxProps & GutterProps;
 
 export const Row: FC<RowProps> = ({ gap, children, ...props }) => {
   const themeContext = useTheme();

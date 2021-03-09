@@ -1,8 +1,9 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+import React from 'react';
 
 import { Stack } from '@/components/atoms/Grid/Stack';
-import { Heading, Paragraph } from '@/components/atoms/Text';
+import { Heading, Text, Paragraph } from '@/components/atoms/Text';
 
 interface PageProps {}
 
@@ -20,6 +21,8 @@ const Page: NextPage<PageProps> = () => {
         {process.env.ENVIRONMENT_NAME && (
           <code>Running on environment: {process.env.ENVIRONMENT_NAME}</code>
         )}
+
+        <Text as="span">dfgdfg</Text>
       </Stack>
     </>
   );

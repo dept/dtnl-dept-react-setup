@@ -35,7 +35,7 @@ export const Stack: FC<StackProps> = ({ children, divider, space, align }) => {
     containerProps.alignItems = align.map(mapAlign);
   } else {
     if (align) {
-      containerProps.alignItems = mapAlign(align);
+      containerProps.alignItems = mapAlign(align) || undefined;
     }
   }
 

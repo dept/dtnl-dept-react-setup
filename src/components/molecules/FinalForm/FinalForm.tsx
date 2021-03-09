@@ -22,6 +22,7 @@ async function validateYup(
 ) {
   try {
     await schema.validate(values, { abortEarly: false });
+    await schema.cast(values);
   } catch (e) {
     errors = (e as Yup.ValidationError).inner.reduce((acc, error) => {
       return setIn(acc, error.path!, error.message);
@@ -52,7 +53,12 @@ export function FinalForm<FormValues extends BaseValues = BaseValues>({
 
   return (
     <Form<FormValues>
-      onSubmit={onSubmit}
+      onSubmit={(values, form) => {
+        if (validationSchema) {
+          values = validationSchema.cast(values);
+        }
+        onSubmit(values, form);
+      }}
       initialValues={initialValues}
       decorators={formDecorators}
       validate={async values => {
