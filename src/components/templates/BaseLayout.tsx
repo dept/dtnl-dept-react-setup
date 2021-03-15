@@ -1,14 +1,16 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
-import { Box, Flex, Container } from '../atoms/Grid';
-import { Heading, Text } from '../atoms/Text';
-import { Modal } from '../molecules/Modal';
-import { Footer } from '../organisms/Footer';
-import { Header } from '../organisms/Header';
+import { Footer } from '../features/layout/Footer';
+import { Header } from '../features/layout/Header';
+import { Box, Flex, Container } from '../shared/Grid';
+import { Modal } from '../shared/Modal';
+import { Heading, Text } from '../shared/Text';
 
-interface BaseLayoutProps {}
+interface BaseLayoutProps {
+  children?: ReactNode;
+}
 
-export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
+export function BaseLayout({ children }: BaseLayoutProps) {
   return (
     <Flex flexDirection="column" height="100vh">
       <Header />
@@ -27,4 +29,4 @@ export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
       </Modal>
     </Flex>
   );
-};
+}

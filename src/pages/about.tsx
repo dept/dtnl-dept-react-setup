@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { Box } from '@/components/atoms/Grid';
-import { Heading, Paragraph } from '@/components/atoms/Text';
+import { Box } from '@/components/shared/Grid';
+import { Heading, Paragraph } from '@/components/shared/Text';
 
 interface PageProps {}
 

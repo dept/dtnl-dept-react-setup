@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { Box } from '@/components/atoms/Grid';
-import { Hyperlink } from '@/components/atoms/Hyperlink';
-import { Heading } from '@/components/atoms/Text';
+import { Box } from '@/components/shared/Grid';
+import { Hyperlink } from '@/components/shared/Hyperlink';
+import { Heading } from '@/components/shared/Text';
 
 interface PageProps {}
 

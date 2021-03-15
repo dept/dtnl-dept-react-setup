@@ -5,13 +5,13 @@ import { NextSeo } from 'next-seo';
 import { useState } from 'react';
 import * as Yup from 'yup';
 
-import { Alert } from '@/components/atoms/Alert';
-import { Divider } from '@/components/atoms/Divider';
-import { Box, Stack } from '@/components/atoms/Grid';
-import { FieldRadioGroup } from '@/components/molecules/Form';
-import { SubmitHandler } from '@/components/molecules/Formik/types';
-import { FinalFormExampleForm } from '@/components/organisms/Forms/FinalFormExampleForm';
-import { FormikExampleForm } from '@/components/organisms/Forms/FormikExampleForm';
+import { FinalFormExampleForm } from '@/components/features/forms/FinalFormExampleForm';
+import { FormikExampleForm } from '@/components/features/forms/FormikExampleForm';
+import { Alert } from '@/components/shared/Alert';
+import { Divider } from '@/components/shared/Divider';
+import { FieldRadioGroup } from '@/components/shared/Form';
+import { SubmitHandler } from '@/components/shared/Formik/types';
+import { Box, Stack } from '@/components/shared/Grid';
 
 type FFSubmitHandler<FormValues> = (values: FormValues, formHelpers: FormApi<FormValues>) => void;
 
