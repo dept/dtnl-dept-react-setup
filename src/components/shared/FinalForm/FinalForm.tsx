@@ -53,11 +53,11 @@ export function FinalForm<FormValues extends BaseValues = BaseValues>({
 
   return (
     <Form<FormValues>
-      onSubmit={(values, form) => {
+      onSubmit={async (values, form) => {
         if (validationSchema) {
           values = validationSchema.cast(values);
         }
-        onSubmit(values, form);
+        await onSubmit(values, form);
       }}
       initialValues={initialValues}
       decorators={formDecorators}
