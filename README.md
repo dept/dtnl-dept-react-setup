@@ -24,11 +24,27 @@ if (process.browser) {
 
 ## Generator
 
-The project includes generators for components en context provider. Simply run either:
+The project includes generators for components en context provider. Simply run one of the following commands:
 
-- `yarn route about`
-- `yarn component Slider`
-- `yarn context User`
+```bash
+# creates a pages/about.tsx
+yarn route about
+```
+
+```bash
+# creates a component in the shared folder
+yarn component shared/Slider
+```
+
+```bash
+# creates a component in the features/login folder
+yarn component features/login/LoginForm
+```
+
+```bash
+# creates a context provider
+yarn context User
+```
 
 ## Custom server
 
