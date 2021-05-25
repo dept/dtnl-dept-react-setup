@@ -1,3 +1,5 @@
+// @ts-check
+
 require('dotenv').config();
 const withPlugins = require('next-compose-plugins');
 
@@ -7,6 +9,7 @@ const { plugins } = require('./config/plugins');
 /**
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
+ * @type {import('next/dist/next-server/server/config').NextConfig}
  */
 module.exports = withPlugins(plugins, {
   /**
