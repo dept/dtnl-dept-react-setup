@@ -17,6 +17,8 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="disabled-adaptations" content="watch" />
           {renderFavicons()}
+
+          {'<!-- test -->'}
           {this.props.dangerousAsPath !== '/unsupported' && (
             <script
               dangerouslySetInnerHTML={{
