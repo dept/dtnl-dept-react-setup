@@ -1,15 +1,14 @@
-import { Children, Fragment, ReactNode } from 'react';
+import React, { FC, Children } from 'react';
 
-import { Box, BoxProps } from './Box';
-import { Flex, FlexProps } from './Flex';
+import { FlexProps, BoxProps } from '.';
 
 type Align = 'left' | 'center' | 'right' | null;
 
-interface StackProps {
+interface StackProps extends Omit<FlexProps, 'align'> {
   space: BoxProps['paddingTop'];
   divider?: JSX.Element;
   align?: Align | Align[];
-  children?: ReactNode;
+  direction?: 'column' | 'row';
 }
 
 function mapAlign(align: Align) {
@@ -23,13 +22,20 @@ function mapAlign(align: Align) {
   }
 }
 
-export const Stack = ({ children, divider, space, align }: StackProps) => {
+export const Stack: FC<StackProps> = ({
+  children,
+  divider,
+  space,
+  align,
+  direction = 'column',
+  ...props
+}) => {
   const spaceProps: BoxProps = {
-    pb: space,
+    [direction === 'column' ? 'pb' : 'pr']: space,
   };
 
   const containerProps: FlexProps = {
-    flexDirection: 'column',
+    flexDirection: direction,
   };
 
   if (Array.isArray(align)) {
@@ -55,5 +61,9 @@ export const Stack = ({ children, divider, space, align }: StackProps) => {
     );
   });
 
-  return <Flex {...containerProps}>{childComponents}</Flex>;
+  return (
+    <Flex {...containerProps} {...props}>
+      {childComponents}
+    </Flex>
+  );
 };
