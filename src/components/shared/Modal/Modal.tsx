@@ -6,10 +6,10 @@ import React, { forwardRef, ReactNode, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 
 import { Button } from '@/components/shared/Button';
-import { Flex, BoxProps } from '@/components/shared/Grid';
-import { Icon } from '@/components/shared/Icon';
+import { BoxProps, Box } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
 import { Heading } from '@/components/shared/Text';
+import CloseLightIcon from '@/icons/components/CloseLight';
 import { colors } from '@/theme/colors';
 
 import { MotionBox } from '../MotionBox';
@@ -216,27 +216,16 @@ export const Modal = ({
               {modal && (
                 <>
                   {modal.isClosable && (
-                    <Button
-                      title={'close'}
-                      variant="round"
-                      top={{ base: '40px', md: '64px' }}
-                      right={{ base: '24px', md: '64px' }}
-                      sx={{
-                        zIndex: 2,
-                        position: 'absolute',
-                        width: '46px',
-                        height: '46px',
-                        border: '2px solid rgba(255,255,255, 0.2)',
-                        ...buttonPropsSx,
-                      }}
-                      // eslint-disable-next-line jsx-a11y/no-autofocus
-                      autoFocus
-                      onClick={onDismiss}
-                      {...buttonProps}>
-                      <Flex w="42px" h="42px" justifyContent="center" alignItems="center">
-                        <Icon color={'white'} size={12} icon={'CloseNormal'} />
-                      </Flex>
-                    </Button>
+                    <Box top={0} right={0} zIndex={99} position="absolute" p={4}>
+                      <IconButton
+                        aria-label="Close"
+                        onClick={onDismiss}
+                        size={20}
+                        icon={<CloseLightIcon size={15} />}
+                        sx={{ ...buttonPropsSx }}
+                        {...buttonProps}
+                      />
+                    </Box>
                   )}
 
                   {title && (
