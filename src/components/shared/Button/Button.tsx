@@ -44,6 +44,7 @@ export const Button = forwardRef<any, ButtonProps>(
       loading,
       disabled,
       hideOutline,
+      sx,
       ...props
     },
     ref,
@@ -72,6 +73,7 @@ export const Button = forwardRef<any, ButtonProps>(
           transitionDuration: '.15s',
           ...buttonSize,
           ...buttonVariant,
+          ...sx,
           '& svg': {
             lineHeight: 1,
           },

@@ -1,10 +1,12 @@
+import React from 'react';
+
 /**
  * @jest-environment jsdom
  */
 import { render } from '@test/utils';
 
-import { Reveal } from './Reveal';
+import { Icon } from './Icon';
 
 test('it renders', () => {
-  render(<Reveal></Reveal>);
+  render(<Icon icon="Clock"></Icon>);
 });

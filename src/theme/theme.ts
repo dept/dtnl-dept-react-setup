@@ -1,8 +1,10 @@
 import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { darken, rgba } from 'polished';
 
+import { KEYBOARD_FOCUSED } from '@/utils/detectKeyboardFocus';
 import { styledSystemVariants } from '@/utils/styledSystemVariants';
 
+import * as iconComponents from '../icons/components';
 import { colors } from './colors';
 import { grid } from './grid';
 import { typography } from './typography';
@@ -75,6 +77,25 @@ export const buttons = styledSystemVariants({
     backgroundColor: 'transparent',
     border: 'none',
   },
+  round: {
+    backgroundColor: colors.primary,
+    color: colors.white,
+    border: 0,
+    borderRadius: '50%',
+    width: '56px',
+    height: '56px',
+    p: 0,
+    [`&:hover, .${KEYBOARD_FOCUSED} &:focus`]: {
+      backgroundColor: darken(0.2, colors.primary),
+    },
+    [`.${KEYBOARD_FOCUSED} &:focus`]: {
+      boxShadow: '0px 0px 0px 4px #ad8f8f',
+    },
+    '&:disabled': {
+      backgroundColor: 'gray.300',
+      color: 'gray.800',
+    },
+  },
 });
 
 // buttonSizes based on sizes in spaces
@@ -107,6 +128,9 @@ export const textVariants = styledSystemVariants({
 });
 
 export type ButtonOption = keyof typeof buttons;
+
+export const icons = iconComponents;
+export type IconOption = keyof typeof icons;
 
 export interface ThemeGridContainer {
   maxWidth: number;
