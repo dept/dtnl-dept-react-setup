@@ -192,14 +192,12 @@ export const Modal = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        // @ts-ignore
         <DialogOverlay
           as={overlayComponent as any}
           onDismiss={modal.isClosable ? onDismiss : undefined}
           duration={duration}
           delay={delay}>
           <FocusLock returnFocus={true}>
-            {/* @ts-ignore */}
             <DialogContent
               as={contentComponent as any}
               aria-label="Modal"
