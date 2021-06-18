@@ -14,6 +14,7 @@ import { colors } from '@/theme/colors';
 
 import { MotionBox } from '../MotionBox';
 import { useModal, useModalState } from './modalStore';
+import { CloseNormal } from '@/icons/components';
 
 const DialogContent = chakra(DContent);
 
@@ -234,7 +235,7 @@ export const Modal = ({
                       onClick={onDismiss}
                       {...buttonProps}>
                       <Flex w="42px" h="42px" justifyContent="center" alignItems="center">
-                        <Icon color={'white'} size={12} icon={'CloseNormal'} />
+                        <CloseNormal color="white" size={12} />
                       </Flex>
                     </Button>
                   )}
