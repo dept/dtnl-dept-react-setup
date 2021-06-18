@@ -18,7 +18,6 @@ export default class MyDocument extends Document {
           <meta name="disabled-adaptations" content="watch" />
           {renderFavicons()}
 
-          {'<!-- test -->'}
           {this.props.dangerousAsPath !== '/unsupported' && (
             <script
               dangerouslySetInnerHTML={{
