@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { isBrowser } from './isBrowser';
 
 export const KEYBOARD_FOCUSED = 'has--keyboard-focus';
