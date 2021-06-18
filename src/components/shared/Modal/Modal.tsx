@@ -7,7 +7,6 @@ import FocusLock from 'react-focus-lock';
 
 import { Button } from '@/components/shared/Button';
 import { Flex, BoxProps } from '@/components/shared/Grid';
-import { Icon } from '@/components/shared/Icon';
 import { IconButton } from '@/components/shared/IconButton';
 import { Heading } from '@/components/shared/Text';
 import { colors } from '@/theme/colors';
