@@ -19,6 +19,9 @@ function getPackageDir(filepath) {
 
 module.exports = {
   stories: ['../src/**/*.stories.[jt]sx'],
+  typescript: {
+    reactDocgen: 'none', // https://github.com/storybookjs/storybook/issues/15067
+  },
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-links/register',

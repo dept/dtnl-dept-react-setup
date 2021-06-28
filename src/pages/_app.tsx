@@ -8,8 +8,9 @@ import * as React from 'react';
 import { BaseLayout } from '@/components/templates';
 import { GlobalStyle } from '@/theme/GlobalStyle';
 import { theme } from '@/theme/theme';
+import { isBrowser } from '@/utils/isBrowser';
 
-if (process.browser) {
+if (isBrowser) {
   import('@/utils/detectTouch');
   import('@/utils/detectKeyboardFocus');
 }

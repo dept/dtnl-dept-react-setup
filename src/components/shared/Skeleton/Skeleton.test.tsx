@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { render } from '@test/utils';
 
 import { Skeleton } from './Skeleton';

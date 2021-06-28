@@ -1,44 +1,126 @@
-import { DialogContent, DialogOverlay } from '@reach/dialog';
-import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
-import { Transition } from 'react-transition-group';
+import { chakra } from '@chakra-ui/system';
+import styled from '@emotion/styled';
+import { DialogContent as DContent, DialogOverlay } from '@reach/dialog';
+import { AnimatePresence } from 'framer-motion';
+import React, { forwardRef, ReactNode, useEffect } from 'react';
+import FocusLock from 'react-focus-lock';
 
 import { Button } from '@/components/shared/Button';
-import { Box, BoxProps } from '@/components/shared/Grid';
+import { BoxProps, Box } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
 import { Heading } from '@/components/shared/Text';
 import CloseLightIcon from '@/icons/components/CloseLight';
+import { colors } from '@/theme/colors';
 
+import { MotionBox } from '../MotionBox';
 import { useModal, useModalState } from './modalStore';
 
-type CustomComponentProps = BoxProps & { isShown: boolean };
+const DialogContent = chakra(DContent);
+
+type CustomComponentProps = BoxProps & { isShown: boolean; duration?: number };
 
 interface ModalProps {
   id: string;
+  onOpen?: () => void;
   onClose?: () => void;
   width?: string;
   height?: string;
-  overlayComponent?: React.ForwardRefExoticComponent<CustomComponentProps & { duration?: number }>;
-  contentComponent?: React.ForwardRefExoticComponent<CustomComponentProps & { duration?: number }>;
+  maxWidth?: string;
+  maxHeight?: string;
+  p?: any;
+  sx?: BoxProps;
+  buttonProps?: BoxProps;
+  overlayComponent?: React.ForwardRefExoticComponent<CustomComponentProps>;
+  contentComponent?: React.ForwardRefExoticComponent<CustomComponentProps>;
   duration?: number;
+  delay?: number;
   children?: ReactNode;
+  title?: string;
+  callback?: () => void;
+  callbackLabel?: string;
 }
 
-const Overlay = forwardRef<any, CustomComponentProps & { duration?: number }>(
-  ({ isShown, duration, ...props }, ref) => {
+const Overlay = forwardRef<any, CustomComponentProps>(({ duration, delay, ...props }, ref) => {
+  return (
+    <MotionBox
+      initial={{
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        opacity: 0,
+        transition: {
+          delay,
+          delayChildren: delay,
+        },
+      }}
+      animate={{
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        opacity: 1,
+      }}
+      exit={{
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        opacity: 0,
+      }}
+      transition={{
+        duration,
+        ease: 'easeInOut',
+      }}
+      {...props}
+      sx={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
+        zIndex: 99,
+      }}
+      ref={ref}
+    />
+  );
+});
+
+const Content = forwardRef<any, CustomComponentProps & { duration?: number }>(
+  ({ width, height, duration, sx, ...props }, ref) => {
     return (
-      <Box
+      <MotionBox
+        initial={{
+          opacity: 0,
+          x: '-50%',
+          y: 'calc(-50% + 40px)',
+        }}
+        animate={{
+          opacity: 1,
+          y: '-50%',
+        }}
+        exit={{
+          opacity: 0,
+          x: '-50%',
+          y: 'calc(-50% + 40px)',
+        }}
+        transition={{
+          duration,
+          ease: 'easeOut',
+        }}
         {...props}
         sx={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
+          bg: colors.white,
+          outline: 'none',
+          width: width as any,
+          height: height,
+          maxWidth: {
+            base: 'calc(100% - 32px)',
+            xs: 'calc(100% - 48px)',
+          },
+          maxHeight: 'calc(100% - 96px)',
           overflow: 'auto',
-          transitionTimingFunction: `ease-in-out`,
-          transition: `background-color ${duration}ms`,
-          zIndex: 99,
-          backgroundColor: isShown ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0)',
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          textAlign: 'center',
+          ...sx,
         }}
         ref={ref}
       />
@@ -46,91 +128,89 @@ const Overlay = forwardRef<any, CustomComponentProps & { duration?: number }>(
   },
 );
 
-const Content = forwardRef<any, CustomComponentProps & { duration?: number }>(
-  ({ isShown, width, height, duration, ...props }, ref) => {
-    return (
-      <Box
-        {...props}
-        sx={{
-          bg: 'white',
-          outline: 'none',
-          transition: `opacity ${duration}ms, transform ${duration}ms`,
-          transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
-          opacity: isShown ? 1 : 0,
-          marginTop: ['auto', null],
-          width: ['100%', width as any],
-          height: height,
-          maxWidth: [null, '90%'],
-          my: [null, '100px'],
-          mx: [null, 'auto'],
-          position: ['fixed', 'relative'],
-          bottom: [0, null],
-          transform: isShown ? 'translateY(0px)' : 'translateY(40px)',
-        }}
-        ref={ref}
-      />
-    );
-  },
-);
+export const CloseButton = styled(IconButton)`
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform ease-in-out 150ms;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.125);
+    opacity: 1;
+  }
+`;
 
 export const Modal = ({
   children,
   id,
+  onOpen,
   onClose,
-  width = '500px',
+  width = '100%',
   height = 'auto',
-  duration = 300,
+  duration = 0.3,
+  delay = 0,
+  maxWidth = '1280px',
+  maxHeight,
+  p,
+  sx,
+  buttonProps: { sx: buttonPropsSx, ...buttonProps } = {},
   contentComponent = Content,
   overlayComponent = Overlay,
+  title: _title,
+  callback: _callback,
+  callbackLabel: _callbackLabel,
 }: ModalProps) => {
   const { hide } = useModal(id);
   const modal = useModalState(id);
-  const [isOpen, setOpen] = useState(false);
+
+  const isOpen = modal?.isShown || false;
+
+  const title = modal?.title || _title;
+  const callback = modal?.callback || _callback;
+  const callbackLabel = modal?.callbackLabel || _callbackLabel;
 
   useEffect(() => {
-    setOpen(modal?.isShown || false);
-  }, [setOpen, modal]);
+    if (isOpen) onOpen && onOpen();
+  }, [isOpen, onOpen]);
 
   const onDismiss = () => {
     hide();
 
     if (onClose) {
-      setTimeout(onClose, duration);
+      setTimeout(onClose, duration * 1000);
     }
   };
 
   const onConfirm = () => {
-    if (modal.callback) {
-      modal.callback();
+    if (callback) {
+      callback();
     }
 
     onDismiss();
   };
 
   return (
-    <Transition
-      in={isOpen}
-      timeout={{
-        enter: 0,
-        exit: duration,
-      }}
-      unmountOnExit>
-      {state => {
-        const isShown = state === 'entered';
-
-        return (
-          <DialogOverlay
-            as={overlayComponent as any}
-            onDismiss={modal.isClosable ? onDismiss : undefined}
-            isShown={isShown}
-            duration={duration}>
+    <AnimatePresence>
+      {isOpen && (
+        <DialogOverlay
+          as={overlayComponent as any}
+          onDismiss={modal.isClosable ? onDismiss : undefined}
+          duration={duration}
+          delay={delay}>
+          <FocusLock returnFocus={true}>
             <DialogContent
               as={contentComponent as any}
-              isShown={isShown}
               aria-label="Modal"
               width={width}
               height={height}
-              duration={duration}>
+              maxWidth={maxWidth}
+              maxHeight={maxHeight}
+              duration={duration}
+              onClick={e => e.stopPropagation()}
+              p={p || { base: '40px 24px', md: '64px' }}
+              backgroundColor={colors.primary}
+              color={colors.white}
+              sx={sx}>
               {modal && (
                 <>
                   {modal.isClosable && (
@@ -140,25 +220,31 @@ export const Modal = ({
                         onClick={onDismiss}
                         size={20}
                         icon={<CloseLightIcon size={15} />}
+                        sx={{ ...buttonPropsSx }}
+                        {...buttonProps}
                       />
                     </Box>
                   )}
 
-                  {modal.title && <Heading>{modal.title}</Heading>}
+                  {title && (
+                    <Heading fontSize="40px" lineHeight={1} mb="24px">
+                      {title}
+                    </Heading>
+                  )}
 
                   {modal.content}
 
                   {children}
 
-                  {modal.callback && modal.callbackLabel && (
-                    <Button onClick={onConfirm}>{modal.callbackLabel}</Button>
+                  {callback && callbackLabel && (
+                    <Button onClick={onConfirm}>{callbackLabel}</Button>
                   )}
                 </>
               )}
             </DialogContent>
-          </DialogOverlay>
-        );
-      }}
-    </Transition>
+          </FocusLock>
+        </DialogOverlay>
+      )}
+    </AnimatePresence>
   );
 };

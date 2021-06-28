@@ -30,7 +30,7 @@ export type FieldInputProps = InputProps & {
 };
 
 export const Input = forwardRef<any, InputProps>(
-  ({ hasError, color, mask, maskChar = null, start, end, ...props }, ref) => {
+  ({ hasError, color, mask, maskPlaceholder = null, start, end, ...props }, ref) => {
     let additionalProps: any = {};
 
     if (props.readOnly) {
@@ -59,10 +59,11 @@ export const Input = forwardRef<any, InputProps>(
       pl: start ? 0 : '12px',
       pr: end ? 0 : '12px',
       py: '14px',
-      ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]: {
-        appearance: 'none',
-        margin: 0,
-      },
+      ["&[type='number']::-webkit-inner-spin-button, &[type='number']::-webkit-outer-spin-button"]:
+        {
+          appearance: 'none',
+          margin: 0,
+        },
       '&:focus': {
         outline: 'none',
       },
@@ -71,7 +72,7 @@ export const Input = forwardRef<any, InputProps>(
 
     if (mask) {
       return (
-        <InputMask mask={mask} maskChar={maskChar} {...props}>
+        <InputMask mask={mask} maskPlaceholder={maskPlaceholder} {...props}>
           {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}
         </InputMask>
       );
