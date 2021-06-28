@@ -3,6 +3,8 @@ import { AppContext, AppProps } from 'next/app';
 import { AppType } from 'next/dist/next-server/lib/utils';
 import { Cookies, CookiesProvider } from 'react-cookie';
 
+import { isBrowser } from './isBrowser';
+
 type WithUniversalCookieProps = AppProps & {
   cookies: Cookies;
 };
@@ -27,7 +29,7 @@ export const withUniversalCookies = (App: AppType) => {
   const WithUniversalCookies = (props: WithUniversalCookieProps) => {
     const { cookies, ...rest } = props;
     return (
-      <CookiesProvider cookies={process.browser ? undefined : cookies}>
+      <CookiesProvider cookies={isBrowser ? undefined : cookies}>
         <App {...rest} />
       </CookiesProvider>
     );

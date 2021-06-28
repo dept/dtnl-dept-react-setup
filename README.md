@@ -17,7 +17,7 @@
 This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
 
 ```javascript
-if (process.browser) {
+if (isBrowser) {
   window.addEventListener(fn);
 }
 ```
