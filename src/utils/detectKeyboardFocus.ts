@@ -30,4 +30,4 @@ const detectKeyboardFocus = () => {
   };
 };
 
-export default detectKeyboardFocus;
+export default detectKeyboardFocus();
