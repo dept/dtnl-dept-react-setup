@@ -25,7 +25,7 @@ export function Column({ col, inset, ...props }: ColumnProps) {
   const ml =
     inset && Array.isArray(inset)
       ? inset.map(transformValue)
-      : typeof inset === 'object'
+      : typeof inset === 'object' && inset !== null
       ? Object.values(inset).map(transformValue)
       : transformValue(inset!) || undefined;
 
