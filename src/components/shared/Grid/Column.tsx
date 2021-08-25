@@ -18,7 +18,7 @@ export function Column({ col, inset, ...props }: ColumnProps) {
   const width =
     col && Array.isArray(col)
       ? col.map(transformValue)
-      : typeof col === 'object'
+      : typeof col === 'object' && col !== null
       ? Object.values(col).map(transformValue)
       : transformValue(col!) || undefined;
 
