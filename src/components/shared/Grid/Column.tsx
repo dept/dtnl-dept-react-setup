@@ -1,8 +1,8 @@
 import { Box, BoxProps } from './Box';
 
 type ColumnProps = Omit<BoxProps, 'inset'> & {
-  col?: number | (number | null | string)[];
-  inset?: number | (number | null | string)[];
+  col?: number | (number | null | string)[] | Record<string, number | null | string>;
+  inset?: number | (number | null | string)[] | Record<string, number | null | string>;
 };
 
 function transformValue(n: string | number | null) {
@@ -16,10 +16,18 @@ function transformValue(n: string | number | null) {
 
 export function Column({ col, inset, ...props }: ColumnProps) {
   const width =
-    col && Array.isArray(col) ? col.map(transformValue) : transformValue(col!) || undefined;
+    col && Array.isArray(col)
+      ? col.map(transformValue)
+      : typeof col === 'object'
+      ? Object.values(col).map(transformValue)
+      : transformValue(col!) || undefined;
 
   const ml =
-    inset && Array.isArray(inset) ? inset.map(transformValue) : transformValue(inset!) || undefined;
+    inset && Array.isArray(inset)
+      ? inset.map(transformValue)
+      : typeof inset === 'object'
+      ? Object.values(inset).map(transformValue)
+      : transformValue(inset!) || undefined;
 
   return <Box {...props} width={width} ml={ml} />;
 }
