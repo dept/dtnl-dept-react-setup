@@ -1,9 +1,18 @@
 import { Box, BoxProps } from './Box';
 
 type ColumnProps = Omit<BoxProps, 'inset'> & {
-  col?: number | (number | null | string)[];
-  inset?: number | (number | null | string)[];
+  col?: number | (number | null | string)[] | Record<string, number | null | string>;
+  inset?: number | (number | null | string)[] | Record<string, number | null | string>;
 };
+
+
+function reduceStyleObject(n: Record<string, number | null | string>) {
+  return Object.entries(n).reduce((acc, [key, val]) => {
+    acc[key] = transformValue(val);
+
+    return acc;
+  }, {} as Record<string, number | null | string>);
+}
 
 function transformValue(n: string | number | null) {
   if (!n || isNaN(n as any)) {
@@ -16,10 +25,18 @@ function transformValue(n: string | number | null) {
 
 export function Column({ col, inset, ...props }: ColumnProps) {
   const width =
-    col && Array.isArray(col) ? col.map(transformValue) : transformValue(col!) || undefined;
+    col && Array.isArray(col)
+      ? col.map(transformValue)
+      : typeof col === 'object' && col !== null
+      ? reduceStyleObject(col)
+      : transformValue(col!) || undefined;
 
   const ml =
-    inset && Array.isArray(inset) ? inset.map(transformValue) : transformValue(inset!) || undefined;
+    inset && Array.isArray(inset)
+      ? inset.map(transformValue)
+      : typeof inset === 'object' && inset !== null
+      ? reduceStyleObject(inset)
+      : transformValue(inset!) || undefined;
 
   return <Box {...props} width={width} ml={ml} />;
 }

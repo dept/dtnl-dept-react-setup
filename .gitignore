@@ -22,3 +22,14 @@ yarn-error.log*
 **/public/workbox-*.js*
 **/public/sw.js*
 **/public/worker-*.js*
+
+# Intellij
+*.iml
+.gradle
+.idea
+.idea/libraries
+.idea/workspace.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
