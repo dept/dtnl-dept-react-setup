@@ -1,10 +1,11 @@
+import { ResponsiveValue } from '@chakra-ui/system';
+
 import { Box, BoxProps } from './Box';
 
 type ColumnProps = Omit<BoxProps, 'inset'> & {
   col?: number | (number | null | string)[] | Record<string, number | null | string>;
   inset?: number | (number | null | string)[] | Record<string, number | null | string>;
 };
-
 
 function reduceStyleObject(n: Record<string, number | null | string>) {
   return Object.entries(n).reduce((acc, [key, val]) => {
@@ -24,14 +25,14 @@ function transformValue(n: string | number | null) {
 }
 
 export function Column({ col, inset, ...props }: ColumnProps) {
-  const width =
+  const width: ResponsiveValue<any> =
     col && Array.isArray(col)
       ? col.map(transformValue)
       : typeof col === 'object' && col !== null
       ? reduceStyleObject(col)
       : transformValue(col!) || undefined;
 
-  const ml =
+  const ml: ResponsiveValue<any> =
     inset && Array.isArray(inset)
       ? inset.map(transformValue)
       : typeof inset === 'object' && inset !== null
