@@ -1,6 +1,7 @@
-import React, { FC, Children } from 'react';
+import React, { FC, Children, Fragment } from 'react';
 
-import { FlexProps, BoxProps } from '.';
+import { Box, BoxProps } from './Box';
+import { Flex, FlexProps } from './Flex';
 
 type Align = 'left' | 'center' | 'right' | null;
 
