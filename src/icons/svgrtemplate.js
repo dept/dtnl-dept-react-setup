@@ -11,7 +11,7 @@ function template({ template }, _opts, { componentName, jsx }) {
     size?: number
   }
 
-  const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: any) => {
+  const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: React.ForwardedRef<SVGSVGElement>) => {
     if (size) {
       props.width = size;
       props.height = size;
