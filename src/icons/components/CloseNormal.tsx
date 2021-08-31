@@ -1,11 +1,10 @@
 import { chakra } from '@chakra-ui/system';
 import * as React from 'react';
-import { ForwardedRef } from 'react';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 const SVGIcon = React.forwardRef(
-  ({ size, ...props }: CustomIconProps, svgRef: ForwardedRef<SVGSVGElement>) => {
+  ({ size, ...props }: CustomIconProps, svgRef: React.ForwardedRef<SVGSVGElement>) => {
     if (size) {
       props.width = size;
       props.height = size;
