@@ -3,15 +3,20 @@ import * as React from 'react';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
-
-const SVGIcon = ({ size, ...props }: CustomIconProps) => {
+const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: any) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={21} height={19} viewBox="0 0 21 19" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={21}
+      height={19}
+      viewBox="0 0 21 19"
+      ref={svgRef}
+      {...props}>
       <g fill="none" fillRule="evenodd" stroke="currentColor">
         <path
           strokeLinecap="round"
@@ -23,7 +28,6 @@ const SVGIcon = ({ size, ...props }: CustomIconProps) => {
       </g>
     </svg>
   );
-};
-
+});
 const BadgeIcon = chakra(SVGIcon);
 export default BadgeIcon;

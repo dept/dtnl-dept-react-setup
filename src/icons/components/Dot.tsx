@@ -3,15 +3,20 @@ import * as React from 'react';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
-
-const SVGIcon = ({ size, ...props }: CustomIconProps) => {
+const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: any) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={16}
+      height={16}
+      viewBox="0 0 16 16"
+      ref={svgRef}
+      {...props}>
       <circle
         cx={8}
         cy={10}
@@ -22,7 +27,6 @@ const SVGIcon = ({ size, ...props }: CustomIconProps) => {
       />
     </svg>
   );
-};
-
+});
 const DotIcon = chakra(SVGIcon);
 export default DotIcon;

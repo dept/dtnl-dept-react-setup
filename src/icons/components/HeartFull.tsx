@@ -3,15 +3,14 @@ import * as React from 'react';
 interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
-
-const SVGIcon = ({ size, ...props }: CustomIconProps) => {
+const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: any) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 20" ref={svgRef} {...props}>
       <path
         fill="currentColor"
         stroke="currentColor"
@@ -19,7 +18,6 @@ const SVGIcon = ({ size, ...props }: CustomIconProps) => {
       />
     </svg>
   );
-};
-
+});
 const HeartFullIcon = chakra(SVGIcon);
 export default HeartFullIcon;
