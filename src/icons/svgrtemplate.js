@@ -11,14 +11,14 @@ function template({ template }, _opts, { componentName, jsx }) {
     size?: number
   }
 
-  const SVGIcon = ({ size, ...props }: CustomIconProps) => {
+  const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: React.ForwardedRef<SVGSVGElement>) => {
     if (size) {
       props.width = size;
       props.height = size;
     }
 
     return (${jsx});
-  }
+  })
 
   const ${componentName} = chakra(SVGIcon);
 
