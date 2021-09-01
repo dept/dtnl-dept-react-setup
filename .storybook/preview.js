@@ -1,3 +1,5 @@
+import '@public/fonts/fonts.css';
+
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { ThemeProvider } from '@chakra-ui/system';
