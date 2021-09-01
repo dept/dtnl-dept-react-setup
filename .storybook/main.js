@@ -22,6 +22,11 @@ module.exports = {
   typescript: {
     reactDocgen: 'none', // https://github.com/storybookjs/storybook/issues/15067
   },
+  babel: async options => {
+    const babelConfig = require('./../babel.config.js');
+
+    return { ...options, ...babelConfig };
+  },
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-links/register',
