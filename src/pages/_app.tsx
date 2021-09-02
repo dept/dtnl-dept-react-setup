@@ -2,7 +2,7 @@ import '@public/fonts/fonts.css';
 
 import { ThemeProvider } from '@chakra-ui/system';
 import { DefaultSeo } from 'next-seo';
-import { AppType } from 'next/dist/next-server/lib/utils';
+import { AppType } from 'next/dist/shared/lib/utils';
 import * as React from 'react';
 
 import { BaseLayout } from '@/components/templates';
