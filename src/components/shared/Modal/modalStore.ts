@@ -1,12 +1,12 @@
 import { default as produce } from 'immer';
 import { useCallback, useEffect, useMemo } from 'react';
-import create, { State, StateCreator } from 'zustand';
-
-// import { useSetQueryParam } from '@/utils/hooks/useQueryParams';
+import create, { GetState, State, StateCreator } from 'zustand';
 
 interface ModalOptions {
   isShown?: boolean;
   isClosable?: boolean;
+  closeButton?: boolean;
+  closeOthers?: boolean;
   title?: any;
   content?: any;
   callback?: () => void;
@@ -20,17 +20,19 @@ interface Modals {
 type ModalStore = {
   modals: Modals;
   set: (fn: (state: ModalStore) => void) => void;
+  get: GetState<ModalStore>;
 };
 
-const immer = <T extends State>(
-  config: StateCreator<T, (fn: (state: T) => void) => void>,
-): StateCreator<T> => (set, get, api) =>
-  config(fn => set(produce(fn) as (state: T) => T), get, api);
+const immer =
+  <T extends State>(config: StateCreator<T, (fn: (state: T) => void) => void>): StateCreator<T> =>
+  (set, get, api) =>
+    config(fn => set(produce(fn) as (state: T) => T), get, api);
 
 const useModalStore = create<ModalStore>(
-  immer(set => ({
+  immer((set, get) => ({
     modals: {},
     set: set,
+    get: get,
   })),
 );
 
@@ -40,22 +42,44 @@ export const useModalState = (key: string) => {
   return modals[key];
 };
 
-export const useModal = (key: string, options?: ModalOptions) => {
-  const set = useModalStore(state => state.set);
+const defaultModalState = {
+  isClosable: true,
+  closeButton: true,
+  isShown: false,
+  closeOthers: true,
+};
 
-  // const setQueryParam = useSetQueryParam('modal');
+export const useModal = (key: string, options?: ModalOptions) => {
+  const { set } = useModalStore.getState();
 
   useEffect(() => {
     set(state => {
       const currentModalState = state.modals[key] || {};
-      state.modals[key] = { isClosable: true, isShown: false, ...currentModalState, ...options };
+      state.modals[key] = {
+        ...defaultModalState,
+        ...currentModalState,
+        ...options,
+      };
     });
   }, [key, options, set]);
 
+  const closeAll = useCallback(() => {
+    set(state => {
+      Object.keys(state.modals).forEach(item => {
+        state.modals[item].isShown = false;
+      });
+    });
+  }, [set]);
+
   const show = useCallback(
     (options?: ModalOptions) => {
-      // setQueryParam(key);
       set(state => {
+        if (state.modals[key].closeOthers) {
+          Object.keys(state.modals).forEach(item => {
+            state.modals[item].isShown = false;
+          });
+        }
+
         state.modals[key] = {
           ...state.modals[key],
           ...options,
@@ -67,9 +91,8 @@ export const useModal = (key: string, options?: ModalOptions) => {
   );
 
   const hide = useCallback(() => {
-    // setQueryParam(key);
     set(state => {
-      state.modals[key].isShown = false;
+      if (state.modals[key]) state.modals[key].isShown = false;
     });
   }, [set, key]);
 
@@ -77,6 +100,7 @@ export const useModal = (key: string, options?: ModalOptions) => {
     return {
       show,
       hide,
+      closeAll,
     };
-  }, [show, hide]);
+  }, [show, hide, closeAll]);
 };
