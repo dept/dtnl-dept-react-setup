@@ -4,6 +4,7 @@ import { DialogContent as DContent, DialogOverlay } from '@reach/dialog';
 import { AnimatePresence } from 'framer-motion';
 import React, { forwardRef, ReactNode, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
+import { useKey } from 'react-use';
 
 import { Button } from '@/components/shared/Button';
 import { BoxProps, Box } from '@/components/shared/Grid';
@@ -189,6 +190,8 @@ export const Modal = ({
     onDismiss();
   };
 
+  useKey('Escape', onDismiss);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -213,7 +216,7 @@ export const Modal = ({
               sx={sx}>
               {modal && (
                 <>
-                  {modal.isClosable && (
+                  {modal.isClosable && modal.closeButton && (
                     <Box top={0} right={0} zIndex={99} position="absolute" p={4}>
                       <IconButton
                         aria-label="Close"
