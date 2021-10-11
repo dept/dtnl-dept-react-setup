@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import next from 'next';
 
 const port = process.env.PORT || 3000;
@@ -10,6 +11,11 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(
+      helmet({
+        contentSecurityPolicy: false,
+      }),
+    );
 
     server.all('*', (req, res) => handle(req, res));
 

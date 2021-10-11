@@ -11,6 +11,7 @@ const plugins = [
         disable: process.env.NODE_ENV !== 'production',
         dest: 'public',
         swSrc: './service-worker.js',
+        publicExcludes: ['!favicon/**/*'],
       },
     },
   ],
