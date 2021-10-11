@@ -27,6 +27,12 @@ steps:
     inputs:
       versionSpec: '1.x'
 
+  - task: DeleteFiles@1
+    displayName: 'Remove robots.txt in production'
+    condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main'))
+    inputs:
+      Contents: 'public/robots.txt'
+
   - task: Cache@2
     inputs:
       key: 'yarn | "$(Agent.OS)" | yarn.lock'
