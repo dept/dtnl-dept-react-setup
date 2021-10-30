@@ -7,11 +7,12 @@ import { Props as MaskProps } from 'react-input-mask';
 import { Box, BoxProps } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
 import { Label } from '@/components/shared/Label';
+import { isBrowser } from '@/utils/isBrowser';
 
 const InputMask = dynamic(() => import('react-input-mask'));
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> &
-  Partial<MaskProps> & {
+  Partial<Pick<MaskProps, 'mask' | 'maskPlaceholder'>> & {
     type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel' | 'search';
     color?: string;
     inputRef?: any;
@@ -70,7 +71,7 @@ export const Input = forwardRef<any, InputProps>(
       ...additionalProps,
     };
 
-    if (mask) {
+    if (mask && isBrowser) {
       return (
         <InputMask mask={mask} maskPlaceholder={maskPlaceholder} {...props}>
           {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}

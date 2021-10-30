@@ -1,6 +1,6 @@
 import { NextPageContext } from 'next';
 import { AppContext, AppProps } from 'next/app';
-import { AppType } from 'next/dist/next-server/lib/utils';
+import { AppType } from 'next/dist/shared/lib/utils';
 import { Cookies, CookiesProvider } from 'react-cookie';
 
 import { isBrowser } from './isBrowser';

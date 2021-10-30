@@ -1,5 +1,0 @@
-{
-  "watch": ["server", "public", "config", ".env"],
-  "ext": "ts, js",
-  "exec": "ts-node --project ./server/tsconfig.json server/server.ts"
-}

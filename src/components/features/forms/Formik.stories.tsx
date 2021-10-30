@@ -1,5 +1,5 @@
 import { subYears } from 'date-fns';
-import * as Yup from 'yup';
+import { object, string, date, array, number } from 'yup';
 
 import { SubmitHandler } from '@/components/shared/Formik/types';
 
@@ -97,27 +97,27 @@ const initialValues: FormValues = {
 /**
  * https://github.com/jquense/yup
  */
-const validationSchema = Yup.object({
-  firstname: Yup.string().label('First name').required(),
-  lastname: Yup.string().label('Last name').required(),
-  email: Yup.string().email().label('E-mail').required(),
-  dob: Yup.date()
+const validationSchema = object({
+  firstname: string().label('First name').required(),
+  lastname: string().label('Last name').required(),
+  email: string().email().label('E-mail').required(),
+  dob: date()
     .typeError('Must be a valid date')
     .label('Date of birth')
     .max(subYears(new Date(), 18), 'You need to be 18 years or older')
     .required(),
-  phoneNumber: Yup.string().label('Phone number').required(),
-  country: Yup.string().label('Country').required(),
-  languages: Yup.array(Yup.string()).label('Languages').min(1),
-  programmingLanguages: Yup.array(
-    Yup.object({
-      name: Yup.string().label('Name').required(),
-      years: Yup.number().label('Years').min(0).required(),
+  phoneNumber: string().label('Phone number').required(),
+  country: string().label('Country').required(),
+  languages: array(string()).label('Languages').min(1),
+  programmingLanguages: array(
+    object({
+      name: string().label('Name').required(),
+      years: number().label('Years').min(0).required(),
     }),
   )
     .label('Programming languages')
     .required(),
-  favoriteAnimal: Yup.string().label('Favorite animal').required(),
+  favoriteAnimal: string().label('Favorite animal').required(),
 });
 
 export const example = () => {
