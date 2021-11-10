@@ -1,5 +1,5 @@
 # ---- Base Node ----
-FROM node:14-alpine as base
+FROM node:14.18.1 as base
 # set working directory
 WORKDIR /usr/src/app
 # Copy package and lockfile
