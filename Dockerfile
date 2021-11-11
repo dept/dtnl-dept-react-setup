@@ -1,5 +1,5 @@
 # ---- Base Node ----
-FROM node:14.18.1 as base
+FROM node:14-alpine as base
 # set working directory
 WORKDIR /usr/src/app
 # Copy package and lockfile
@@ -7,6 +7,14 @@ COPY package.json ./
 COPY yarn.lock ./
 
 # ---- Dependencies ----
+# Install python as needed by node-gyp and alpine doesn't include this
+RUN apk add --no-cache --virtual .gyp \
+        python \
+        make \
+        g++ \
+    && npm install \
+    && apk del .gyp
+
 FROM base as dependencies
 # install dependencies
 RUN yarn --frozen-lockfile --prod
