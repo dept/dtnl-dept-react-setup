@@ -9,7 +9,7 @@ COPY yarn.lock ./
 # ---- Dependencies ----
 # Install python as needed by node-gyp and alpine doesn't include this
 RUN apk add --no-cache --virtual .gyp \
-        python \
+        python2 \
         make \
         g++ \
     && npm install \
