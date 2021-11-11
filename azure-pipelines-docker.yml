@@ -40,7 +40,7 @@ steps:
       Contents: 'public/robots.txt'
 
   - task: Docker@2
-    displayName: 'Docker - $(ENVIRONMENT)'
+    displayName: 'Build Docker image'
     inputs:
       containerRegistry: '$(CONTAINER_REGISTRY)'
       repository: '$(REPOSITORY_NAME)'
