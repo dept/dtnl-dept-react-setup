@@ -7,11 +7,10 @@ COPY package.json ./
 COPY yarn.lock ./
 
 # ---- Dependencies ----
-# Install python as needed by node-gyp and alpine doesn't include this
-RUN apk add --no-cache --virtual .gyp \
-        python2 \
-        make \
-        g++
+# Install build dependencies that are missing in the alpine image
+RUN apk add --no-cache --virtual .build-deps \
+                                  alpine-sdk \
+                                  python3
 
 FROM base as dependencies
 # install dependencies
@@ -24,8 +23,8 @@ FROM dependencies as build
 RUN yarn --frozen-lockfile
 # build project
 RUN yarn build
-# Cleanup apk .gyp cache folder
-RUN apk del .gyp
+# Cleanup .build-deps cache folder
+RUN apk del .build-deps
 
 # ---- Release ----
 FROM dependencies as release
