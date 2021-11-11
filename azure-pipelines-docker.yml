@@ -35,7 +35,7 @@ steps:
   # Remove robots.txt on production to make sure we don't block access to crawlers.
   - task: DeleteFiles@1
     displayName: 'Remove robots.txt when its not test or acceptance'
-    condition: and(succeeded(), not(or(eq(variables['ENVIRONMENT'], 'test'), variables['ENVIRONMENT'], 'acceptance'))))
+    condition: and(succeeded(), not(or(eq(variables['ENVIRONMENT'], 'test'), eq(variables['ENVIRONMENT'], 'acceptance'))))
     inputs:
       Contents: 'public/robots.txt'
 
