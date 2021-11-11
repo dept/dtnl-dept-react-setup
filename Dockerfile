@@ -1,7 +1,7 @@
 
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
-FROM node:lts-alpine as base
+FROM node:14-alpine as base
 # set working directory
 WORKDIR /usr/src/app
 # Copy package and lockfile
@@ -15,6 +15,8 @@ FROM base as dependencies
 RUN apk add --no-cache libc6-compat \
                        alpine-sdk \
                        python3
+RUN apk add --no-cache vips-dev
+
 # install dependencies
 RUN yarn --frozen-lockfile --prod
 COPY . .
