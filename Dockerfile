@@ -11,9 +11,7 @@ COPY yarn.lock ./
 RUN apk add --no-cache --virtual .gyp \
         python2 \
         make \
-        g++ \
-    && npm install \
-    && apk del .gyp
+        g++
 
 FROM base as dependencies
 # install dependencies
@@ -26,6 +24,8 @@ FROM dependencies as build
 RUN yarn --frozen-lockfile
 # build project
 RUN yarn build
+# Cleanup apk .gyp cache folder
+RUN apk del .gyp
 
 # ---- Release ----
 FROM dependencies as release
