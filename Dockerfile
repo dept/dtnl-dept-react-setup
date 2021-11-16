@@ -1,7 +1,7 @@
 
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
-FROM node:14-alpine as base
+FROM node:16-alpine as base
 # set working directory
 WORKDIR /usr/src/app
 # Copy package and lockfile

@@ -1,4 +1,4 @@
-const { setAliasConfig } = require('../config/alias');
+const { setAliasConfig } = require('./alias');
 const path = require('path');
 
 module.exports = ({ config }) => {

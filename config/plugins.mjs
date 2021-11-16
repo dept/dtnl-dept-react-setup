@@ -1,7 +1,5 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.BUNDLE_ANALYZE === 'true',
-});
-const withPWA = require('next-pwa');
+import withBundleAnalyzer from '@next/bundle-analyzer';
+import withPWA from 'next-pwa';
 
 const plugins = [
   [
@@ -15,9 +13,12 @@ const plugins = [
       },
     },
   ],
-  withBundleAnalyzer,
+  [
+    withBundleAnalyzer,
+    {
+      enabled: process.env.BUNDLE_ANALYZE !== 'true',
+    },
+  ],
 ];
 
-module.exports = {
-  plugins,
-};
+export { plugins };
