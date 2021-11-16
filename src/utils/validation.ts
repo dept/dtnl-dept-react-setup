@@ -1,5 +1,5 @@
 export const regex = {
-  postalCode: /[1-9][0-9]{3}(?!sa|sd|ss)\s?[a-z]{2}/i,
+  postalCode: /[1-9][0-9]{3}(?!sa|sd|ss) ?[a-z]{2}$/i,
   houseNumber: /^\d{1,5}$/,
   password:
     /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
