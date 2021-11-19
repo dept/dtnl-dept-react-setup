@@ -108,6 +108,6 @@ Documentation for this project is present in storybook. Run `yarn storybook` to 
 This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui system](https://www.npmjs.com/package/@chakra-ui/system) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
 
 ## Misc
-- This project uses Helmet in the custom Express server to remove a fair amount of header that would pose a security risk
+
 - A web.config has been added to allow the project to be hosted on a Windows server through ISSNode
 - A generic robots.txt has been added that disallows EVERY bot, it is removed in the azure-pipelines.yml on the main branch

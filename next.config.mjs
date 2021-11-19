@@ -4,6 +4,7 @@ import CircularDependencyPlugin from 'circular-dependency-plugin';
 import dotenv from 'dotenv';
 import withPlugins from 'next-compose-plugins';
 
+import { headers } from './config/headers.mjs';
 import { includePolyfills } from './config/includePolyfills.mjs';
 import { plugins } from './config/plugins.mjs';
 
@@ -42,6 +43,13 @@ export default withPlugins(plugins, {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
+
+  /**
+   * add the headers you would like your next server to use
+   * documentation: https://nextjs.org/docs/api-reference/next.config.js/headers
+   *                https://nextjs.org/docs/advanced-features/security-headers
+   */
+  headers,
 
   /**
    * https://nextjs.org/docs/basic-features/image-optimization
