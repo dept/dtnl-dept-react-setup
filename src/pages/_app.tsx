@@ -3,8 +3,8 @@ import '@public/fonts/fonts.css';
 import { ThemeProvider } from '@chakra-ui/system';
 import { DefaultSeo } from 'next-seo';
 import { AppType } from 'next/dist/next-server/lib/utils';
-import * as React from 'react';
 
+import { AppInsightsProvider } from '@/components/features/tools/ApplicationInsights';
 import { BaseLayout } from '@/components/templates';
 import { GlobalStyle } from '@/theme/GlobalStyle';
 import { theme } from '@/theme/theme';
@@ -21,7 +21,7 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
   }
 
   return (
-    <>
+    <AppInsightsProvider>
       <DefaultSeo titleTemplate={`%s | Dept`} />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
@@ -29,7 +29,7 @@ const MyApp: AppType = ({ Component: Page, pageProps }) => {
           <Page {...pageProps} />
         </BaseLayout>
       </ThemeProvider>
-    </>
+    </AppInsightsProvider>
   );
 };
 
