@@ -2,7 +2,7 @@ import '@public/fonts/fonts.css';
 
 import { ThemeProvider } from '@chakra-ui/system';
 import { DefaultSeo } from 'next-seo';
-import { AppType } from 'next/dist/next-server/lib/utils';
+import { AppProps } from 'next/app';
 
 import { AppInsightsProvider } from '@/components/features/tools/ApplicationInsights';
 import { BaseLayout } from '@/components/templates';
@@ -15,7 +15,7 @@ if (isBrowser) {
   import('@/utils/detectKeyboardFocus');
 }
 
-const MyApp: AppType = ({ Component: Page, pageProps }) => {
+const MyApp = ({ Component: Page, pageProps }: AppProps) => {
   if (pageProps.renderWithoutLayout) {
     return <Page {...pageProps} />;
   }

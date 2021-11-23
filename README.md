@@ -106,3 +106,8 @@ Documentation for this project is present in storybook. Run `yarn storybook` to 
 ## Design system
 
 This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui system](https://www.npmjs.com/package/@chakra-ui/system) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
+
+## Misc
+
+- A web.config has been added to allow the project to be hosted on a Windows server through ISSNode
+- A generic robots.txt has been added that disallows EVERY bot, it is removed in the azure-pipelines.yml on the main branch
