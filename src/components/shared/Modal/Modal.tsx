@@ -1,7 +1,7 @@
 import { chakra } from '@chakra-ui/system';
 import styled from '@emotion/styled';
 import { DialogContent as DContent, DialogOverlay } from '@reach/dialog';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, ForwardRefComponent } from 'framer-motion';
 import React, { forwardRef, ReactNode, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 import { useKey } from 'react-use';
@@ -31,8 +31,8 @@ interface ModalProps {
   p?: any;
   sx?: BoxProps;
   buttonProps?: BoxProps;
-  overlayComponent?: React.ForwardRefExoticComponent<CustomComponentProps>;
-  contentComponent?: React.ForwardRefExoticComponent<CustomComponentProps>;
+  overlayComponent?: ForwardRefComponent<CustomComponentProps, HTMLElement>;
+  contentComponent?: ForwardRefComponent<CustomComponentProps, HTMLElement>;
   duration?: number;
   delay?: number;
   children?: ReactNode;
@@ -199,7 +199,8 @@ export const Modal = ({
           as={overlayComponent as any}
           onDismiss={modal.isClosable ? onDismiss : undefined}
           duration={duration}
-          delay={delay}>
+          delay={delay}
+        >
           <FocusLock returnFocus={true}>
             <DialogContent
               as={contentComponent as any}
@@ -213,7 +214,8 @@ export const Modal = ({
               p={p || { base: '40px 24px', md: '64px' }}
               backgroundColor={colors.primary}
               color={colors.white}
-              sx={sx}>
+              sx={sx}
+            >
               {modal && (
                 <>
                   {modal.isClosable && modal.closeButton && (
