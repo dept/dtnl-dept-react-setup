@@ -29,7 +29,7 @@ export const CookiesModal = () => {
           Fusce aliquam lectus purus, sit amet imperdiet nulla tincidunt id.
         </Text>
         <Flex flexWrap="wrap" mt={4} gridGap={4} justifyContent="center">
-          <Button onClick={dismissCookies} variant="foot" w={['100%', 'auto']}>
+          <Button onClick={dismissCookies} variant="secondary" w={['100%', 'auto']}>
             Cookie settings
           </Button>
           <Button onClick={handleAcceptCookies} variant="primary" w={['100%', 'auto']}>
