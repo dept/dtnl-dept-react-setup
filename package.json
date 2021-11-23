@@ -6,7 +6,6 @@
     "npm": "please use yarn",
     "node": "16"
   },
-  "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production next start",
     "dev": "next dev",
@@ -18,8 +17,8 @@
     "test:watch": "yarn test --watch",
     "test:debug": "node  --inspect-brk ./node_modules/bin/jest/jest.js --config test/jest.config.js --runInBand --watch",
     "test:coverage": "yarn test --coverage",
-    "format": "prettier --write './{src,server}/**/*'",
-    "lint": "eslint './{src,server}/**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --write './src/**/*'",
+    "lint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint-fix": "yarn lint --fix",
     "validate": "npm-run-all --parallel type-check lint test -s build",
     "route": "dept-react-scripts route",
