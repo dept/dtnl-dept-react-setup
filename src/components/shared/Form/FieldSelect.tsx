@@ -111,7 +111,7 @@ function CustomSelect({
   return (
     <Box position="relative">
       {label && (
-        <Label color={color} required={required} {...getLabelProps()}>
+        <Label color={color} required={required} hasError={hasError} {...getLabelProps()}>
           {label}
         </Label>
       )}
