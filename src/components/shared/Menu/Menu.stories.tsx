@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Transition } from 'react-transition-group';
 
 import { Box } from '@/components/shared/Grid';
@@ -35,7 +34,8 @@ export const withAnimation = () => (
             timeout={{
               enter: 0,
               exit: 300,
-            }}>
+            }}
+          >
             {state => {
               const isShown = state === 'entered';
 
@@ -50,7 +50,8 @@ export const withAnimation = () => (
                     '&[hidden]': {
                       display: 'block',
                     },
-                  }}>
+                  }}
+                >
                   <MenuItems>
                     <MenuItem onSelect={() => alert('Download')}>Download</MenuItem>
                     <MenuItem onSelect={() => alert('Copy')}>Create a Copy</MenuItem>

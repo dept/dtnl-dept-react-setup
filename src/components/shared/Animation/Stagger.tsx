@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import * as React from 'react';
-import { ReactNode } from 'react';
+import { Children, ReactNode } from 'react';
 
 interface StaggerProps {
   /** Duration in seconds */
@@ -33,14 +32,13 @@ export function Stagger({ children, duration = 2, staggerDelay = 0.15 }: Stagger
       }}
       variants={container}
       initial="hidden"
-      animate="show">
-      {React.Children.map(children, (child, index) => {
-        return (
-          <motion.div key={index} variants={item}>
-            {child}
-          </motion.div>
-        );
-      })}
+      animate="show"
+    >
+      {Children.map(children, (child, index) => (
+        <motion.div key={index} variants={item}>
+          {child}
+        </motion.div>
+      ))}
     </motion.div>
   );
 }
