@@ -1,6 +1,6 @@
 import { default as NextLink, LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
-import * as React from 'react';
+import { Children, cloneElement } from 'react';
 
 export const Link = NextLink;
 
@@ -20,7 +20,7 @@ export function NavLink({
   ...otherProps
 }: NavLinkProps) {
   const router = useRouter();
-  const child = children && React.Children.only(children);
+  const child = children && Children.only(children);
 
   const routerPath = router.asPath ? router.asPath : router.pathname;
   const match = router.asPath ? otherProps.as || href : href;
@@ -35,8 +35,7 @@ export function NavLink({
     <Link href={href} {...otherProps}>
       {render
         ? render(condition)
-        : child &&
-          React.cloneElement(child, { className: [child.props.className, className].join(' ') })}
+        : child && cloneElement(child, { className: [child.props.className, className].join(' ') })}
     </Link>
   );
 }

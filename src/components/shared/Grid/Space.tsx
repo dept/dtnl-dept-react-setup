@@ -1,5 +1,5 @@
 import { chakra } from '@chakra-ui/system';
-import * as React from 'react';
+import { Children, cloneElement } from 'react';
 
 import { BoxProps } from './Box';
 
@@ -7,8 +7,8 @@ const classnames = (...args: any[]) => args.join(' ');
 const getClassName = (el: any) => (el.props && el.props.className) || '';
 
 export function StyledChildren({ className, children }: { className?: string } & BoxProps) {
-  const styledChildren = React.Children.toArray(children).map((child: any) =>
-    React.cloneElement(child, {
+  const styledChildren = Children.toArray(children).map((child: any) =>
+    cloneElement(child, {
       className: classnames(getClassName(child), className),
     }),
   );
