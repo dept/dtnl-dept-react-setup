@@ -17,18 +17,34 @@
 This project uses next.js to achieve server side rendering ([https://nextjs.org/docs](https://nextjs.org/docs)). Some of the major differences with client side react applications are _routing_ and _server side data fetching_. Also you have to take in to account that you cannot use browser api on the server. To use browser api you need to wrap them in a condition. For example
 
 ```javascript
-if (process.browser) {
+if (isBrowser) {
   window.addEventListener(fn);
 }
 ```
 
 ## Generator
 
-The project includes generators for components en context provider. Simply run either:
+The project includes generators for components en context provider. Simply run one of the following commands:
 
-- `yarn route about`
-- `yarn component Slider`
-- `yarn context User`
+```bash
+# creates a pages/about.tsx
+yarn route about
+```
+
+```bash
+# creates a component in the shared folder
+yarn component shared/Slider
+```
+
+```bash
+# creates a component in the features/login folder
+yarn component features/login/LoginForm
+```
+
+```bash
+# creates a context provider
+yarn context User
+```
 
 ## Custom server
 
@@ -89,10 +105,9 @@ Documentation for this project is present in storybook. Run `yarn storybook` to 
 
 ## Design system
 
-This project uses [styled-components](https://www.styled-components.com/) and [styled-system](https://github.com/styled-system/styled-system) to create the ui library, but using _css_, _css modules_ and _sass_ are still supported.
+This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui system](https://www.npmjs.com/package/@chakra-ui/system) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
 
-## Atomic design structure
+## Misc
 
-The component archicture is set up following the atomic design methodology.
-
-![Atomic Design](http://atomicdesign.bradfrost.com/images/content/atomic-design-molecules.png)
+- A web.config has been added to allow the project to be hosted on a Windows server through ISSNode
+- A generic robots.txt has been added that disallows EVERY bot, it is removed in the azure-pipelines.yml on the main branch

@@ -1,5 +1,5 @@
 export const grid = {
-  gutter: [15, null, 30],
+  gap: [15, null, 30],
   container: {
     maxWidth: 1280,
     padding: [15, null, 80],

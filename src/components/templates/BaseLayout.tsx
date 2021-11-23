@@ -1,21 +1,23 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
-import { Box, Flex, Grid } from '../atoms/Grid';
-import { Heading, Text } from '../atoms/Text';
-import { CookiesModal } from '../molecules/Cookies';
-import { Modal } from '../molecules/Modal';
-import { Footer } from '../organisms/Footer';
-import { Header } from '../organisms/Header';
+import { Footer } from '../features/layout/Footer';
+import { Header } from '../features/layout/Header';
+import { CookiesModal } from '../shared/Cookies/CookiesModal';
+import { Box, Flex, Container } from '../shared/Grid';
+import { Modal } from '../shared/Modal';
+import { Heading, Text } from '../shared/Text';
 
-interface BaseLayoutProps {}
+interface BaseLayoutProps {
+  children?: ReactNode;
+}
 
-export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
+export function BaseLayout({ children }: BaseLayoutProps) {
   return (
     <Flex flexDirection="column" height="100vh">
       <Header />
 
       <Box as="main" flex="1 0 auto" display="block">
-        <Grid>{children}</Grid>
+        <Container>{children}</Container>
       </Box>
 
       <Footer />
@@ -30,4 +32,4 @@ export const BaseLayout: FC<BaseLayoutProps> = ({ children }) => {
       </Modal>
     </Flex>
   );
-};
+}

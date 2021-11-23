@@ -3,15 +3,15 @@ import { FormApi } from 'final-form';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { useState } from 'react';
-import * as Yup from 'yup';
+import { object, string, date, array, number } from 'yup';
 
-import { Alert } from '@/components/atoms/Alert';
-import { Divider } from '@/components/atoms/Divider';
-import { Box, Stack } from '@/components/atoms/Grid';
-import { FieldRadioGroup } from '@/components/molecules/Form';
-import { FinalFormExampleForm } from '@/components/organisms/Forms/FinalFormExampleForm';
-import { FormikExampleForm } from '@/components/organisms/Forms/FormikExampleForm';
-import { SubmitHandler } from '@/utils/types';
+import { FinalFormExampleForm } from '@/components/features/forms/FinalFormExampleForm';
+import { FormikExampleForm } from '@/components/features/forms/FormikExampleForm';
+import { Alert } from '@/components/shared/Alert';
+import { Divider } from '@/components/shared/Divider';
+import { FieldRadioGroup } from '@/components/shared/Form';
+import { SubmitHandler } from '@/components/shared/Formik/types';
+import { Box, Stack } from '@/components/shared/Grid';
 
 type FFSubmitHandler<FormValues> = (values: FormValues, formHelpers: FormApi<FormValues>) => void;
 
@@ -105,27 +105,27 @@ const initialValues: FormValues = {
 /**
  * https://github.com/jquense/yup
  */
-const validationSchema = Yup.object({
-  firstname: Yup.string().label('First name').required(),
-  lastname: Yup.string().label('Last name').required(),
-  email: Yup.string().email().label('E-mail').required(),
-  dob: Yup.date()
+const validationSchema = object({
+  firstname: string().label('First name').required(),
+  lastname: string().label('Last name').required(),
+  email: string().email().label('E-mail').required(),
+  dob: date()
     .typeError('Must be a valid date')
     .label('Date of birth')
     .max(subYears(new Date(), 18), 'You need to be 18 years or older')
     .required(),
-  phoneNumber: Yup.string().label('Phone number').required(),
-  country: Yup.string().label('Country').required(),
-  languages: Yup.array(Yup.string()).label('Languages').min(1),
-  programmingLanguages: Yup.array(
-    Yup.object({
-      name: Yup.string().label('Name').required(),
-      years: Yup.number().label('Years').min(0).required(),
+  phoneNumber: string().label('Phone number').required(),
+  country: string().label('Country').required(),
+  languages: array(string()).label('Languages').min(1),
+  programmingLanguages: array(
+    object({
+      name: string().label('Name').required(),
+      years: number().label('Years').min(0).required(),
     }),
   )
     .label('Programming languages')
     .required(),
-  favoriteAnimal: Yup.string().label('Favorite animal').required(),
+  favoriteAnimal: string().label('Favorite animal').required(),
 });
 
 type FormLib = 'final-form' | 'formik';

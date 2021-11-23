@@ -1,34 +1,33 @@
-const KEYBOARD_FOCUSED = 'has--keyboard-focus';
+import { isBrowser } from './isBrowser';
+
+export const KEYBOARD_FOCUSED = 'has--keyboard-focus';
 const TAB_KEYS = ['Tab', 9];
 
-class DetectKeyboardFocus {
-  private keyDown: boolean;
+const detectKeyboardFocus = () => {
+  let keyDown = false;
 
-  constructor() {
-    this.keyDown = false;
+  if (!isBrowser) return;
+  document.addEventListener('keydown', event => handleKey(true, event), true);
+  document.addEventListener('keyup', () => handleKey(false), true);
+  document.addEventListener('mouseleave', () => handleKey(false));
+  document.addEventListener('focus', () => handleFocus(), true);
+  document.addEventListener('blur', () => handleBlur(), true);
 
-    document.addEventListener('keydown', event => this.handleKey(true, event), true);
-    document.addEventListener('keyup', () => this.handleKey(false), true);
-    document.addEventListener('mouseleave', () => this.handleKey(false));
-    document.addEventListener('focus', () => this.handleFocus(), true);
-    document.addEventListener('blur', () => DetectKeyboardFocus.handleBlur(), true);
-  }
-
-  handleKey(pressed: boolean, event?: KeyboardEvent) {
+  const handleKey = (pressed: boolean, event?: KeyboardEvent) => {
     const key = event ? event.key || event.keyCode : undefined;
 
     if (event && key && TAB_KEYS.indexOf(key) === -1) return;
 
-    this.keyDown = pressed;
-  }
+    keyDown = pressed;
+  };
 
-  handleFocus() {
-    if (this.keyDown) document.body.classList.add(KEYBOARD_FOCUSED);
-  }
+  const handleFocus = () => {
+    if (keyDown) document.body.classList.add(KEYBOARD_FOCUSED);
+  };
 
-  static handleBlur() {
+  const handleBlur = () => {
     document.body.classList.remove(KEYBOARD_FOCUSED);
-  }
-}
+  };
+};
 
-export default new DetectKeyboardFocus();
+export default detectKeyboardFocus();

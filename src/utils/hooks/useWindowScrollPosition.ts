@@ -1,6 +1,8 @@
 import _throttle from 'lodash.throttle';
 import { useEffect, useState } from 'react';
 
+import { isBrowser } from '../isBrowser';
+
 interface UseWindowScrollPositionOptions {
   throttle: number;
 }
@@ -10,8 +12,8 @@ const defaultOptions = {
 };
 
 const getPosition = () => ({
-  x: process.browser ? window.pageXOffset : 0,
-  y: process.browser ? window.pageYOffset : 0,
+  x: isBrowser ? window.pageXOffset : 0,
+  y: isBrowser ? window.pageYOffset : 0,
 });
 
 export function useWindowScrollPosition(opts: UseWindowScrollPositionOptions = defaultOptions) {
@@ -22,7 +24,7 @@ export function useWindowScrollPosition(opts: UseWindowScrollPositionOptions = d
       setPosition(getPosition());
     }, opts.throttle);
 
-    if (process.browser) {
+    if (isBrowser) {
       window.addEventListener('scroll', handleScroll);
 
       return () => {

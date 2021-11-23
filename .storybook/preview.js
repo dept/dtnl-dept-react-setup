@@ -1,10 +1,12 @@
+import '@public/fonts/fonts.css';
+
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@chakra-ui/system';
 
 import { theme } from '../src/theme';
 import { GlobalStyle } from '../src/theme/GlobalStyle';
-import { Box } from '../src/components/atoms/Grid';
+import { Box } from '../src/components/shared/Grid';
 
 addDecorator(withKnobs);
 

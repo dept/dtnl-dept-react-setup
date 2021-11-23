@@ -1,8 +1,9 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+import React from 'react';
 
-import { Stack } from '@/components/atoms/Grid/Stack';
-import { Heading, Paragraph } from '@/components/atoms/Text';
+import { Stack } from '@/components/shared/Grid/Stack';
+import { Heading, Paragraph } from '@/components/shared/Text';
 
 interface PageProps {}
 

@@ -106,6 +106,7 @@ export function setQueryParams(values: QueryParamSetterConfig) {
     newAsPath,
     {
       shallow: true,
+      scroll: false,
     },
   );
 }
@@ -191,13 +192,11 @@ function useQueryParamValue(
   },
 ): boolean | string | number | Date | undefined {
   const router = useRouter();
-  const value = (router.query[key] as unknown) as any;
+  const value = router.query[key] as unknown as any;
   return decodeValue(value, options);
 }
 
-export const useQueryParams = <T>(
-  config: { [key in keyof T]: PossibleOptions },
-): [
+export const useQueryParams = <T>(config: { [key in keyof T]: PossibleOptions }): [
   { [key in keyof T]?: PossibleValue },
   (values: { [key in keyof T]?: PossibleValue }) => void,
 ] => {
@@ -211,7 +210,7 @@ export const useQueryParamValues = <T>(config: T) => {
   const keys = Object.keys(config) as Array<keyof T>;
 
   const values = keys.reduce((obj, key) => {
-    const value = (router.query[key as string] as unknown) as any;
+    const value = router.query[key as string] as unknown as any;
     const option = config[key];
     obj[key] = decodeValue(value, option);
     return obj;

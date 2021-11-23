@@ -1,31 +1,32 @@
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import { FC } from 'react';
 import * as icons from 'react-icons/md';
 
-import { Button } from '@/components/atoms/Button';
-import { Box, Column, Flex, Row } from '@/components/atoms/Grid';
-import { Hyperlink } from '@/components/atoms/Hyperlink';
-import { Reveal } from '@/components/atoms/Reveal';
-import { Heading, Text } from '@/components/atoms/Text';
-import { Modal } from '@/components/molecules/Modal';
-import { useModal } from '@/components/molecules/Modal/modalStore';
+import { Button } from '@/components/shared/Button';
+import { Box, BoxProps, Column, Flex, Row } from '@/components/shared/Grid';
+import { Hyperlink } from '@/components/shared/Hyperlink';
+import { Modal } from '@/components/shared/Modal';
+import { useModal } from '@/components/shared/Modal/modalStore';
+import { Reveal } from '@/components/shared/Reveal';
+import { Heading, Text } from '@/components/shared/Text';
 
-const Section: FC = props => (
-  <Reveal>
-    <Box p={30} {...props} />
-  </Reveal>
-);
-
-const SectionHeader: FC = props => (
-  <Box borderBottom="1px solid" borderColor="primary" mb={30}>
-    <Heading {...props} />
-  </Box>
-);
-
-const GridExampleBox: FC = props => (
-  <Box bg="primary" color="white" p={15} my={5} fontSize={14} {...props} />
-);
+function Section(props: BoxProps) {
+  return (
+    <Reveal>
+      <Box p={30} {...props} />
+    </Reveal>
+  );
+}
+function SectionHeader(props: BoxProps) {
+  return (
+    <Box borderBottom="1px solid" borderColor="primary" mb={30}>
+      <Heading {...props} />
+    </Box>
+  );
+}
+function GridExampleBox(props: BoxProps) {
+  return <Box bg="primary" color="white" p={15} my={5} fontSize={14} {...props} />;
+}
 
 const Page: NextPage = () => {
   const { show: showModal } = useModal('uniqueModalId');

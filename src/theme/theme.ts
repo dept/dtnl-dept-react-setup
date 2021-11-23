@@ -1,5 +1,8 @@
+import { createBreakpoints } from '@chakra-ui/theme-tools';
 import { darken, rgba } from 'polished';
-import { DefaultTheme } from 'styled-components';
+
+import { KEYBOARD_FOCUSED } from '@/utils/detectKeyboardFocus';
+import { styledSystemVariants } from '@/utils/styledSystemVariants';
 
 import { colors } from './colors';
 import { grid } from './grid';
@@ -26,14 +29,15 @@ const space = {
   '64': '16rem',
 };
 
-const breakpoints: any = ['40em', '52em', '64em', '80em'];
+const breakpoints = createBreakpoints({
+  sm: '40em',
+  md: '52em',
+  lg: '64em',
+  xl: '80em',
+  '2xl': '96em',
+});
 
-breakpoints.sm = breakpoints[0];
-breakpoints.md = breakpoints[1];
-breakpoints.lg = breakpoints[2];
-breakpoints.xl = breakpoints[3];
-
-export const buttons = {
+export const buttons = styledSystemVariants({
   primary: {
     border: '1px solid',
     borderColor: 'transparent',
@@ -72,10 +76,29 @@ export const buttons = {
     backgroundColor: 'transparent',
     border: 'none',
   },
-};
+  round: {
+    backgroundColor: colors.primary,
+    color: colors.white,
+    border: 0,
+    borderRadius: '50%',
+    width: '56px',
+    height: '56px',
+    p: 0,
+    [`&:hover, .${KEYBOARD_FOCUSED} &:focus`]: {
+      backgroundColor: darken(0.2, colors.primary),
+    },
+    [`.${KEYBOARD_FOCUSED} &:focus`]: {
+      boxShadow: '0px 0px 0px 4px #ad8f8f',
+    },
+    '&:disabled': {
+      backgroundColor: 'gray.300',
+      color: 'gray.800',
+    },
+  },
+});
 
 // buttonSizes based on sizes in spaces
-export const buttonSizes = {
+export const buttonSizes = styledSystemVariants({
   small: {
     py: 1,
     px: 3,
@@ -88,7 +111,7 @@ export const buttonSizes = {
     py: 3,
     px: 6,
   },
-};
+});
 
 const shadows = {
   small: '0 0 4px rgba(0, 0, 0, .125)',
@@ -96,20 +119,12 @@ const shadows = {
   outline: '0px 0px 0px 4px rgba(0, 0, 0, 0.1);',
 };
 
-const input = {
-  borderColor: '#bdbdbd',
-  height: '50px',
-  hover: {
-    borderColor: '#7b7b7b',
-  },
-};
-
-export const textVariants = {
+export const textVariants = styledSystemVariants({
   heading1: {
     fontSize: ['2rem', '3rem', '4rem'],
     color: 'black',
   },
-};
+});
 
 export type ButtonOption = keyof typeof buttons;
 
@@ -119,7 +134,7 @@ export interface ThemeGridContainer {
 }
 
 export interface ThemeGrid {
-  gutter: number | any[];
+  gap: number | any[];
   container: ThemeGridContainer;
 }
 
@@ -136,21 +151,17 @@ export interface CustomTheme {
   buttons: typeof buttons;
   buttonSizes: typeof buttonSizes;
   textVariants: typeof textVariants;
-  outline?: string;
   grid: ThemeGrid;
-  input: typeof input;
 }
 
-export const theme: DefaultTheme = {
+export const theme: CustomTheme = {
   ...typography,
   breakpoints,
   space,
   shadows,
-  outline: `5px auto ${colors.gray[300]}`,
   colors,
   buttons,
   buttonSizes,
   grid,
-  input,
   textVariants,
 };

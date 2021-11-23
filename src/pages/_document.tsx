@@ -1,34 +1,8 @@
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 import { renderFavicons } from '@/utils/favicons';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
-        });
-
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-
   public render() {
     /**
      * Remove lang from <Html> when using https://nextjs.org/docs/advanced-features/i18n-routing
@@ -43,6 +17,7 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="disabled-adaptations" content="watch" />
           {renderFavicons()}
+
           {this.props.dangerousAsPath !== '/unsupported' && (
             <script
               dangerouslySetInnerHTML={{
