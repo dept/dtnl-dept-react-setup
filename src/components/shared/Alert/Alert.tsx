@@ -1,4 +1,3 @@
-import { css } from '@chakra-ui/styled-system';
 import { HiCheckCircle, HiExclamation, HiInformationCircle, HiXCircle } from 'react-icons/hi';
 
 import { Box, BoxProps, Flex } from '../Grid';
