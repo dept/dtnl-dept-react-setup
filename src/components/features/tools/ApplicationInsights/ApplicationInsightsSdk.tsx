@@ -17,10 +17,10 @@ export default function AppInsightsSdk({
   setInstance,
 }: ApplicationInsightsSDKProps) {
   useEffect(() => {
-    /** Return in case instnace exists or key is not provided */
+    // Return in case instance exists or key is not provided
     if (instance || !instrumentationKey) return;
 
-    /** initialize AppInsights */
+    // Initialize AppInsights */
     const appInsights = new ApplicationInsights({
       config: {
         instrumentationKey,
