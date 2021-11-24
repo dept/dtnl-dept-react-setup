@@ -5,19 +5,19 @@ function template({ template }, _opts, { componentName, jsx }) {
 
   return typeScriptTpl.ast`
   import { chakra } from '@chakra-ui/system';
-  import * as React from 'react';
+  import { forwardRef, SVGProps } from 'react';
 
-  interface CustomIconProps extends React.SVGProps<SVGSVGElement> {
+  interface CustomIconProps extends SVGProps<SVGSVGElement> {
     size?: number
   }
 
-  const SVGIcon = React.forwardRef(({ size, ...props }: CustomIconProps, svgRef: React.ForwardedRef<SVGSVGElement>) => {
+  const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
     if (size) {
       props.width = size;
       props.height = size;
     }
 
-    return (${jsx});
+    return ${jsx};
   })
 
   const ${componentName} = chakra(SVGIcon);

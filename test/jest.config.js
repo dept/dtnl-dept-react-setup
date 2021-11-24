@@ -1,9 +1,9 @@
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   rootDir: path.join(__dirname, '..'),
-  roots: ['<rootDir>/src/', '<rootDir>/server/'],
-  collectCoverageFrom: ['(src|server)/**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
+  roots: ['<rootDir>/src/'],
+  collectCoverageFrom: ['(src)/**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   setupFilesAfterEnv: ['<rootDir>/test/config/setupEnv.js'],
   transform: {
@@ -15,7 +15,6 @@ module.exports = {
     '@/(.*)$': '<rootDir>/src/$1',
     '@public/(.*)$': '<rootDir>/public/$1',
     '@test/(.*)$': '<rootDir>/test/$1',
-    '@server/(.*)$': '<rootDir>/server/$1',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
   },
-}
+};
