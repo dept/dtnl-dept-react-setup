@@ -3,6 +3,7 @@ import { useTheme } from '@chakra-ui/system';
 import { BoxProps } from './Box';
 import { Flex } from './Flex';
 import { Space } from './Space';
+
 interface GutterProps {
   gap?: any[] | number;
 }
