@@ -49,10 +49,10 @@ COPY --from=build --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/next.config.mjs ./
-COPY --from=build /app/i18n.js ./i18n.js
+# COPY --from=build /app/i18n.js ./i18n.js
 COPY --from=build /app/tsconfig.json ./tsconfig.json
 COPY --from=build /app/config ./config
-COPY --from=build /app/locales ./locales
+# COPY --from=build /app/locales ./locales
 
 # dont run as root
 USER nextjs
