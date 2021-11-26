@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-import CircularDependencyPlugin from 'circular-dependency-plugin';
 import dotenv from 'dotenv';
 import withPlugins from 'next-compose-plugins';
 
@@ -73,14 +72,16 @@ export default withPlugins(plugins, {
 
   webpack(config, options) {
     if (!options.isServer) {
-      config.plugins.push(
-        new CircularDependencyPlugin({
-          exclude: /a\.js|node_modules/,
-          failOnError: true,
-          allowAsyncCycles: false,
-          cwd: process.cwd(),
-        }),
-      );
+      import('circular-dependency-plugin').then(({ default: CircularDependencyPlugin }) => {
+        config.plugins.push(
+          new CircularDependencyPlugin({
+            exclude: /a\.js|node_modules/,
+            failOnError: true,
+            allowAsyncCycles: false,
+            cwd: process.cwd(),
+          }),
+        );
+      });
     }
 
     includePolyfills(config);
