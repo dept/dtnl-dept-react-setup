@@ -24,7 +24,7 @@ COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 
 # build project
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+RUN yarn build
 
 # purge all non essential dependencies
 RUN yarn install --production --ignore-scripts --prefer-offline
