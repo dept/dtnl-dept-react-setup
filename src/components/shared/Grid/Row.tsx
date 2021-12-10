@@ -12,12 +12,13 @@ type RowProps = BoxProps & GutterProps;
 
 export function Row({ gap, children, ...props }: RowProps) {
   const themeContext = useTheme();
+  const hasGap = gap || gap === 0;
 
-  if (!gap && themeContext && themeContext.grid) {
+  if (!hasGap && themeContext && themeContext.grid) {
     gap = themeContext.grid.gap;
   }
 
-  if (!gap) {
+  if (!hasGap) {
     gap = 15;
   }
 
