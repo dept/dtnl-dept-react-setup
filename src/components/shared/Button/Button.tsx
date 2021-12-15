@@ -5,7 +5,7 @@ import Ink from 'react-ink';
 import { buttons, buttonSizes } from '@/theme';
 
 import { Box, BoxProps } from '../Grid';
-import { CircularLoader } from '../Loader';
+import { Spinner } from '../Loader';
 
 type ButtonElements = 'button' | 'a' | any;
 
@@ -104,7 +104,7 @@ export const Button = forwardRef<any, ButtonProps>(
                 left={0}
                 top={0}
               >
-                <CircularLoader size={30} />
+                <Spinner size={30} />
               </Box>
             )}
 

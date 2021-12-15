@@ -1,3 +1,3 @@
 export * from './Loader';
-export * from './CircularLoader';
+export * from './Spinner';
 export * from './LoadingBar';
