@@ -1,37 +1,50 @@
-import { Box } from '../Grid';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { useNProgress } from '@tanem/react-nprogress';
 
-interface LoaderProps {
-  size?: number;
-}
+import { Image } from '@/components/shared/Image';
+import { LoadingBar } from '@/components/shared/Loader/LoadingBar';
 
-export function Loader({ size = 100 }: LoaderProps) {
+const FullScreenWrapper = styled.div(
+  ({ theme }) => css`
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: ${theme.colors.gray[50]};
+  `,
+);
+
+const DefaultWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export type LoaderProps = {
+  isAnimating: boolean;
+  withLogo?: boolean;
+  isFullScreen?: boolean;
+};
+
+export const Loader = ({ isAnimating, withLogo, isFullScreen }: LoaderProps) => {
+  const Wrapper = isFullScreen ? FullScreenWrapper : DefaultWrapper;
+  const { animationDuration, isFinished, progress } = useNProgress({
+    isAnimating,
+  });
+
+  if (isFinished) return null;
+
   return (
-    <Box textAlign="center">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ margin: 'auto' }}
-        width={size}
-        height={size}
-        display="block"
-        preserveAspectRatio="xMidYMid"
-        viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="27"
-          fill="none"
-          stroke="currentColor"
-          strokeDasharray="127.23450247038662 44.411500823462205"
-          strokeWidth="7">
-          <animateTransform
-            attributeName="transform"
-            dur="1s"
-            keyTimes="0;1"
-            repeatCount="indefinite"
-            type="rotate"
-            values="0 50 50;360 50 50"></animateTransform>
-        </circle>
-      </svg>
-    </Box>
+    <Wrapper>
+      {withLogo && <Image w={96} mb={6} src="/logo.png" alt="Dept logo" />}
+      <LoadingBar duration={animationDuration} progress={progress * 100} />
+    </Wrapper>
   );
-}
+};

@@ -1,12 +1,11 @@
+import { CircularLoader } from './CircularLoader';
 import { Loader } from './Loader';
+import { LoadingBar } from './LoadingBar';
 
 export default { title: 'Atoms/Loader', component: Loader };
 
-export const example = () => <Loader />;
+export const example = () => <Loader isAnimating withLogo isFullScreen />;
 
-example.story = {
-  parameters: {
-    info:
-      'The loader is just a svg from https://loading.io. It is also being used as a button loader in the `Button` component.',
-  },
-};
+export const loadingBar = () => <LoadingBar duration={200} progress={50} />;
+
+export const circular = () => <CircularLoader />;

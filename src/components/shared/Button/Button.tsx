@@ -5,7 +5,7 @@ import Ink from 'react-ink';
 import { buttons, buttonSizes } from '@/theme';
 
 import { Box, BoxProps } from '../Grid';
-import { Loader } from '../Loader';
+import { CircularLoader } from '../Loader';
 
 type ButtonElements = 'button' | 'a' | any;
 
@@ -86,7 +86,8 @@ export const Button = forwardRef<any, ButtonProps>(
           boxShadow: !hideOutline ? theme.shadows.outline : 'none',
         }}
         {...props}
-        ref={ref}>
+        ref={ref}
+      >
         {variant === 'clear' ? (
           children
         ) : (
@@ -101,8 +102,9 @@ export const Button = forwardRef<any, ButtonProps>(
                 height="100%"
                 width="100%"
                 left={0}
-                top={0}>
-                <Loader size={30} />
+                top={0}
+              >
+                <CircularLoader size={30} />
               </Box>
             )}
 
@@ -111,7 +113,8 @@ export const Button = forwardRef<any, ButtonProps>(
               visibility={loading ? 'hidden' : undefined}
               justifyContent="space-between"
               alignItems="center"
-              textAlign="center">
+              textAlign="center"
+            >
               {startIcon && <Box mr={2}>{startIcon}</Box>}
 
               <span>{children}</span>
