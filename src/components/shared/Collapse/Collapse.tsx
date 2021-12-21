@@ -1,8 +1,8 @@
+import { Box } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { Transition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 
-import { Box } from '@/components/shared/Grid';
 import { useMeasure } from '@/utils/hooks';
 
 interface Props {
@@ -55,7 +55,8 @@ export function Collapse({ children, isOpen = false }: Props) {
                 transitionTimingFunction: `cubic-bezier(0.77, 0, 0.175, 1)`,
                 opacity: getOpacity(state),
                 height: getHeight(state),
-              }}>
+              }}
+            >
               <div ref={ref}>{children}</div>
             </Box>
           );

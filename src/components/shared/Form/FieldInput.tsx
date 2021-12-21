@@ -1,10 +1,10 @@
+import { Box, BoxProps } from '@chakra-ui/react';
 import { useTheme } from '@chakra-ui/system';
 import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Props as MaskProps } from 'react-input-mask';
 
-import { Box, BoxProps } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
 import { Label } from '@/components/shared/Label';
 import { isBrowser } from '@/utils/isBrowser';

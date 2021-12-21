@@ -1,14 +1,13 @@
+import { Box, BoxProps, Button, Flex, Heading, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import * as icons from 'react-icons/md';
 
-import { Button } from '@/components/shared/Button';
-import { Box, BoxProps, Column, Flex, Row } from '@/components/shared/Grid';
+import { Column, Row } from '@/components/shared/Grid';
 import { Hyperlink } from '@/components/shared/Hyperlink';
 import { Modal } from '@/components/shared/Modal';
 import { useModal } from '@/components/shared/Modal/modalStore';
 import { Reveal } from '@/components/shared/Reveal';
-import { Heading, Text } from '@/components/shared/Text';
 
 function Section(props: BoxProps) {
   return (
@@ -52,26 +51,46 @@ const Page: NextPage = () => {
       <Section>
         <SectionHeader>Typography</SectionHeader>
 
-        <Heading as="h1">Heading 1</Heading>
-        <Heading as="h2">Heading 2</Heading>
-        <Heading as="h3">Heading 3</Heading>
-        <Heading as="h4">Heading 4</Heading>
-        <Heading as="h5">Heading 5</Heading>
-        <Heading as="h6">Heading 6</Heading>
-        <Text as="strong">Strong</Text>
-        <Text as="p">Paragraph</Text>
+        <Heading as="h1" size="4xl">
+          Heading 1
+        </Heading>
+        <Heading as="h2" size="3xl">
+          Heading 2
+        </Heading>
+        <Heading as="h3" size="2xl">
+          Heading 3
+        </Heading>
+        <Heading as="h4" size="xl">
+          Heading 4
+        </Heading>
+        <Heading as="h5" size="lg">
+          Heading 5
+        </Heading>
+        <Heading as="h6" size="md">
+          Heading 6
+        </Heading>
+        <Text as="strong" size="sm">
+          Strong
+        </Text>
+        <Text fontSize="xs">Paragraph</Text>
+        <Text fontSize="sm">Paragraph</Text>
+        <Text fontSize="md">Paragraph</Text>
+        <Text fontSize="lg">Paragraph</Text>
+        <Text fontSize="xl">Paragraph</Text>
+        <Text fontSize="2xl">Paragraph</Text>
+        <Text fontSize="3xl">Paragraph</Text>
+        <Text fontSize="4xl">Paragraph</Text>
       </Section>
 
       <Section>
         <SectionHeader>Buttons</SectionHeader>
 
-        <Button variant="primary" size="small">
+        <Button variant="primary" size="sm">
           Button
         </Button>
-        <Button variant="secondary" size="medium">
-          Button
-        </Button>
-        <Button variant="primary" size="large">
+        {/* Default size is medium */}
+        <Button variant="secondary">Button</Button>
+        <Button variant="primary" size="lg">
           Button
         </Button>
       </Section>
@@ -91,7 +110,7 @@ const Page: NextPage = () => {
 
         <Flex flexWrap="wrap">
           {Object.entries(icons).map(([key, Icon]) => (
-            <Box key={key} p={1} color="secondary">
+            <Box key={key} p={1} color="primary">
               <Icon size={30} />
             </Box>
           ))}

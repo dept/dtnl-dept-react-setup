@@ -1,4 +1,6 @@
-import { Box, Column, Container, Row, Grid, BoxProps } from '@/components/shared/Grid';
+import { BoxProps, Box } from '@chakra-ui/react';
+
+import { Column, Row, Grid, Container } from '@/components/shared/Grid';
 
 export default { title: 'Grid/Grid' };
 

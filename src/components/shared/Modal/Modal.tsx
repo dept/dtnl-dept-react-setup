@@ -1,3 +1,4 @@
+import { Box, BoxProps, Button, Heading } from '@chakra-ui/react';
 import { chakra } from '@chakra-ui/system';
 import styled from '@emotion/styled';
 import { DialogContent as DContent, DialogOverlay } from '@reach/dialog';
@@ -6,10 +7,7 @@ import React, { forwardRef, ReactNode, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 import { useKey } from 'react-use';
 
-import { Button } from '@/components/shared/Button';
-import { BoxProps, Box } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
-import { Heading } from '@/components/shared/Text';
 import CloseLightIcon from '@/icons/components/CloseLight';
 import { colors } from '@/theme/colors';
 

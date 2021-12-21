@@ -1,11 +1,10 @@
+import { Flex, Box, Text } from '@chakra-ui/react';
 import { useTheme } from '@chakra-ui/system';
 import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { InputHTMLAttributes } from 'react';
 
-import { Box, Flex } from '@/components/shared/Grid';
 import { Label } from '@/components/shared/Label';
-import { Text } from '@/components/shared/Text';
 
 export interface FieldRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;

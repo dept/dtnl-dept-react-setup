@@ -1,6 +1,6 @@
+import { Button, ButtonProps } from '@chakra-ui/react';
 import { LinkProps } from 'next/link';
 
-import { Button, ButtonProps } from '../Button';
 import { Link } from '../Link';
 
 export type ButtonLinkProps = Omit<ButtonProps, 'as'> & LinkProps;
@@ -23,7 +23,8 @@ export function ButtonLink({
       scroll={scroll}
       shallow={shallow}
       replace={replace}
-      passHref>
+      passHref
+    >
       <Button as="a" display="inline-block" {...props}>
         {children}
       </Button>

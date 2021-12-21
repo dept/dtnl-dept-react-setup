@@ -1,8 +1,8 @@
+import { Box } from '@chakra-ui/react';
 import { useCombobox, UseComboboxProps } from 'downshift';
 import { useState, useEffect } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
-import { Box } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
 
 import { FieldInput, FieldInputProps } from './FieldInput';
@@ -131,7 +131,8 @@ export const FieldCombobox = ({
           color="black"
           minWidth={200}
           maxWidth="100%"
-          {...getMenuProps()}>
+          {...getMenuProps()}
+        >
           {inputItems.map((item, index) => (
             <ListItem
               color="black"
@@ -140,7 +141,8 @@ export const FieldCombobox = ({
               bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : null}
               p="12px 14px"
               key={`${item}${index}`}
-              {...getItemProps({ item, index })}>
+              {...getItemProps({ item, index })}
+            >
               {item.label}
             </ListItem>
           ))}

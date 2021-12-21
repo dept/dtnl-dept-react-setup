@@ -1,3 +1,4 @@
+import { Box, Stack } from '@chakra-ui/react';
 import { subYears } from 'date-fns';
 import { FormApi } from 'final-form';
 import { NextPage } from 'next';
@@ -11,7 +12,6 @@ import { Alert } from '@/components/shared/Alert';
 import { Divider } from '@/components/shared/Divider';
 import { FieldRadioGroup } from '@/components/shared/Form';
 import { SubmitHandler } from '@/components/shared/Formik/types';
-import { Box, Stack } from '@/components/shared/Grid';
 
 type FFSubmitHandler<FormValues> = (values: FormValues, formHelpers: FormApi<FormValues>) => void;
 

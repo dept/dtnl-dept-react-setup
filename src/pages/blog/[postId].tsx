@@ -1,11 +1,10 @@
 import { ParsedUrlQuery } from 'querystring';
 
+import { Box, Text, Heading } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { Box } from '@/components/shared/Grid';
 import { Hyperlink } from '@/components/shared/Hyperlink';
-import { Heading, Text } from '@/components/shared/Text';
 
 import { BlogPost, blogPosts } from '../blog';
 

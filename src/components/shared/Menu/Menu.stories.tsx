@@ -1,6 +1,5 @@
+import { Box } from '@chakra-ui/react';
 import { Transition } from 'react-transition-group';
-
-import { Box } from '@/components/shared/Grid';
 
 import { Menu, MenuButton, MenuItem, MenuItems, MenuLink, MenuList, MenuPopover } from './Menu';
 

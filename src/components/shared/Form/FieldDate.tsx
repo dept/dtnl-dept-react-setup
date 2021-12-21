@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { format, isValid, parse } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
@@ -5,9 +6,8 @@ import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { Box } from '@/components/shared/Grid';
 import { IconButton } from '@/components/shared/IconButton';
-import { colors } from '@/theme/colors';
+import { theme } from '@/theme';
 
 import { FieldInput, FieldInputProps } from './FieldInput';
 
@@ -193,10 +193,10 @@ const Wrapper = styled(Box)`
     padding: calc(0.75em / 0.75) calc(0.5em / 0.75);
   }
   .react-calendar__month-view__days__day--weekend {
-    color: ${colors.error};
+    color: ${theme.colors.error};
   }
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: ${colors.gray[200]};
+    color: ${theme.colors.gray[200]};
   }
   .react-calendar__year-view .react-calendar__tile,
   .react-calendar__decade-view .react-calendar__tile,
@@ -214,24 +214,24 @@ const Wrapper = styled(Box)`
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: ${colors.gray[300]};
+    background-color: ${theme.colors.gray[300]};
   }
   .react-calendar__tile--hasActive {
-    background: ${colors.primary};
+    background: ${theme.colors.primary};
   }
   .react-calendar__tile--hasActive:enabled:hover,
   .react-calendar__tile--hasActive:enabled:focus {
-    background: ${colors.primary};
+    background: ${theme.colors.primary};
   }
   .react-calendar__tile--active {
-    background: ${colors.primary};
+    background: ${theme.colors.primary};
     color: white;
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
-    background: ${colors.primary};
+    background: ${theme.colors.primary};
   }
   .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: ${colors.gray[300]};
+    background-color: ${theme.colors.gray[300]};
   }
 `;

@@ -1,7 +1,5 @@
+import { Box, BoxProps, Flex, Heading, Text } from '@chakra-ui/react';
 import { HiCheckCircle, HiExclamation, HiInformationCircle, HiXCircle } from 'react-icons/hi';
-
-import { Box, BoxProps, Flex } from '../Grid';
-import { Heading, Paragraph } from '../Text';
 
 const colors = {
   succes: {
@@ -44,7 +42,7 @@ export function Alert({ type, title, children, icon, ...props }: AlertProps) {
         </Flex>
         <Box ml={3}>
           {title && <Heading as="h3">{title}</Heading>}
-          {children && <Paragraph m={0}>{children}</Paragraph>}
+          {children && <Text m={0}>{children}</Text>}
         </Box>
       </Flex>
     </Box>

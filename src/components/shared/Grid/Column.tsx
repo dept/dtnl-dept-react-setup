@@ -1,6 +1,5 @@
+import { Box, BoxProps } from '@chakra-ui/react';
 import { ResponsiveValue } from '@chakra-ui/system';
-
-import { Box, BoxProps } from './Box';
 
 type ColumnProps = Omit<BoxProps, 'inset'> & {
   col?: number | (number | null | string)[] | Record<string, number | null | string>;

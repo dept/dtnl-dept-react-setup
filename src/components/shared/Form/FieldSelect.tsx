@@ -1,9 +1,9 @@
+import { Box, BoxProps } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useSelect } from 'downshift';
 import { forwardRef, InputHTMLAttributes, useState } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
-import { Box, BoxProps } from '@/components/shared/Grid';
 import { Label } from '@/components/shared/Label/Label';
 
 import { InputWrapper } from './FieldInput';
@@ -131,7 +131,8 @@ function CustomSelect({
           {...getToggleButtonProps({
             onFocus,
             onBlur,
-          })}>
+          })}
+        >
           {(selectedItem && selectedItem.label) || placeholder || '-'}
           <IconWrapper position="absolute" right={3} top="50%">
             <HiSelector size={18} />
@@ -145,7 +146,8 @@ function CustomSelect({
         color="black"
         minWidth={200}
         maxWidth="100%"
-        {...getMenuProps()}>
+        {...getMenuProps()}
+      >
         {items.map((item, index) => (
           <ListItem
             color="black"
@@ -154,7 +156,8 @@ function CustomSelect({
             bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : null}
             p="12px 14px"
             key={`${item}${index}`}
-            {...getItemProps({ item, index })}>
+            {...getItemProps({ item, index })}
+          >
             {item.label}
           </ListItem>
         ))}
@@ -233,7 +236,8 @@ function NativeSelect({
           disabled={disabled}
           required={required}
           defaultValue={defaultValue}
-          {...rest}>
+          {...rest}
+        >
           {placeholder && (
             <option disabled value="">
               {placeholder}

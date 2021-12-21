@@ -1,9 +1,8 @@
+import { Box, Heading } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { Box } from '@/components/shared/Grid';
 import { Hyperlink } from '@/components/shared/Hyperlink';
-import { Heading } from '@/components/shared/Text';
 
 interface PageProps {}
 

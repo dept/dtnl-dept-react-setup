@@ -1,10 +1,9 @@
+import { Flex, Box, Container, Heading, Text } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 import { Footer } from '../features/layout/Footer';
 import { Header } from '../features/layout/Header';
-import { Box, Flex, Container } from '../shared/Grid';
 import { Modal } from '../shared/Modal';
-import { Heading, Text } from '../shared/Text';
 
 interface BaseLayoutProps {
   children?: ReactNode;

@@ -1,3 +1,4 @@
+import { Button, ButtonProps } from '@chakra-ui/react';
 import {
   Menu as ReachMenu,
   MenuButton as ReactMenuButton,
@@ -9,7 +10,6 @@ import {
 } from '@reach/menu-button';
 import { AnchorHTMLAttributes } from 'react';
 
-import { Button, ButtonProps } from '@/components/shared/Button';
 import { Box, BoxProps } from '@/components/shared/Grid';
 
 interface MenuItemProps {
@@ -50,7 +50,8 @@ export const Item = (props: BoxProps) => (
         bg: 'gray.100',
       },
     }}
-    {...props}></Box>
+    {...props}
+  ></Box>
 );
 
 export const MenuItem = (props: BoxProps & MenuItemProps) => <Item {...props} as={ReachMenuItem} />;

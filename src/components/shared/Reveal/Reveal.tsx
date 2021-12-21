@@ -1,7 +1,6 @@
+import { Box } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { useInView } from 'react-intersection-observer';
-
-import { Box } from '../Grid';
 
 export interface RevealProps {
   children?: ReactNode;
@@ -22,7 +21,8 @@ export function Reveal({ children }: RevealProps) {
         transition: 'opacity 300ms, top 700ms',
         opacity: inView ? 1 : 0,
         top: inView ? '0px' : '15px',
-      }}>
+      }}
+    >
       {children}
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Box, BoxProps } from '../Grid';
+import { Box, BoxProps } from '@chakra-ui/react';
 
 interface LabelProps extends BoxProps {
   htmlFor?: string;
@@ -16,7 +16,8 @@ export function Label({ children, color, required, ...props }: LabelProps) {
         fontSize: 'sm',
         color: color || 'gray.700',
       }}
-      {...props}>
+      {...props}
+    >
       {children}
       {required ? ' *' : null}
     </Box>

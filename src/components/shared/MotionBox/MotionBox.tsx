@@ -1,6 +1,5 @@
+import { Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-
-import { Button } from '@/components/shared/Button';
 
 import { Flex, Box } from '../Grid';
 

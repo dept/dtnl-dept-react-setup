@@ -1,8 +1,6 @@
+import { Box, Button } from '@chakra-ui/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { useState } from 'react';
-
-import { Button } from '@/components/shared/Button';
-import { Box } from '@/components/shared/Grid';
 
 import { Collapse } from './Collapse';
 
