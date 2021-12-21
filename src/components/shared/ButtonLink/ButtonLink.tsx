@@ -25,7 +25,7 @@ export function ButtonLink({
       replace={replace}
       passHref
     >
-      <Button as="a" display="inline-block" {...props}>
+      <Button as="a" display="inline-flex" {...props}>
         {children}
       </Button>
     </Link>

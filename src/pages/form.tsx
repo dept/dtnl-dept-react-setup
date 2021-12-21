@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Alert, Box, Divider, Stack } from '@chakra-ui/react';
 import { subYears } from 'date-fns';
 import { FormApi } from 'final-form';
 import { NextPage } from 'next';
@@ -8,8 +8,6 @@ import { object, string, date, array, number } from 'yup';
 
 import { FinalFormExampleForm } from '@/components/features/forms/FinalFormExampleForm';
 import { FormikExampleForm } from '@/components/features/forms/FormikExampleForm';
-import { Alert } from '@/components/shared/Alert';
-import { Divider } from '@/components/shared/Divider';
 import { FieldRadioGroup } from '@/components/shared/Form';
 import { SubmitHandler } from '@/components/shared/Formik/types';
 

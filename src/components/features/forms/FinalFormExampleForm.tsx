@@ -140,7 +140,7 @@ export function FinalFormExampleForm({
                     );
                   })}
 
-                  <Button onClick={() => fields.push(initialProgrammingLanguage)}>
+                  <Button width="200px" onClick={() => fields.push(initialProgrammingLanguage)}>
                     Insert new +
                   </Button>
                 </>

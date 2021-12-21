@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Button, VisuallyHidden } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { format, isValid, parse } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
@@ -6,7 +6,6 @@ import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { IconButton } from '@/components/shared/IconButton';
 import { theme } from '@/theme';
 
 import { FieldInput, FieldInputProps } from './FieldInput';
@@ -113,16 +112,16 @@ export const FieldDate = ({
         onFocus={handleFocus}
         mask="99-99-9999"
         end={
-          <IconButton
+          <Button
+            variant="icon"
             onClick={() => {
               setIsOpen(true);
             }}
-            size={30}
             color="gray.800"
-            icon={<HiOutlineCalendar />}
-            aria-label="Open calendar"
-            hideOutline
-          />
+          >
+            <HiOutlineCalendar />
+            <VisuallyHidden>Open calendar</VisuallyHidden>
+          </Button>
         }
       />
       <CalendarWrapper display={isOpen ? 'block' : 'none'} position="absolute">

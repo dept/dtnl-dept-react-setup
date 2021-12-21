@@ -2,6 +2,7 @@ import {
   Alert,
   AlertDescription,
   AlertIcon,
+  chakra,
   Heading,
   Link,
   ListItem,
@@ -31,16 +32,65 @@ const Page: NextPage = () => {
       <Heading size="lg">Links to Chakra alternatives for deleted components</Heading>
       <UnorderedList fontSize="2xl" mt="8" mb="12">
         <ListItem>
+          <Link href="https://chakra-ui.com/docs/feedback/alert" target="_blank">
+            Alert
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/disclosure/accordion" target="_blank">
+            Collapse
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/data-display/divider" target="_blank">
+            Divider
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/navigation/link" target="_blank">
+            Hyperlink (The NextJS link wrapper Navlink is still included)
+          </Link>
+        </ListItem>
+        <ListItem>
+          Icon button (can be used via{' '}
+          <chakra.pre display="inline">{'<Button variant="icon">'}</chakra.pre>)
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/feedback/spinner" target="_blank">
+            Loader
+          </Link>
+        </ListItem>
+        <ListItem>
           <Link href="https://chakra-ui.com/docs/overlay/menu" target="_blank">
             Menu
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/feedback/skeleton" target="_blank">
+            Skeleton
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/form/switch" target="_blank">
+            Switch
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/overlay/tooltip" target="_blank">
+            Tooltip
           </Link>
         </ListItem>
       </UnorderedList>
 
       <Heading size="lg">Components that are still custom and in Storybook are:</Heading>
       <UnorderedList fontSize="2xl" mt="8">
+        <ListItem>Form elements (will probably be removed soon)</ListItem>
         <ListItem>Grid</ListItem>
+        <ListItem>Image</ListItem>
         <ListItem>Modal (replaced with a small wrapper around the Chakra Modal)</ListItem>
+        <ListItem>NavLink</ListItem>
+        <ListItem>Pagination</ListItem>
+        <ListItem>NoSsr</ListItem>
       </UnorderedList>
     </>
   );

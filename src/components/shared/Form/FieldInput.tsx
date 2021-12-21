@@ -1,11 +1,10 @@
-import { Box, BoxProps } from '@chakra-ui/react';
+import { Box, BoxProps, Button, VisuallyHidden } from '@chakra-ui/react';
 import { useTheme } from '@chakra-ui/system';
 import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Props as MaskProps } from 'react-input-mask';
 
-import { IconButton } from '@/components/shared/IconButton';
 import { Label } from '@/components/shared/Label';
 import { isBrowser } from '@/utils/isBrowser';
 
@@ -128,7 +127,7 @@ export const InputWrapper = ({ hasFocus, hasError, ...props }: InputWrapperProps
 
 export const AdornmentWrapper = (props: BoxProps) => (
   <Box
-    minWidth={40}
+    minWidth="80px"
     display="flex"
     alignItems="center"
     justifyContent="center"
@@ -143,15 +142,10 @@ export const AdornmentWrapper = (props: BoxProps) => (
 const Clear = ({ onClick }: Pick<BoxProps, 'onClick'>) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
-      <IconButton
-        type="button"
-        aria-label="Clear"
-        icon={<HiOutlineX />}
-        size={30}
-        onClick={onClick}
-        tabIndex={-1}
-        hideOutline
-      />
+      <Button variant="icon" type="button" onClick={onClick} tabIndex={-1}>
+        <HiOutlineX />
+        <VisuallyHidden>Clear</VisuallyHidden>
+      </Button>
     </Box>
   );
 };

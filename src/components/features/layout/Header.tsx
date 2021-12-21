@@ -18,11 +18,11 @@ const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
     borderRadius={5}
     fontWeight="medium"
     _hover={{
-      bg: 'gray.700',
+      bg: 'secondary',
     }}
     sx={{
       '&.active': {
-        bg: 'gray.900',
+        bg: 'gray.700',
       },
     }}
     {...props}
@@ -66,7 +66,7 @@ function Navigation() {
 
 export function Header() {
   return (
-    <Box as="header" bg="gray.800" color="white">
+    <Box as="header" bg="primary" color="white">
       <Container>
         <Flex flexShrink={0} alignItems="center">
           <Link href="/">

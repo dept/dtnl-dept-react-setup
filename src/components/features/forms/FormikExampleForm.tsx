@@ -149,7 +149,7 @@ export function FormikExampleForm({
                       );
                     })}
 
-                    <Button onClick={() => helpers.push(initialProgrammingLanguage)}>
+                    <Button width="200px" onClick={() => helpers.push(initialProgrammingLanguage)}>
                       Insert new +
                     </Button>
                   </>
