@@ -21,16 +21,26 @@ const Page: NextPage = () => {
           <strong>Make sure to check Storybook</strong>. A lot of custom components that where by
           default included in this setup, have been deleted. Components that can not be found here
           anymore can be implemented with{' '}
-          <Link href="https://chakra-ui.com/docs" textDecor="underline" target="_blank">
+          <Link href="https://chakra-ui.com/docs" target="_blank">
             Chakra UI components
           </Link>
           .
         </AlertDescription>
       </Alert>
 
+      <Heading size="lg">Links to Chakra alternatives for deleted components</Heading>
+      <UnorderedList fontSize="2xl" mt="8" mb="12">
+        <ListItem>
+          <Link href="https://chakra-ui.com/docs/overlay/menu" target="_blank">
+            Menu
+          </Link>
+        </ListItem>
+      </UnorderedList>
+
       <Heading size="lg">Components that are still custom and in Storybook are:</Heading>
       <UnorderedList fontSize="2xl" mt="8">
         <ListItem>Grid</ListItem>
+        <ListItem>Modal (replaced with a small wrapper around the Chakra Modal)</ListItem>
       </UnorderedList>
     </>
   );

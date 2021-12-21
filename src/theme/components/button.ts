@@ -18,5 +18,27 @@ export const button: ComponentStyleConfig = {
       backgroundColor: 'secondary',
       color: 'white',
     },
+    icon: {
+      backgroundColor: 'black',
+      width: '40px',
+      height: '40px',
+      borderRadius: 'full',
+      p: '0',
+      _hover: {
+        backgroundColor: 'secondary',
+        transform: 'scale(1.2)',
+      },
+      _focus: {
+        backgroundColor: 'secondary',
+        transform: 'scale(1.2)',
+      },
+      svg: {
+        width: '20px',
+        height: '20px',
+      },
+      path: {
+        fill: 'white',
+      },
+    },
   },
 };
