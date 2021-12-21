@@ -1,12 +1,10 @@
+import { Flex, Text, Box } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { ReactNode, useRef, useState } from 'react';
 import { Manager, Popper, PopperProps, Reference } from 'react-popper';
 import useClickAway from 'react-use/lib/useClickAway';
 
 import { colors } from '@/theme/colors';
-
-import { Box, Flex } from '../Grid';
-import { Text } from '../Text';
 
 interface TooltipProps {
   placement?: PopperProps<any>['placement'];
@@ -56,7 +54,8 @@ export const Tooltip = ({ placement = 'top', children, trigger }: TooltipProps) 
             onFocus={() => setActive(true)}
             onBlur={() => setActive(false)}
             onMouseOver={() => setActive(true)}
-            onMouseOut={() => setActive(false)}>
+            onMouseOut={() => setActive(false)}
+          >
             {trigger || (
               <Trigger>
                 <Flex ref={tooltipRef} justifyContent="center" alignItems="center">
@@ -76,7 +75,8 @@ export const Tooltip = ({ placement = 'top', children, trigger }: TooltipProps) 
               ref={ref}
               style={style}
               data-placement={dataPlacement}
-              opacity={active ? 1 : 0}>
+              opacity={active ? 1 : 0}
+            >
               {children}
 
               {/* <div ref={arrowProps.ref} style={arrowProps.style} /> */}

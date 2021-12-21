@@ -1,12 +1,11 @@
+import { Box, Flex, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { HTMLAttributes } from 'react';
 
-import { colors } from '@/theme/colors';
+import { theme } from '@/theme';
 
-import { Box, Flex } from '../Grid';
 import { Label } from '../Label';
-import { Text } from '../Text';
 
 const TOGGLE_HEIGHT = '25px';
 
@@ -20,7 +19,7 @@ type SwitchProps = HTMLAttributes<HTMLInputElement> & {
 
 const SwitchBackground = styled.div`
   background-color: transparent;
-  border: 1px solid ${colors.gray[600]};
+  border: 1px solid ${theme.colors.gray[600]};
   border-radius: 12px;
   padding: 5px;
   height: ${TOGGLE_HEIGHT};
@@ -36,7 +35,7 @@ const SwitchBall = styled.div`
   width: 13px;
   border-radius: 50%;
   transition: all 0.2s linear;
-  background-color: ${colors.gray[600]};
+  background-color: ${theme.colors.gray[600]};
   transform: translateX(0%);
 `;
 
@@ -53,9 +52,9 @@ const HiddenInput = styled.input`
   ${hideVisually()};
 
   &:checked ~ ${SwitchBackground} {
-    background-color: ${colors.gray[600]};
+    background-color: ${theme.colors.gray[600]};
     ${SwitchBall} {
-      background-color: ${colors.white};
+      background-color: ${theme.colors.white};
       transform: translateX(150%);
     }
   }
@@ -68,7 +67,7 @@ const HiddenInput = styled.input`
 
   &:focus ~ ${SwitchBackground} {
     outline: none;
-    box-shadow: ${props => props.theme.shadows.outline || 'inherit'};
+    box-shadow: ${theme.shadows.outline || 'inherit'};
   }
 `;
 

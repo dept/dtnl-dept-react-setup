@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from '@chakra-ui/react';
+import { Button, ButtonProps, Box, BoxProps } from '@chakra-ui/react';
 import {
   Menu as ReachMenu,
   MenuButton as ReactMenuButton,
@@ -9,8 +9,6 @@ import {
   MenuItems as ReachMenuItems,
 } from '@reach/menu-button';
 import { AnchorHTMLAttributes } from 'react';
-
-import { Box, BoxProps } from '@/components/shared/Grid';
 
 interface MenuItemProps {
   onSelect: () => void;

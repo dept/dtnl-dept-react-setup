@@ -1,7 +1,6 @@
+import { Box, BoxProps } from '@chakra-ui/react';
 import { useTheme } from '@chakra-ui/system';
 import { forwardRef, ReactElement } from 'react';
-
-import { Box, BoxProps } from '../Grid';
 
 type ButtonElements = 'button' | 'a' | 'span';
 
@@ -53,7 +52,8 @@ export const IconButton = forwardRef<any, IconButtonProps & BoxProps>((props, re
         bg: 'rgba(0,0,0,.05)',
       }}
       {...rest}
-      ref={ref}>
+      ref={ref}
+    >
       {icon}
     </Box>
   );

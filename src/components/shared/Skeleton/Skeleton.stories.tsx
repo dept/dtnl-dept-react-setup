@@ -1,4 +1,5 @@
-import { Box, Flex } from '../Grid';
+import { Box, Flex } from '@chakra-ui/react';
+
 import { Skeleton } from './Skeleton';
 
 export default { title: 'Atoms/Skeleton', component: Skeleton };
