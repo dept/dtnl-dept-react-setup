@@ -2,19 +2,17 @@ import '@public/fonts/fonts.css';
 
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { ThemeProvider } from '@chakra-ui/system';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import { theme } from '../src/theme';
-import { GlobalStyle } from '../src/theme/GlobalStyle';
-import { Box } from '../src/components/shared/Grid';
+import { Box } from '@chakra-ui/react';
 
 addDecorator(withKnobs);
 
 addDecorator(story => (
   <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
+    <ChakraProvider theme={theme} resetCSS>
       <Box p={20}>{story()}</Box>
-    </ThemeProvider>
+    </ChakraProvider>
   </>
 ));
