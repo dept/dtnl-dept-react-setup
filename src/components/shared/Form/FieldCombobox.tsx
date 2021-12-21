@@ -1,9 +1,7 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Button, VisuallyHidden } from '@chakra-ui/react';
 import { useCombobox, UseComboboxProps } from 'downshift';
 import { useState, useEffect } from 'react';
 import { HiSelector } from 'react-icons/hi';
-
-import { IconButton } from '@/components/shared/IconButton';
 
 import { FieldInput, FieldInputProps } from './FieldInput';
 import { List } from './FieldSelect';
@@ -112,13 +110,10 @@ export const FieldCombobox = ({
         }}
         end={
           showSelector && (
-            <IconButton
-              {...getToggleButtonProps()}
-              icon={HiSelector}
-              size={18}
-              aria-label="Toggle menu"
-              hideOutline
-            />
+            <Button variant="icon" {...getToggleButtonProps()} icon={HiSelector}>
+              <HiSelector />
+              <VisuallyHidden>Toggle menu</VisuallyHidden>
+            </Button>
           )
         }
       />

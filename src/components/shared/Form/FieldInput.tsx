@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
 import { Props as MaskProps } from 'react-input-mask';
+import { ButtonProps } from 'react-scroll/modules/components/Button';
 
 import { Label } from '@/components/shared/Label';
 import { isBrowser } from '@/utils/isBrowser';
@@ -139,7 +140,7 @@ export const AdornmentWrapper = (props: BoxProps) => (
   />
 );
 
-const Clear = ({ onClick }: Pick<BoxProps, 'onClick'>) => {
+const Clear = ({ onClick }: Pick<ButtonProps, 'onClick'>) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
       <Button variant="icon" type="button" onClick={onClick} tabIndex={-1}>

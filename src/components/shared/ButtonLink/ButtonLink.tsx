@@ -3,7 +3,7 @@ import { LinkProps } from 'next/link';
 
 import { Link } from '../Link';
 
-export type ButtonLinkProps = Omit<ButtonProps, 'as'> & LinkProps;
+export type ButtonLinkProps = Omit<ButtonProps, 'as'> & LinkProps & { target?: string };
 
 export function ButtonLink({
   href,
