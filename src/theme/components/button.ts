@@ -1,4 +1,6 @@
-import { ComponentStyleConfig } from '@chakra-ui/react';
+import { ComponentStyleConfig, theme } from '@chakra-ui/react';
+
+import { link } from './link';
 
 export const button: ComponentStyleConfig = {
   baseStyle: {
@@ -17,6 +19,12 @@ export const button: ComponentStyleConfig = {
     secondary: {
       backgroundColor: 'secondary',
       color: 'white',
+    },
+    link: {
+      // Imports next base styles
+      ...theme.components.Link.baseStyle,
+      // Overries with our own changes
+      ...link.baseStyle,
     },
     icon: {
       backgroundColor: 'black',
