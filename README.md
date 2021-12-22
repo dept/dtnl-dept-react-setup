@@ -105,7 +105,40 @@ Documentation for this project is present in storybook. Run `yarn storybook` to 
 
 ## Design system
 
-This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui system](https://www.npmjs.com/package/@chakra-ui/react) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
+This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui](https://www.npmjs.com/package/@chakra-ui/react) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
+
+## Using / overriding Chakra components
+
+Any overriden Chakra components should be added in the `src/themes/components` directory. Also make sure to add the component in the object in `index.ts`, with the correct component name.
+
+### Structuring the Chakra component file
+In order to know how to structure the component file, it's best to look at the [Chakra Docs for the component](https://chakra-ui.com/docs/data-display/divider) and click on the ["View theme source" button](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/divider.ts) on the top of the page.
+
+In general you will see an object with a few properties being exported:
+* **baseStyle**: Being any styles applied to all components
+* **defaultProps**: Any chakra props that should be set by default (eg `variant` or `backgroundColor`)
+* **variants**: A key value object with all variants as the key, and the object being the style for that variant (see the button in this repository as an example)
+* **sizes**: A key value object with all sizes as the key, and the object being the style for that size.
+
+### Note on component with different parts
+Sometimes you might come across a component which has multiple parts, for example [the `List` component](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/list.ts). You will recognize these components by the `parts` property. For the `List` component these parts are `container`, `item` and `icon`. The only thing you should know is that for these type of components, you need to reference the part as well. For `baseStyle` this is the first level of the object, for `variants` and `sizes` this is nested inside the variant/size name. Like so:
+
+```js
+{
+  baseStyle: {
+    container: {
+      background: 'blue'
+    }
+  },
+  variants: {
+    striped: {
+      container: {
+        borderTop: '1px dashed hotpink'
+      }
+    }
+  }
+}
+```
 
 ## Misc
 
