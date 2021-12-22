@@ -1,5 +1,4 @@
-import { BoxProps, Flex } from '@chakra-ui/react';
-import { useTheme } from '@chakra-ui/system';
+import { BoxProps, Flex , useTheme } from '@chakra-ui/react';
 
 import { Space } from './Space';
 

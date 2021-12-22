@@ -1,5 +1,4 @@
-import { Box, BoxProps, Button, VisuallyHidden } from '@chakra-ui/react';
-import { useTheme } from '@chakra-ui/system';
+import { Box, BoxProps, Button, VisuallyHidden , useTheme } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';

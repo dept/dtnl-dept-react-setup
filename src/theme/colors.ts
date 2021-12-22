@@ -3,7 +3,7 @@ import { ChakraTheme } from '@chakra-ui/react';
 export const colors: ChakraTheme['colors'] = {
   primary: '#121212',
   secondary: '#5115f7',
-  tertairy: '#E44503',
+  tertiary: '#E44503',
   error: '#E00303',
   black: '#000000',
   white: '#ffffff',

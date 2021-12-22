@@ -105,7 +105,7 @@ Documentation for this project is present in storybook. Run `yarn storybook` to 
 
 ## Design system
 
-This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui system](https://www.npmjs.com/package/@chakra-ui/system) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
+This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui system](https://www.npmjs.com/package/@chakra-ui/react) to create the ui library, but use of _css_, _css modules_ and _sass_ are still supported.
 
 ## Misc
 

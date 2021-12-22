@@ -1,5 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import { useTheme } from '@chakra-ui/system';
+import { Box, Flex, Text , useTheme } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { InputHTMLAttributes } from 'react';
