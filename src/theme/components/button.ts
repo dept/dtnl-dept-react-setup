@@ -16,10 +16,16 @@ export const button: ComponentStyleConfig = {
     primary: {
       backgroundColor: 'primary',
       color: 'white',
+      ...keyboardFocussed({
+        boxShadow: 'outline',
+      }),
     },
     secondary: {
       backgroundColor: 'secondary',
       color: 'white',
+      ...keyboardFocussed({
+        boxShadow: 'outline',
+      }),
     },
     link: {
       // Imports next base styles
