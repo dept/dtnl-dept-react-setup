@@ -30,7 +30,7 @@ const Page: NextPage = () => {
       </Alert>
 
       <Heading size="lg">Links to Chakra alternatives for deleted components</Heading>
-      <UnorderedList fontSize="2xl" mt="8" mb="12">
+      <UnorderedList fontSize="xl" mt="8" mb="12">
         <ListItem>
           <Link href="https://chakra-ui.com/docs/feedback/alert" target="_blank">
             Alert
@@ -83,7 +83,8 @@ const Page: NextPage = () => {
       </UnorderedList>
 
       <Heading size="lg">Components that are still custom and in Storybook are:</Heading>
-      <UnorderedList fontSize="2xl" mt="8">
+      <UnorderedList fontSize="xl" mt="8">
+        <ListItem>Form usage examples</ListItem>
         <ListItem>Form elements (will probably be removed soon)</ListItem>
         <ListItem>Grid</ListItem>
         <ListItem>Image</ListItem>

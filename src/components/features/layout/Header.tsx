@@ -42,10 +42,6 @@ const items = [
     href: '/examples',
     title: 'Examples',
   },
-  {
-    href: '/form',
-    title: 'Example form',
-  },
 ];
 
 function Navigation() {
@@ -70,7 +66,7 @@ export function Header() {
       <Container>
         <Flex flexShrink={0} alignItems="center">
           <Link href="/">
-            <Flex as="a" mr={8} cursor="pointer">
+            <Flex as="a" mr={2} cursor="pointer">
               <FaReact size={30} />
             </Flex>
           </Link>
