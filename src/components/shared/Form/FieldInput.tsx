@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button, VisuallyHidden , useTheme } from '@chakra-ui/react';
+import { Box, BoxProps, Button, VisuallyHidden, useTheme } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
@@ -142,7 +142,15 @@ export const AdornmentWrapper = (props: BoxProps) => (
 const Clear = ({ onClick }: Pick<ButtonProps, 'onClick'>) => {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" px={3} height="100%" flex="1">
-      <Button variant="icon" type="button" onClick={onClick} tabIndex={-1}>
+      <Button
+        width="30px"
+        height="30px"
+        color="white"
+        variant="icon"
+        type="button"
+        onClick={onClick}
+        tabIndex={-1}
+      >
         <HiOutlineX />
         <VisuallyHidden>Clear</VisuallyHidden>
       </Button>

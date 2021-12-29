@@ -13,3 +13,5 @@ export const theme = extendTheme({
   sizes,
   styles: { global: globalStyle },
 });
+
+export type CustomTheme = typeof theme;

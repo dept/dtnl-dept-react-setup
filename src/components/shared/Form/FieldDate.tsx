@@ -6,8 +6,6 @@ import Calendar, { OnChangeDateCallback } from 'react-calendar';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
 
-import { theme } from '@/theme';
-
 import { FieldInput, FieldInputProps } from './FieldInput';
 
 export type FieldDateProps = Omit<FieldInputProps, 'value' | 'onChange' | 'type'> & {
@@ -114,6 +112,8 @@ export const FieldDate = ({
         end={
           <Button
             variant="icon"
+            width="30px"
+            height="30px"
             onClick={() => {
               setIsOpen(true);
             }}
@@ -192,10 +192,10 @@ const Wrapper = styled(Box)`
     padding: calc(0.75em / 0.75) calc(0.5em / 0.75);
   }
   .react-calendar__month-view__days__day--weekend {
-    color: ${theme.colors.error};
+    color: ${({ theme }) => theme.colors.error};
   }
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: ${theme.colors.gray[200]};
+    color: ${({ theme }) => theme.colors.gray[200]};
   }
   .react-calendar__year-view .react-calendar__tile,
   .react-calendar__decade-view .react-calendar__tile,
@@ -213,24 +213,24 @@ const Wrapper = styled(Box)`
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: ${theme.colors.gray[300]};
+    background-color: ${({ theme }) => theme.colors.gray[300]};
   }
   .react-calendar__tile--hasActive {
-    background: ${theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
   .react-calendar__tile--hasActive:enabled:hover,
   .react-calendar__tile--hasActive:enabled:focus {
-    background: ${theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
   .react-calendar__tile--active {
-    background: ${theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
     color: white;
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
-    background: ${theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
   .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: ${theme.colors.gray[300]};
+    background-color: ${({ theme }) => theme.colors.gray[300]};
   }
 `;

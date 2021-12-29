@@ -30,6 +30,7 @@ export const button: ComponentStyleConfig = {
       backgroundColor: 'black',
       width: '40px',
       height: '40px',
+      minWidth: '0px',
       borderRadius: 'full',
       p: '0',
       _hover: {
