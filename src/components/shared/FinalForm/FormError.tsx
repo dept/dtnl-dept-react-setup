@@ -1,8 +1,5 @@
+import { Box, Text } from '@chakra-ui/react';
 import { useField } from 'react-final-form';
-
-import { Box } from '@/components/shared/Grid';
-import { Text } from '@/components/shared/Text';
-import { colors } from '@/theme/colors';
 
 interface FormErrorProps {
   name: string;
@@ -19,7 +16,7 @@ export const FormError = ({ name }: FormErrorProps) => {
 
   return (
     <Box mt={1}>
-      <Text display="block" fontSize="xxxs" color={colors.error}>
+      <Text display="block" fontSize="xxxs" color="error">
         {meta.error}
       </Text>
     </Box>

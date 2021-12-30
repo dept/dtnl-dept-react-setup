@@ -1,6 +1,4 @@
-import { Button } from '../Button';
-import { Box, Flex } from '../Grid';
-import { Paragraph } from '../Text';
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 interface PaginationProps {
   total: number;
@@ -96,13 +94,14 @@ export function Pagination({ current = 1, perPage = 10, total, onNavigate }: Pag
           {getItems().map((item: number | string) => (
             <Box key={item} mx={1}>
               {typeof item !== 'number' ? (
-                <Paragraph opacity={0.3}>{item}</Paragraph>
+                <Text opacity={0.3}>{item}</Text>
               ) : (
                 <Button
                   variant="clear"
                   onClick={() => handleNavigate(item)}
                   disabled={current === item}
-                  p={2}>
+                  p={2}
+                >
                   {item}
                 </Button>
               )}

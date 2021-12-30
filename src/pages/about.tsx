@@ -1,8 +1,6 @@
+import { Box, Heading, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-
-import { Box } from '@/components/shared/Grid';
-import { Heading, Paragraph } from '@/components/shared/Text';
 
 interface PageProps {}
 
@@ -12,7 +10,7 @@ const Page: NextPage<PageProps> = () => {
       <NextSeo title="About" description="This is the about page" />
       <Box>
         <Heading as="h1">About</Heading>
-        <Paragraph>This is the about page</Paragraph>
+        <Text>This is the about page</Text>
       </Box>
     </>
   );

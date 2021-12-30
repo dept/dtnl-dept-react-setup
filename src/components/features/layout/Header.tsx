@@ -1,8 +1,8 @@
+import { Box, BoxProps, Container, Flex } from '@chakra-ui/react';
 import Link from 'next/link';
 import { forwardRef } from 'react';
 import { FaReact } from 'react-icons/fa';
 
-import { Box, BoxProps, Container, Flex } from '@/components/shared/Grid';
 import { NavLink } from '@/components/shared/Link';
 
 const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
@@ -18,11 +18,11 @@ const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
     borderRadius={5}
     fontWeight="medium"
     _hover={{
-      bg: 'gray.700',
+      bg: 'secondary',
     }}
     sx={{
       '&.active': {
-        bg: 'gray.900',
+        bg: 'gray.700',
       },
     }}
     {...props}
@@ -41,10 +41,6 @@ const items = [
   {
     href: '/examples',
     title: 'Examples',
-  },
-  {
-    href: '/form',
-    title: 'Example form',
   },
 ];
 
@@ -66,11 +62,11 @@ function Navigation() {
 
 export function Header() {
   return (
-    <Box as="header" bg="gray.800" color="white">
+    <Box as="header" bg="primary" color="white">
       <Container>
         <Flex flexShrink={0} alignItems="center">
           <Link href="/">
-            <Flex as="a" mr={8} cursor="pointer">
+            <Flex as="a" mr={2} cursor="pointer">
               <FaReact size={30} />
             </Flex>
           </Link>

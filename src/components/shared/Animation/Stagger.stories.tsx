@@ -1,6 +1,6 @@
+import { Box } from '@chakra-ui/react';
 import { number } from '@storybook/addon-knobs';
 
-import { Box } from '../Grid';
 import { Stagger } from './Stagger';
 
 export default { title: 'Atoms/Animation', component: Stagger };

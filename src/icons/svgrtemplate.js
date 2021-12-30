@@ -4,7 +4,7 @@ function template({ template }, _opts, { componentName, jsx }) {
   componentName.name = componentName.name.slice(3) + 'Icon';
 
   return typeScriptTpl.ast`
-  import { chakra } from '@chakra-ui/system';
+  import { chakra } from '@chakra-ui/react';
   import { forwardRef, SVGProps } from 'react';
 
   interface CustomIconProps extends SVGProps<SVGSVGElement> {

@@ -1,7 +1,7 @@
+import { Button, Heading, Stack } from '@chakra-ui/react';
 import { FieldArray, Form, Formik, FormikConfig } from 'formik';
 import { HiOutlineMail } from 'react-icons/hi';
 
-import { Button } from '@/components/shared/Button';
 import { Option } from '@/components/shared/Form';
 import {
   FormikCheckboxGroup,
@@ -12,8 +12,7 @@ import {
 import { FormikDate } from '@/components/shared/Formik/FormikDate';
 import { FormikNumberFormat } from '@/components/shared/Formik/FormikNumberFormat';
 import { FormikScrollToErrors } from '@/components/shared/Formik/FormikScrollToErrors';
-import { Column, Row, Stack } from '@/components/shared/Grid';
-import { Heading } from '@/components/shared/Text';
+import { Column, Row } from '@/components/shared/Grid';
 
 interface ProgrammingLanguageFieldsProps {
   index: number;
@@ -150,7 +149,7 @@ export function FormikExampleForm({
                       );
                     })}
 
-                    <Button onClick={() => helpers.push(initialProgrammingLanguage)}>
+                    <Button width="200px" onClick={() => helpers.push(initialProgrammingLanguage)}>
                       Insert new +
                     </Button>
                   </>

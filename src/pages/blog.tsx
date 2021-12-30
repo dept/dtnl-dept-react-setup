@@ -1,9 +1,8 @@
+import { Box, Heading, Link } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { Box } from '@/components/shared/Grid';
-import { Hyperlink } from '@/components/shared/Hyperlink';
-import { Heading } from '@/components/shared/Text';
+import { NavLink } from '@/components/shared/Link';
 
 interface PageProps {}
 
@@ -36,9 +35,9 @@ const Page: NextPage<PageProps> = () => {
           {blogPosts.map(item => {
             return (
               <li key={item.id}>
-                <Hyperlink href="/blog/[postId]" as={`/blog/${item.id}`}>
-                  {item.title}
-                </Hyperlink>
+                <NavLink href="/blog/[postId]" as={`/blog/${item.id}`}>
+                  <Link>{item.title}</Link>
+                </NavLink>
               </li>
             );
           })}

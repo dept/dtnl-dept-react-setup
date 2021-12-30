@@ -1,4 +1,4 @@
-import { Box } from '@/components/shared/Grid';
+import { Box } from '@chakra-ui/react';
 
 export function Footer() {
   return (
@@ -9,7 +9,8 @@ export function Footer() {
       color="gray.700"
       fontWeight="bold"
       py={3}
-      px={8}>
+      px={8}
+    >
       Footer
     </Box>
   );

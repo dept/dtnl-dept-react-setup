@@ -1,7 +1,5 @@
-import { useTheme } from '@chakra-ui/system';
+import { BoxProps, Flex , useTheme } from '@chakra-ui/react';
 
-import { BoxProps } from './Box';
-import { Flex } from './Flex';
 import { Space } from './Space';
 
 interface GutterProps {

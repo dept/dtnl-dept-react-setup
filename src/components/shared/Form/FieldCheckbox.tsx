@@ -1,12 +1,10 @@
-import { useTheme } from '@chakra-ui/system';
+import { Box, Flex, Text , useTheme } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { InputHTMLAttributes } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-import { Box, Flex } from '@/components/shared/Grid';
 import { Label } from '@/components/shared/Label';
-import { Text } from '@/components/shared/Text';
 
 export interface FieldCheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;
@@ -61,7 +59,8 @@ export const FieldCheckbox = ({
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },
-          }}>
+          }}
+        >
           <FaCheck size={13} />
         </Box>
         <Box>

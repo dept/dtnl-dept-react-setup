@@ -1,7 +1,6 @@
+import { BoxProps, Box } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
-import { Box, BoxProps } from '../Grid';
 
 type ImageProps = BoxProps & {
   src?: string;

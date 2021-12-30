@@ -1,8 +1,5 @@
+import { Box, Text } from '@chakra-ui/react';
 import { ErrorMessage } from 'formik';
-
-import { Box } from '@/components/shared/Grid';
-import { Text } from '@/components/shared/Text';
-import { colors } from '@/theme/colors';
 
 interface FormikErrorProps {
   name: string;
@@ -14,7 +11,7 @@ export const FormikError = ({ name }: FormikErrorProps) => {
       <ErrorMessage name={name}>
         {message => {
           return (
-            <Text display="block" fontSize="xxxs" color={colors.error}>
+            <Text display="block" fontSize="xxxs" color="error">
               {message}
             </Text>
           );

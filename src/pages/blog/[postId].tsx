@@ -1,11 +1,10 @@
 import { ParsedUrlQuery } from 'querystring';
 
+import { Box, Text, Heading, Link } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { Box } from '@/components/shared/Grid';
-import { Hyperlink } from '@/components/shared/Hyperlink';
-import { Heading, Text } from '@/components/shared/Text';
+import { NavLink } from '@/components/shared/Link';
 
 import { BlogPost, blogPosts } from '../blog';
 
@@ -26,7 +25,9 @@ const Page: NextPage<PageProps> = ({ post }) => (
       </Heading>
       <Text as="p">{post.content}</Text>
 
-      <Hyperlink href="/blog">Go back</Hyperlink>
+      <NavLink href="/blog">
+        <Link>Go back</Link>
+      </NavLink>
     </Box>
   </>
 );

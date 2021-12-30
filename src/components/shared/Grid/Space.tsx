@@ -1,7 +1,5 @@
-import { chakra } from '@chakra-ui/system';
+import { BoxProps , chakra } from '@chakra-ui/react';
 import { Children, cloneElement } from 'react';
-
-import { BoxProps } from './Box';
 
 const classnames = (...args: any[]) => args.join(' ');
 const getClassName = (el: any) => (el.props && el.props.className) || '';

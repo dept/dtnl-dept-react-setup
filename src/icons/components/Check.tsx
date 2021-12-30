@@ -1,4 +1,4 @@
-import { chakra } from '@chakra-ui/system';
+import { chakra } from '@chakra-ui/react';
 import { forwardRef, SVGProps } from 'react';
 interface CustomIconProps extends SVGProps<SVGSVGElement> {
   size?: number;
