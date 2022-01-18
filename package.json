@@ -34,20 +34,6 @@
   },
   "author": "Dept",
   "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
-  "contributors": [
-    {
-      "name": "Tim de Wolf",
-      "email": "tim.dewolf@deptagency.com"
-    },
-    {
-      "name": "Robby Uitbeijerse",
-      "email": "robbyuitbeijerse@gmail.com"
-    },
-    {
-      "name": "Mees Rutten",
-      "email": "mees@level30wizards.com"
-    }
-  ],
   "lint-staged": {
     "**/*.(js|ts|tsx)": [
       "eslint --fix"
