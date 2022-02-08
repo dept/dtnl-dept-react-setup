@@ -6,7 +6,10 @@
  */
 
 module.exports = {
-  extends: ['./node_modules/dept-react-scripts/config/eslint/react'],
+  extends: [
+    './node_modules/dept-react-scripts/config/eslint/react',
+    'plugin:storybook/recommended',
+  ],
   rules: {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
