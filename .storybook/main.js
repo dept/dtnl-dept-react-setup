@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 function getPackageDir(filepath) {
   let currDir = path.dirname(require.resolve(filepath));
@@ -19,13 +20,16 @@ function getPackageDir(filepath) {
 
 module.exports = {
   stories: ['../src/**/*.stories.[jt]sx'],
-  typescript: {
-    reactDocgen: 'none', // https://github.com/storybookjs/storybook/issues/15067
-  },
   babel: async options => {
     const babelConfig = require('./../babel.config.js');
 
     return { ...options, ...babelConfig };
+  },
+  core: {
+    builder: 'webpack5',
+  },
+  typescript: {
+    reactDocgen: 'none',
   },
   addons: [
     '@storybook/addon-docs',
@@ -35,6 +39,13 @@ module.exports = {
   ],
   // storybook uses emotion 10. hack to make it work with emotion 11
   webpackFinal: async config => {
+    // Make sure storybook handles aliases like import 'components/Button'
+    config.resolve.plugins = [
+      new TsconfigPathsPlugin({
+        configFile: path.resolve(__dirname, '../tsconfig.json'),
+      }),
+    ];
+
     return {
       ...config,
       resolve: {
