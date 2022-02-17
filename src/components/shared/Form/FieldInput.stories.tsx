@@ -1,25 +1,18 @@
-import { boolean, text } from '@storybook/addon-knobs';
-
 import { FieldInput } from './FieldInput';
 
-export default { title: 'Forms/Input field', component: FieldInput };
+export default {
+  title: 'Forms/Input field',
+  component: FieldInput,
+  argTypes: {},
+};
 
-export const withLabel = () => (
-  <FieldInput
-    start={text('start', '€')}
-    end={text('end', ',00')}
-    clearable={boolean('clearable', false)}
-    name="firstName"
-    label="First name"></FieldInput>
+export const withLabel = (args: any) => (
+  <FieldInput {...args} name="firstName" label="First name" type="textarea" />
 );
 
-export const withPlaceholder = () => (
-  <FieldInput name="firstName" placeholder="First name"></FieldInput>
-);
+export const withPlaceholder = () => <FieldInput name="firstName" placeholder="First name" />;
 
-export const clearable = () => (
-  <FieldInput name="firstName" label="First name" value="Paul Manuel" clearable></FieldInput>
-);
+export const branded = () => <FieldInput name="search" placeholder="Boek, product of studie..." />;
 
 export const otherType = () => (
   <FieldInput
@@ -27,5 +20,10 @@ export const otherType = () => (
     name="pancakes"
     label="Amount of pancakes"
     min={1}
-    max={10}></FieldInput>
+    max={10}
+  ></FieldInput>
+);
+
+export const disabled = (args: any) => (
+  <FieldInput {...args} name="firstName" disabled label="First name"></FieldInput>
 );

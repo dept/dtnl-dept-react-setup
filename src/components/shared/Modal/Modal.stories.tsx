@@ -1,11 +1,9 @@
 import { Box, Button, useDisclosure } from '@chakra-ui/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import { Modal } from './Modal';
 
 export default {
   title: 'Molecules/Modal',
-  decorators: [withKnobs],
   component: Modal,
 };
 

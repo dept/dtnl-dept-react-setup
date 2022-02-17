@@ -29,9 +29,9 @@ module.exports = {
   },
   addons: [
     '@storybook/addon-docs',
-    '@storybook/addon-links/register',
-    '@storybook/addon-knobs/register',
-    '@storybook/addon-storysource/register',
+    '@storybook/addon-links',
+    '@storybook/addon-controls',
+    '@storybook/addon-storysource',
   ],
   // storybook uses emotion 10. hack to make it work with emotion 11
   webpackFinal: async config => {
