@@ -1,7 +1,7 @@
 import { Pagination } from './Pagination';
 
 export default {
-  title: 'Molecules/Pagination',
+  title: 'Pagination',
   component: Pagination,
   current: {
     defaultValue: 6,
