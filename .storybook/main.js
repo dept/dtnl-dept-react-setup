@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 function getPackageDir(filepath) {
   let currDir = path.dirname(require.resolve(filepath));
@@ -19,22 +20,43 @@ function getPackageDir(filepath) {
 
 module.exports = {
   stories: ['../src/**/*.stories.[jt]sx'],
-  typescript: {
-    reactDocgen: 'none', // https://github.com/storybookjs/storybook/issues/15067
+  babel: options => ({
+    ...options,
+    ...require('./../babel.config.js'),
+  }),
+  core: {
+    builder: 'webpack5',
   },
-  babel: async options => {
-    const babelConfig = require('./../babel.config.js');
-
-    return { ...options, ...babelConfig };
+  typescript: {
+    reactDocgen: 'none',
+  },
+  /** If you want to see the @chakra-ui components in your storybook environment, simply the disable line */
+  refs: {
+    '@chakra-ui/react': {
+      disable: true,
+    },
   },
   addons: [
+    '@storybook/addon-actions',
     '@storybook/addon-docs',
-    '@storybook/addon-links/register',
-    '@storybook/addon-knobs/register',
-    '@storybook/addon-storysource/register',
+    '@storybook/addon-links',
+    '@storybook/addon-controls',
+    '@storybook/addon-storysource',
   ],
   // storybook uses emotion 10. hack to make it work with emotion 11
   webpackFinal: async config => {
+    // Make sure storybook handles aliases like import 'components/Button'
+    config.resolve.plugins = [
+      new TsconfigPathsPlugin({
+        configFile: path.resolve(__dirname, '../tsconfig.json'),
+      }),
+    ];
+
+    config.resolve.roots = [
+      // Server .../public as a root to serve static files loaded through css
+      path.resolve(__dirname, '../public'),
+    ];
+
     return {
       ...config,
       resolve: {

@@ -1,16 +1,32 @@
-import { number } from '@storybook/addon-knobs';
-
 import { Pagination } from './Pagination';
 
-export default { title: 'Molecules/Pagination', component: Pagination };
-
-export const example = () => {
-  return (
-    <Pagination
-      current={number('Current page', 6)}
-      total={number('Amount of content', 74)}
-      perPage={number('Items per page', 10)}
-      onNavigate={val => console.log(val)}
-    />
-  );
+export default {
+  title: 'Pagination',
+  component: Pagination,
+  current: {
+    defaultValue: 6,
+    control: {
+      name: 'Current page',
+      type: 'number',
+    },
+  },
+  total: {
+    defaultValue: 74,
+    control: {
+      name: 'Amount of content',
+      type: 'number',
+    },
+  },
+  perPage: {
+    defaultValue: 10,
+    control: {
+      name: 'Items per page',
+      type: 'number',
+    },
+  },
+  onNavigate: {
+    action: 'onNavigate',
+  },
 };
+
+export const example = Pagination;

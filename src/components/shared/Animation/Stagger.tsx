@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Children, ReactNode } from 'react';
 
-interface StaggerProps {
+export interface StaggerProps {
   /** Duration in seconds */
   duration?: number;
   /** Delay in seconds */

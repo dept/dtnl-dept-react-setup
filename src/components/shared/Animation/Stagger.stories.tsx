@@ -1,18 +1,30 @@
 import { Box } from '@chakra-ui/react';
-import { number } from '@storybook/addon-knobs';
+import { Story } from '@storybook/react';
 
-import { Stagger } from './Stagger';
+import { Stagger, StaggerProps } from './Stagger';
 
-export default { title: 'Atoms/Animation', component: Stagger };
+export default {
+  title: 'Atoms/Animation',
+  component: Stagger,
+  duration: {
+    defaultValue: 2,
+    control: {
+      name: 'Duration',
+      type: 'number',
+    },
+  },
+  staggerDelay: {
+    defaultValue: 0.2,
+    control: {
+      name: 'Stagger delay',
+      type: 'number',
+    },
+  },
+};
 
-export const stagger = () => {
-  const props = {
-    duration: number('Duration', 2),
-    staggerDelay: number('Stagger delay', 0.2),
-  };
-
+export const stagger: Story<StaggerProps> = args => {
   return (
-    <Stagger key={Object.values(props).join('-')} {...props}>
+    <Stagger key={Object.values(args).join('-')} {...args}>
       <Box bg="red.300" mb={1} p={2}>
         Child
       </Box>

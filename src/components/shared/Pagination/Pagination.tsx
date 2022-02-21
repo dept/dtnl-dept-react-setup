@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
-interface PaginationProps {
+export interface PaginationProps {
   total: number;
   perPage?: number;
   current?: number;
