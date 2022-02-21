@@ -32,6 +32,7 @@ module.exports = {
     reactDocgen: 'none',
   },
   addons: [
+    '@storybook/addon-actions',
     '@storybook/addon-docs',
     '@storybook/addon-links',
     '@storybook/addon-controls',
