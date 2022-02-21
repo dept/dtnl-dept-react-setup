@@ -20,11 +20,10 @@ function getPackageDir(filepath) {
 
 module.exports = {
   stories: ['../src/**/*.stories.[jt]sx'],
-  babel: async options => {
-    const babelConfig = require('./../babel.config.js');
-
-    return { ...options, ...babelConfig };
-  },
+  babel: options => ({
+    ...options,
+    ...require('./../babel.config.js'),
+  }),
   core: {
     builder: 'webpack5',
   },
