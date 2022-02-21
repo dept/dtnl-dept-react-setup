@@ -31,6 +31,7 @@ module.exports = {
   typescript: {
     reactDocgen: 'none',
   },
+  /** If you want to see the @chakra-ui components in your storybook environment, simply the disable line */
   refs: {
     '@chakra-ui/react': {
       disable: true,
