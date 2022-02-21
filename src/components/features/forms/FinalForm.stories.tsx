@@ -1,12 +1,7 @@
 import { subYears } from 'date-fns';
-import { FormApi } from 'final-form';
 import { object, string, date, array, number } from 'yup';
 
 import { FinalFormExampleForm } from './FinalFormExampleForm';
-
-export default { title: 'Forms/Final-form' };
-
-type FFSubmitHandler<FormValues> = (values: FormValues, formHelpers: FormApi<FormValues>) => void;
 
 const languages = [
   {
@@ -121,21 +116,32 @@ const validationSchema = object({
   favoriteAnimal: string().label('Favorite animal').required(),
 });
 
-export const example = () => {
-  const submitHandler: FFSubmitHandler<FormValues> = async (values, actions) => {
-    console.log(values, actions);
-    alert(JSON.stringify(values));
-  };
-
-  return (
-    <FinalFormExampleForm
-      onSubmit={submitHandler}
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      initialProgrammingLanguage={initialProgrammingLanguage}
-      animals={animals}
-      languages={languages}
-      countries={countries}
-    />
-  );
+export default {
+  title: 'Forms/Final-form',
+  component: FinalFormExampleForm,
+  argTypes: {
+    onSubmit: {
+      action: 'submitted',
+    },
+    languages: {
+      defaultValue: languages,
+    },
+    countries: {
+      defaultValue: countries,
+    },
+    animals: {
+      defaultValue: animals,
+    },
+    initialProgrammingLanguage: {
+      defaultValue: initialProgrammingLanguage,
+    },
+    validationSchema: {
+      defaultValue: validationSchema,
+    },
+    initialValues: {
+      defaultValue: initialValues,
+    },
+  },
 };
+
+export const example = FinalFormExampleForm;

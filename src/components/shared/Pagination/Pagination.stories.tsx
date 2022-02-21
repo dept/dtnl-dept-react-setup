@@ -1,6 +1,4 @@
-import { Story } from '@storybook/react';
-
-import { Pagination, PaginationProps } from './Pagination';
+import { Pagination } from './Pagination';
 
 export default {
   title: 'Molecules/Pagination',
@@ -26,8 +24,9 @@ export default {
       type: 'number',
     },
   },
+  onNavigate: {
+    action: 'onNavigate',
+  },
 };
 
-export const example: Story<PaginationProps> = args => (
-  <Pagination {...args} onNavigate={val => console.log(val)} />
-);
+export const example = Pagination;

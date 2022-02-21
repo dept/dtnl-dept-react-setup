@@ -1,9 +1,11 @@
 import { Story } from '@storybook/react';
-import React from 'react';
 
-import { FieldSelect } from './FieldSelect';
+import { FieldSelect, FieldSelectProps } from './FieldSelect';
 
-import { FieldSelectProps } from '.';
+const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
+  value: item,
+  label: item,
+}));
 
 export default {
   title: 'Forms/Select field',
@@ -33,14 +35,13 @@ export default {
         type: 'text',
       },
     },
+    options: {
+      defaultValue: frameworks,
+    },
+    name: {
+      defaultValue: 'framework',
+    },
   },
 };
 
-const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Ember'].map(item => ({
-  value: item,
-  label: item,
-}));
-
-export const example: Story<Partial<FieldSelectProps>> = args => (
-  <FieldSelect options={frameworks} name="framework" {...args}></FieldSelect>
-);
+export const example: Story<FieldSelectProps> = FieldSelect;
