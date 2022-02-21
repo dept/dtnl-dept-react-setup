@@ -31,6 +31,11 @@ module.exports = {
   typescript: {
     reactDocgen: 'none',
   },
+  refs: {
+    '@chakra-ui/react': {
+      disable: true,
+    },
+  },
   addons: [
     '@storybook/addon-actions',
     '@storybook/addon-docs',
