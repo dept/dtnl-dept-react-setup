@@ -52,6 +52,11 @@ module.exports = {
       }),
     ];
 
+    config.resolve.roots = [
+      // Server .../public as a root to serve static files loaded through css
+      path.resolve(__dirname, '../public'),
+    ];
+
     return {
       ...config,
       resolve: {
