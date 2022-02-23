@@ -1,4 +1,4 @@
-import { isBrowser } from './isBrowser';
+import { isBrowser } from './browser';
 
 export const KEYBOARD_FOCUSED = 'has--keyboard-focus';
 const TAB_KEYS = ['Tab', 9];

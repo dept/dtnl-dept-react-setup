@@ -7,7 +7,7 @@ import React from 'react';
 
 import { BaseLayout } from '@/components/templates';
 import { theme } from '@/theme/theme';
-import { isBrowser } from '@/utils/isBrowser';
+import { isBrowser } from '@/utils/browser';
 
 if (isBrowser) {
   import('@/utils/detectTouch');

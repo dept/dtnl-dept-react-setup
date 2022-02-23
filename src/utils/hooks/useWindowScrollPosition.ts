@@ -1,7 +1,7 @@
 import _throttle from 'lodash.throttle';
 import { useEffect, useState } from 'react';
 
-import { isBrowser } from '../isBrowser';
+import { isBrowser } from '../browser';
 
 interface UseWindowScrollPositionOptions {
   throttle: number;

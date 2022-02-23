@@ -6,7 +6,7 @@ import { Props as MaskProps } from 'react-input-mask';
 import { ButtonProps } from 'react-scroll/modules/components/Button';
 
 import { Label } from '@/components/shared/Label';
-import { isBrowser } from '@/utils/isBrowser';
+import { isBrowser } from '@/utils/browser';
 
 const InputMask = dynamic(() => import('react-input-mask'));
 
