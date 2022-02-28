@@ -46,6 +46,8 @@ steps:
 
   - script: yarn build
     displayName: Build application
+    env:
+      NODE_OPTIONS: --max_old_space_size=16384
 
   - script: yarn install --production --ignore-scripts --prefer-offline
     displayName: Prune dependencies
