@@ -2,6 +2,9 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 import withPWA from 'next-pwa';
 
 const plugins = [
+  withBundleAnalyzer({
+    enabled: process.env.BUNDLE_ANALYZE === 'true',
+  })(),
   [
     withPWA,
     {
@@ -11,12 +14,6 @@ const plugins = [
         swSrc: './service-worker.js',
         publicExcludes: ['!favicon/**/*'],
       },
-    },
-  ],
-  [
-    withBundleAnalyzer,
-    {
-      enabled: process.env.BUNDLE_ANALYZE !== 'true',
     },
   ],
 ];
