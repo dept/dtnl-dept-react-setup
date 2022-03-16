@@ -3,9 +3,9 @@
 import dotenv from 'dotenv';
 import withPlugins from 'next-compose-plugins';
 
-import { headers } from './config/headers.mjs';
-import { includePolyfills } from './config/includePolyfills.mjs';
-import { plugins } from './config/plugins.mjs';
+import { headers } from './config/next-headers.mjs';
+import { includePolyfills } from './config/next-polyfills.mjs';
+import { plugins } from './config/next-plugins.mjs';
 
 dotenv.config();
 
