@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 import withPlugins from 'next-compose-plugins';
 
 import { headers } from './config/next-headers.mjs';
-import { includePolyfills } from './config/next-polyfills.mjs';
 import { plugins } from './config/next-plugins.mjs';
+import { includePolyfills } from './config/next-polyfills.mjs';
 
 dotenv.config();
 
@@ -27,6 +27,11 @@ export default withPlugins(plugins, {
    * like React 18 concurrent features.
    */
   experimental: {
+    /**
+     * Emotion support for SWC
+     * https://github.com/vercel/next.js/pull/34687/files
+     */
+    emotion: true,
     // urlImports: true,
     // concurrentFeatures: true,
     // serverComponents: true,
@@ -37,7 +42,7 @@ export default withPlugins(plugins, {
    * Please note that while not in experimental, the swcMinification may cause issues in your build.
    * example: https://github.com/vercel/next.js/issues/30429 (Yup email validation causes an exception)
    */
-  // swcMinify: true,
+  swcMinify: true,
 
   poweredByHeader: false,
   reactStrictMode: true,

@@ -1,8 +1,5 @@
 import {
-  Box,
   Button,
-  Flex,
-  Heading,
   Modal as ChakraModal,
   ModalBody,
   ModalContent,
