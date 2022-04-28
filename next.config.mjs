@@ -34,7 +34,7 @@ export default withPlugins(plugins, {
     emotion: true,
     // urlImports: true,
     // concurrentFeatures: true,
-    // serverComponents: true,
+    serverComponents: true,
   },
 
   /**
