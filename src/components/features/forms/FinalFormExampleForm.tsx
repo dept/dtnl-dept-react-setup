@@ -106,7 +106,6 @@ export function FinalFormExampleForm({
                 label="Phone number"
                 type="tel"
                 placeholder="+31 06 12 34 56 78"
-                mask="+31 99 99 99 99 99"
                 required
               />
             </Column>
