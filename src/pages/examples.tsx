@@ -11,8 +11,6 @@ import {
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { FieldInput } from '@/components/shared/Form';
-
 const Page: NextPage = () => {
   return (
     <>
