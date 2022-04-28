@@ -49,7 +49,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@chakra-ui/react": "2.0.0-next.1",
+    "@chakra-ui/react": "2.0.0-next.2",
     "@emotion/is-prop-valid": "^1.1.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.6.0",
