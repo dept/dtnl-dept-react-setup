@@ -55,7 +55,7 @@ export function FinalFormExampleForm({
   return (
     <FinalForm {...props}>
       {({ form }) => (
-        <Stack space={4}>
+        <Stack spacing={4}>
           <Heading>General</Heading>
           <Row>
             <Column col={6}>
