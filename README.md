@@ -142,5 +142,5 @@ Sometimes you might come across a component which has multiple parts, for exampl
 
 ## Misc
 
-- A web.config has been added to allow the project to be hosted on a Windows server through ISSNode
+- A web.config has been added to allow the project to be hosted on a Windows server through ISSNode, the web.config needs the `index.js` as a pointer/handler to run the next server. So do not delete this if you plan on running it on an ISSNode.
 - A generic robots.txt has been added that disallows EVERY bot, it is removed in the azure-pipelines.yml on the main branch
