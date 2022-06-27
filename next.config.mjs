@@ -27,14 +27,10 @@ export default withPlugins(plugins, {
    * like React 18 concurrent features.
    */
   experimental: {
-    /**
-     * Emotion support for SWC
-     * https://github.com/vercel/next.js/pull/34687/files
-     */
     emotion: true,
-    // urlImports: true,
-    // concurrentFeatures: true,
-    // serverComponents: true,
+
+    /** React 18 server components */
+    serverComponents: true,
   },
 
   /**

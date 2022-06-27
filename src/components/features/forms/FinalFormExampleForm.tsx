@@ -55,7 +55,7 @@ export function FinalFormExampleForm({
   return (
     <FinalForm {...props}>
       {({ form }) => (
-        <Stack space={4}>
+        <Stack spacing={4}>
           <Heading>General</Heading>
           <Row>
             <Column col={6}>
@@ -106,7 +106,6 @@ export function FinalFormExampleForm({
                 label="Phone number"
                 type="tel"
                 placeholder="+31 06 12 34 56 78"
-                mask="+31 99 99 99 99 99"
                 required
               />
             </Column>

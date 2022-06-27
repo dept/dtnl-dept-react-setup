@@ -20,13 +20,12 @@ variables:
       - group: frontend-keys-test
 
 steps:
-
   # Add all the required env keys here.
-  # This way Next can pick them up during build and runtime
+  # This way Next can pick them up during build
   - task: Bash@3
-    displayName: "Write .env file"
+    displayName: 'Write .env file'
     inputs:
-      targetType: "inline"
+      targetType: 'inline'
       script: |
         cat <<EOT > .env
         ENVIRONMENT_NAME=$(ENVIRONMENT_NAME)
@@ -49,4 +48,3 @@ steps:
       tags: |
         $(Build.BuildId)
         latest
-
