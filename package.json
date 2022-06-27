@@ -13,7 +13,7 @@
     "build": "next build",
     "prebuild": "yarn generate-theme-typings",
     "export": "next build && next export",
-    "postinstall": "husky install && yarn generate-theme-typings",
+    "postinstall": "husky install",
     "generate-theme-typings": "npx @chakra-ui/cli tokens ./src/theme/theme.ts",
     "type-check": "tsc --noEmit",
     "test": "jest --config test/jest.config.js",
