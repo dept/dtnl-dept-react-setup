@@ -23,12 +23,17 @@ export default withPlugins(plugins, {
   },
 
   /**
+   * Enable emotion through the swc compiler
+   */
+  compiler: {
+    emotion: true,
+  },
+
+  /**
    * The experimental option allows you to enable future/experimental options
    * like React 18 concurrent features.
    */
   experimental: {
-    emotion: true,
-
     /** React 18 server components */
     serverComponents: true,
   },

@@ -1,7 +1,6 @@
-import { Box, BoxProps, Button, VisuallyHidden, useTheme } from '@chakra-ui/react';
+import { Box, BoxProps, Button, VisuallyHidden, useTheme, ButtonProps } from '@chakra-ui/react';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
-import { ButtonProps } from 'react-scroll/modules/components/Button';
 
 import { Label } from '@/components/shared/Label';
 
