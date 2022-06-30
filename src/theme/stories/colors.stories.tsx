@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
 import { colors } from '../colors';
 
@@ -27,7 +27,7 @@ export const customColors = () => (
           borderBottom="1px solid #ccc"
         ></Box>
         {colorName}
-        <pre>{colorValue}</pre>
+        <pre>{colorValue as string}</pre>
       </Flex>
     ))}
   </>

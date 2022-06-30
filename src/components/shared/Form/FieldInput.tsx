@@ -1,28 +1,21 @@
-import { Box, BoxProps, Button, VisuallyHidden, useTheme } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
+import { Box, BoxProps, Button, VisuallyHidden, useTheme, ButtonProps } from '@chakra-ui/react';
 import { forwardRef, InputHTMLAttributes, useState, PropsWithChildren } from 'react';
 import { HiOutlineX } from 'react-icons/hi';
-import { Props as MaskProps } from 'react-input-mask';
-import { ButtonProps } from 'react-scroll/modules/components/Button';
 
 import { Label } from '@/components/shared/Label';
-import { isBrowser } from '@/utils/isBrowser';
 
-const InputMask = dynamic(() => import('react-input-mask'));
-
-type InputProps = InputHTMLAttributes<HTMLInputElement> &
-  Partial<Pick<MaskProps, 'mask' | 'maskPlaceholder'>> & {
-    type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel' | 'search';
-    color?: string;
-    inputRef?: any;
-    clearable?: boolean;
-    hasError?: boolean;
-    readonly?: boolean;
-    onClear?: () => void;
-    start?: string | number | JSX.Element;
-    end?: string | number | JSX.Element;
-    labelProps?: any;
-  };
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel' | 'search';
+  color?: string;
+  inputRef?: any;
+  clearable?: boolean;
+  hasError?: boolean;
+  readonly?: boolean;
+  onClear?: () => void;
+  start?: string | number | JSX.Element;
+  end?: string | number | JSX.Element;
+  labelProps?: any;
+};
 
 export type FieldInputProps = InputProps & {
   label?: string;
@@ -30,7 +23,7 @@ export type FieldInputProps = InputProps & {
 };
 
 export const Input = forwardRef<any, InputProps>(
-  ({ hasError, color, mask, maskPlaceholder = null, start, end, ...props }, ref) => {
+  ({ hasError, color, start, end, ...props }, ref) => {
     let additionalProps: any = {};
 
     if (props.readOnly) {
@@ -69,14 +62,6 @@ export const Input = forwardRef<any, InputProps>(
       },
       ...additionalProps,
     };
-
-    if (mask && isBrowser) {
-      return (
-        <InputMask mask={mask} maskPlaceholder={maskPlaceholder} {...props}>
-          {(inputProps: any) => <Box ref={ref} as="input" sx={styles} {...inputProps} />}
-        </InputMask>
-      );
-    }
 
     return <Box ref={ref} as="input" sx={styles} {...props} />;
   },

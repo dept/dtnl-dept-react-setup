@@ -59,7 +59,7 @@ export function FormikExampleForm({
       {({ values, resetForm }) => (
         <Form noValidate>
           <FormikScrollToErrors />
-          <Stack space={4}>
+          <Stack spacing={4}>
             <Heading>General</Heading>
             <Row>
               <Column col={6}>
@@ -110,7 +110,6 @@ export function FormikExampleForm({
                   label="Phone number"
                   type="tel"
                   placeholder="+31 06 12 34 56 78"
-                  mask="+31 99 99 99 99 99"
                   required
                 />
               </Column>

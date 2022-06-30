@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { render as rtlRender } from '@testing-library/react';
-import React, { FC } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { theme } from '@/theme';
 
@@ -8,7 +8,7 @@ type ArgumentTypes<F> = F extends (...args: infer A) => any ? A : never;
 
 type RenderArgs = ArgumentTypes<typeof rtlRender>;
 
-export const Wrapper: FC = ({ children }) => {
+export const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 

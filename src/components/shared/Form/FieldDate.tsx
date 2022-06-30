@@ -109,7 +109,6 @@ export const FieldDate = ({
         value={inputDate}
         onChange={handleInputChange}
         onFocus={handleFocus}
-        mask="99-99-9999"
         end={
           <Button
             variant="icon"
