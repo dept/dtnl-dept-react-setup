@@ -28,7 +28,7 @@ const securityHeaders = [
 export const headers = async () => [
   {
     // Apply these headers to all routes in your application.
-    source: '/(.*)',
+    source: '/:path*',
     headers: securityHeaders,
   },
 ];
