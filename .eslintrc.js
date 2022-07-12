@@ -6,10 +6,10 @@
  */
 
 module.exports = {
-  extends: ['./node_modules/dept-react-scripts/config/eslint/react'],
+  extends: ['./node_modules/dept-react-scripts/config/eslint/react', 'next'],
   rules: {
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
+    'import/no-anonymous-default-export': 'off',
   },
   globals: {
     React: 'writable',
