@@ -6,7 +6,10 @@
  */
 
 module.exports = {
-  extends: ['./node_modules/dept-react-scripts/config/eslint/react', 'next'],
+  extends: [
+    './node_modules/dept-react-scripts/config/eslint/react',
+    'plugin:@next/next/recommended',
+  ],
   rules: {
     'react/display-name': 'off',
     'import/no-anonymous-default-export': 'off',
