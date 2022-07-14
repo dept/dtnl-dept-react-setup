@@ -1,3 +1,4 @@
+/// <reference types="styled-jsx" />
 /// <reference types="@emotion/react/types/css-prop" />
 
 import type { CustomTheme } from '@/theme/theme';

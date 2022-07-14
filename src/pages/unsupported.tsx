@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { NextPage, NextPageContext } from 'next';
 import { NextSeo } from 'next-seo';
 
