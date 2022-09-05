@@ -1,26 +1,46 @@
+const {
+  identifier,
+  jsxExpressionContainer,
+  jsxClosingElement,
+  jsxAttribute,
+  jsxElement,
+  jsxIdentifier,
+  jsxOpeningElement,
+  jsxSpreadAttribute,
+} = require('@babel/types');
+
 function template({ template }, _opts, { componentName, jsx }) {
   const typeScriptTpl = template.smart({ plugins: ['typescript'] });
 
   componentName.name = componentName.name.slice(3) + 'Icon';
 
-  return typeScriptTpl.ast`
-  import { chakra } from '@chakra-ui/react';
-  import { forwardRef, SVGProps } from 'react';
+  const wrappedJsx = jsxElement(
+    jsxOpeningElement(jsxIdentifier('chakra.svg'), [
+      ...jsx.openingElement.attributes,
+      jsxAttribute(jsxIdentifier('ref'), jsxExpressionContainer(template.ast('svgRef').expression)),
+      jsxSpreadAttribute(identifier('props')),
+    ]),
+    jsxClosingElement(jsxIdentifier('chakra.svg')),
+    jsx.children,
+    false,
+  );
 
-  interface CustomIconProps extends SVGProps<SVGSVGElement> {
-    size?: number
+  return typeScriptTpl.ast`
+  import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+  import { forwardRef } from 'react';
+
+  interface CustomIconProps extends IconProps {
+    size?: ResponsiveValue<number | string>;
   }
 
-  const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
+  const ${componentName} = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
     if (size) {
       props.width = size;
       props.height = size;
     }
 
-    return ${jsx};
+    return ${wrappedJsx};
   })
-
-  const ${componentName} = chakra(SVGIcon);
 
   export default ${componentName};
 `;

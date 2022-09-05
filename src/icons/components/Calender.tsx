@@ -1,16 +1,16 @@
-import { chakra } from '@chakra-ui/react';
-import { forwardRef, SVGProps } from 'react';
-interface CustomIconProps extends SVGProps<SVGSVGElement> {
-  size?: number;
+import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+interface CustomIconProps extends IconProps {
+  size?: ResponsiveValue<number | string>;
 }
-const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
+const CalenderIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       width={18}
       height={17}
@@ -22,8 +22,7 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, 
         <rect width={17} height={16} x={0.5} y={0.5} rx={3} />
         <path fill="currentColor" d="M.5 6.5h17v1H.5zm4-6h1v3h-1zm9 0h1v3h-1z" />
       </g>
-    </svg>
+    </chakra.svg>
   );
 });
-const CalenderIcon = chakra(SVGIcon);
 export default CalenderIcon;

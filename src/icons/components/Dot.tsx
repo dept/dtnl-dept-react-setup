@@ -1,16 +1,16 @@
-import { chakra } from '@chakra-ui/react';
-import { forwardRef, SVGProps } from 'react';
-interface CustomIconProps extends SVGProps<SVGSVGElement> {
-  size?: number;
+import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+interface CustomIconProps extends IconProps {
+  size?: ResponsiveValue<number | string>;
 }
-const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
+const DotIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       width={16}
       height={16}
@@ -26,8 +26,7 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, 
         fillRule="evenodd"
         transform="translate(0 -2)"
       />
-    </svg>
+    </chakra.svg>
   );
 });
-const DotIcon = chakra(SVGIcon);
 export default DotIcon;

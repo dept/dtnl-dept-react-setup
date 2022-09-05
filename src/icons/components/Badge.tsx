@@ -1,16 +1,16 @@
-import { chakra } from '@chakra-ui/react';
-import { forwardRef, SVGProps } from 'react';
-interface CustomIconProps extends SVGProps<SVGSVGElement> {
-  size?: number;
+import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+interface CustomIconProps extends IconProps {
+  size?: ResponsiveValue<number | string>;
 }
-const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
+const BadgeIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       width={21}
       height={19}
@@ -27,8 +27,7 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, 
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.375 9.655h4v4h-4z" />
         <path d="M8.5 5.5h3V1.8c0-.706-.66-1.3-1.5-1.3s-1.5.594-1.5 1.3v3.7z" />
       </g>
-    </svg>
+    </chakra.svg>
   );
 });
-const BadgeIcon = chakra(SVGIcon);
 export default BadgeIcon;

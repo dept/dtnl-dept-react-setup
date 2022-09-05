@@ -1,16 +1,16 @@
-import { chakra } from '@chakra-ui/react';
-import { forwardRef, SVGProps } from 'react';
-interface CustomIconProps extends SVGProps<SVGSVGElement> {
-  size?: number;
+import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+interface CustomIconProps extends IconProps {
+  size?: ResponsiveValue<number | string>;
 }
-const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
+const TrashIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       width={15}
       height={18}
@@ -23,8 +23,7 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, 
         <path fill="currentColor" d="M.5 2.5h14v1H.5zm4-2h6v1h-6z" />
         <path fill="currentColor" d="M4.5.5h1v1h-1zm6 0h1v1h-1z" />
       </g>
-    </svg>
+    </chakra.svg>
   );
 });
-const TrashIcon = chakra(SVGIcon);
 export default TrashIcon;

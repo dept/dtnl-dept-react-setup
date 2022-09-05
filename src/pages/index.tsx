@@ -2,12 +2,15 @@ import { Heading, Stack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
+import CloseLightIcon from '@/icons/components/CloseLight';
+
 interface PageProps {}
 
 const Page: NextPage<PageProps> = () => {
   return (
     <>
       <NextSeo title="Homepage" description="This is the homepage" />
+      <CloseLightIcon size={{ base: '20px', md: '60px' }} color="neutral" />
 
       <Stack spacing="4">
         <Heading as="h1">Homepage</Heading>

@@ -1,16 +1,16 @@
-import { chakra } from '@chakra-ui/react';
-import { forwardRef, SVGProps } from 'react';
-interface CustomIconProps extends SVGProps<SVGSVGElement> {
-  size?: number;
+import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+interface CustomIconProps extends IconProps {
+  size?: ResponsiveValue<number | string>;
 }
-const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
+const SearchIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
   if (size) {
     props.width = size;
     props.height = size;
   }
 
   return (
-    <svg
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       width={22}
       height={22}
@@ -22,8 +22,7 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, 
         <rect width={14.5} height={14.5} x={0.75} y={0.75} rx={7.25} />
         <path d="M13.016 13.07L21 21.055" />
       </g>
-    </svg>
+    </chakra.svg>
   );
 });
-const SearchIcon = chakra(SVGIcon);
 export default SearchIcon;
