@@ -1,5 +1,3 @@
-const { chakra } = require('@chakra-ui/react');
-
 module.exports = {
   svgoConfig: {
     multipass: true,
