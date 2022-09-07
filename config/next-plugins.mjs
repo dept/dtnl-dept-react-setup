@@ -1,12 +1,10 @@
-import withBundleAnalyzeImport from '@next/bundle-analyzer';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 import withPWA from 'next-pwa';
 
-const withBundleAnalyze = withBundleAnalyzeImport({
-  enabled: process.env.BUNDLE_ANALYZE === 'true',
-});
-
 const plugins = [
-  withBundleAnalyze,
+  withBundleAnalyzer({
+    enabled: process.env.BUNDLE_ANALYZE === 'true',
+  }),
   withPWA({
     disable: process.env.NODE_ENV !== 'production',
     dest: 'public',
