@@ -1,20 +1,15 @@
-import withBundleAnalyzer from '@next/bundle-analyzer';
-import withPWA from 'next-pwa';
+import withBundleAnalyzerImport from '@next/bundle-analyzer';
+import withPWAImport from 'next-pwa';
 
 const plugins = [
-  withBundleAnalyzer({
+  withBundleAnalyzerImport({
     enabled: process.env.BUNDLE_ANALYZE === 'true',
-  })(),
-  [
-    withPWA,
-    {
-      pwa: {
-        disable: process.env.NODE_ENV !== 'production',
-        dest: 'public',
-        publicExcludes: ['!favicon/**/*'],
-      },
-    },
-  ],
+  }),
+  withPWAImport({
+    disable: process.env.NODE_ENV !== 'production',
+    dest: 'public',
+    publicExcludes: ['!favicon/**/*'],
+  }),
 ];
 
 export { plugins };
