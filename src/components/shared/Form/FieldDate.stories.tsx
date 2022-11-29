@@ -8,7 +8,6 @@ export const example = () => (
 
 example.story = {
   parameters: {
-    info:
-      'Uses react-calendar (https://github.com/wojtekmaj/react-calendar#readme) to create a accessible date field',
+    info: 'Uses react-calendar (https://github.com/wojtekmaj/react-calendar#readme) to create a accessible date field',
   },
 };

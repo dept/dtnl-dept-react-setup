@@ -33,7 +33,8 @@ export const FieldRadioGroup = ({
               value={option.value}
               onChange={onChange}
               {...props}
-              checked={value === option.value}>
+              checked={value === option.value}
+            >
               {option.label}
             </FieldRadio>
           </Column>

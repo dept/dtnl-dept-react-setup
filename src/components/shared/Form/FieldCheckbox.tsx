@@ -59,7 +59,8 @@ export const FieldCheckbox = ({
               outline: 'none',
               boxShadow: theme.shadows.outline,
             },
-          }}>
+          }}
+        >
           <FaCheck size={13} />
         </Box>
         <Box>

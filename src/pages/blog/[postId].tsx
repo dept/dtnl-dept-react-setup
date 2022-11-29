@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring';
 
-import { Box, Text, Heading, Link } from '@chakra-ui/react';
+import { Box, Heading, Link, Text } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 

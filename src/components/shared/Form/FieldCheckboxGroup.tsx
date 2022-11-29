@@ -35,7 +35,8 @@ export const FieldCheckboxGroup = ({
               onChange={onChange}
               {...props}
               // has to be after props
-              checked={checked}>
+              checked={checked}
+            >
               {option.label}
             </FieldCheckbox>
           </Column>

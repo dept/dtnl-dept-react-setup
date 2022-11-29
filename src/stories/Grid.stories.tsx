@@ -1,4 +1,4 @@
-import { BoxProps, Box, Container } from '@chakra-ui/react';
+import { Box, BoxProps, Container } from '@chakra-ui/react';
 
 import { Column, Row } from '@/components/shared/Grid';
 

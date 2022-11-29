@@ -10,7 +10,6 @@ export const example = () => (
 
 example.story = {
   parameters: {
-    info:
-      'The Next.js <Link> component differs from the react-router Link component. Check Next.js documentation: https://nextjs.org/docs#with-link',
+    info: 'The Next.js <Link> component differs from the react-router Link component. Check Next.js documentation: https://nextjs.org/docs#with-link',
   },
 };

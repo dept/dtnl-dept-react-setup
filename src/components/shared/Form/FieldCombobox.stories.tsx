@@ -24,5 +24,6 @@ export const example = () => (
         value: 'pear',
         label: 'Pear',
       },
-    ]}></FieldCombobox>
+    ]}
+  ></FieldCombobox>
 );

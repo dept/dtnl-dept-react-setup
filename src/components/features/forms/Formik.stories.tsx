@@ -1,5 +1,5 @@
 import { subYears } from 'date-fns';
-import { object, string, date, array, number } from 'yup';
+import { array, date, number, object, string } from 'yup';
 
 import { SubmitHandler } from '@/components/shared/Formik/types';
 
