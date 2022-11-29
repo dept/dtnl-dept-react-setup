@@ -22,7 +22,7 @@ export default {
   },
 };
 
-export const stagger: Story<StaggerProps> = args => {
+export const Example: Story<StaggerProps> = args => {
   return (
     <Stagger key={Object.values(args).join('-')} {...args}>
       <Box bg="red.300" mb={1} p={2}>

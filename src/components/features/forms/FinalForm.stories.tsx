@@ -144,4 +144,4 @@ export default {
   },
 };
 
-export const example = (props: any) => <FinalFormExampleForm {...props} />;
+export const Example = (props: any) => <FinalFormExampleForm {...props} />;

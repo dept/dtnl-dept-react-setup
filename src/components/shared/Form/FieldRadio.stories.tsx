@@ -2,7 +2,7 @@ import { FieldRadio } from './FieldRadio';
 
 export default { title: 'Forms/Radio', component: FieldRadio };
 
-export const example = () => (
+export const Example = () => (
   <>
     <FieldRadio name="gender" value="male">
       Male

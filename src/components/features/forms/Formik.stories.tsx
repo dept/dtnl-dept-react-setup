@@ -120,7 +120,7 @@ const validationSchema = object({
   favoriteAnimal: string().label('Favorite animal').required(),
 });
 
-export const example = () => {
+export const Example = () => {
   const submitHandler: SubmitHandler<FormValues> = async (values, actions) => {
     actions.setSubmitting(true);
     console.log(values, actions);

@@ -2,7 +2,7 @@ import { FieldCombobox } from './FieldCombobox';
 
 export default { title: 'Forms/Combobox', component: FieldCombobox };
 
-export const example = () => (
+export const Example = () => (
   <FieldCombobox
     name="combo"
     label="Fruit"
