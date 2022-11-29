@@ -30,7 +30,7 @@ Link.args = {
   variant: 'link',
 };
 
-export const IconTemplate: Story<ButtonProps> = args => (
+export const IconTemplate: Story<ButtonProps> = _args => (
   <Button variant="icon">
     <ArrowIcon />
     <VisuallyHidden>Click me!</VisuallyHidden>

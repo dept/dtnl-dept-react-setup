@@ -4,7 +4,7 @@
   "description": "React setup for Dept",
   "engines": {
     "npm": "please use yarn",
-    "node": "16"
+    "node": "18"
   },
   "scripts": {
     "start": "NODE_ENV=production next start",
@@ -68,10 +68,10 @@
     "immer": "^9.0.3",
     "intersection-observer": "^0.12.0",
     "lodash.throttle": "^4.1.1",
-    "next": "^12.2.0",
+    "next": "^13.0.5",
     "next-compose-plugins": "^2.2.1",
-    "next-pwa": "^5.5.4",
-    "next-seo": "^5.4.0",
+    "next-pwa": "^5.6.0",
+    "next-seo": "^5.14.1",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-calendar": "^3.3.1",
@@ -115,19 +115,19 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-modal": "^3.12.0",
     "@types/scroll-to-element": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
     "circular-dependency-plugin": "^5.2.2",
-    "dept-react-scripts": "^1.2.2",
-    "eslint": "^7.28.0",
-    "eslint-config-next": "^11.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint": "^8.24.0",
+    "eslint-config-next": "^13.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-i18next": "^6.0.0-4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "^28.0.2",
     "jest-axe": "^6.0.0",
     "jest-environment-jsdom": "^28.0.2",
@@ -138,6 +138,10 @@
     "storybook-addon-next-router": "^4.0.0",
     "storybook-addon-swc": "^1.1.7",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "typescript": "^4.7.4"
-  }
+    "typescript": "^4.9.3"
+  },
+  "volta": {
+    "node": "18"
+  },
+  "packageManager": "yarn@3.2.4"
 }

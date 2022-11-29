@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { NextPage, NextPageContext } from 'next';
 import { NextSeo } from 'next-seo';
 
-export async function getStaticProps(ctx: NextPageContext) {
+export async function getStaticProps(_ctx: NextPageContext) {
   return {
     props: {
       renderWithoutLayout: true,

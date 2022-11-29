@@ -1,14 +1,12 @@
 
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
-FROM node:16-alpine as dependencies
-# Install build dependencies that are missing in the alpine image
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat \
-                       alpine-sdk \
-                       python3
-RUN apk add --no-cache vips-dev
+FROM node:18-alpine AS source
+RUN apk add --no-cache libc6-compat
+RUN apk update
+
 WORKDIR /app
+RUN yarn set version 3.2.4
 
 # Copy package and lockfile
 COPY package.json yarn.lock ./
@@ -16,7 +14,7 @@ COPY package.json yarn.lock ./
 RUN yarn --frozen-lockfile
 
 # ---- Build ----
-FROM node:16-alpine AS build
+FROM node:18-alpine AS build
 WORKDIR /app
 COPY . .
 
@@ -30,8 +28,9 @@ RUN yarn build
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # ---- Release ----
-FROM node:16-alpine as release
+FROM node:18-alpine as release
 WORKDIR /app
+RUN yarn set version 3.2.4
 
 # enable run as production
 ENV NODE_ENV=production

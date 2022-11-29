@@ -52,4 +52,4 @@ export default {
   },
 };
 
-export const Default = (args: any) => <Image {...args} />;
+export const Default = Image;
