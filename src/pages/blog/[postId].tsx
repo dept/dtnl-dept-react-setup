@@ -8,13 +8,13 @@ import { NavLink } from '@/components/shared/Link';
 
 import { BlogPost, blogPosts } from '../blog';
 
-interface PageProps {
+type PageProps = {
   post: BlogPost;
-}
+};
 
-interface PageParams extends ParsedUrlQuery {
+type PageParams = ParsedUrlQuery & {
   postId: string;
-}
+};
 
 const Page: NextPage<PageProps> = ({ post }) => (
   <>

@@ -25,5 +25,5 @@ export const Example = () => (
         label: 'Pear',
       },
     ]}
-  ></FieldCombobox>
+  />
 );
