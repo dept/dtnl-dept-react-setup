@@ -29,4 +29,4 @@ export default {
   },
 };
 
-export const example = Pagination;
+export const Example = Pagination;

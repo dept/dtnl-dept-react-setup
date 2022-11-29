@@ -44,4 +44,4 @@ export default {
   },
 };
 
-export const example: Story<FieldSelectProps> = FieldSelect;
+export const Example: Story<FieldSelectProps> = FieldSelect;

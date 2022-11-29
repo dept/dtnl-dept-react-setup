@@ -1,4 +1,4 @@
-import { chakra } from '@chakra-ui/react';
+import { chakra, shouldForwardProp } from '@chakra-ui/react';
 import { forwardRef, SVGProps } from 'react';
 interface CustomIconProps extends SVGProps<SVGSVGElement> {
   size?: number;
@@ -29,5 +29,8 @@ const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, 
     </svg>
   );
 });
-const DotIcon = chakra(SVGIcon);
+const DotIcon = chakra(SVGIcon, {
+  shouldForwardProp: prop =>
+    shouldForwardProp(prop) && !['isChecked', 'isIndeterminate'].includes(prop),
+});
 export default DotIcon;

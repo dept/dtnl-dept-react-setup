@@ -6,15 +6,15 @@ export default {
   argTypes: {},
 };
 
-export const withLabel = (args: any) => (
+export const WithLabel = (args: any) => (
   <FieldInput {...args} name="firstName" label="First name" type="textarea" />
 );
 
-export const withPlaceholder = () => <FieldInput name="firstName" placeholder="First name" />;
+export const WithPlaceholder = () => <FieldInput name="firstName" placeholder="First name" />;
 
-export const branded = () => <FieldInput name="search" placeholder="Boek, product of studie..." />;
+export const Branded = () => <FieldInput name="search" placeholder="Boek, product of studie..." />;
 
-export const otherType = () => (
+export const OtherType = () => (
   <FieldInput
     type="number"
     name="pancakes"
@@ -24,6 +24,6 @@ export const otherType = () => (
   ></FieldInput>
 );
 
-export const disabled = (args: any) => (
+export const Disabled = (args: any) => (
   <FieldInput {...args} name="firstName" disabled label="First name"></FieldInput>
 );
