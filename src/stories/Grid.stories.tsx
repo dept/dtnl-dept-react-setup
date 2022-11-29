@@ -1,6 +1,4 @@
-import { Box, BoxProps, Container } from '@chakra-ui/react';
-
-import { Column, Row } from '@/components/shared/Grid';
+import { Box, BoxProps, Container, SimpleGrid } from '@chakra-ui/react';
 
 export default { title: 'Grid/Grid' };
 
@@ -11,17 +9,12 @@ function GridExampleBox(props: BoxProps) {
 export function FlexGrid() {
   return (
     <Container>
-      <Row gap={[15, 30]}>
-        <Column col={[12, 4]}>
-          <GridExampleBox>1</GridExampleBox>
-        </Column>
-        <Column col={[12, 4]}>
-          <GridExampleBox>2</GridExampleBox>
-        </Column>
-        <Column col={[12, 4]}>
-          <GridExampleBox>3</GridExampleBox>
-        </Column>
-      </Row>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 10, md: 30 }}>
+        <GridExampleBox>1</GridExampleBox>
+        <GridExampleBox>2</GridExampleBox>
+
+        <GridExampleBox>3</GridExampleBox>
+      </SimpleGrid>
     </Container>
   );
 }

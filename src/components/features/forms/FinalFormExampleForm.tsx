@@ -1,4 +1,4 @@
-import { Button, Heading, Stack } from '@chakra-ui/react';
+import { Button, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
 import { FieldArray } from 'react-final-form-arrays';
 import { HiOutlineMail } from 'react-icons/hi';
 
@@ -10,7 +10,6 @@ import { FormNumberFormat } from '@/components/shared/FinalForm/FormNumberFormat
 import { FormRadioGroup } from '@/components/shared/FinalForm/FormRadioGroup';
 import { FormSelect } from '@/components/shared/FinalForm/FormSelect';
 import { Option } from '@/components/shared/Form';
-import { Column, Row } from '@/components/shared/Grid';
 
 interface ProgrammingLanguageFieldsProps {
   index: number;
@@ -19,22 +18,16 @@ interface ProgrammingLanguageFieldsProps {
 
 function ProgrammingLanguageFields({ index, onRemove }: ProgrammingLanguageFieldsProps) {
   return (
-    <Row>
-      <Column col={4}>
-        <FormInput label="Name" name={`programmingLanguages[${index}].name`} required />
-      </Column>
-      <Column col={4}>
-        <FormInput
-          label="Years experience"
-          type="number"
-          name={`programmingLanguages[${index}].years`}
-          required
-        />
-      </Column>
-      <Column col={4} alignSelf="flex-end">
-        <Button onClick={onRemove}>Remove</Button>
-      </Column>
-    </Row>
+    <SimpleGrid columns={{ base: 1, md: 3 }} gap="md">
+      <FormInput label="Name" name={`programmingLanguages[${index}].name`} required />
+      <FormInput
+        label="Years experience"
+        type="number"
+        name={`programmingLanguages[${index}].years`}
+        required
+      />
+      <Button onClick={onRemove}>Remove</Button>
+    </SimpleGrid>
   );
 }
 

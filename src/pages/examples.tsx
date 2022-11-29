@@ -91,7 +91,6 @@ const Page: NextPage = () => {
         <ListItem>Modal (replaced with a small wrapper around the Chakra Modal)</ListItem>
         <ListItem>NavLink</ListItem>
         <ListItem>Pagination</ListItem>
-        <ListItem>NoSsr</ListItem>
       </UnorderedList>
     </>
   );

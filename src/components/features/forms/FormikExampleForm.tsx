@@ -1,4 +1,4 @@
-import { Button, Heading, Stack } from '@chakra-ui/react';
+import { Button, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
 import { FieldArray, Form, Formik, FormikConfig } from 'formik';
 import { HiOutlineMail } from 'react-icons/hi';
 
@@ -12,7 +12,6 @@ import {
 import { FormikDate } from '@/components/shared/Formik/FormikDate';
 import { FormikNumberFormat } from '@/components/shared/Formik/FormikNumberFormat';
 import { FormikScrollToErrors } from '@/components/shared/Formik/FormikScrollToErrors';
-import { Column, Row } from '@/components/shared/Grid';
 
 interface ProgrammingLanguageFieldsProps {
   index: number;
@@ -21,22 +20,16 @@ interface ProgrammingLanguageFieldsProps {
 
 function ProgrammingLanguageFields({ index, onRemove }: ProgrammingLanguageFieldsProps) {
   return (
-    <Row>
-      <Column col={4}>
-        <FormikInput label="Name" name={`programmingLanguages[${index}].name`} required />
-      </Column>
-      <Column col={4}>
-        <FormikInput
-          label="Years experience"
-          type="number"
-          name={`programmingLanguages[${index}].years`}
-          required
-        />
-      </Column>
-      <Column col={4} alignSelf="flex-end">
-        <Button onClick={onRemove}>Remove</Button>
-      </Column>
-    </Row>
+    <SimpleGrid columns={{ base: 1, md: 3 }} gap="md">
+      <FormikInput label="Name" name={`programmingLanguages[${index}].name`} required />
+      <FormikInput
+        label="Years experience"
+        type="number"
+        name={`programmingLanguages[${index}].years`}
+        required
+      />
+      <Button onClick={onRemove}>Remove</Button>
+    </SimpleGrid>
   );
 }
 

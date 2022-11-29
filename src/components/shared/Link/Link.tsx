@@ -32,7 +32,7 @@ export function NavLink({
   const className = condition ? activeClassName : undefined;
 
   return (
-    <Link href={href} {...otherProps}>
+    <Link href={href} legacyBehavior {...otherProps}>
       {render
         ? render(condition)
         : child && cloneElement(child, { className: [child.props.className, className].join(' ') })}

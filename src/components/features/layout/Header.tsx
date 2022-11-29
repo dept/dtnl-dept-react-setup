@@ -1,11 +1,10 @@
-import { Box, BoxProps, Container, Flex } from '@chakra-ui/react';
+import { Box, BoxProps, Container, Flex, forwardRef } from '@chakra-ui/react';
 import Link from 'next/link';
-import { forwardRef } from 'react';
 import { FaReact } from 'react-icons/fa';
 
 import { NavLink } from '@/components/shared/Link';
 
-const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
+const NavigationLink = forwardRef<BoxProps, 'div'>((props, ref) => (
   <Box
     ref={ref}
     as="a"
@@ -50,7 +49,7 @@ function Navigation() {
       {items.map(item => {
         return (
           <Box key={item.title}>
-            <NavLink href={item.href} passHref>
+            <NavLink href={item.href} passHref legacyBehavior>
               <NavigationLink>{item.title}</NavigationLink>
             </NavLink>
           </Box>
@@ -65,7 +64,7 @@ export function Header() {
     <Box as="header" bg="primary" color="white">
       <Container>
         <Flex flexShrink={0} alignItems="center">
-          <Link href="/">
+          <Link href="/" legacyBehavior>
             <Flex as="a" mr={2} cursor="pointer">
               <FaReact size={30} />
             </Flex>
