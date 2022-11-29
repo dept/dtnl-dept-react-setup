@@ -23,7 +23,7 @@ export const FieldRadioGroup = ({
   onChange,
   ...props
 }: FieldRadioGroupProps) => (
-  <Stack direction={direction === 'horizontal' ? 'row' : 'column'} spacing="xs" flexWrap="wrap">
+  <Stack direction={direction === 'horizontal' ? 'row' : 'column'} spacing="md" flexWrap="wrap">
     {options.map((option, index) => (
       <FieldRadio
         key={index}

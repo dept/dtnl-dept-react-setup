@@ -22,7 +22,7 @@ export const FieldCheckboxGroup = ({
   onChange,
   ...props
 }: FieldCheckboxGroupProps) => (
-  <Stack direction={direction === 'horizontal' ? 'row' : 'column'} spacing="xs" flexWrap="wrap">
+  <Stack direction={direction === 'horizontal' ? 'row' : 'column'} spacing="md" flexWrap="wrap">
     {options.map((option, index) => (
       <FieldCheckbox
         key={index}

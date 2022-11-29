@@ -49,75 +49,69 @@ export function FinalFormExampleForm({
     <FinalForm {...props}>
       {({ form }) => (
         <Stack spacing={4}>
-          <Heading>General</Heading>
-          <Row>
-            <Column col={6}>
-              <FormInput
-                name="firstname"
-                label="First name"
-                placeholder="First name"
-                required
-                clearable
-              />
-            </Column>
-            <Column col={6}>
-              <FormInput name="lastname" label="Last name" placeholder="Last name" required />
-            </Column>
+          <Heading as="h2" fontSize="xl">
+            General
+          </Heading>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="md">
+            <FormInput
+              name="firstname"
+              label="First name"
+              placeholder="First name"
+              required
+              clearable
+            />
 
-            <Column col={6}>
-              <FormInput
-                start={<HiOutlineMail />}
-                type="email"
-                name="email"
-                label="Email"
-                placeholder="E-mail"
-                required
-                clearable
-              />
-            </Column>
-            <Column col={6}>
-              <FormDate
-                name="dob"
-                label="Date of birth"
-                placeholder="Date of birth"
-                required
-                clearable
-              />
-            </Column>
-            <Column col={6}>
-              <FormSelect
-                name="country"
-                label="Country"
-                options={countries}
-                placeholder="Choose country"
-                required
-              />
-            </Column>
-            <Column col={6}>
-              <FormInput
-                name="phoneNumber"
-                label="Phone number"
-                type="tel"
-                placeholder="+31 06 12 34 56 78"
-                required
-              />
-            </Column>
+            <FormInput name="lastname" label="Last name" placeholder="Last name" required />
+            <FormInput
+              start={<HiOutlineMail />}
+              type="email"
+              name="email"
+              label="Email"
+              placeholder="E-mail"
+              required
+              clearable
+            />
 
-            <Column col={6}>
-              <FormNumberFormat
-                prefix="€"
-                label="Money?"
-                name="currency"
-                placeholder="How much money would you like?"
-              />
-            </Column>
-          </Row>
+            <FormDate
+              name="dob"
+              label="Date of birth"
+              placeholder="Date of birth"
+              required
+              clearable
+            />
+            <FormSelect
+              name="country"
+              label="Country"
+              options={countries}
+              placeholder="Choose country"
+              required
+            />
+            <FormInput
+              name="phoneNumber"
+              label="Phone number"
+              type="tel"
+              placeholder="+31 06 12 34 56 78"
+              required
+            />
+            <FormNumberFormat
+              prefix="€"
+              label="Money?"
+              name="currency"
+              placeholder="How much money would you like?"
+            />
+          </SimpleGrid>
 
-          <Heading>Skills</Heading>
-          <Heading as="h3">Languages</Heading>
+          <Heading as="h2" fontSize="xl">
+            Skills
+          </Heading>
+          <Heading as="h3" fontSize="md">
+            Languages
+          </Heading>
           <FormCheckboxGroup name="languages" options={languages} direction="horizontal" required />
 
-          <Heading as="h3">Programming languages</Heading>
+          <Heading as="h3" fontSize="md">
+            Programming languages
+          </Heading>
           <FieldArray name="programmingLanguages">
             {({ fields }) => {
               return (
@@ -140,20 +134,20 @@ export function FinalFormExampleForm({
             }}
           </FieldArray>
 
-          <Heading>Interests</Heading>
-          <Heading as="h3">Favorite animal</Heading>
+          <Heading as="h2" fontSize="xl">
+            Interests
+          </Heading>
+          <Heading as="h3" fontSize="md">
+            Favorite animal
+          </Heading>
           <FormRadioGroup name="favoriteAnimal" required options={animals} direction="horizontal" />
 
-          <Row>
-            <Column>
-              <Button variant="secondary" onClick={() => form.reset()}>
-                Reset
-              </Button>
-            </Column>
-            <Column>
-              <Button type="submit">Submit</Button>
-            </Column>
-          </Row>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing="md">
+            <Button variant="secondary" onClick={() => form.reset()}>
+              Reset
+            </Button>
+            <Button type="submit">Submit</Button>
+          </SimpleGrid>
         </Stack>
       )}
     </FinalForm>

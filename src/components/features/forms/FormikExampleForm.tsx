@@ -53,72 +53,66 @@ export function FormikExampleForm({
         <Form noValidate>
           <FormikScrollToErrors />
           <Stack spacing={4}>
-            <Heading>General</Heading>
-            <Row>
-              <Column col={6}>
-                <FormikInput
-                  name="firstname"
-                  label="First name"
-                  placeholder="First name"
-                  required
-                  clearable
-                />
-              </Column>
-              <Column col={6}>
-                <FormikInput name="lastname" label="Last name" placeholder="Last name" required />
-              </Column>
+            <Heading as="h2" fontSize="xl">
+              General
+            </Heading>
 
-              <Column col={6}>
-                <FormikInput
-                  start={<HiOutlineMail />}
-                  type="email"
-                  name="email"
-                  label="Email"
-                  placeholder="E-mail"
-                  required
-                  clearable
-                />
-              </Column>
-              <Column col={6}>
-                <FormikDate
-                  name="dob"
-                  label="Date of birth"
-                  placeholder="Date of birth"
-                  required
-                  clearable
-                />
-              </Column>
-              <Column col={6}>
-                <FormikSelect
-                  name="country"
-                  label="Country"
-                  options={countries}
-                  placeholder="Choose country"
-                  required
-                />
-              </Column>
-              <Column col={6}>
-                <FormikInput
-                  name="phoneNumber"
-                  label="Phone number"
-                  type="tel"
-                  placeholder="+31 06 12 34 56 78"
-                  required
-                />
-              </Column>
-              <Column col={6}>
-                <FormikNumberFormat
-                  prefix="€"
-                  thousandSeparator
-                  label="Money?"
-                  name="currency"
-                  placeholder="How much money would you like?"
-                />
-              </Column>
-            </Row>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing="md">
+              <FormikInput
+                name="firstname"
+                label="First name"
+                placeholder="First name"
+                required
+                clearable
+              />
 
-            <Heading>Skills</Heading>
-            <Heading as="h3">Languages</Heading>
+              <FormikInput name="lastname" label="Last name" placeholder="Last name" required />
+
+              <FormikInput
+                start={<HiOutlineMail />}
+                type="email"
+                name="email"
+                label="Email"
+                placeholder="E-mail"
+                required
+                clearable
+              />
+
+              <FormikDate
+                name="dob"
+                label="Date of birth"
+                placeholder="Date of birth"
+                required
+                clearable
+              />
+              <FormikSelect
+                name="country"
+                label="Country"
+                options={countries}
+                placeholder="Choose country"
+                required
+              />
+              <FormikInput
+                name="phoneNumber"
+                label="Phone number"
+                type="tel"
+                placeholder="+31 06 12 34 56 78"
+                required
+              />
+              <FormikNumberFormat
+                prefix="€"
+                thousandSeparator
+                label="Money?"
+                name="currency"
+                placeholder="How much money would you like?"
+              />
+            </SimpleGrid>
+            <Heading as="h2" fontSize="xl">
+              Skills
+            </Heading>
+            <Heading as="h3" fontSize="md">
+              Languages
+            </Heading>
             <FormikCheckboxGroup
               name="languages"
               options={languages}
@@ -126,7 +120,9 @@ export function FormikExampleForm({
               required
             />
 
-            <Heading as="h3">Programming languages</Heading>
+            <Heading as="h3" fontSize="md">
+              Programming languages
+            </Heading>
             <FieldArray name="programmingLanguages">
               {helpers => {
                 return (
@@ -149,8 +145,12 @@ export function FormikExampleForm({
               }}
             </FieldArray>
 
-            <Heading>Interests</Heading>
-            <Heading as="h3">Favorite animal</Heading>
+            <Heading as="h2" fontSize="xl">
+              Interests
+            </Heading>
+            <Heading as="h3" fontSize="md">
+              Favorite animal
+            </Heading>
             <FormikRadioGroup
               name="favoriteAnimal"
               required
@@ -158,16 +158,13 @@ export function FormikExampleForm({
               direction="horizontal"
             />
 
-            <Row>
-              <Column>
-                <Button variant="secondary" onClick={() => resetForm()}>
-                  Reset
-                </Button>
-              </Column>
-              <Column>
-                <Button type="submit">Submit</Button>
-              </Column>
-            </Row>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing="md">
+              <Button variant="secondary" onClick={() => resetForm()}>
+                Reset
+              </Button>
+
+              <Button type="submit">Submit</Button>
+            </SimpleGrid>
           </Stack>
         </Form>
       )}
