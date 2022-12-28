@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 import { headers } from './config/next-headers.mjs';
 import { plugins } from './config/next-plugins.mjs';
-import { includePolyfills } from './config/next-polyfills.mjs';
 
 dotenv.config();
 
@@ -72,8 +71,6 @@ const nextConfig = () =>
           );
         });
       }
-
-      includePolyfills(config);
 
       return config;
     },
