@@ -1,6 +1,7 @@
-import { Heading, Text } from '@chakra-ui/react';
+'use client';
 
-import { ErrorProps } from '@/pages/_error';
+import { Heading, Text } from '@chakra-ui/react';
+import { ErrorProps } from 'next/error';
 
 export function ErrorPage({ statusCode }: ErrorProps) {
   return (

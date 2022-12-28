@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, BoxProps } from '@chakra-ui/react';
 
 interface LabelProps extends BoxProps {

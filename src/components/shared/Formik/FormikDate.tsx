@@ -1,3 +1,5 @@
+'use-client';
+
 import { FastField, Field, FieldProps } from 'formik';
 
 import { FieldDate, FieldDateProps } from '../Form/FieldDate';

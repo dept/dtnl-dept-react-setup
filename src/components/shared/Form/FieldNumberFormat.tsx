@@ -1,3 +1,5 @@
+'use-client';
+
 import NumberFormat, { NumberFormatProps } from 'react-number-format';
 
 import { FieldInput, FieldInputProps } from './FieldInput';

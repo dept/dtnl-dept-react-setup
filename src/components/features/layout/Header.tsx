@@ -1,8 +1,10 @@
+'use-client';
+
 import { Box, BoxProps, Container, Flex, forwardRef } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaReact } from 'react-icons/fa';
 
-import { NavLink } from '@/components/shared/Link';
+import NextLink from 'next/link';
 
 const NavigationLink = forwardRef<BoxProps, 'div'>((props, ref) => (
   <Box
@@ -46,15 +48,13 @@ const items = [
 function Navigation() {
   return (
     <Flex as="nav">
-      {items.map(item => {
-        return (
-          <Box key={item.title}>
-            <NavLink href={item.href} passHref legacyBehavior>
-              <NavigationLink>{item.title}</NavigationLink>
-            </NavLink>
-          </Box>
-        );
-      })}
+      {items.map(item => (
+        <Box key={item.title}>
+          <NavigationLink as={NextLink} href={item.href}>
+            {item.title}
+          </NavigationLink>
+        </Box>
+      ))}
     </Flex>
   );
 }

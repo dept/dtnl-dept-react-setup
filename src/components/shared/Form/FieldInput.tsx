@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, BoxProps, Button, ButtonProps, useTheme, VisuallyHidden } from '@chakra-ui/react';
 import { forwardRef, InputHTMLAttributes, PropsWithChildren, useState } from 'react';
 import { HiOutlineX } from 'react-icons/hi';

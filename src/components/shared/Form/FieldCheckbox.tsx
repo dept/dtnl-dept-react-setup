@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, Flex, Text, useTheme } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { hideVisually } from 'polished';

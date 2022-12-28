@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, Button, VisuallyHidden } from '@chakra-ui/react';
 import { useCombobox, UseComboboxProps } from 'downshift';
 import { useEffect, useState } from 'react';

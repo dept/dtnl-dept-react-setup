@@ -1,4 +1,4 @@
-export const renderFavicons = () => {
+export const Favicons = () => {
   return (
     <>
       <link rel="shortcut icon" href="/favicon/favicon.ico" />

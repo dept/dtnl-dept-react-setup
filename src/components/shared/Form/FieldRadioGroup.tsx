@@ -1,3 +1,5 @@
+'use-client';
+
 import { Stack } from '@chakra-ui/react';
 
 import { FieldRadio, FieldRadioProps } from './FieldRadio';

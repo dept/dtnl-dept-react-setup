@@ -1,3 +1,5 @@
+'use-client';
+
 import { FastField, Field, FieldProps } from 'formik';
 
 import { FieldNumberFormat, FieldNumberFormatProps } from '../Form/FieldNumberFormat';

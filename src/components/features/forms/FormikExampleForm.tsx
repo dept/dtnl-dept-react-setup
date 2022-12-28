@@ -1,3 +1,5 @@
+'use-client';
+
 import { Button, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
 import { FieldArray, Form, Formik, FormikConfig } from 'formik';
 import { HiOutlineMail } from 'react-icons/hi';

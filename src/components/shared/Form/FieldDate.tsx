@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, Button, VisuallyHidden } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';

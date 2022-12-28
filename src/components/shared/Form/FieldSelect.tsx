@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, BoxProps } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useSelect } from 'downshift';

@@ -1,3 +1,5 @@
+'use-client';
+
 import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
 export interface PaginationProps {

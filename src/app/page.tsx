@@ -1,3 +1,5 @@
+'use client';
+
 import { Heading, Stack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';

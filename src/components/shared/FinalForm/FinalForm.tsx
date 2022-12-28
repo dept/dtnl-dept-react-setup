@@ -1,3 +1,5 @@
+'use-client';
+
 import { setIn, ValidationErrors } from 'final-form';
 import arrayMutators from 'final-form-arrays';
 import { useMemo } from 'react';

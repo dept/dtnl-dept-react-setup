@@ -1,3 +1,5 @@
+'use-client';
+
 import dot from 'dot-object';
 import { useFormikContext } from 'formik';
 import { useEffect } from 'react';

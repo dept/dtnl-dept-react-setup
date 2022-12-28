@@ -1,3 +1,5 @@
+'use-client';
+
 import { Button, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
 import { FieldArray } from 'react-final-form-arrays';
 import { HiOutlineMail } from 'react-icons/hi';

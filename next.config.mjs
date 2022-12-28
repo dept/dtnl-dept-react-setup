@@ -1,5 +1,3 @@
-/** @type {import('next').NextConfig} */
-
 import dotenv from 'dotenv';
 
 import { headers } from './config/next-headers.mjs';
@@ -10,7 +8,10 @@ dotenv.config();
 /**
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
- */
+ *
+ * @type {import('next').NextConfig}
+ *
+ * */
 const nextConfig = () =>
   plugins.reduce((acc, next) => next(acc), {
     /**
@@ -26,6 +27,13 @@ const nextConfig = () =>
      */
     compiler: {
       emotion: true,
+    },
+
+    /**
+     * AppDir
+     */
+    experimental: {
+      appDir: true,
     },
 
     poweredByHeader: false,

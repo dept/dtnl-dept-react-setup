@@ -1,3 +1,5 @@
+'use-client';
+
 import { FastField, Field, FieldProps } from 'formik';
 
 import { FieldCheckbox, FieldCheckboxProps } from '../Form/FieldCheckbox';

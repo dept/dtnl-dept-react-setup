@@ -1,3 +1,5 @@
+'use-client';
+
 import { useField, useForm } from 'react-final-form';
 
 import { FieldCombobox, FieldComboboxProps } from '../Form/FieldCombobox';
