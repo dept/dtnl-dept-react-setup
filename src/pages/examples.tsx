@@ -2,14 +2,19 @@ import {
   Alert,
   AlertDescription,
   AlertIcon,
+  Box,
   chakra,
   Heading,
   Link,
   ListItem,
   UnorderedList,
+  Text,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+
+import { MotionBox } from '@/components/shared/MotionBox';
+import { ArrowIcon } from '@/icons/components';
 
 const Page: NextPage = () => {
   return (
@@ -28,6 +33,24 @@ const Page: NextPage = () => {
           .
         </AlertDescription>
       </Alert>
+
+      <Box mb="24">
+        <Heading size="icons">Icons</Heading>
+        <Text mb="8">Responsive icon sizing (based on boxSize prop)</Text>
+        <ArrowIcon boxSize={{ base: 20, md: 40, lg: 60 }} color="primary" />
+
+        <Text mb="8">Framer motion solution for icon</Text>
+        <MotionBox
+          as={ArrowIcon}
+          boxSize={{ base: 20, md: 40, lg: 60 }}
+          /**
+           * Setting the initial keyframe to "null" will use
+           * the current value to allow for interruptable keyframes.
+           */
+          whileHover={{ scale: [null, 1.5, 1.4], cursor: 'pointer' }}
+          transition={{ duration: 0.3 }}
+        />
+      </Box>
 
       <Heading size="lg">Links to Chakra alternatives for deleted components</Heading>
       <UnorderedList fontSize="xl" mt="8" mb="12">
