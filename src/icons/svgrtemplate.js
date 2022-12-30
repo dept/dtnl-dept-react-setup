@@ -9,7 +9,7 @@ const {
   jsxSpreadAttribute,
 } = require('@babel/types');
 
-function template({ template }, _opts, { componentName, jsx }) {
+function template({ template }, _opts, { jsx }) {
   const typeScriptTpl = template.smart({ plugins: ['typescript'] });
 
   const wrappedJsx = jsxElement(
@@ -24,12 +24,9 @@ function template({ template }, _opts, { componentName, jsx }) {
   );
 
   return typeScriptTpl.ast`
-    import { Icon, IconProps } from '@chakra-ui/react';
-    import { forwardRef } from 'react';
+    import { forwardRef, Icon, IconProps } from '@chakra-ui/react';
 
-    const ${componentName} = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => ${wrappedJsx})
-
-    export default ${componentName};
+    export default forwardRef<IconProps, 'svg'>((props, svgRef) => ${wrappedJsx});
 `;
 }
 module.exports = template;

@@ -1,6 +1,5 @@
-import { Icon, IconProps } from '@chakra-ui/react';
-import { forwardRef } from 'react';
-const SvgCalender = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => (
+import { forwardRef, Icon, IconProps } from '@chakra-ui/react';
+export default forwardRef<IconProps, 'svg'>((props, svgRef) => (
   <Icon
     xmlns="http://www.w3.org/2000/svg"
     width={18}
@@ -14,4 +13,3 @@ const SvgCalender = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => (
     </g>
   </Icon>
 ));
-export default SvgCalender;

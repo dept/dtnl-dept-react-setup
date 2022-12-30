@@ -1,6 +1,5 @@
-import { Icon, IconProps } from '@chakra-ui/react';
-import { forwardRef } from 'react';
-const SvgHome = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => (
+import { forwardRef, Icon, IconProps } from '@chakra-ui/react';
+export default forwardRef<IconProps, 'svg'>((props, svgRef) => (
   <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.37 58.37" ref={svgRef} {...props}>
     <path
       fill="currentColor"
@@ -8,4 +7,3 @@ const SvgHome = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => (
     />
   </Icon>
 ));
-export default SvgHome;
