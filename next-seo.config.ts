@@ -1,29 +1,29 @@
 import type { NextSeoProps } from 'next-seo';
 
 const config: NextSeoProps = {
-  title: 'Title A',
-  description: 'Description A',
+  title: 'DEPT®',
+  description: 'DEPT® is pioneering tech/marketing to help brands stay ahead',
   openGraph: {
     type: 'website',
-    locale: 'en_IE',
-    url: 'https://www.url.ie/a',
-    title: 'Open Graph Title A',
-    description: 'Open Graph Description A',
+    locale: 'en_US',
+    url: 'https://www.deptagency.com',
+    title: 'DEPT®',
+    description: 'DEPT® is pioneering tech/marketing to help brands stay ahead',
     images: [
       {
-        url: 'https://www.test.ie/og-image-a-01.jpg',
+        url: 'https://www.deptagency.com/wp-content/uploads/2022/12/black-white-melons.png',
         width: 800,
         height: 600,
-        alt: 'Og Image Alt A',
+        alt: 'DEPT® is pioneering tech/marketing to help brands stay ahead',
         type: 'image/jpeg',
-        secureUrl: 'https://www.test.ie/secure-og-image-a-01.jpg',
+        secureUrl: 'https://www.deptagency.com/wp-content/uploads/2022/12/black-white-melons.png',
       },
     ],
-    siteName: 'SiteName A',
+    siteName: 'DEPT®',
   },
   twitter: {
-    handle: '@handlea',
-    site: '@sitea',
+    handle: '@deptagency',
+    site: '@deptagency.com',
     cardType: 'summary_large_image',
   },
 };
