@@ -1,21 +1,11 @@
-import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { Icon, IconProps } from '@chakra-ui/react';
 import { forwardRef } from 'react';
-interface CustomIconProps extends IconProps {
-  size?: ResponsiveValue<number | string>;
-}
-const CloseNormalIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
-  if (size) {
-    props.width = size;
-    props.height = size;
-  }
-
-  return (
-    <chakra.svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" ref={svgRef} {...props}>
-      <path
-        fill="currentColor"
-        d="M8.914 7.5l5.251 5.251a1 1 0 11-1.414 1.414L7.5 8.915l-5.251 5.25a1 1 0 01-1.414-1.414L6.085 7.5.836 2.249A1 1 0 012.249.835L7.5 6.085l5.251-5.25a1 1 0 111.414 1.414L8.915 7.5z"
-      />
-    </chakra.svg>
-  );
-});
-export default CloseNormalIcon;
+const SvgCloseNormal = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => (
+  <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" ref={svgRef} {...props}>
+    <path
+      fill="currentColor"
+      d="M8.914 7.5l5.251 5.251a1 1 0 11-1.414 1.414L7.5 8.915l-5.251 5.25a1 1 0 01-1.414-1.414L6.085 7.5.836 2.249A1 1 0 012.249.835L7.5 6.085l5.251-5.25a1 1 0 111.414 1.414L8.915 7.5z"
+    />
+  </Icon>
+));
+export default SvgCloseNormal;

@@ -1,21 +1,11 @@
-import { chakra, IconProps, ResponsiveValue } from '@chakra-ui/react';
+import { Icon, IconProps } from '@chakra-ui/react';
 import { forwardRef } from 'react';
-interface CustomIconProps extends IconProps {
-  size?: ResponsiveValue<number | string>;
-}
-const CheckIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
-  if (size) {
-    props.width = size;
-    props.height = size;
-  }
-
-  return (
-    <chakra.svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14" ref={svgRef} {...props}>
-      <path
-        fill="currentColor"
-        d="M16.087.35L5.625 11.2 1.913 7.35c-.45-.467-1.125-.467-1.576 0a1.157 1.157 0 000 1.633l4.5 4.667c.226.233.45.35.788.35s.563-.117.787-.35l11.25-11.667c.45-.466.45-1.166 0-1.633-.45-.467-1.124-.467-1.575 0z"
-      />
-    </chakra.svg>
-  );
-});
-export default CheckIcon;
+const SvgCheck = forwardRef<SVGSVGElement, IconProps>((props, svgRef) => (
+  <Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14" ref={svgRef} {...props}>
+    <path
+      fill="currentColor"
+      d="M16.087.35L5.625 11.2 1.913 7.35c-.45-.467-1.125-.467-1.576 0a1.157 1.157 0 000 1.633l4.5 4.667c.226.233.45.35.788.35s.563-.117.787-.35l11.25-11.667c.45-.466.45-1.166 0-1.633-.45-.467-1.124-.467-1.575 0z"
+    />
+  </Icon>
+));
+export default SvgCheck;

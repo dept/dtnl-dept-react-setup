@@ -1,4 +1,9 @@
 module.exports = {
+  template: './src/icons/svgrtemplate.js',
+  ext: 'tsx',
+  outDir: './src/icons/components',
+  ref: true,
+  indexTemplate: './index-template.js',
   svgoConfig: {
     multipass: true,
     plugins: [
