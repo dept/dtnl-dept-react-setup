@@ -1,7 +1,7 @@
 
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
-FROM node:18-alpine AS source
+FROM node:18-alpine AS dependencies
 RUN apk add --no-cache libc6-compat
 RUN apk update
 
@@ -9,7 +9,9 @@ WORKDIR /app
 RUN yarn set version 3.2.4
 
 # Copy package and lockfile
-COPY package.json yarn.lock ./
+COPY ./package.json ./yarn.lock ./.yarnrc.yml ./
+COPY ./.yarn/releases .yarn/releases
+
 # install dependencies
 RUN yarn plugin import workspace-tools
 RUN CI=1 yarn workspaces focus --all
