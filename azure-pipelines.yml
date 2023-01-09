@@ -25,13 +25,20 @@ steps:
 
   - task: YarnInstaller@3
     inputs:
-      versionSpec: '3.x'
+      versionSpec: '1.x'
 
   - task: DeleteFiles@1
     displayName: 'Remove robots.txt in production'
     condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'main'))
     inputs:
       Contents: 'public/robots.txt'
+
+  - task: Bash@3
+    displayName: 'Hardlock the Yarn version'
+    inputs:
+      targetType: inline
+      script: |
+        yarn set version 3.2.4
 
   - task: Cache@2
     inputs:
