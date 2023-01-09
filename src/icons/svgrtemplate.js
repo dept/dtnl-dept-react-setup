@@ -1,30 +1,32 @@
-function template({ template }, _opts, { componentName, jsx }) {
+const {
+  identifier,
+  jsxExpressionContainer,
+  jsxClosingElement,
+  jsxAttribute,
+  jsxElement,
+  jsxIdentifier,
+  jsxOpeningElement,
+  jsxSpreadAttribute,
+} = require('@babel/types');
+
+function template({ template }, _opts, { jsx }) {
   const typeScriptTpl = template.smart({ plugins: ['typescript'] });
 
-  componentName.name = componentName.name.slice(3) + 'Icon';
+  const wrappedJsx = jsxElement(
+    jsxOpeningElement(jsxIdentifier('Icon'), [
+      ...jsx.openingElement.attributes,
+      jsxAttribute(jsxIdentifier('ref'), jsxExpressionContainer(template.ast('svgRef').expression)),
+      jsxSpreadAttribute(identifier('props')),
+    ]),
+    jsxClosingElement(jsxIdentifier('Icon')),
+    jsx.children,
+    false,
+  );
 
   return typeScriptTpl.ast`
-  import { chakra, shouldForwardProp } from '@chakra-ui/react';
-  import { forwardRef, SVGProps } from 'react';
+    import { forwardRef, Icon, IconProps } from '@chakra-ui/react';
 
-  interface CustomIconProps extends SVGProps<SVGSVGElement> {
-    size?: number
-  }
-
-  const SVGIcon = forwardRef<SVGSVGElement, CustomIconProps>(({ size, ...props }, svgRef) => {
-    if (size) {
-      props.width = size;
-      props.height = size;
-    }
-
-    return ${jsx};
-  })
-
-  const ${componentName} = chakra(SVGIcon, {
-    shouldForwardProp: (prop) => shouldForwardProp(prop) && !['isChecked', 'isIndeterminate'].includes(prop)
-  });
-
-  export default ${componentName};
+    export default forwardRef<IconProps, 'svg'>((props, svgRef) => ${wrappedJsx});
 `;
 }
 module.exports = template;
