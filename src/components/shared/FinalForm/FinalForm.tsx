@@ -1,4 +1,4 @@
-import { ValidationErrors, setIn } from 'final-form';
+import { setIn, ValidationErrors } from 'final-form';
 import arrayMutators from 'final-form-arrays';
 import { useMemo } from 'react';
 import { Form, FormProps } from 'react-final-form';
@@ -79,7 +79,8 @@ export function FinalForm<FormValues extends BaseValues = BaseValues>({
       mutators={{
         ...arrayMutators,
         ...mutators,
-      }}>
+      }}
+    >
       {formProps => {
         const { handleSubmit } = formProps;
         return (

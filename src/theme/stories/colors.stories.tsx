@@ -4,7 +4,7 @@ import { colors } from '../colors';
 
 export default { title: 'Tokens/Colors', component: null };
 
-export const customColors = () => (
+export const Example = () => (
   <>
     {Object.entries(colors).map(([colorName, colorValue]) => (
       <Flex

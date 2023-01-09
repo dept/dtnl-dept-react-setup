@@ -2,7 +2,7 @@ import { Heading, Text } from '@chakra-ui/react';
 
 export default { title: 'Tokens/Typography', component: null };
 
-export const headingsAndText = () => (
+export const Example = () => (
   <>
     <Heading as="h1" size="4xl">
       Heading 1

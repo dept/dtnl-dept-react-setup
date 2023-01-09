@@ -2,7 +2,7 @@ import { Rte } from './Rte';
 
 export default { title: 'Atoms/Rte', component: Rte };
 
-export const example = () => (
+export const Example = () => (
   <Rte>
     {`
       <h1>This html could come from your cms</h1>

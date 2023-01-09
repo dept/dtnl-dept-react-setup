@@ -4,13 +4,13 @@ import { NextSeo } from 'next-seo';
 
 import { NavLink } from '@/components/shared/Link';
 
-interface PageProps {}
+type PageProps = {};
 
-export interface BlogPost {
+export type BlogPost = {
   id: number;
   title: string;
   content: string;
-}
+};
 
 export const blogPosts: BlogPost[] = [
   {
@@ -25,26 +25,24 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-const Page: NextPage<PageProps> = () => {
-  return (
-    <>
-      <NextSeo title="Blog" description="An overview of our blog posts" />
-      <Box>
-        <Heading as="h1">Blogs</Heading>
-        <ul>
-          {blogPosts.map(item => {
-            return (
-              <li key={item.id}>
-                <NavLink href="/blog/[postId]" as={`/blog/${item.id}`}>
-                  <Link>{item.title}</Link>
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
-      </Box>
-    </>
-  );
-};
+const Page: NextPage<PageProps> = () => (
+  <>
+    <NextSeo title="Blog" description="An overview of our blog posts" />
+    <Box>
+      <Heading as="h1">Blogs</Heading>
+      <ul>
+        {blogPosts.map(item => {
+          return (
+            <li key={item.id}>
+              <NavLink href="/blog/[postId]" as={`/blog/${item.id}`}>
+                <Link>{item.title}</Link>
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+    </Box>
+  </>
+);
 
 export default Page;

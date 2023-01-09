@@ -1,4 +1,4 @@
-import { Box, Flex, Text , useTheme } from '@chakra-ui/react';
+import { Box, Flex, Text, useTheme } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { hideVisually } from 'polished';
 import { InputHTMLAttributes } from 'react';
@@ -23,7 +23,7 @@ export const FieldCheckbox = ({
   onChange,
   onBlur,
   hasError,
-  required,
+  required: _required,
   ...props
 }: FieldCheckboxProps) => {
   const theme = useTheme();

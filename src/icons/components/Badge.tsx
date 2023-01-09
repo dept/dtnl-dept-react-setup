@@ -6,7 +6,8 @@ export default forwardRef<IconProps, 'svg'>((props, svgRef) => (
     height={19}
     viewBox="0 0 21 19"
     ref={svgRef}
-    {...props}>
+    {...props}
+  >
     <g fill="none" fillRule="evenodd" stroke="currentColor">
       <path
         strokeLinecap="round"

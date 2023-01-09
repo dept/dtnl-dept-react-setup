@@ -24,6 +24,7 @@ export function ButtonLink({
       shallow={shallow}
       replace={replace}
       passHref
+      legacyBehavior
     >
       <Button as="a" display="inline-flex" {...props}>
         {children}

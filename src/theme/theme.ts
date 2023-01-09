@@ -3,7 +3,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { colors } from './colors';
 import { components } from './components';
 import { globalStyle } from './global-style';
-import { sizes } from './sizes';
+import { sizes, space } from './sizes';
 import { fonts } from './typography';
 
 export const theme = extendTheme({
@@ -11,6 +11,7 @@ export const theme = extendTheme({
   colors,
   fonts,
   sizes,
+  space,
   styles: { global: globalStyle },
 });
 

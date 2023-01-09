@@ -1,4 +1,4 @@
-import { Column, Row } from '@/components/shared/Grid';
+import { Stack } from '@chakra-ui/react';
 
 import { FieldCheckbox, FieldCheckboxProps } from './FieldCheckbox';
 
@@ -21,26 +21,20 @@ export const FieldCheckboxGroup = ({
   direction = 'vertical',
   onChange,
   ...props
-}: FieldCheckboxGroupProps) => {
-  return (
-    <Row flexDirection={direction === 'horizontal' ? 'row' : 'column'} flexWrap="wrap">
-      {options.map((option, index) => {
-        const checked = Boolean(value && value.includes(option.value));
-
-        return (
-          <Column key={index} mb={direction === 'vertical' ? 2 : 0}>
-            <FieldCheckbox
-              name={name}
-              value={option.value}
-              onChange={onChange}
-              {...props}
-              // has to be after props
-              checked={checked}>
-              {option.label}
-            </FieldCheckbox>
-          </Column>
-        );
-      })}
-    </Row>
-  );
-};
+}: FieldCheckboxGroupProps) => (
+  <Stack direction={direction === 'horizontal' ? 'row' : 'column'} spacing="md" flexWrap="wrap">
+    {options.map((option, index) => (
+      <FieldCheckbox
+        key={index}
+        name={name}
+        value={option.value}
+        onChange={onChange}
+        {...props}
+        // has to be after props
+        checked={Boolean(value && value.includes(option.value))}
+      >
+        {option.label}
+      </FieldCheckbox>
+    ))}
+  </Stack>
+);

@@ -1,6 +1,6 @@
 import { Box, Button, VisuallyHidden } from '@chakra-ui/react';
 import { useCombobox, UseComboboxProps } from 'downshift';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { HiSelector } from 'react-icons/hi';
 
 import { FieldInput, FieldInputProps } from './FieldInput';

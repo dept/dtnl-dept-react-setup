@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring';
 
-import { Box, Text, Heading, Link } from '@chakra-ui/react';
+import { Box, Heading, Link, Text } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
@@ -8,13 +8,13 @@ import { NavLink } from '@/components/shared/Link';
 
 import { BlogPost, blogPosts } from '../blog';
 
-interface PageProps {
+type PageProps = {
   post: BlogPost;
-}
+};
 
-interface PageParams extends ParsedUrlQuery {
+type PageParams = ParsedUrlQuery & {
   postId: string;
-}
+};
 
 const Page: NextPage<PageProps> = ({ post }) => (
   <>

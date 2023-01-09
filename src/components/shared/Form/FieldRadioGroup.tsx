@@ -1,4 +1,4 @@
-import { Column, Row } from '@/components/shared/Grid';
+import { Stack } from '@chakra-ui/react';
 
 import { FieldRadio, FieldRadioProps } from './FieldRadio';
 
@@ -22,23 +22,19 @@ export const FieldRadioGroup = ({
   direction = 'vertical',
   onChange,
   ...props
-}: FieldRadioGroupProps) => {
-  return (
-    <Row flexDirection={direction === 'horizontal' ? 'row' : 'column'} flexWrap="wrap">
-      {options.map((option, index) => {
-        return (
-          <Column key={index} mb={direction === 'vertical' ? 2 : 0}>
-            <FieldRadio
-              name={name}
-              value={option.value}
-              onChange={onChange}
-              {...props}
-              checked={value === option.value}>
-              {option.label}
-            </FieldRadio>
-          </Column>
-        );
-      })}
-    </Row>
-  );
-};
+}: FieldRadioGroupProps) => (
+  <Stack direction={direction === 'horizontal' ? 'row' : 'column'} spacing="md" flexWrap="wrap">
+    {options.map((option, index) => (
+      <FieldRadio
+        key={index}
+        name={name}
+        value={option.value}
+        onChange={onChange}
+        {...props}
+        checked={value === option.value}
+      >
+        {option.label}
+      </FieldRadio>
+    ))}
+  </Stack>
+);

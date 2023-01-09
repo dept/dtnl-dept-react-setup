@@ -1,4 +1,4 @@
-import { BoxProps, Box } from '@chakra-ui/react';
+import { Box, BoxProps } from '@chakra-ui/react';
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 

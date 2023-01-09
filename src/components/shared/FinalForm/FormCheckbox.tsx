@@ -19,7 +19,8 @@ export function FormCheckbox({ name, children, ...props }: FormCheckboxProps) {
         hasError={meta.touched && meta.error}
         value={'true'}
         checked={!!input.value}
-        onChange={e => form.change(name, e.currentTarget.checked)}>
+        onChange={e => form.change(name, e.currentTarget.checked)}
+      >
         {children}
       </FieldCheckbox>
 

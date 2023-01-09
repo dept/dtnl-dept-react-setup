@@ -20,7 +20,7 @@ variables:
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '16.x'
+      versionSpec: '18.x'
     displayName: 'Install Node.js'
 
   - task: YarnInstaller@3
@@ -33,15 +33,29 @@ steps:
     inputs:
       Contents: 'public/robots.txt'
 
+  - task: Bash@3
+    displayName: 'Yarn: hardlock version'
+    inputs:
+      targetType: inline
+      script: |
+        yarn set version 3.2.4
+
+  - task: Bash@3
+    displayName: 'Yarn: import workspace tools'
+    inputs:
+      targetType: inline
+      script: |
+        yarn plugin import workspace-tools
+
   - task: Cache@2
     inputs:
       key: 'yarn | "$(Agent.OS)" | yarn.lock'
       restoreKeys: |
         yarn | "$(Agent.OS)"
       path: $(YARN_CACHE_FOLDER)
-    displayName: Cache Yarn packages
+    displayName: 'Yarn: cache node_modules'
 
-  - script: yarn install --frozen-lockfile
+  - script: yarn workspaces focus --all
     displayName: Install dependencies
 
   - script: yarn build
@@ -49,7 +63,7 @@ steps:
     env:
       NODE_OPTIONS: --max_old_space_size=16384
 
-  - script: yarn install --production --ignore-scripts --prefer-offline
+  - script: yarn workspaces focus --all --production
     displayName: Prune dependencies
 
   - task: CopyFiles@2

@@ -6,7 +6,8 @@ export default forwardRef<IconProps, 'svg'>((props, svgRef) => (
     height={16}
     viewBox="0 0 16 16"
     ref={svgRef}
-    {...props}>
+    {...props}
+  >
     <circle
       cx={8}
       cy={10}

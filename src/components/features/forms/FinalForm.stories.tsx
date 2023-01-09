@@ -1,5 +1,5 @@
 import { subYears } from 'date-fns';
-import { object, string, date, array, number } from 'yup';
+import { array, date, number, object, string } from 'yup';
 
 import { FinalFormExampleForm } from './FinalFormExampleForm';
 
@@ -144,4 +144,4 @@ export default {
   },
 };
 
-export const example = FinalFormExampleForm;
+export const Example = (props: any) => <FinalFormExampleForm {...props} />;

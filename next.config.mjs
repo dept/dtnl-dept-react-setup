@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 import { headers } from './config/next-headers.mjs';
 import { plugins } from './config/next-plugins.mjs';
-import { includePolyfills } from './config/next-polyfills.mjs';
 
 dotenv.config();
 
@@ -12,7 +11,7 @@ dotenv.config();
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
  */
-export default () =>
+const nextConfig = () =>
   plugins.reduce((acc, next) => next(acc), {
     /**
      * add the environment variables you would like exposed to the client here
@@ -28,22 +27,6 @@ export default () =>
     compiler: {
       emotion: true,
     },
-
-    /**
-     * The experimental option allows you to enable future/experimental options
-     * like React 18 concurrent features.
-     */
-    experimental: {
-      /** React 18 server components */
-      serverComponents: true,
-    },
-
-    /**
-     * SWC minification opt-in
-     * Please note that while not in experimental, the swcMinification may cause issues in your build.
-     * example: https://github.com/vercel/next.js/issues/30429 (Yup email validation causes an exception)
-     */
-    swcMinify: true,
 
     poweredByHeader: false,
     reactStrictMode: true,
@@ -89,8 +72,8 @@ export default () =>
         });
       }
 
-      includePolyfills(config);
-
       return config;
     },
   });
+
+export default nextConfig;
