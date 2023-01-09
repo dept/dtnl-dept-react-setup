@@ -11,7 +11,8 @@ RUN yarn set version 3.2.4
 # Copy package and lockfile
 COPY package.json yarn.lock ./
 # install dependencies
-RUN yarn --frozen-lockfile
+RUN yarn plugin import workspace-tools
+RUN CI=1 yarn workspaces focus --all
 
 # ---- Build ----
 FROM node:18-alpine AS build
@@ -25,12 +26,12 @@ COPY --from=dependencies /app/node_modules ./node_modules
 RUN yarn build
 
 # purge all non essential dependencies
-RUN yarn install --production --ignore-scripts --prefer-offline
+RUN yarn plugin import workspace-tools
+RUN CI=1 yarn workspaces focus --all --production
 
 # ---- Release ----
 FROM node:18-alpine as release
 WORKDIR /app
-RUN yarn set version 3.2.4
 
 # enable run as production
 ENV NODE_ENV=production
