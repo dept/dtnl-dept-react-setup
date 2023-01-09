@@ -41,7 +41,7 @@ steps:
       path: $(YARN_CACHE_FOLDER)
     displayName: Cache Yarn packages
 
-  - script: yarn install --frozen-lockfile
+  - script: yarn workspaces focus --all
     displayName: Install dependencies
 
   - script: yarn build
@@ -49,7 +49,7 @@ steps:
     env:
       NODE_OPTIONS: --max_old_space_size=16384
 
-  - script: yarn install --production --ignore-scripts --prefer-offline
+  - script: yarn workspaces focus --all --production
     displayName: Prune dependencies
 
   - task: CopyFiles@2
