@@ -34,11 +34,18 @@ steps:
       Contents: 'public/robots.txt'
 
   - task: Bash@3
-    displayName: 'Hardlock the Yarn version'
+    displayName: 'Yarn: hardlock version'
     inputs:
       targetType: inline
       script: |
         yarn set version 3.2.4
+
+  - task: Bash@3
+    displayName: 'Yarn: import workspace tools'
+    inputs:
+      targetType: inline
+      script: |
+        yarn plugin import workspace-tools
 
   - task: Cache@2
     inputs:
@@ -46,7 +53,7 @@ steps:
       restoreKeys: |
         yarn | "$(Agent.OS)"
       path: $(YARN_CACHE_FOLDER)
-    displayName: Cache Yarn packages
+    displayName: 'Yarn: cache node_modules'
 
   - script: yarn workspaces focus --all
     displayName: Install dependencies
