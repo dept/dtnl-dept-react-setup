@@ -1,0 +1,26 @@
+{
+  "directory": [
+    "./src/components",
+    "./src/components/Animation",
+    "./src/components/ButtonLink",
+    "./src/components/Debug",
+    "./src/components/FinalForm",
+    "./src/components/Form",
+    "./src/components/Formik",
+    "./src/components/Image",
+    "./src/components/Label",
+    "./src/components/Link",
+    "./src/components/Modal",
+    "./src/components/MotionBox",
+    "./src/components/Pagination",
+    "./src/components/Rte",
+
+    "./src/utils",
+
+    "./src/theme",
+    "./src/theme/components",
+    "./src/theme/stories",
+    "./src/theme/tools"
+  ],
+  "exclude": ["(.*).(stories|test)"]
+}

@@ -2,7 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { render as rtlRender } from '@testing-library/react';
 import { PropsWithChildren } from 'react';
 
-import { theme } from '@/theme';
+import { theme } from '@dept/ui';
 
 type ArgumentTypes<F> = F extends (...args: infer A) => any ? A : never;
 

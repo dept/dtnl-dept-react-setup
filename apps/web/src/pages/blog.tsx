@@ -1,8 +1,7 @@
 import { Box, Heading, Link } from '@chakra-ui/react';
+import { NavLink } from '@dept/ui';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-
-import { NavLink } from '@/components/shared/Link';
 
 type PageProps = {};
 

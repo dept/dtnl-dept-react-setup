@@ -2,7 +2,7 @@ import { Box, BoxProps, Container, Flex, forwardRef } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaReact } from 'react-icons/fa';
 
-import { NavLink } from '@/components/shared/Link';
+import { NavLink } from '@dept/ui';
 
 const NavigationLink = forwardRef<BoxProps, 'div'>((props, ref) => (
   <Box

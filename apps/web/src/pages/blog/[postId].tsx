@@ -4,8 +4,7 @@ import { Box, Heading, Link, Text } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
-import { NavLink } from '@/components/shared/Link';
-
+import { NavLink } from '@dept/ui';
 import { BlogPost, blogPosts } from '../blog';
 
 type PageProps = {

@@ -6,12 +6,11 @@ import { AppProps } from 'next/dist/shared/lib/router/router';
 import React from 'react';
 
 import { BaseLayout } from '@/components/templates';
-import { theme } from '@/theme/theme';
-import { isBrowser } from '@/utils/isBrowser';
+import { isBrowser, theme } from '@dept/ui';
 
 if (isBrowser) {
-  import('@/utils/detectTouch');
-  import('@/utils/detectKeyboardFocus');
+  import('@dept/ui/src/utils/detectTouch');
+  import('@dept/ui/src/utils/detectKeyboardFocus');
 }
 
 const MyApp = ({ Component: Page, pageProps }: AppProps) => {

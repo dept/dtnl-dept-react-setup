@@ -1,17 +1,16 @@
 import { Button, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
-import { FieldArray, Form, Formik, FormikConfig } from 'formik';
-import { HiOutlineMail } from 'react-icons/hi';
-
-import { Option } from '@/components/shared/Form';
 import {
   FormikCheckboxGroup,
+  FormikDate,
   FormikInput,
+  FormikNumberFormat,
   FormikRadioGroup,
+  FormikScrollToErrors,
   FormikSelect,
-} from '@/components/shared/Formik';
-import { FormikDate } from '@/components/shared/Formik/FormikDate';
-import { FormikNumberFormat } from '@/components/shared/Formik/FormikNumberFormat';
-import { FormikScrollToErrors } from '@/components/shared/Formik/FormikScrollToErrors';
+  Option,
+} from '@dept/ui';
+import { FieldArray, Form, Formik, FormikConfig } from 'formik';
+import { HiOutlineMail } from 'react-icons/hi';
 
 interface ProgrammingLanguageFieldsProps {
   index: number;

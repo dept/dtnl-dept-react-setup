@@ -1,15 +1,17 @@
 import { Button, Heading, SimpleGrid, Stack } from '@chakra-ui/react';
+import {
+  FinalForm,
+  FinalFormProps,
+  FormCheckboxGroup,
+  FormDate,
+  FormInput,
+  FormNumberFormat,
+  FormRadioGroup,
+  FormSelect,
+  Option,
+} from '@dept/ui';
 import { FieldArray } from 'react-final-form-arrays';
 import { HiOutlineMail } from 'react-icons/hi';
-
-import { FinalForm, FinalFormProps } from '@/components/shared/FinalForm/FinalForm';
-import { FormCheckboxGroup } from '@/components/shared/FinalForm/FormCheckboxGroup';
-import { FormDate } from '@/components/shared/FinalForm/FormDate';
-import { FormInput } from '@/components/shared/FinalForm/FormInput';
-import { FormNumberFormat } from '@/components/shared/FinalForm/FormNumberFormat';
-import { FormRadioGroup } from '@/components/shared/FinalForm/FormRadioGroup';
-import { FormSelect } from '@/components/shared/FinalForm/FormSelect';
-import { Option } from '@/components/shared/Form';
 
 interface ProgrammingLanguageFieldsProps {
   index: number;

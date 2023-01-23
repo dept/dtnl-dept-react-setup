@@ -1,7 +1,6 @@
+import { FormikSubmitHandler } from '@dept/ui';
 import { subYears } from 'date-fns';
 import { array, date, number, object, string } from 'yup';
-
-import { SubmitHandler } from '@/components/shared/Formik/types';
 
 import { FormikExampleForm } from './FormikExampleForm';
 
@@ -121,7 +120,7 @@ const validationSchema = object({
 });
 
 export const Example = () => {
-  const submitHandler: SubmitHandler<FormValues> = async (values, actions) => {
+  const submitHandler: FormikSubmitHandler<FormValues> = async (values, actions) => {
     actions.setSubmitting(true);
     console.log(values, actions);
     alert(JSON.stringify(values));
