@@ -9,13 +9,10 @@
   "author": "DEPT",
   "repository": "git@bitbucket.org:tamtam-nl/dtnl-meritcircle-marketplace-mono.git",
   "scripts": {
-    "postinstall": "patch-package",
-    "start": "turbo run start --parallel --continue",
     "dev": "turbo run dev --parallel --continue",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "prepare": "husky install",
-    "validate": "turbo run validate",
     "test": "turbo run test",
     "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'"
   },

@@ -1,7 +1,7 @@
 import { Button, ButtonProps, VisuallyHidden } from '@chakra-ui/react';
 import { Story } from '@storybook/react';
 
-import ArrowIcon from '@/icons/components/Arrow';
+import { HeartFilledIcon } from '@dept/icons';
 
 export default {
   title: 'Chakra Components/Button',
@@ -32,7 +32,7 @@ Link.args = {
 
 export const IconTemplate: Story<ButtonProps> = _args => (
   <Button variant="icon">
-    <ArrowIcon />
+    <HeartFilledIcon />
     <VisuallyHidden>Click me!</VisuallyHidden>
   </Button>
 );
