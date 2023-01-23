@@ -9,10 +9,11 @@ RUN yarn set version 3.3.1
 # Copy in the most cachable way
 COPY ./package.json .
 COPY ./.yarn/releases .yarn/releases
+COPY ./.yarn/plugins .yarn/plugins
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
 COPY ./packages ./packages
-COPY ./apps ./
+COPY ./apps ./apps
 COPY ./turbo.json .
 
 # install required dependencies
@@ -34,10 +35,10 @@ RUN yarn set version 3.3.1
 # Copy package and lockfile
 COPY --from=source /app/out/full/ .
 COPY ./.yarn/releases .yarn/releases
+COPY ./.yarn/plugins .yarn/plugins
 # The pruned lockfile does not seem to be complete for use in the next step, use the local lockfile
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
-COPY ./patches ./patches
 
 # install dependencies
 RUN yarn plugin import workspace-tools
@@ -68,9 +69,6 @@ RUN yarn turbo run build --filter="@dept/web"
 # purge all non essential dependencies
 RUN yarn plugin import workspace-tools
 RUN CI=1 yarn workspaces focus --production @dept/web
-
-# Create if not exists, so the copy command in the release stage won't fail
-RUN mkdir -p /app/apps/frontend/node_modules
 
 # ---- Release ----
 FROM node:18-alpine as release
