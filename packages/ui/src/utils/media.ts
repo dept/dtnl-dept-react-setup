@@ -1,4 +1,4 @@
-import { theme } from '@dept/ui';
+import { theme } from '../theme/theme';
 
 const { sm, md, lg, xl } = theme.breakpoints;
 

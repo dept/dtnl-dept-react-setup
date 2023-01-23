@@ -9,5 +9,4 @@ export * from './components/link';
 export * from './global-style';
 export * from './sizes';
 export * from './theme';
-export * from './tools/keyboard-focussed';
 export * from './typography';

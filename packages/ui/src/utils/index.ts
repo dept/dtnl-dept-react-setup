@@ -3,9 +3,6 @@
  */
 
 export * from './classNames';
-export * from './detectKeyboardFocus';
-export * from './detectTouch';
-export * from './favicons';
 export * from './isBrowser';
 export * from './media';
 export * from './ucfirst';

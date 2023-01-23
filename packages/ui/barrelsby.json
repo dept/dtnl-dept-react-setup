@@ -19,8 +19,7 @@
 
     "./src/theme",
     "./src/theme/components",
-    "./src/theme/stories",
-    "./src/theme/tools"
+    "./src/theme/stories"
   ],
   "exclude": ["(.*).(stories|test)"]
 }

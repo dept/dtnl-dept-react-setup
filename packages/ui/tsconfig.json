@@ -1,5 +1,5 @@
 {
-  "extends": "@dept/tsconfig/base.json",
+  "extends": "@dept/tsconfig/react-library.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",

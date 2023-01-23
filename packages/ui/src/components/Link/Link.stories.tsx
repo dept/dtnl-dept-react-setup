@@ -2,11 +2,7 @@ import { Link } from './Link';
 
 export default { title: 'Atoms/Link', component: Link };
 
-export const Example = () => (
-  <Link href="/">
-    <a>Go to page</a>
-  </Link>
-);
+export const Example = () => <Link href="/">Go to page</Link>;
 
 Example.story = {
   parameters: {

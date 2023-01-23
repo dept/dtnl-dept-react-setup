@@ -1,6 +1,5 @@
 import { ComponentStyleConfig, theme } from '@chakra-ui/react';
 
-import { keyboardFocussed } from '../tools/keyboard-focussed';
 import { link } from './link';
 
 export const button: ComponentStyleConfig = {
@@ -16,16 +15,10 @@ export const button: ComponentStyleConfig = {
     primary: {
       backgroundColor: 'primary',
       color: 'white',
-      ...keyboardFocussed({
-        boxShadow: 'outline',
-      }),
     },
     secondary: {
       backgroundColor: 'secondary',
       color: 'white',
-      ...keyboardFocussed({
-        boxShadow: 'outline',
-      }),
     },
     link: {
       // Imports next base styles
@@ -44,10 +37,7 @@ export const button: ComponentStyleConfig = {
         backgroundColor: 'secondary',
         transform: 'scale(1.2)',
       },
-      ...keyboardFocussed({
-        backgroundColor: 'secondary',
-        transform: 'scale(1.2)',
-      }),
+
       svg: {
         width: '20px',
         height: '20px',
