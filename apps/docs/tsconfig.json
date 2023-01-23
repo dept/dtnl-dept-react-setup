@@ -1,0 +1,6 @@
+{
+  "extends": "@dept/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "jsx": "preserve"
+  }
+}
