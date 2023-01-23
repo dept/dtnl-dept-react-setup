@@ -41,7 +41,7 @@ COPY ./patches ./patches
 
 # install dependencies
 RUN yarn plugin import workspace-tools
-RUN CI=1 yarn workspaces focus @sphere/platform @dept/web
+RUN CI=1 yarn workspaces focus @dept/platform @dept/web
 
 # ---- Build ----
 FROM node:18-alpine AS build
