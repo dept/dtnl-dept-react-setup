@@ -1,0 +1,9 @@
+**/.env
+**/.ci-trigger
+Dockerfile*
+
+# apps/cypress
+**/cypress/reports/*
+mochawesome*
+report*
+test-reports*

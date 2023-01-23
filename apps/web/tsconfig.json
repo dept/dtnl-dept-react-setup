@@ -1,0 +1,15 @@
+{
+  "extends": "@dept/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@locales/*": ["./locales/*"],
+      "@public/*": ["./public/*"],
+      "@server/*": ["./server/*"],
+      "@test/*": ["./test/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", ".next", "out", "dist", "next.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
