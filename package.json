@@ -30,7 +30,8 @@
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
     "favicons": "node config/favicons",
-    "svgr": "npx @svgr/cli@5 ./src/icons --template ./src/icons/svgrtemplate.js --ext tsx --out-dir ./src/icons/components --ref --index-template ./src/icons/index-template.js"
+    "svgr": "npx @svgr/cli@5 ./src/icons --template ./src/icons/svgrtemplate.js --ext tsx --out-dir ./src/icons/components --ref --index-template ./src/icons/index-template.js",
+    "generate-figma-theme": "node ./generate-figma-theme"
   },
   "author": "Dept",
   "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",

@@ -1,15 +1,14 @@
 import { ChakraTheme } from '@chakra-ui/react';
-
 export const colors: ChakraTheme['colors'] = {
-  primary: '#121212',
-  secondary: '#5115f7',
-  tertiary: '#E44503',
-  error: '#E00303',
-  black: '#000000',
-  white: '#ffffff',
-  succes: '#e5fdf4',
-  warning: '#fde5e5',
-  neutral: '#E5F4FD',
-  transparent: 'transparent',
-  current: 'currentColor',
+  primary_colors: { white: '#ffffffff', onyx_black: '#121212ff' },
+  entice_attention: { han_blue: '#5115f7ff' },
+  secondary_colors: { dim_grey: '#646464ff', platinum: '#f2f2f2ff', silver: '#c4c4c4ff' },
+  speciality_colors: {
+    smokey: '#cfbcb2ff',
+    mint: '#b9d2c8ff',
+    velvet: '#959edeff',
+    ocean: '#c4ced5ff',
+    coral: '#f3cfceff',
+    sunrise: '#fbe3b3ff',
+  },
 };
