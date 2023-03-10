@@ -9964,6 +9964,7 @@ __metadata:
     sharp: ^0.29.2
     storybook-addon-next-router: ^4.0.1
     storybook-addon-swc: ^1.1.9
+    ts-node: ^10.9.1
     tsconfig-paths-webpack-plugin: ^3.5.2
     typescript: ^4.9.3
     yup: ^0.32.11
@@ -21070,7 +21071,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.7.0":
+"ts-node@npm:^10.7.0, ts-node@npm:^10.9.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
   dependencies:

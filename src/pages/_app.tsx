@@ -19,8 +19,6 @@ const MyApp = ({ Component: Page, pageProps }: AppProps) => {
     return <Page {...pageProps} />;
   }
 
-  console.log({ theme });
-
   return (
     <>
       <DefaultSeo titleTemplate={`%s | Dept`} />

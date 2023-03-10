@@ -1,6 +1,6 @@
-import { CSSObject } from '@chakra-ui/react';
+import { SystemStyleObject } from '@chakra-ui/react';
 
-export const globalStyle: CSSObject = {
+export const globalStyle: SystemStyleObject = {
   'html, body': {
     backgroundColor: 'white',
   },

@@ -31,7 +31,9 @@
     "build-storybook": "build-storybook",
     "favicons": "node config/favicons",
     "svgr": "npx @svgr/cli@5 ./src/icons --template ./src/icons/svgrtemplate.js --ext tsx --out-dir ./src/icons/components --ref --index-template ./src/icons/index-template.js",
-    "generate-figma-theme": "node ./generate-figma-theme"
+    "theme": "node ./generate-theme IN_DIR=tokens OUT_DIR=src/theme && yarn prettier-fix",
+    "theme-ts": "ts-node ./generate-theme-ts",
+    "prettier-fix": "prettier './src/theme/**/*.ts' --write"
   },
   "author": "Dept",
   "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
@@ -87,6 +89,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "scroll-to-element": "^2.0.3",
     "sharp": "^0.29.2",
+    "ts-node": "^10.9.1",
     "yup": "^0.32.11",
     "zustand": "^3.7.2"
   },
