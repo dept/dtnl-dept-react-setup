@@ -6001,10 +6001,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^15.12.2":
-  version: 15.14.9
-  resolution: "@types/node@npm:15.14.9"
-  checksum: 49f7f0522a3af4b8389aee660e88426490cd54b86356672a1fedb49919a8797c00d090ec2dcc4a5df34edc2099d57fc2203d796c4e7fbd382f2022ccd789eee7
+"@types/node@npm:^18.15.0":
+  version: 18.15.0
+  resolution: "@types/node@npm:18.15.0"
+  checksum: d81372276dd5053b1743338b61a2178ff9722dc609189d01fc7d1c2acd539414039e0e4780678730514390dad3f29c366a28c29e8dbd5b0025651181f6dd6669
   languageName: node
   linkType: hard
 
@@ -9902,7 +9902,7 @@ __metadata:
     "@types/express": ^4.17.12
     "@types/jest-axe": ^3.5.1
     "@types/lodash.throttle": ^4.1.6
-    "@types/node": ^15.12.2
+    "@types/node": ^18.15.0
     "@types/react": ^18.0.14
     "@types/react-calendar": ^3.4.0
     "@types/react-dom": ^18.0.5

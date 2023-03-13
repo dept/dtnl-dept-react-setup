@@ -32,7 +32,6 @@
     "favicons": "node config/favicons",
     "svgr": "npx @svgr/cli@5 ./src/icons --template ./src/icons/svgrtemplate.js --ext tsx --out-dir ./src/icons/components --ref --index-template ./src/icons/index-template.js",
     "theme": "node ./generate-theme IN_DIR=tokens OUT_DIR=src/theme && yarn prettier-fix",
-    "theme-ts": "ts-node ./generate-theme-ts",
     "prettier-fix": "prettier './src/theme/**/*.ts' --write"
   },
   "author": "Dept",
@@ -112,7 +111,7 @@
     "@types/express": "^4.17.12",
     "@types/jest-axe": "^3.5.1",
     "@types/lodash.throttle": "^4.1.6",
-    "@types/node": "^15.12.2",
+    "@types/node": "^18.15.0",
     "@types/react": "^18.0.14",
     "@types/react-calendar": "^3.4.0",
     "@types/react-dom": "^18.0.5",
