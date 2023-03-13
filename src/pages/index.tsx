@@ -1,13 +1,10 @@
-import { Heading, Stack, Text, useTheme } from '@chakra-ui/react';
+import { Heading, Stack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
 type PageProps = {};
 
 const Page: NextPage<PageProps> = () => {
-  const theme = useTheme();
-
-  console.log(theme);
   return (
     <>
       <NextSeo title="Homepage" description="This is the homepage" />
