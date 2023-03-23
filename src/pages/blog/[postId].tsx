@@ -1,16 +1,15 @@
 import { ParsedUrlQuery } from 'querystring';
 
 import { Box, Heading, Link, Text } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
 import { NavLink } from '@/components/shared/Link';
 
-import { BlogPost, blogPosts } from '../blog';
+import { SeoProps } from '@/constants/types';
+import { blogPosts } from '../blog';
 
-type PageProps = {
-  post: BlogPost;
-};
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 type PageParams = ParsedUrlQuery & {
   postId: string;
@@ -32,8 +31,8 @@ const Page: NextPage<PageProps> = ({ post }) => (
   </>
 );
 
-export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ctx => {
-  const post = blogPosts.find(item => item.id === Number(ctx.params?.postId));
+export const getStaticProps = (async ({ params }) => {
+  const post = blogPosts.find(item => item.id === Number(params?.postId));
 
   if (!post) {
     return {
@@ -42,9 +41,32 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ctx =
   }
 
   return {
-    props: { post },
+    props: {
+      post,
+      seo: {
+        title: post.title,
+        description: post.content,
+        openGraph: {
+          type: 'article',
+          /**
+           * Replace static locale with one from useTranslate() when using https://nextjs.org/docs/advanced-features/i18n-routing
+           */
+          locale: 'en',
+          url: `https://www.deptagency.com/blog/${post.id}`,
+          siteName: 'Dept Agency',
+          article: {
+            publishedTime: `${new Date()}`,
+            modifiedTime: `${new Date()}`,
+            expirationTime: `${new Date()}`,
+            author: 'Dept',
+            section: 'Technology',
+            tags: ['Dept, Technology, NextJS, ReactJS'],
+          },
+        },
+      },
+    },
   };
-};
+}) satisfies GetStaticProps<SeoProps, PageParams>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
