@@ -1,13 +1,26 @@
+import { SeoProps } from '@/constants/types';
 import { Heading, Stack, Text } from '@chakra-ui/react';
-import { NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
-type PageProps = {};
+export const getStaticProps = (() => {
+  return {
+    props: {
+      seo: {
+        title: 'Homepage',
+        description: 'This is the homepage',
+        openGraph: {
+          type: 'article',
+        },
+      },
+    },
+  };
+}) satisfies GetStaticProps<SeoProps>;
+
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Page: NextPage<PageProps> = () => {
   return (
     <>
-      <NextSeo title="Homepage" description="This is the homepage" />
       <Stack spacing="4">
         <Heading as="h1" size="h1" color="brand.han-purple">
           Homepage
