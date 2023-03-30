@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "author": "DEPT®",
-  "repository": "git@bitbucket.org:tamtam-nl/dtnl-dept-react-setup.git",
+  "repository": "bitbucket:tamtam-nl/dtnl-dept-react-setup",
   "scripts": {
     "dev": "turbo run dev --parallel --continue",
     "build": "turbo run build",
