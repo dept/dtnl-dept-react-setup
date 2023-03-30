@@ -5,7 +5,8 @@
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
-    "dev": "next dev -p 3001"
+    "dev": "next dev -p 3001",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@dept/config": "*",

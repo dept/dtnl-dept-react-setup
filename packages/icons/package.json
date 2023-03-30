@@ -5,7 +5,8 @@
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
-    "generate": "npx @svgr/cli@5 ./src --template ./template-icon.js --ext tsx --out-dir ./components --ref --index-template ./template-index.js"
+    "generate": "npx @svgr/cli@5 ./src --template ./template-icon.js --ext tsx --out-dir ./components --ref --index-template ./template-index.js",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@dept/config": "*",
