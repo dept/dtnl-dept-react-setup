@@ -18,8 +18,8 @@
     },
     "type-check": {
       "cache": false,
-      "inputs": [""],
-      "outputs": ["src/**/*.tsx", "src/**/*.ts"]
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"],
+      "outputs": []
     }
   }
 }
