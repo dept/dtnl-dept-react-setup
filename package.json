@@ -15,7 +15,8 @@
     "prepare": "husky install",
     "test": "turbo run test",
     "postinstall": "husky install",
-    "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'"
+    "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'",
+    "type-check": "turbo type-check --filter=web"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
