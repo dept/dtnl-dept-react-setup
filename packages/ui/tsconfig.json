@@ -6,7 +6,7 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "rootDir": "ui"
+    "rootDir": "."
   },
   "include": ["src"],
   "exclude": ["node_modules"]
