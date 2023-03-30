@@ -14,8 +14,7 @@
     "lint": "turbo run lint",
     "prepare": "husky install",
     "test": "turbo run test",
-    "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'",
-    "type-check": "tsc --noEmit"
+    "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
