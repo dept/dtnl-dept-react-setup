@@ -18,7 +18,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "typeRoots": ["../../node_modules/@types", "./types"]
+    "typeRoots": ["../../node_modules/@types", "./types", "@dept/ui/types"]
   },
   "include": ["src", "next-env.d.ts"],
   "exclude": ["node_modules"]
