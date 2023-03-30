@@ -15,7 +15,7 @@
     "test": "turbo run test",
     "postinstall": "husky install",
     "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'",
-    "type-check": "turbo type-check --filter=e2e --filter=web --filter=icons"
+    "type-check": "turbo type-check --filter=e2e --filter=web --filter=icons --filter=ui"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
