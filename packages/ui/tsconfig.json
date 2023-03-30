@@ -5,8 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "rootDir": "ui"
   },
-  "include": ["../ui/src"],
-  "exclude": ["../ui/node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
