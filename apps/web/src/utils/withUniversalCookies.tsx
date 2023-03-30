@@ -3,7 +3,7 @@ import { AppContext, AppProps } from 'next/app';
 import { AppType } from 'next/dist/shared/lib/utils';
 import { Cookies, CookiesProvider } from 'react-cookie';
 
-import { isBrowser } from './isBrowser';
+import { isBrowser } from '@dept/ui';
 
 type WithUniversalCookieProps = AppProps & {
   cookies: Cookies;
