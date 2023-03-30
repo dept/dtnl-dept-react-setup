@@ -10,7 +10,6 @@
     "postbuild": "next-sitemap",
     "prebuild": "yarn generate-theme-typings",
     "export": "next build && next export",
-    "postinstall": "husky install",
     "generate-theme-typings": "npx @chakra-ui/cli tokens ./src/theme/theme.ts",
     "type-check": "tsc --noEmit",
     "test": "jest --config test/jest.config.js",
