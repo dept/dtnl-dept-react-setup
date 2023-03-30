@@ -1,7 +1,6 @@
-/// <reference types="styled-jsx" />
 /// <reference types="@emotion/react/types/css-prop" />
 
-import type { CustomTheme } from '@dept/ui';
+import type { CustomTheme } from '@/src/theme/theme';
 
 /**
  * Custom theme in global @emotion/react scope:

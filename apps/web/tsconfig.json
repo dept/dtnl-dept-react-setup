@@ -11,5 +11,5 @@
     }
   },
   "exclude": ["node_modules", ".next", "out", "dist", "next.config.js"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@dept/ui/types"]
 }
