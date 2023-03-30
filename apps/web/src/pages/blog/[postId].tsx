@@ -1,23 +1,20 @@
 import { ParsedUrlQuery } from 'querystring';
 
 import { Box, Heading, Link, Text } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
+import { SeoProps } from '@/constants/types';
 import { NavLink } from '@dept/ui';
-import { BlogPost, blogPosts } from '../blog';
-
-type PageProps = {
-  post: BlogPost;
-};
+import { blogPosts } from '../blog';
 
 type PageParams = ParsedUrlQuery & {
   postId: string;
 };
 
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
 const Page: NextPage<PageProps> = ({ post }) => (
   <>
-    <NextSeo title={post.title} description={post.content} />
     <Box>
       <Heading as="h1" color="primary">
         {post.title}
@@ -31,8 +28,8 @@ const Page: NextPage<PageProps> = ({ post }) => (
   </>
 );
 
-export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ctx => {
-  const post = blogPosts.find(item => item.id === Number(ctx.params?.postId));
+export const getStaticProps = (async ({ params }) => {
+  const post = blogPosts.find(item => item.id === Number(params?.postId));
 
   if (!post) {
     return {
@@ -41,9 +38,32 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ctx =
   }
 
   return {
-    props: { post },
+    props: {
+      post,
+      seo: {
+        title: post.title,
+        description: post.content,
+        openGraph: {
+          type: 'article',
+          /**
+           * Replace static locale with one from useTranslate() when using https://nextjs.org/docs/advanced-features/i18n-routing
+           */
+          locale: 'en',
+          url: `https://www.deptagency.com/blog/${post.id}`,
+          siteName: 'DEPT®',
+          article: {
+            publishedTime: `${new Date()}`,
+            modifiedTime: `${new Date()}`,
+            expirationTime: `${new Date()}`,
+            author: 'DEPT®',
+            section: 'Technology',
+            tags: ['DEPT®, Technology, NextJS, ReactJS'],
+          },
+        },
+      },
+    },
   };
-};
+}) satisfies GetStaticProps<SeoProps, PageParams>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

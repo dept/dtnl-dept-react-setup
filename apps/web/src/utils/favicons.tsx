@@ -8,7 +8,7 @@ export const renderFavicons = () => {
       <link rel="manifest" href="/favicon/manifest.json" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#000" />
-      <meta name="application-name" content="Dept" />
+      <meta name="application-name" content="DEPT®" />
       <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-touch-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-touch-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-touch-icon-72x72.png" />
@@ -26,7 +26,7 @@ export const renderFavicons = () => {
       />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="apple-mobile-web-app-title" content="Dept" />
+      <meta name="apple-mobile-web-app-title" content="DEPT®" />
       <link
         rel="apple-touch-startup-image"
         media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"

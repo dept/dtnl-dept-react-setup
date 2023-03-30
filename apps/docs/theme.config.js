@@ -5,13 +5,13 @@ const config = {
   docsRepositoryBase: 'https://bitbucket.org/tamtam-nl/dtnl-dept-react-setup',
   useNextSeoProps() {
     return {
-      titleTemplate: '%s – DEPT documentation',
+      titleTemplate: '%s – DEPT® documentation',
     };
   },
   search: true,
   darkMode: true,
   footer: {
-    text: <>Build with ❤️ by your DEPT friends</>,
+    text: <>Build with ❤️ by your DEPT® friends</>,
   },
   logo: (
     <>
@@ -37,8 +37,8 @@ const config = {
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="DEPT Dev Documentation" />
-      <meta name="og:title" content="DEPT Dev Documentation" />
+      <meta name="description" content="DEPT® Dev Documentation" />
+      <meta name="og:title" content="DEPT® Dev Documentation" />
     </>
   ),
 };

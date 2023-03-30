@@ -6,8 +6,8 @@
     "apps/*",
     "packages/*"
   ],
-  "author": "DEPT",
-  "repository": "git@bitbucket.org:tamtam-nl/dtnl-meritcircle-marketplace-mono.git",
+  "author": "DEPT®",
+  "repository": "git@bitbucket.org:tamtam-nl/dtnl-dept-react-setup.git",
   "scripts": {
     "dev": "turbo run dev --parallel --continue",
     "build": "turbo run build",
@@ -20,6 +20,7 @@
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint-plugin-storybook": "latest",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",

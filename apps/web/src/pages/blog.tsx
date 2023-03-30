@@ -1,9 +1,9 @@
+import { SeoProps } from '@/constants/types';
 import { Box, Heading, Link } from '@chakra-ui/react';
 import { NavLink } from '@dept/ui';
-import { NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 
-type PageProps = {};
+type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export type BlogPost = {
   id: number;
@@ -26,7 +26,6 @@ export const blogPosts: BlogPost[] = [
 
 const Page: NextPage<PageProps> = () => (
   <>
-    <NextSeo title="Blog" description="An overview of our blog posts" />
     <Box>
       <Heading as="h1">Blogs</Heading>
       <ul>
@@ -43,5 +42,16 @@ const Page: NextPage<PageProps> = () => (
     </Box>
   </>
 );
+
+export const getServerSideProps = (async () => {
+  return {
+    props: {
+      seo: {
+        title: 'Blog',
+        description: 'An overview of our blog posts',
+      },
+    },
+  };
+}) satisfies GetServerSideProps<SeoProps>;
 
 export default Page;

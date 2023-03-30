@@ -76,7 +76,13 @@ FROM node:18-alpine as release
 WORKDIR /app
 RUN yarn set version 3.3.1
 
-# enable run as production
+# Declare args
+ARG NEXT_PUBLIC_APP_URL
+
+# Assign args to env
+ENV NEXT_PUBLIC_APP_UR=$NEXT_PUBLIC_APP_URL
+
+# Enable run as production
 ENV NODE_ENV=production
 # Disable telemetry
 ENV NEXT_TELEMETRY_DISABLED 1

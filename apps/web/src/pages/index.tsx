@@ -1,14 +1,12 @@
+import { SeoProps } from '@/constants/types';
 import { Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { HeartFilledIcon, HeartOutlineIcon } from '@dept/icons';
-import { NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
-type PageProps = {};
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Page: NextPage<PageProps> = () => (
   <>
-    <NextSeo title="Homepage" description="This is the homepage" />
-
     <HStack>
       <HeartFilledIcon />
       <HeartOutlineIcon />
@@ -26,5 +24,19 @@ const Page: NextPage<PageProps> = () => (
     </Stack>
   </>
 );
+
+export const getStaticProps = (() => {
+  return {
+    props: {
+      seo: {
+        title: 'Homepage',
+        description: 'This is the homepage',
+        openGraph: {
+          type: 'website',
+        },
+      },
+    },
+  };
+}) satisfies GetStaticProps<SeoProps>;
 
 export default Page;

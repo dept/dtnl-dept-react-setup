@@ -15,7 +15,7 @@ module.exports = {
     'react/display-name': 'off',
     'jsx-a11y/alt-text': 'off',
 
-    /** Turned off to not cause warnings by impelmenting the new next/core-web-vitals default config */
+    /** Turned off to not cause warnings by implementing the new next/core-web-vitals default config */
     '@next/next/no-img-element': 'off',
     '@next/next/next-script-for-ga': 'off',
 
