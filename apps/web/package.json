@@ -11,6 +11,7 @@
     "prebuild": "yarn generate-theme-typings",
     "export": "next build && next export",
     "generate-theme-typings": "npx @chakra-ui/cli tokens ./src/theme/theme.ts",
+    "type-check": "tsc --noEmit",
     "test": "jest --config test/jest.config.js",
     "test:watch": "yarn test --watch",
     "test:debug": "node  --inspect-brk ./node_modules/bin/jest/jest.js --config test/jest.config.js --runInBand --watch",
