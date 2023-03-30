@@ -16,7 +16,7 @@
     "test": "turbo run test",
     "postinstall": "husky install",
     "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'",
-    "type-check": "tsc --noEmit -p packages/*"
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
