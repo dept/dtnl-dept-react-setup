@@ -7,10 +7,10 @@
       "@/*": ["./*"]
     },
     "rootDir": ".",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "target": "esnext",
     "typeRoots": ["../../node_modules/@types", "./types"]
   },
-  "include": ["src", "types"],
+  "include": ["src", "./types/emotion.d.ts"],
   "exclude": ["node_modules"]
 }

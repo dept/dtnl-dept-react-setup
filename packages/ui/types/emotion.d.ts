@@ -1,6 +1,6 @@
 /// <reference types="@emotion/react/types/css-prop" />
 
-import type { CustomTheme } from '@/src/theme/theme';
+import type { CustomTheme } from '../src/theme/theme';
 
 /**
  * Custom theme in global @emotion/react scope:
