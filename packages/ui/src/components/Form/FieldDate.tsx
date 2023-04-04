@@ -196,7 +196,7 @@ const Wrapper = styled(Box)`
       color: ${theme.colors.error};
     }
     .react-calendar__month-view__days__day--neighboringMonth {
-      color: ${theme.colors.gray[200]};
+      color: ${theme.colors['gray.200']};
     }
     .react-calendar__year-view .react-calendar__tile,
     .react-calendar__decade-view .react-calendar__tile,
@@ -214,7 +214,7 @@ const Wrapper = styled(Box)`
     }
     .react-calendar__tile:enabled:hover,
     .react-calendar__tile:enabled:focus {
-      background-color: ${theme.colors.gray[300]};
+      background-color: ${theme.colors['gray.300']};
     }
     .react-calendar__tile--hasActive {
       background: ${theme.colors.primary};
@@ -232,7 +232,7 @@ const Wrapper = styled(Box)`
       background: ${theme.colors.primary};
     }
     .react-calendar--selectRange .react-calendar__tile--hover {
-      background-color: ${theme.colors.gray[200]};
+      background-color: ${theme.colors['gray.200']};
     }
   `}
 `;
