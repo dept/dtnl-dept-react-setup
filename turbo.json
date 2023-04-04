@@ -17,7 +17,6 @@
       "dependsOn": ["build", "test", "lint"]
     },
     "type-check": {
-      "cache": false,
       "inputs": ["src/**/*.tsx", "src/**/*.ts"],
       "outputs": []
     }
