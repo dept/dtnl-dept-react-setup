@@ -8,7 +8,8 @@
       "@server/*": ["./server/*"],
       "@test/*": ["./test/*"],
       "@/*": ["./src/*"]
-    }
+    },
+    "typeRoots": ["../../packages/ui/types"]
   },
   "exclude": ["node_modules", ".next", "out", "dist", "next.config.js"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
