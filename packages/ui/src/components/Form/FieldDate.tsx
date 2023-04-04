@@ -232,7 +232,7 @@ const Wrapper = styled(Box)`
       background: ${theme.colors.primary};
     }
     .react-calendar--selectRange .react-calendar__tile--hover {
-      background-color: ${theme.colors.gray[300]};
+      background-color: ${theme.colors.gray[200]};
     }
   `}
 `;
