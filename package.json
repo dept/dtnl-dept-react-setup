@@ -47,5 +47,8 @@
   "volta": {
     "node": "18.12.1"
   },
-  "packageManager": "yarn@3.2.4"
+  "packageManager": "yarn@3.2.4",
+  "dependencies": {
+    "@chakra-ui/react": "2.5.0"
+  }
 }

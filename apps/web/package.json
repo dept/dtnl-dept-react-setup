@@ -41,7 +41,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@chakra-ui/react": "2.4.3",
+    "@chakra-ui/react": "2.5.0",
     "@dept/config": "workspace:^",
     "@dept/icons": "workspace:^",
     "@dept/tsconfig": "workspace:^",

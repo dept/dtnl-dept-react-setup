@@ -17,8 +17,7 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
-    "typeRoots": ["../../node_modules/@types", "./types", "../../packages/ui/types"]
+    "target": "esnext"
   },
   "include": ["src", "next-env.d.ts"],
   "exclude": ["node_modules"]
