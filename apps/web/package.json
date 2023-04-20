@@ -7,7 +7,7 @@
     "dev": "next dev",
     "predev": "yarn generate-theme-typings",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "prebuild": "yarn generate-theme-typings",
     "export": "next build && next export",
     "generate-theme-typings": "npx @chakra-ui/cli tokens ./src/theme/theme.ts",
