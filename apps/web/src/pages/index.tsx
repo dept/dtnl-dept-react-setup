@@ -13,6 +13,7 @@ const Page: NextPage<PageProps> = () => (
     </HStack>
 
     <Stack spacing="4">
+      <Heading>{process.env.NEXT_PUBLIC_APP_URL}</Heading>
       <Heading as="h1">Homepage</Heading>
       <Text>Run `yarn storybook` to view all components</Text>
       <Text>Run `yarn route [name]` to create a page</Text>

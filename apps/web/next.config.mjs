@@ -19,6 +19,7 @@ const nextConfig = () =>
      */
     env: {
       ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
+      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     },
 
     /**
