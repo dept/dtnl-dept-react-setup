@@ -98,22 +98,22 @@ RUN apk --no-cache add curl
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/packages ./packages
 
-WORKDIR /app/apps/frontend
+WORKDIR /app
 
 # make sure to add all your custom folders/files that you need on runtime here
-COPY --from=build /app/apps/frontend/public ./public
-COPY --from=build --chown=nextjs:nodejs /app/apps/frontend/.next ./.next
-COPY --from=build /app/apps/frontend/package.json ./package.json
-COPY --from=build /app/apps/frontend/node_modules ./node_modules
-COPY --from=build /app/apps/frontend/next.config.mjs ./
-COPY --from=build /app/apps/frontend/i18n.js ./i18n.js
-COPY --from=build /app/apps/frontend/tsconfig.json ./tsconfig.json
-COPY --from=build /app/apps/frontend/config ./config
-COPY --from=build /app/apps/frontend/locales ./locales
-COPY --from=build /app/apps/frontend/src/pages ./pages
-COPY --from=build /app/apps/frontend/sentry.properties ./sentry.properties
-COPY --from=build /app/apps/frontend/sentry.client.config.js ./sentry.client.config.js
-COPY --from=build /app/apps/frontend/sentry.server.config.js ./sentry.server.config.js
+COPY --from=build /app/apps/web/public ./public
+COPY --from=build --chown=nextjs:nodejs /app/apps/web/.next ./.next
+COPY --from=build /app/apps/web/package.json ./package.json
+COPY --from=build /app/apps/web/node_modules ./node_modules
+COPY --from=build /app/apps/web/next.config.mjs ./
+COPY --from=build /app/apps/web/i18n.js ./i18n.js
+COPY --from=build /app/apps/web/tsconfig.json ./tsconfig.json
+COPY --from=build /app/apps/web/config ./config
+COPY --from=build /app/apps/web/locales ./locales
+COPY --from=build /app/apps/web/src/pages ./pages
+COPY --from=build /app/apps/web/sentry.properties ./sentry.properties
+COPY --from=build /app/apps/web/sentry.client.config.js ./sentry.client.config.js
+COPY --from=build /app/apps/web/sentry.server.config.js ./sentry.server.config.js
 
 # dont run as root
 USER nextjs
