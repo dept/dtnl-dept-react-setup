@@ -1,20 +1,17 @@
 # ---- Pruned sources for frontend ----
 FROM node:18-alpine AS source
-RUN apk add --no-cache libc6-compat
-RUN apk update
-
 WORKDIR /app
 RUN yarn set version 3.3.1
 
 # Copy in the most cachable way
 COPY ./package.json .
+COPY ./turbo.json ./turbo.json
 COPY ./.yarn/releases .yarn/releases
 COPY ./.yarn/plugins .yarn/plugins
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
 COPY ./packages ./packages
 COPY ./apps ./apps
-COPY ./turbo.json .
 
 # install required dependencies
 RUN yarn plugin import workspace-tools
@@ -25,9 +22,13 @@ RUN yarn turbo prune --scope="@dept/web" --docker
 
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
+# Install build dependencies that are missing in the alpine image
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 FROM node:18-alpine as dependencies
-RUN apk add --no-cache libc6-compat
-RUN apk update
+RUN apk add --no-cache libc6-compat \
+                       alpine-sdk \
+                       python3
+RUN apk add --no-cache vips-dev
 
 WORKDIR /app
 RUN yarn set version 3.3.1
@@ -36,6 +37,7 @@ RUN yarn set version 3.3.1
 COPY --from=source /app/out/full/ .
 COPY ./.yarn/releases .yarn/releases
 COPY ./.yarn/plugins .yarn/plugins
+# COPY --from=source /app/out/yarn.lock ./yarn.lock
 # The pruned lockfile does not seem to be complete for use in the next step, use the local lockfile
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
@@ -70,9 +72,11 @@ RUN yarn turbo run build --filter="@dept/web"
 RUN yarn plugin import workspace-tools
 RUN CI=1 yarn workspaces focus --production @dept/web
 
+# Create if not exists, so the copy command in the release stage won't fail
+RUN mkdir -p /app/apps/web/node_modules
+
 # ---- Release ----
 FROM node:18-alpine as release
-
 WORKDIR /app
 RUN yarn set version 3.3.1
 
@@ -106,14 +110,14 @@ COPY --from=build --chown=nextjs:nodejs /app/apps/web/.next ./.next
 COPY --from=build /app/apps/web/package.json ./package.json
 COPY --from=build /app/apps/web/node_modules ./node_modules
 COPY --from=build /app/apps/web/next.config.mjs ./
-COPY --from=build /app/apps/web/i18n.js ./i18n.js
+# COPY --from=build /app/apps/web/i18n.js ./i18n.js
 COPY --from=build /app/apps/web/tsconfig.json ./tsconfig.json
 COPY --from=build /app/apps/web/config ./config
-COPY --from=build /app/apps/web/locales ./locales
+# COPY --from=build /app/apps/web/locales ./locales
+
+# Not required for the server, purely to get next-translate to start without issues:
+# https://github.com/vinissimus/next-translate/issues/395
 COPY --from=build /app/apps/web/src/pages ./pages
-COPY --from=build /app/apps/web/sentry.properties ./sentry.properties
-COPY --from=build /app/apps/web/sentry.client.config.js ./sentry.client.config.js
-COPY --from=build /app/apps/web/sentry.server.config.js ./sentry.server.config.js
 
 # dont run as root
 USER nextjs
