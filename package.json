@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "turbo run dev --parallel --continue",
     "build": "turbo run build",
-    "postbuild": "turbo postbuild --filter=web",
+    "postbuild": "turbo postbuild",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "prepare": "husky install",

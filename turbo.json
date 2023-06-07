@@ -10,7 +10,6 @@
     },
     "postbuild": {
       "dependsOn": ["build"],
-      "env": ["NEXT_PUBLIC_APP_URL"],
       "outputs": ["public/robots.txt", "public/sitemap*.xml"]
     },
     "test": {
@@ -19,12 +18,11 @@
     },
     "lint": {},
     "deploy": {
-      "dependsOn": ["build", "test", "lint"]
+      "dependsOn": ["build", "test", "lint", "postbuild"]
     },
     "type-check": {
       "inputs": ["src/**/*.tsx", "src/**/*.ts"],
       "outputs": []
     }
-  },
-  "globalEnv": ["NEXT_PUBLIC_APP_URL"]
+  }
 }

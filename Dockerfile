@@ -67,6 +67,7 @@ COPY ./yarn.lock ./.yarnrc.yml ./
 
 # build project
 RUN yarn turbo run build --filter="@dept/web"
+RUN yarn turbo run postbuild --filter="@dept/web"
 
 # purge all non essential dependencies
 RUN yarn plugin import workspace-tools
