@@ -6,8 +6,8 @@ RUN yarn set version 3.3.1
 # Copy in the most cachable way
 COPY ./package.json .
 COPY ./turbo.json .
-COPY ./.yarn/releases .yarn/releases
-COPY ./.yarn/plugins .yarn/plugins
+COPY ./.yarn/releases ./.yarn/releases
+COPY ./.yarn/plugins ./.yarn/plugins
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
 COPY ./packages ./packages
