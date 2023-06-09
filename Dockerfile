@@ -5,7 +5,7 @@ RUN yarn set version 3.3.1
 
 # Copy in the most cachable way
 COPY ./package.json .
-COPY ./turbo.json ./turbo.json
+COPY ./turbo.json .
 COPY ./.yarn/releases .yarn/releases
 COPY ./.yarn/plugins .yarn/plugins
 COPY ./yarn.lock .
@@ -22,9 +22,9 @@ RUN yarn turbo prune --scope="@dept/web" --docker
 
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
+FROM node:18-alpine as dependencies
 # Install build dependencies that are missing in the alpine image
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-FROM node:18-alpine as dependencies
 RUN apk add --no-cache libc6-compat \
                        alpine-sdk \
                        python3
@@ -48,15 +48,12 @@ RUN CI=1 yarn workspaces focus @dept/platform @dept/web
 
 # ---- Build ----
 FROM node:18-alpine AS build
-RUN apk add --no-cache libc6-compat
-RUN apk update
 
 # Declare args
 ARG NEXT_PUBLIC_APP_URL
 
 # Asign args to env
 ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
-
 
 WORKDIR /app
 RUN yarn set version 3.3.1
@@ -67,7 +64,6 @@ COPY ./yarn.lock ./.yarnrc.yml ./
 
 # build project
 RUN yarn turbo run build --filter="@dept/web"
-RUN yarn turbo run postbuild --filter="@dept/web"
 
 # purge all non essential dependencies
 RUN yarn plugin import workspace-tools
@@ -97,13 +93,13 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 # add curl for container health check
-RUN apk --no-cache add curl
+# RUN apk --no-cache add curl
 
 # copy build
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/packages ./packages
 
-WORKDIR /app
+WORKDIR /app/apps/web
 
 # make sure to add all your custom folders/files that you need on runtime here
 COPY --from=build /app/apps/web/public ./public
