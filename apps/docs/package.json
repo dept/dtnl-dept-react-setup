@@ -1,0 +1,21 @@
+{
+  "name": "@dept/docs",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "dev": "next dev -p 3001"
+  },
+  "devDependencies": {
+    "@dept/config": "*",
+    "@dept/tsconfig": "*"
+  },
+  "dependencies": {
+    "next": "^13.1.4",
+    "nextra": "^2.2.12",
+    "nextra-theme-docs": "^2.2.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

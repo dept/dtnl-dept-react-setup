@@ -1,0 +1,18 @@
+{
+  "name": "@dept/cypress",
+  "version": "1.0.0",
+  "description": "E2E solution",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "precypress:run": "npm run lint",
+    "cypress:run": "cypress run",
+    "lint": "tslint --project ./tsconfig.json",
+    "postlint": "npm run tsc",
+    "test:ci": "cypress run",
+    "tsc": "tsc --pretty --noEmit",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cypress": "^12.3.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "React Library",
+  "extends": "./base.json",
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "lib": ["es2019", "dom"],
+    "module": "ESNext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "jsx": "react",
+    "typeRoots": ["../../node_modules/@types", "./types"]
+  }
+}
