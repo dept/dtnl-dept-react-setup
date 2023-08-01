@@ -1,8 +1,6 @@
-import { default as NextLink, LinkProps } from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import { Children, cloneElement } from 'react';
-
-export const CustomLink = NextLink;
 
 type NavLinkProps = LinkProps & {
   activeClassName?: string;
@@ -32,10 +30,10 @@ export function NavLink({
   const className = condition ? activeClassName : undefined;
 
   return (
-    <CustomLink href={href} legacyBehavior {...otherProps}>
+    <Link href={href} legacyBehavior {...otherProps}>
       {render
         ? render(condition)
         : child && cloneElement(child, { className: [child.props.className, className].join(' ') })}
-    </CustomLink>
+    </Link>
   );
 }
