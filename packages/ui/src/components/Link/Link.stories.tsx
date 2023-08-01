@@ -1,8 +1,8 @@
-import { Link } from './Link';
+import { CustomLink } from './Link';
 
-export default { title: 'Atoms/Link', component: Link };
+export default { title: 'Atoms/Link', component: CustomLink };
 
-export const Example = () => <Link href="/">Go to page</Link>;
+export const Example = () => <CustomLink href="/">Go to page</CustomLink>;
 
 Example.story = {
   parameters: {

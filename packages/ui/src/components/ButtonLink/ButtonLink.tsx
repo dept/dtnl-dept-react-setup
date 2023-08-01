@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@chakra-ui/react';
 import { LinkProps } from 'next/link';
 
-import { Link } from '../Link';
+import { CustomLink } from '../Link';
 
 export type ButtonLinkProps = Omit<ButtonProps, 'as'> & LinkProps & { target?: string };
 
@@ -16,7 +16,7 @@ export function ButtonLink({
   ...props
 }: ButtonLinkProps) {
   return (
-    <Link
+    <CustomLink
       href={href}
       as={as}
       prefetch={prefetch}
@@ -29,6 +29,6 @@ export function ButtonLink({
       <Button as="a" display="inline-flex" {...props}>
         {children}
       </Button>
-    </Link>
+    </CustomLink>
   );
 }
