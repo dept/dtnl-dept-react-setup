@@ -2,7 +2,7 @@ const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  stories: ['../**/*.stories.@(ts|tsx|mdx)'],
+  stories: ['../src/**/*.stories.@(ts|tsx|mdx)'],
   core: {
     builder: 'webpack5',
   },
@@ -18,7 +18,7 @@ module.exports = {
       disable: true,
     },
   },
-  staticDirs: ['../public'],
+  staticDirs: [path.resolve(__dirname, '../../../apps/web/public')],
   addons: [
     /** SWC loader needed to prevent custom webpack configs with the swc fileloader
      * https://github.com/Karibash/storybook-addon-swc/blob/main/src/index.ts */
@@ -42,7 +42,7 @@ module.exports = {
       ],
       roots: [
         /** Server .../public as a root to serve static files loaded through css */
-        path.resolve(__dirname, '../public'),
+        path.resolve(__dirname, '../../../apps/web/public'),
       ],
     },
   }),
