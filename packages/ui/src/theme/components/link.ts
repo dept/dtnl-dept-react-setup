@@ -1,6 +1,6 @@
 import { ComponentStyleConfig } from '@chakra-ui/react';
 
-export const link: ComponentStyleConfig = {
+export const Link: ComponentStyleConfig = {
   baseStyle: {
     textDecoration: 'underline',
   },

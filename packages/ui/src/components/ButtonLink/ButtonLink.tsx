@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@chakra-ui/react';
 import { LinkProps } from 'next/link';
 
-import { Link } from '../Link';
+import Link from 'next/link';
 
 export type ButtonLinkProps = Omit<ButtonProps, 'as'> & LinkProps & { target?: string };
 

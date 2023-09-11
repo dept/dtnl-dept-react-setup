@@ -1,10 +1,14 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, ThemeComponents } from '@chakra-ui/react';
 
 import { colors } from './colors';
-import * as components from './components';
+import * as CustomComponents from './components';
 import { globalStyle } from './global-style';
 import { sizes, space } from './sizes';
 import { fonts } from './typography';
+
+const components: ThemeComponents = {
+  ...CustomComponents,
+};
 
 const themeValues = {
   components,

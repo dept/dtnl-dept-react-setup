@@ -16,7 +16,11 @@
     "test": "turbo run test",
     "prepare": "husky install",
     "format": "prettier --write './{apps,packages}/**/*.{ts,tsx}'",
-    "type-check": "turbo type-check --filter=e2e --filter=web --filter=icons --filter=ui"
+    "type-check": "turbo type-check --filter=e2e --filter=web --filter=icons --filter=ui",
+    "web": "yarn workspace @dept/web",
+    "cms": "yarn workspace @dept/cms",
+    "icons": "yarn workspace @dept/icons",
+    "ui": "yarn workspace @dept/ui"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",

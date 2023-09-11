@@ -1,8 +1,6 @@
-import { default as NextLink, LinkProps } from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import { Children, cloneElement } from 'react';
-
-export const Link = NextLink;
 
 type NavLinkProps = LinkProps & {
   activeClassName?: string;
