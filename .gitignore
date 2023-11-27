@@ -36,6 +36,9 @@ yarn-error.log*
 **/public/sitemap*.xml
 
 
+# VSCode
+.history
+
 # Intellij
 *.iml
 .gradle

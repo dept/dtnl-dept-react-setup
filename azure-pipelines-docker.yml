@@ -12,6 +12,7 @@ pool:
 # How-to: https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml
 # Default key that should exist: ENVIRONMENT_NAME
 variables:
+  - group: frontend-keys-default
   - ${{ if or(eq(variables['Build.SourceBranchName'], 'main'), eq(variables['Build.SourceBranchName'], 'master')) }}:
       - group: frontend-keys-prod
   - ${{ if eq(variables['Build.SourceBranchName'], 'acceptance') }}:
@@ -38,6 +39,10 @@ steps:
     inputs:
       Contents: 'public/robots.txt'
 
+  - script: 'docker pull $(ECR_CONTAINER)/$(REPOSITORY_NAME):latest'
+    displayName: Pull latest for layer caching
+    continueOnError: true
+
   - task: Docker@2
     displayName: 'Build Docker image'
     inputs:
@@ -45,6 +50,7 @@ steps:
       repository: '$(REPOSITORY_NAME)'
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
+      arguments: '--cache-from=$(ECR_CONTAINER)/$(REPOSITORY_NAME):latest'
       tags: |
         $(Build.BuildId)
         latest

@@ -1,53 +1,55 @@
+# Inspired by: https://nextjs.org/docs/deployment#docker-image
+# ---- Base Node ----
+FROM node:18-alpine AS base
+
 # ---- Pruned sources for frontend ----
-FROM node:18-alpine AS source
+FROM base AS source
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
+RUN apk update
+
 WORKDIR /app
-RUN yarn set version 3.3.1
+
 
 # Copy in the most cachable way
 COPY ./package.json .
 COPY ./turbo.json .
 COPY ./.yarn/releases ./.yarn/releases
 COPY ./.yarn/plugins ./.yarn/plugins
+COPY ./.yarn/install-state.gz ./.yarn/install-state.gz
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
 COPY ./packages ./packages
 COPY ./apps ./apps
 
-# install required dependencies
-RUN yarn plugin import workspace-tools
-RUN CI=1 yarn workspaces focus @dept/platform @dept/web
-
 # generate pruned source
-RUN yarn turbo prune --scope="@dept/web" --docker
+RUN yarn dlx turbo prune --scope="@dept/web" --docker
 
-# Inspired by: https://nextjs.org/docs/deployment#docker-image
-# ---- Base Node ----
-FROM node:18-alpine as dependencies
-# Install build dependencies that are missing in the alpine image
+# ---- Dependencies ----
+FROM base as dependencies
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat \
-                       alpine-sdk \
-                       python3
-RUN apk add --no-cache vips-dev
+RUN apk add --no-cache libc6-compat
+RUN apk update
 
 WORKDIR /app
 RUN yarn set version 3.3.1
+RUN yarn plugin import workspace-tools
 
-# Copy package and lockfile
+COPY --from=source /app/out/json/ .
+COPY --from=source /app/out/yarn.lock ./yarn.lock
 COPY --from=source /app/out/full/ .
-COPY ./.yarn/releases .yarn/releases
-COPY ./.yarn/plugins .yarn/plugins
-# COPY --from=source /app/out/yarn.lock ./yarn.lock
-# The pruned lockfile does not seem to be complete for use in the next step, use the local lockfile
-COPY ./yarn.lock .
-COPY ./.yarnrc.yml .
+COPY --from=source /app/.yarn/releases .yarn/releases
+COPY --from=source /app/.yarn/plugins .yarn/plugins
+COPY --from=source /app/.yarn/install-state.gz .yarn/install-state.gz
+COPY --from=source /app/yarn.lock .
+COPY --from=source /app/.yarnrc.yml .
+COPY turbo.json turbo.json
 
 # install dependencies
-RUN yarn plugin import workspace-tools
 RUN CI=1 yarn workspaces focus @dept/platform @dept/web
 
 # ---- Build ----
-FROM node:18-alpine AS build
+FROM base AS build
 
 # Declare args
 ARG NEXT_PUBLIC_APP_URL
@@ -57,23 +59,23 @@ ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 
 WORKDIR /app
 RUN yarn set version 3.3.1
+RUN yarn plugin import workspace-tools
 
 # copy pruned source and project dependencies from dependencies step
 COPY --from=dependencies /app/ .
-COPY ./yarn.lock ./.yarnrc.yml ./
 
 # build project
 RUN yarn turbo run build --filter="@dept/web"
 
 # purge all non essential dependencies
-RUN yarn plugin import workspace-tools
 RUN CI=1 yarn workspaces focus --production @dept/web
+RUN CI=1 yarn cache clean
 
 # Create if not exists, so the copy command in the release stage won't fail
 RUN mkdir -p /app/apps/web/node_modules
 
 # ---- Release ----
-FROM node:18-alpine as release
+FROM base as release
 WORKDIR /app
 RUN yarn set version 3.3.1
 
