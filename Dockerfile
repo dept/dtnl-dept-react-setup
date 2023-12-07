@@ -81,7 +81,7 @@ RUN yarn set version 3.3.1
 ARG NEXT_PUBLIC_APP_URL
 
 # Assign args to env
-ENV NEXT_PUBLIC_APP_UR=$NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 
 # Enable run as production
 ENV NODE_ENV=production
