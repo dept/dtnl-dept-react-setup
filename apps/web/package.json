@@ -10,7 +10,6 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "prebuild": "yarn generate-theme-typings",
     "export": "next build && next export",
-    "generate-theme-typings": "npx @chakra-ui/cli tokens ./src/theme/theme.ts",
     "type-check": "tsc --noEmit",
     "test": "jest --config test/jest.config.js",
     "test:watch": "yarn test --watch",
@@ -33,11 +32,9 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@chakra-ui/react": "2.5.0",
     "@dept/config": "workspace:^",
     "@dept/icons": "workspace:^",
     "@dept/tsconfig": "workspace:^",
-    "@dept/ui": "workspace:^",
     "@emotion/is-prop-valid": "^1.1.3",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -79,7 +76,6 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.2.1",
-    "@chakra-ui/cli": "^2.1.0",
     "@swc/core": "^1.2.207",
     "@swc/jest": "^0.2.21",
     "@testing-library/jest-dom": "^5.16.4",

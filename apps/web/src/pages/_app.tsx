@@ -1,12 +1,10 @@
 import '@public/fonts/fonts.css';
 
-import { ChakraProvider } from '@chakra-ui/react';
 import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import React from 'react';
 
 import { BaseLayout } from '@/components/templates';
-import { theme } from '@dept/ui';
 
 const MyApp = ({ Component: Page, pageProps, router }: AppProps) => {
   if (process.env.NODE_ENV === 'development' && !pageProps.seo) {
@@ -39,11 +37,10 @@ const MyApp = ({ Component: Page, pageProps, router }: AppProps) => {
         }}
         {...pageProps.seo}
       />
-      <ChakraProvider theme={theme} resetCSS>
-        <BaseLayout>
-          <Page {...pageProps} />
-        </BaseLayout>
-      </ChakraProvider>
+
+      <BaseLayout>
+        <Page {...pageProps} />
+      </BaseLayout>
     </>
   );
 };

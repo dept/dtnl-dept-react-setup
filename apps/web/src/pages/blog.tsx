@@ -1,6 +1,4 @@
 import { SeoProps } from '@/constants/types';
-import { Box, Heading, Link } from '@chakra-ui/react';
-import { NavLink } from '@dept/ui';
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
 
 type PageProps = InferGetServerSidePropsType<typeof getServerSideProps>;
@@ -25,22 +23,9 @@ export const blogPosts: BlogPost[] = [
 ];
 
 const Page: NextPage<PageProps> = () => (
-  <>
-    <Box>
-      <Heading as="h1">Blogs</Heading>
-      <ul>
-        {blogPosts.map(item => {
-          return (
-            <li key={item.id}>
-              <NavLink href="/blog/[postId]" as={`/blog/${item.id}`}>
-                <Link>{item.title}</Link>
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
-    </Box>
-  </>
+  <div>
+    blog
+  </div>
 );
 
 export const getServerSideProps = (async () => {

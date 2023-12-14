@@ -19,8 +19,7 @@
     "type-check": "turbo type-check --filter=e2e --filter=web --filter=icons --filter=ui",
     "web": "yarn workspace @dept/web",
     "cms": "yarn workspace @dept/cms",
-    "icons": "yarn workspace @dept/icons",
-    "ui": "yarn workspace @dept/ui"
+    "icons": "yarn workspace @dept/icons"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -52,8 +51,5 @@
   "volta": {
     "node": "18.12.1"
   },
-  "packageManager": "yarn@3.3.1",
-  "dependencies": {
-    "@chakra-ui/react": "2.5.0"
-  }
+  "packageManager": "yarn@3.3.1"
 }

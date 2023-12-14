@@ -26,7 +26,7 @@ const nextConfig = () =>
      * Built-in transpiler, simply add more packages here if you want to transpile them on the fly
      * documentation: https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
      */
-    transpilePackages: ['@dept/ui', '@dept/icons'],
+    transpilePackages: ['@dept/icons'],
 
     /**
      * Enable emotion through the swc compiler

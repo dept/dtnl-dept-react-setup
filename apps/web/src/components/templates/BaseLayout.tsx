@@ -1,4 +1,3 @@
-import { Box, Container, Flex } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 
 import { Footer } from '../features/layout/Footer';
@@ -10,14 +9,11 @@ interface BaseLayoutProps {
 
 export function BaseLayout({ children }: BaseLayoutProps) {
   return (
-    <Flex flexDirection="column" height="100vh">
+    <div>
       <Header />
-
-      <Box as="main" flex="1 0 auto" display="block">
-        <Container>{children}</Container>
-      </Box>
-
+        {children}
       <Footer />
-    </Flex>
+    </div>
+
   );
 }
