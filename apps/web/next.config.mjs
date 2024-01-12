@@ -28,13 +28,6 @@ const nextConfig = () =>
      */
     transpilePackages: ['@dept/icons', '@dept/ui'],
 
-    /**
-     * Enable emotion through the swc compiler
-     */
-    compiler: {
-      emotion: true,
-    },
-
     poweredByHeader: false,
     reactStrictMode: true,
     compress: true,
