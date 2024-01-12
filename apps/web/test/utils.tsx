@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@emotion/react';
 import { render as rtlRender } from '@testing-library/react';
 import { Fragment, PropsWithChildren } from 'react';
 

@@ -33,6 +33,9 @@
     "turbo": "^1.7.0",
     "typescript": "4.9.3"
   },
+  "resolutions": {
+    "next/@swc/helpers": "0.4.36"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

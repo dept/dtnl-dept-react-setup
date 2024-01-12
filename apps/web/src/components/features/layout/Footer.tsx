@@ -1,8 +1,5 @@
+import { css } from '@dept/styled-system/css';
 
 export function Footer() {
-  return (
-
-      <div>footer</div>
-
-  );
+  return <footer className={css({ flexCenter: true })}>footer</footer>;
 }
