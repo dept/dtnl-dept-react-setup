@@ -12,7 +12,7 @@ export const cardRecipe = defineSlotRecipe({
       width: '262px',
       bg: 'card.background',
       color: 'card.color',
-      border: 'solid 1px black',
+      border: 'solid 1px {colors.black}',
       borderRadius: 'md',
     },
     title: {
