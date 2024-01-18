@@ -1,0 +1,16 @@
+{
+  "extends": "@dept/tsconfig/react-library.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "moduleResolution": "node",
+    "target": "esnext",
+    "rootDir": ".",
+    "typeRoots": ["../../node_modules/@types", "types/types.d.ts"],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "include": ["src", "types"]
+}

@@ -1,3 +1,5 @@
+import styles from './layout.module.css';
+
 export function Header() {
-  return <div>header</div>;
+  return <header className={styles.header}>header</header>;
 }

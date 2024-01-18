@@ -1,8 +1,5 @@
+import styles from './layout.module.css';
 
 export function Footer() {
-  return (
-
-      <div>footer</div>
-
-  );
+  return <footer className={styles.footer}>footer</footer>;
 }

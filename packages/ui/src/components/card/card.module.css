@@ -1,0 +1,23 @@
+.root {
+  background-color: var(--colors-card-background);
+  gap: var(--spacing-4);
+  color: var(--colors-card-color);
+  width: 262px;
+  border: solid 1px black;
+  display: flex;
+  padding: var(--spacing-4);
+  border-radius: var(--radii-md);
+  flex-direction: column;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+  font-size: 48px;
+  text-align: center;
+  line-height: 1;
+}
+
+.body {
+  display: flex;
+}

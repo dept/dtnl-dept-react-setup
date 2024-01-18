@@ -1,8 +1,8 @@
 import '@public/fonts/fonts.css';
-
 import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import React from 'react';
+import '../styles/global.css';
 
 import { BaseLayout } from '@/components/templates';
 

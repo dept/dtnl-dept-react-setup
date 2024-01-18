@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  width: 100%;
+  padding: var(--spacing-4);
+  font-size: 16px;
+
+  border-radius: var(--radii-md);
+}
+
+.button--visual_funky {
+  background: var(--colors-orange);
+  color: var(--colors-black);
+}
+.button--size_sm {
+  padding: var(--spacing-4);
+  font-size: 16px;
+}
+.button--shape_square {
+  border-radius: var(--radii-md);
+}
+.button--fullWidth_true {
+  width: 100%;
+}

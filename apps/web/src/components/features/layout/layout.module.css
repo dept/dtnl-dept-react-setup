@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-theme='themeB'] .header {
+  color: var(--colors-white);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-theme='themeB'] .footer {
+  color: var(--colors-white);
+}
