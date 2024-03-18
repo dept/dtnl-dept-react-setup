@@ -4,7 +4,7 @@
   "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript", "typescriptreact"],
   "json.format.enable": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "always"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
