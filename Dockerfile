@@ -1,6 +1,6 @@
 # Inspired by: https://nextjs.org/docs/deployment#docker-image
 # ---- Base Node ----
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # ---- Pruned sources for frontend ----
 FROM base AS source

@@ -1,5 +1,5 @@
 import { Button, ButtonProps, VisuallyHidden } from '@chakra-ui/react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { HeartFilledIcon } from '@dept/icons';
 
@@ -13,7 +13,7 @@ export default {
   },
 };
 
-const Template: Story<ButtonProps> = args => <Button {...args}>Click me!</Button>;
+const Template: StoryFn<ButtonProps> = args => <Button {...args}>Click me!</Button>;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -30,7 +30,7 @@ Link.args = {
   variant: 'link',
 };
 
-export const IconTemplate: Story<ButtonProps> = _args => (
+export const IconTemplate: StoryFn<ButtonProps> = _args => (
   <Button variant="icon">
     <HeartFilledIcon />
     <VisuallyHidden>Click me!</VisuallyHidden>

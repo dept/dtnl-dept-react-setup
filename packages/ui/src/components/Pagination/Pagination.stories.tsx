@@ -1,4 +1,6 @@
+import { StoryFn } from '@storybook/react';
 import { Pagination } from './Pagination';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Pagination',
@@ -24,9 +26,12 @@ export default {
       type: 'number',
     },
   },
-  onNavigate: {
-    action: 'onNavigate',
-  },
 };
 
-export const Example = Pagination;
+export const Example: StoryFn<typeof Pagination> = props => <Pagination {...props} />;
+Example.args = {
+  current: 6,
+  total: 74,
+  perPage: 10,
+  onNavigate: action('onNavigate'),
+};

@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { Stagger, StaggerProps } from './Stagger';
 
@@ -22,7 +22,7 @@ export default {
   },
 };
 
-export const Example: Story<StaggerProps> = args => {
+export const Example: StoryFn<StaggerProps> = args => {
   return (
     <Stagger key={Object.values(args).join('-')} {...args}>
       <Box bg="red.300" mb={1} p={2}>

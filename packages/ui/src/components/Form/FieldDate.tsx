@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { format, isValid, parse } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
-import Calendar, { OnChangeDateCallback } from 'react-calendar';
+import Calendar, { CalendarProps } from 'react-calendar';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import useClickAway from 'react-use/lib/useClickAway';
 
@@ -22,7 +22,9 @@ const CalendarWrapper = styled(Box)`
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+  box-shadow:
+    0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
     0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 `;
 
@@ -93,8 +95,8 @@ export const FieldDate = ({
     }
   }
 
-  const handleCalendarChange: OnChangeDateCallback = newDate => {
-    if (!Array.isArray(newDate)) {
+  const handleCalendarChange: CalendarProps['onChange'] = newDate => {
+    if (newDate && !Array.isArray(newDate)) {
       onChange(newDate);
       setIsOpen(false);
     }

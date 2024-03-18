@@ -36,12 +36,13 @@ export const List = forwardRef<any, BoxProps & { isOpen: boolean }>(({ isOpen, .
 
   return (
     <Box
-      padding={0}
-      margin={0}
-      listStyleType="none"
       position="absolute"
       top="15px"
       left="50%"
+      padding={0}
+      margin={0}
+      listStyleType="none"
+      width="100%"
       maxHeight="300px"
       overflow="auto"
       zIndex={100}
@@ -77,7 +78,6 @@ function CustomSelect({
   ...rest
 }: FieldSelectProps) {
   const {
-    isOpen,
     selectedItem,
     getToggleButtonProps,
     getLabelProps,
@@ -110,7 +110,7 @@ function CustomSelect({
   return (
     <Box position="relative">
       {label && (
-        <Label color={color} required={required} hasError={hasError} {...getLabelProps()}>
+        <Label color={color} required={required} {...getLabelProps()}>
           {label}
         </Label>
       )}
@@ -138,21 +138,13 @@ function CustomSelect({
           </IconWrapper>
         </Box>
       </InputWrapper>
-      <List
-        isOpen={isOpen}
-        as="ul"
-        bg="white"
-        color="black"
-        minWidth={200}
-        maxWidth="100%"
-        {...getMenuProps()}
-      >
+      <List as="ul" bg="white" color="black" minWidth={200} maxWidth="100%" {...getMenuProps()}>
         {items.map((item, index) => (
           <ListItem
             color="black"
             as="li"
             cursor="pointer"
-            bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : null}
+            bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : undefined}
             p="12px 14px"
             key={`${item}${index}`}
             {...getItemProps({ item, index })}
