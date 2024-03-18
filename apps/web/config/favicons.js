@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const favicons = require('favicons');
+const { favicons } = require('favicons');
 const prettier = require('prettier');
 
 const folder = 'public/favicon';
@@ -22,7 +22,7 @@ const configuration = {
   orientation: 'any', // Default orientation: "any", "natural", "portrait" or "landscape". `string`
   scope: '/', // set of URLs that the browser considers within your app
   start_url: '/?homescreen=1', // Start URL when launching the application from a device. `string`
-  version: '1.0', // Your application's version string. `string`
+  version: require('../package.json').version, // Your application's version string. `string`
   logging: false, // Print logs to console? `boolean`
   pixel_art: false, // Keeps pixels "sharp" when scaling up, for pixel art.  Only supported in offline mode.
   loadManifestWithCredentials: false, // Browsers don't send cookies when fetching a manifest, enable this to fix that. `boolean`
@@ -40,38 +40,32 @@ const configuration = {
     android: true, // Create Android homescreen icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
     appleIcon: true, // Create Apple touch icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
     appleStartup: true, // Create Apple startup images. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
-    coast: false, // Create Opera Coast icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
     favicons: true, // Create regular favicons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
-    firefox: true, // Create Firefox OS icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
     windows: true, // Create Windows 8 tile icons. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
     yandex: false, // Create Yandex browser icon. `boolean` or `{ offset, background, mask, overlayGlow, overlayShadow }`
   },
 };
 
-const callback = function (error, response) {
-  if (error) {
-    console.log(error.message); // Error description e.g. "An unknown error has occurred"
-    return;
-  }
+favicons(source, configuration)
+  .then(({ html, images, files }) => {
+    images.forEach(image => {
+      fs.writeFileSync(`${folder}/${image.name}`, image.contents);
+    });
 
-  response.images.forEach(image => {
-    fs.writeFileSync(`${folder}/${image.name}`, image.contents);
-  });
+    files.forEach(file => {
+      fs.writeFileSync(`${folder}/${file.name}`, file.contents);
+    });
 
-  response.files.forEach(file => {
-    fs.writeFileSync(`${folder}/${file.name}`, file.contents);
-  });
+    const metaTags = html
+      .map(html => {
+        return html.replace('">', '" />');
+      })
+      .join('\n');
 
-  const metaTags = response.html
-    .map(html => {
-      return html.replace('">', '" />');
-    })
-    .join('\n');
-
-  prettier.resolveConfigFile().then(filePath => {
-    prettier.resolveConfig(filePath).then(options => {
-      const formatted = prettier.format(
-        `
+    prettier.resolveConfigFile().then(filePath => {
+      prettier.resolveConfig(filePath).then(options => {
+        const formatted = prettier.format(
+          `
       export const renderFavicons = () => {
         return (
           <>
@@ -80,12 +74,15 @@ const callback = function (error, response) {
         )
       }
       `,
-        options,
-      );
+          { ...options, parser: 'babel' },
+        );
 
-      fs.writeFileSync(`src/utils/favicons.tsx`, formatted);
+        fs.writeFileSync(`src/utils/favicons.tsx`, formatted);
+        console.log('💅 :: Finished generating favicons');
+      });
     });
+  })
+  .catch(error => {
+    console.log('❌ :: Error generating favicons:', error.message);
+    return;
   });
-};
-
-favicons(source, configuration, callback);
