@@ -50,7 +50,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        docker buildx build -f Dockerfile
+        docker buildx build -f Dockerfile \
         -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):$(Build.BuildId) \
         -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \
         --cache-to type=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache,mode=max \
