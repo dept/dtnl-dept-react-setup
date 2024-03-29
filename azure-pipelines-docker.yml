@@ -45,18 +45,20 @@ steps:
       command: login
       containerRegistry: '$(CONTAINER_REGISTRY)'
 
-  - task: Docker@2
+  - task: Bash@3
     displayName: 'Build Docker image'
+    inputs:
+      targetType: 'inline'
+      script: |
+        docker buildx build -f Dockerfile
+        -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):$(Build.BuildId) \
+        -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \
+        --cache-to type=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache,mode=max \
+        --cache-from type=registry,ref=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache \
+        --build-arg CACHEBUST=$(date +%s) \
+        .
     env:
       DOCKER_BUILDKIT: 1
-    inputs:
-      repository: '$(REPOSITORY_NAME)'
-      command: 'build'
-      Dockerfile: '**/Dockerfile'
-      arguments: '--cache-to type=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache,mode=max --cache-from type=registry,ref=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache'
-      tags: |
-        $(Build.BuildId)
-        latest
 
   - task: Docker@2
     displayName: 'Push Docker image'
