@@ -62,12 +62,13 @@ RUN yarn plugin import workspace-tools
 # copy pruned source and project dependencies from dependencies step
 COPY --from=dependencies /app/ .
 
+# We always want the build to be executed thus we bust this layer's cache
+ARG CACHEBUST=1
 # build project
-RUN yarn turbo run build --filter="@dept/web"
-
-# purge all non essential dependencies
-RUN CI=1 yarn workspaces focus --production @dept/web
-RUN CI=1 yarn cache clean
+RUN yarn turbo run build --filter="@dept/web" && \
+    # purge all non essential dependencies
+    CI=1 yarn workspaces focus --production @dept/web && \
+    CI=1 yarn cache clean
 
 # Create if not exists, so the copy command in the release stage won't fail
 RUN mkdir -p /app/apps/web/node_modules
