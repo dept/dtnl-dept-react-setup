@@ -12,6 +12,8 @@ pool:
 # How-to: https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml
 # Default key that should exist: ENVIRONMENT_NAME
 variables:
+  - name: DOCKER_BUILDKIT
+    value: 1
   - group: frontend-keys-default
   - ${{ if or(eq(variables['Build.SourceBranchName'], 'main'), eq(variables['Build.SourceBranchName'], 'master')) }}:
       - group: frontend-keys-prod
