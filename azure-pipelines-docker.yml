@@ -45,17 +45,13 @@ steps:
       command: login
       containerRegistry: '$(CONTAINER_REGISTRY)'
 
-  - script: 'docker pull $(ECR_CONTAINER)/$(REPOSITORY_NAME):latest'
-    displayName: Pull latest for layer caching
-    continueOnError: true
-
   - task: Docker@2
     displayName: 'Build Docker image'
     inputs:
       repository: '$(REPOSITORY_NAME)'
       command: 'build'
       Dockerfile: '**/Dockerfile'
-      arguments: '--cache-from=$(ECR_CONTAINER)/$(REPOSITORY_NAME):latest'
+      arguments: '--cache-to type=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache,mode=max --cache-from type=registry,ref=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):buildcache'
       tags: |
         $(Build.BuildId)
         latest
