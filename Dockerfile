@@ -16,7 +16,6 @@ COPY ./package.json .
 COPY ./turbo.json .
 COPY ./.yarn/releases ./.yarn/releases
 COPY ./.yarn/plugins ./.yarn/plugins
-COPY ./.yarn/install-state.gz ./.yarn/install-state.gz
 COPY ./yarn.lock .
 COPY ./.yarnrc.yml .
 COPY ./packages ./packages
@@ -40,7 +39,6 @@ COPY --from=source /app/out/yarn.lock ./yarn.lock
 COPY --from=source /app/out/full/ .
 COPY --from=source /app/.yarn/releases .yarn/releases
 COPY --from=source /app/.yarn/plugins .yarn/plugins
-COPY --from=source /app/.yarn/install-state.gz .yarn/install-state.gz
 COPY --from=source /app/yarn.lock .
 COPY --from=source /app/.yarnrc.yml .
 COPY turbo.json turbo.json
