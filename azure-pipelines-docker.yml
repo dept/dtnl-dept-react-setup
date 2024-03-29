@@ -12,8 +12,6 @@ pool:
 # How-to: https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml
 # Default key that should exist: ENVIRONMENT_NAME
 variables:
-  - name: DOCKER_BUILDKIT
-    value: 1
   - group: frontend-keys-default
   - ${{ if or(eq(variables['Build.SourceBranchName'], 'main'), eq(variables['Build.SourceBranchName'], 'master')) }}:
       - group: frontend-keys-prod
@@ -49,6 +47,8 @@ steps:
 
   - task: Docker@2
     displayName: 'Build Docker image'
+    env:
+      DOCKER_BUILDKIT: 1
     inputs:
       repository: '$(REPOSITORY_NAME)'
       command: 'build'
