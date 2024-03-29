@@ -54,7 +54,7 @@ steps:
         docker buildx build -f Dockerfile \
         -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):$(Build.BuildId) \
         -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \
-        --cache-from type=registry,ref=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \
+        --cache-from type=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \
         --build-arg BUILDKIT_INLINE_CACHE=1 \
         --build-arg CACHEBUST=$(date +%s) \
         .
