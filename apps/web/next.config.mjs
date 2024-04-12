@@ -1,5 +1,3 @@
-/** @type {import('next').NextConfig} */
-
 import dotenv from 'dotenv';
 
 import { headers } from './config/next-headers.mjs';
@@ -8,9 +6,24 @@ import { plugins } from './config/next-plugins.mjs';
 dotenv.config();
 
 /**
+ * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
+ */
+const regexEqual = (x, y) => {
+  return (
+    x instanceof RegExp &&
+    y instanceof RegExp &&
+    x.source === y.source &&
+    x.global === y.global &&
+    x.ignoreCase === y.ignoreCase &&
+    x.multiline === y.multiline
+  );
+};
+
+/**
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
  */
+/** @type {import('next').NextConfig} */
 const nextConfig = () =>
   plugins.reduce((acc, next) => next(acc), {
     /**
@@ -26,7 +39,7 @@ const nextConfig = () =>
      * Built-in transpiler, simply add more packages here if you want to transpile them on the fly
      * documentation: https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
      */
-    transpilePackages: ['@dept/icons'],
+    transpilePackages: ['@dept/ui'],
 
     poweredByHeader: false,
     reactStrictMode: true,
@@ -49,7 +62,9 @@ const nextConfig = () =>
       path: '/_next/image',
       loader: 'default',
     },
-
+    experimental: {
+      useLightningcss: true,
+    },
     /**
      * https://nextjs.org/docs/advanced-features/i18n-routing
      */

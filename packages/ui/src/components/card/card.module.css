@@ -1,7 +1,6 @@
 .root {
   background-color: var(--colors-card-background);
   gap: var(--spacing-4);
-  color: var(--colors-card-color);
   width: 262px;
   border: solid 1px black;
   display: flex;
@@ -16,6 +15,7 @@
   font-size: 48px;
   text-align: center;
   line-height: 1;
+  color: var(--colors-card-color, var(--color-black));
 }
 
 .body {

@@ -616,6 +616,7 @@
     --colors-black: #000;
     --colors-honey: #e9c46a;
     --colors-orange: #f4a261;
+    --colors-green: var(--colors-green-500);
     --colors-peach: #e76f51;
     --colors-fog: #9a8c98;
     --colors-lake: #778da9;

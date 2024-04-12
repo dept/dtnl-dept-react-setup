@@ -1,3 +1,0 @@
-{
-  "include": ["cypress/specs/*.ts", "cypress/specs/**/*.ts"]
-}
