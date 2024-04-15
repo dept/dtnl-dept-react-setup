@@ -1,3 +1,4 @@
+import { REVALIDATE_PAGE_TTL } from '@/constants/cache';
 import { SeoProps } from '@/constants/types';
 import { Heading, HStack, Stack, Text } from '@chakra-ui/react';
 import { HeartFilledIcon, HeartOutlineIcon } from '@dept/icons';
@@ -37,6 +38,7 @@ export const getStaticProps = (() => {
         },
       },
     },
+    revalidate: REVALIDATE_PAGE_TTL,
   };
 }) satisfies GetStaticProps<SeoProps>;
 
