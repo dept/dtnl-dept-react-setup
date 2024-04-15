@@ -1,35 +1,45 @@
+import { dirname, join } from 'path';
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  stories: ['../src/**/*.stories.@(ts|tsx|mdx)'],
-  core: {
-    builder: 'webpack5',
+  stories: ['../src/**/*.@(stories.@(ts|tsx))'],
+
+  framework: {
+    name: getAbsolutePath('@storybook/nextjs'),
+    options: { builder: { useSWC: true } },
   },
+
   typescript: {
     reactDocgen: 'none',
   },
+
   features: {
     emotionAlias: false,
   },
+
+  docs: {
+    autodocs: true,
+  },
+
   /** If you want to see the @chakra-ui components in your storybook environment, simply the disable line */
   refs: {
     '@chakra-ui/react': {
       disable: true,
     },
   },
+
   staticDirs: [path.resolve(__dirname, '../../../apps/web/public')],
+
   addons: [
-    /** SWC loader needed to prevent custom webpack configs with the swc fileloader
-     * https://github.com/Karibash/storybook-addon-swc/blob/main/src/index.ts */
-    'storybook-addon-swc',
-    '@storybook/addon-actions',
-    '@storybook/addon-docs',
-    '@storybook/addon-links',
-    '@storybook/addon-controls',
-    '@storybook/addon-storysource',
-    '@storybook/addon-viewport',
+    getAbsolutePath('@storybook/addon-actions'),
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-controls'),
+    getAbsolutePath('@storybook/addon-storysource'),
+    getAbsolutePath('@storybook/addon-viewport'),
   ],
+
   webpackFinal: async config => ({
     ...config,
     resolve: {
@@ -47,3 +57,7 @@ module.exports = {
     },
   }),
 };
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}

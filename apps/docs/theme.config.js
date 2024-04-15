@@ -1,6 +1,6 @@
 const config = {
   project: {
-    link: 'http://deptagency.com',
+    link: 'https://deptagency.com',
   },
   docsRepositoryBase: 'https://bitbucket.org/tamtam-nl/dtnl-dept-react-setup',
   useNextSeoProps() {
@@ -8,7 +8,6 @@ const config = {
       titleTemplate: '%s – DEPT® documentation',
     };
   },
-  search: true,
   darkMode: true,
   footer: {
     text: <>Build with ❤️ by your DEPT® friends</>,

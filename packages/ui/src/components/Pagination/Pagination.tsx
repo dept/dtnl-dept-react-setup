@@ -52,7 +52,8 @@ export function Pagination({ current = 1, perPage = 10, total, onNavigate }: Pag
       items = addDots(1, [1, '...']).concat(items);
     }
 
-    if (items[items.length - 1] < pages) {
+    const lastDot = items[items.length - 1];
+    if (typeof lastDot === 'number' && lastDot < pages) {
       items = items.concat(addDots(pages, ['...', pages]));
     }
 

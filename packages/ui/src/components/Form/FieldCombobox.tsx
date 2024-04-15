@@ -1,4 +1,4 @@
-import { Box, Button, VisuallyHidden } from '@chakra-ui/react';
+import { Box, Button, Icon, VisuallyHidden } from '@chakra-ui/react';
 import { useCombobox, UseComboboxProps } from 'downshift';
 import { useEffect, useState } from 'react';
 import { HiSelector } from 'react-icons/hi';
@@ -22,7 +22,7 @@ export type FieldComboboxProps = Omit<FieldInputProps, 'type' | 'onChange'> & {
 
 const ListItem = Box;
 
-const stateReducer: UseComboboxProps<Option>['stateReducer'] = (state, actionAndChanges) => {
+const stateReducer: UseComboboxProps<Option>['stateReducer'] = (_state, actionAndChanges) => {
   const { type, changes } = actionAndChanges;
 
   // returning an uppercased version of the item string.
@@ -59,12 +59,10 @@ export const FieldCombobox = ({
 
   const {
     isOpen,
-    // selectedItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
     reset,
@@ -93,47 +91,44 @@ export const FieldCombobox = ({
     },
   });
 
+  const menuProps = getMenuProps();
+
   return (
-    <Box position="relative" {...getComboboxProps()}>
+    <Box position="relative">
       <FieldInput
         {...rest}
         placeholder={placeholder}
         clearable={clearable}
-        {...getInputProps({
-          onFocus: () => {
-            openMenu();
-          },
-        })}
+        {...getInputProps()}
         labelProps={getLabelProps()}
         onClear={() => {
           reset();
         }}
         end={
-          showSelector && (
-            <Button variant="icon" {...getToggleButtonProps()} icon={HiSelector}>
+          showSelector ? (
+            <Button variant="icon" {...getToggleButtonProps()} rightIcon={<Icon as={HiSelector} />}>
               <HiSelector />
               <VisuallyHidden>Toggle menu</VisuallyHidden>
             </Button>
-          )
+          ) : undefined
         }
       />
-
       <Box position="relative">
         <List
-          isOpen={isOpen}
           as="ul"
           bg="white"
           color="black"
           minWidth={200}
           maxWidth="100%"
-          {...getMenuProps()}
+          {...menuProps}
+          isOpen={isOpen}
         >
           {inputItems.map((item, index) => (
             <ListItem
               color="black"
               as="li"
               cursor="pointer"
-              bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : null}
+              bg={highlightedIndex === index ? 'rgba(0, 0, 0, 0.04)' : undefined}
               p="12px 14px"
               key={`${item}${index}`}
               {...getItemProps({ item, index })}
