@@ -46,9 +46,79 @@ yarn component features/login/LoginForm
 yarn context User
 ```
 
+## Load Balancer
+
+If you have a load balancer with ISR/SSR your caches can desync since there will be multiple instances of the application running.
+To solve this issue we use Redis with the `@neshca/cache-handler` [package](https://caching-tools.github.io/next-shared-cache).
+
+### Redis Cache Handler
+
+The cache handler of NextJS only loads when in production mode (`yarn web build && yarn web start`).
+
+To enable the cache handler you need to:
+
+**Install the dependencies**
+
+```bash
+yarn web add --dev @neshca/cache-handler redis
+```
+
+**Add the following lines to the (next.config.mjs)[/apps/web/config/cache-handler.mjs]**
+
+```typescript
+cacheHandler: path.resolve('./config/cache-handler.mjs'),
+cacheMaxMemorySize: 0,
+```
+
+_This will tell NextJS to not use memory cache but always use Redis to lookup the page cache._
+
+and configure your Redis client environment variables:
+
+```bash
+REDIS_HOST_NAME=
+REDIS_PORT=
+REDIS_PASSWORD= // optional
+NEXT_PRIVATE_DEBUG_CACHE= // boolean - optional for debugging
+```
+
+#### Local testing
+
+For local testing you can run Redis using Docker with the following command:
+
+```bash
+docker run -dp 6379:6379 --rm --name test-redis redis:6.2-alpine redis-server --loglevel warning
+```
+
+and the following `.env` variables:
+
+```bash
+REDIS_HOST_NAME=localhost
+REDIS_PORT=6379
+NEXT_PRIVATE_DEBUG_CACHE=1
+```
+
+##### Debugging
+
+To monitor your local Redis instance you can access it using the following commands:
+
+**Get your Redis container ID**
+
+```bash
+docker ps
+```
+
+**Start live monitor session**
+
+```bash
+docker exec -i -t {docker-container-id} sh
+redis-cli MONITOR
+```
+
+_This will start a live logging session for all requests being made to Redis_
+
 ## Custom server
 
-By default, Next will start a server with `next start`. However it's possible to launch Next with a [custom server](https://nextjs.org/docs/advanced-features/custom-server). To switch to the custom server setup remove the `start` and `dev` scripts from `package.json` and rename `start:custom-server` and `dev:custom-server` to `start` and `dev`. The custom server is located at `./server/server.ts`. If you think you do not need it you can delete it.
+By default, Next will start a server with `next start`. However it's possible to launch Next with a [custom server](https://nextjs.org/docs/pages/building-your-application/configuring/custom-server). To switch to the custom server setup remove the `start` and `dev` scripts from `package.json` and rename `start:custom-server` and `dev:custom-server` to `start` and `dev`.
 
 ## Generate icons from svg
 
@@ -112,15 +182,18 @@ This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui
 Any overriden Chakra components should be added in the `src/themes/components` directory. Also make sure to add the component in the object in `index.ts`, with the correct component name.
 
 ### Structuring the Chakra component file
+
 In order to know how to structure the component file, it's best to look at the [Chakra Docs for the component](https://chakra-ui.com/docs/data-display/divider) and click on the ["View theme source" button](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/divider.ts) on the top of the page.
 
 In general you will see an object with a few properties being exported:
-* **baseStyle**: Being any styles applied to all components
-* **defaultProps**: Any chakra props that should be set by default (eg `variant` or `backgroundColor`)
-* **variants**: A key value object with all variants as the key, and the object being the style for that variant (see the button in this repository as an example)
-* **sizes**: A key value object with all sizes as the key, and the object being the style for that size.
+
+- **baseStyle**: Being any styles applied to all components
+- **defaultProps**: Any chakra props that should be set by default (eg `variant` or `backgroundColor`)
+- **variants**: A key value object with all variants as the key, and the object being the style for that variant (see the button in this repository as an example)
+- **sizes**: A key value object with all sizes as the key, and the object being the style for that size.
 
 ### Note on component with different parts
+
 Sometimes you might come across a component which has multiple parts, for example [the `List` component](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/list.ts). You will recognize these components by the `parts` property. For the `List` component these parts are `container`, `item` and `icon`. The only thing you should know is that for these type of components, you need to reference the part as well. For `baseStyle` this is the first level of the object, for `variants` and `sizes` this is nested inside the variant/size name. Like so:
 
 ```js
@@ -141,10 +214,13 @@ Sometimes you might come across a component which has multiple parts, for exampl
 ```
 
 ## Using NextJS on Windows
+
 A web.config has been added to allow the project to be hosted on a Windows server through ISSNode, the web.config needs the `index.js` as a pointer/handler to run the next server. So do not delete this if you plan on running it on an ISSNode. Don't forget to this line to the `package.json`:
+
 ```json
 { "main": "index.js" }
 ```
 
 ## Misc
+
 - A generic robots.txt has been added that disallows EVERY bot, it is removed in the azure-pipelines.yml on the main branch
