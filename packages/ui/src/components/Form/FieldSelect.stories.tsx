@@ -1,4 +1,4 @@
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { FieldSelect, FieldSelectProps } from './FieldSelect';
 
@@ -12,36 +12,34 @@ export default {
   component: FieldSelect,
   argTypes: {
     native: {
-      defaultValue: true,
       control: {
         type: 'boolean',
       },
     },
     hasError: {
-      defaultValue: false,
       control: {
         type: 'boolean',
       },
     },
     label: {
-      defaultValue: 'Some label',
       control: {
         type: 'text',
       },
     },
     placeholder: {
-      defaultValue: 'john@doe.nl',
       control: {
         type: 'text',
       },
     },
-    options: {
-      defaultValue: frameworks,
-    },
-    name: {
-      defaultValue: 'framework',
-    },
   },
 };
 
-export const Example: Story<FieldSelectProps> = FieldSelect;
+export const Example: StoryFn<FieldSelectProps> = props => <FieldSelect {...props} />;
+Example.args = {
+  native: true,
+  label: 'Some label',
+  name: 'framework',
+  placeholder: 'john@doe.nl',
+  hasError: false,
+  options: frameworks,
+};
