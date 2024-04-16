@@ -1,0 +1,10 @@
+{
+  "extends": "@dept/typescript-config/react-library.json",
+  "compilerOptions": {
+    "lib": ["dom", "ES2015"],
+    "types": ["jest", "node"],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}

@@ -1,0 +1,17 @@
+
+[data-theme='themeB'] {
+    --colors-card-color: var(--colors-black);
+    --colors-card-background: var(--colors-fog);
+}
+
+@media screen and (min-width: 80em) {
+  :where(:root, :host) {
+    --colors-card-color: var(--colors-black);
+    --colors-card-background: var(--colors-white);
+  }
+}
+@media screen and (min-width: 80em) {
+  [data-theme='themeB'] {
+    --colors-card-background: var(--colors-white);
+  }
+}

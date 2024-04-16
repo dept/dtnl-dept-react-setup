@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  width: 100%;
+  padding: var(--spacing-4);
+  font-size: 16px;
+  border-radius: var(--radii-md);
+}
+
+.primary {
+  background: var(--colors-orange);
+  color: var(--colors-black);
+}
+
+.secondary {
+  background: var(--colors-orange);
+  color: var(--colors-black);
+}
+
+.size_sm {
+  padding: var(--spacing-4);
+  font-size: 16px;
+}
+
+.size_lg {
+  padding: var(--spacing-8);
+  font-size: 20px;
+}
+
+.square {
+  border-radius: var(--radii-md);
+}
+
+.fullWidth {
+  width: 100%;
+}
