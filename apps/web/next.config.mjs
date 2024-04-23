@@ -8,13 +8,14 @@ import { headers } from './config/next-headers.mjs';
 import { plugins } from './config/next-plugins.mjs';
 
 dotenv.config();
+
 /**
  * Next config
  * documentation: https://nextjs.org/docs/api-reference/next.config.js/introduction
  */
 const nextConfig = () =>
   plugins.reduce((acc, next) => next(acc), {
-    cacheHandler: path.resolve('./config/cache-handler.mjs'),
+    cacheHandler: path.resolve('../../packages/cache/next/cache-handler.mjs'),
     cacheMaxMemorySize: 0,
     /**
      * add the environment variables you would like exposed to the client here

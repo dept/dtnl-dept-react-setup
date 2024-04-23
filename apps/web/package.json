@@ -33,6 +33,7 @@
   "license": "ISC",
   "dependencies": {
     "@chakra-ui/react": "2.8.2",
+    "@dept/cache": "workspace:^",
     "@dept/config": "workspace:^",
     "@dept/icons": "workspace:^",
     "@dept/tsconfig": "workspace:^",
@@ -78,7 +79,6 @@
   "devDependencies": {
     "@axe-core/react": "^4.8.5",
     "@chakra-ui/cli": "^2.4.1",
-    "@neshca/cache-handler": "^1.2.1",
     "@swc/core": "^1.4.8",
     "@swc/jest": "^0.2.36",
     "@testing-library/jest-dom": "^6.4.2",
@@ -115,7 +115,6 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "redis": "^4.6.13",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "5.4.2"
   }
