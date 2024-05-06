@@ -9,7 +9,7 @@ To enable the Apoollo query cache handler you need to:
 **Install the dependencies**
 
 ```bash
-yarn web add --dev apollo3-cache-persist @nerdwallet/apollo-cache-policies
+yarn web add @dept/cache
 ```
 
 **Add the cache handler to your Apollo client**

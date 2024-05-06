@@ -9,7 +9,7 @@ To enable the cache handler you need to:
 **Install the dependencies**
 
 ```bash
-yarn web add --dev @neshca/cache-handler redis
+yarn web add @dept/cache
 ```
 
 **Add the following lines to the [next.config.mjs](/apps/web/config/cache-handler.mjs)**
