@@ -15,7 +15,7 @@ dotenv.config();
  */
 const nextConfig = () =>
   plugins.reduce((acc, next) => next(acc), {
-    cacheHandler: path.resolve('../../packages/cache/next/cache-handler.mjs'),
+    cacheHandler: path.resolve('../../packages/cache/next/index.mjs'),
     cacheMaxMemorySize: 0,
     /**
      * add the environment variables you would like exposed to the client here
