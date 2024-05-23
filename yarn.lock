@@ -4265,12 +4265,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dept/cache@workspace:packages/cache":
+"@dept/cache@workspace:^, @dept/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@dept/cache@workspace:packages/cache"
   dependencies:
     "@apollo/client": ^3.9.11
-    "@dept/web": "workspace:^"
     "@nerdwallet/apollo-cache-policies": ^3.3.0
     "@neshca/cache-handler": ^1.2.1
     apollo3-cache-persist: ^0.15.0
@@ -4404,13 +4403,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@dept/web@workspace:^, @dept/web@workspace:apps/web":
+"@dept/web@workspace:apps/web":
   version: 0.0.0-use.local
   resolution: "@dept/web@workspace:apps/web"
   dependencies:
     "@axe-core/react": ^4.8.5
     "@chakra-ui/cli": ^2.4.1
     "@chakra-ui/react": 2.8.2
+    "@dept/cache": "workspace:^"
     "@dept/config": "workspace:^"
     "@dept/icons": "workspace:^"
     "@dept/tsconfig": "workspace:^"

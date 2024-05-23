@@ -15,7 +15,7 @@ yarn web add @dept/cache
 **Add the following lines to the [next.config.mjs](/apps/web/config/cache-handler.mjs)**
 
 ```typescript
-cacheHandler: path.resolve('/packages/cache/next/index.mjs'),
+cacheHandler: path.resolve('../../packages/cache/next/index.mjs'),
 cacheMaxMemorySize: 0,
 ```
 
