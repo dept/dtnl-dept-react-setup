@@ -3,13 +3,13 @@ import { CacheHandler } from '@neshca/cache-handler';
 import createLruHandler from '@neshca/cache-handler/local-lru';
 import createRedisHandler from '@neshca/cache-handler/redis-strings';
 import { createClient } from 'redis';
-console.log('qqqqqqq', process.env.REDIS_HOST_NAME, process.env.REDIS_PORT);
-CacheHandler.onCreation(async () => {
+
+CacheHandler.onCreation(async ({ buildId }) => {
   if (!process.env.REDIS_HOST_NAME || !process.env.REDIS_PORT) {
     console.warn('Make sure that REDIS_URL is added to the .env.local file and loaded properly.');
   }
 
-  const PREFIX = 'nextjs:';
+  const PREFIX = `nextjs:${buildId}`;
 
   /** @type {import("redis").RedisClientType} */
   const client = createClient({
