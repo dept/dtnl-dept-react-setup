@@ -9,7 +9,7 @@ CacheHandler.onCreation(async ({ buildId }) => {
     console.warn('Make sure that REDIS_URL is added to the .env.local file and loaded properly.');
   }
 
-  const PREFIX = `nextjs:${buildId}`;
+  const PREFIX = `${buildId}:nextjs:`;
 
   /** @type {import("redis").RedisClientType} */
   const client = createClient({

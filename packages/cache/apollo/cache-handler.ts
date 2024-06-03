@@ -3,7 +3,9 @@ import { InvalidationPolicyCache, RenewalPolicy } from '@nerdwallet/apollo-cache
 import { PersistentStorage, persistCache } from 'apollo3-cache-persist';
 
 import { commandOptions, createClient } from 'redis';
+import { getBuildId } from '../utils/getBuildId';
 
+const BUILD_ID = getBuildId();
 const CACHE_TTL = (isDevelopment ? TWO_MINUTES : FIVE_MINUTES) * 1000;
 
 const memoryCache = new InvalidationPolicyCache({
@@ -29,12 +31,11 @@ const memoryCache = new InvalidationPolicyCache({
 if (process.env.REDIS_HOST_NAME && process.env.REDIS_PORT) {
   type RedisStorage = ReturnType<typeof createClient>;
 
-  const REDIS_PREFIX = `apollo:`;
+  const REDIS_PREFIX = `${BUILD_ID}:apollo:`;
   const REDIS_CACHE_TIMEOUT = 1000;
 
   const redisClient = createClient({
-    // url: `redis://${process.env.REDIS_HOST_NAME}:${process.env.REDIS_PORT}`,
-    url: `redis://localhost:6379`,
+    url: `redis://${process.env.REDIS_HOST_NAME}:${process.env.REDIS_PORT}`,
     name: `cache-handler:${REDIS_PREFIX}${process.env.PORT ?? process.pid}`,
   });
 
