@@ -6,7 +6,9 @@ import { createClient } from 'redis';
 
 CacheHandler.onCreation(async ({ buildId }) => {
   if (!process.env.REDIS_HOST_NAME || !process.env.REDIS_PORT) {
-    console.warn('Make sure that REDIS_URL is added to the .env.local file and loaded properly.');
+    console.warn(
+      'Make sure that REDIS_HOST_NAME and REDIS_PORT are added to the .env.local file and loaded properly.',
+    );
   }
 
   const PREFIX = `${buildId}:nextjs:`;

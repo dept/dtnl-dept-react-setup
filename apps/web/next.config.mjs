@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 import { headers } from './config/next-headers.mjs';
 import { plugins } from './config/next-plugins.mjs';
+import path from 'path';
 
 dotenv.config();
 
@@ -22,6 +23,9 @@ const nextConfig = () =>
       ENVIRONMENT_NAME: process.env.ENVIRONMENT_NAME,
       NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     },
+
+    cacheHandler: path.resolve('../../packages/cache/next/index.mjs'),
+    cacheMaxMemorySize: 0,
 
     /**
      * Built-in transpiler, simply add more packages here if you want to transpile them on the fly

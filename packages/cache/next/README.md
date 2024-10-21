@@ -12,7 +12,7 @@ To enable the cache handler you need to:
 yarn web add @dept/cache
 ```
 
-**Add the following lines to the [next.config.mjs](/apps/web/config/cache-handler.mjs)**
+**Add the following lines to the [next.config.mjs](/apps/web/config/next-config.mjs)**
 
 ```typescript
 cacheHandler: path.resolve('../../packages/cache/next/index.mjs'),

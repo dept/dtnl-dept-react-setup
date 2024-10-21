@@ -4265,7 +4265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dept/cache@workspace:^, @dept/cache@workspace:packages/cache":
+"@dept/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@dept/cache@workspace:packages/cache"
   dependencies:
@@ -4410,7 +4410,6 @@ __metadata:
     "@axe-core/react": ^4.8.5
     "@chakra-ui/cli": ^2.4.1
     "@chakra-ui/react": 2.8.2
-    "@dept/cache": "workspace:^"
     "@dept/config": "workspace:^"
     "@dept/icons": "workspace:^"
     "@dept/tsconfig": "workspace:^"
