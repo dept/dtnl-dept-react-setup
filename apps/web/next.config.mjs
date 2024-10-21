@@ -24,9 +24,6 @@ const nextConfig = () =>
       NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     },
 
-    cacheHandler: path.resolve('../../packages/cache/next/index.mjs'),
-    cacheMaxMemorySize: 0,
-
     /**
      * Built-in transpiler, simply add more packages here if you want to transpile them on the fly
      * documentation: https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
