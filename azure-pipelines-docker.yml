@@ -51,7 +51,7 @@ steps:
       targetType: 'inline'
       script: |
         export DOCKER_BUILDKIT=1
-        docker buildx build -f Dockerfile \
+        docker buildx build -f Dockerfile.Web \
         -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):$(Build.BuildId) \
         -t $(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \
         --cache-from type=registry,ref=$(ECR_CONTAINER)/$(REPOSITORY_NAME):latest \

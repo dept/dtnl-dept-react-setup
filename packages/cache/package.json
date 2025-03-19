@@ -1,0 +1,30 @@
+{
+  "name": "@dept/cache",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "sideEffects": false,
+  "scripts": {
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
+    "lint-fix": "yarn lint --fix",
+    "type-check": "tsc --noEmit",
+    "generate": "yarn generate:theme-typings && yarn generate:barrels",
+    "generate:theme-typings": "npx @chakra-ui/cli tokens ./src/theme/theme.ts",
+    "generate:barrels": "barrelsby -c barrelsby.json --delete -q && npx prettier --write './**/index.{ts,tsx}'",
+    "storybook": "storybook dev",
+    "postinstall": "yarn generate:theme-typings",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@nerdwallet/apollo-cache-policies": "^3.3.0",
+    "apollo3-cache-persist": "^0.15.0"
+  },
+  "devDependencies": {
+    "@apollo/client": "^3.9.11",
+    "@neshca/cache-handler": "^1.2.1",
+    "redis": "^4.6.13",
+    "typescript": "5.4.2"
+  }
+}

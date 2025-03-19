@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { Box, Heading, Link, Text } from '@chakra-ui/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 
+import { REVALIDATE_PAGE_TTL } from '@/constants/cache';
 import { SeoProps } from '@/constants/types';
 import { NavLink } from '@dept/ui';
 import { blogPosts } from '../blog';
@@ -62,13 +63,14 @@ export const getStaticProps = (async ({ params }) => {
         },
       },
     },
+    revalidate: REVALIDATE_PAGE_TTL,
   };
 }) satisfies GetStaticProps<SeoProps, PageParams>;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: blogPosts.map(item => ({ params: { postId: String(item.id) } })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 

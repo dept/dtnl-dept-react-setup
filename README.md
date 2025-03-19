@@ -2,6 +2,8 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
+[TOC]
+
 ## Initialize the project
 
 - Copy `.env.example` to `.env` and fill in the required variables
@@ -46,9 +48,13 @@ yarn component features/login/LoginForm
 yarn context User
 ```
 
+## Caching for load balanced applications
+
+For the list of implementations please refer to [@dept/cache](/packages/cache)
+
 ## Custom server
 
-By default, Next will start a server with `next start`. However it's possible to launch Next with a [custom server](https://nextjs.org/docs/advanced-features/custom-server). To switch to the custom server setup remove the `start` and `dev` scripts from `package.json` and rename `start:custom-server` and `dev:custom-server` to `start` and `dev`. The custom server is located at `./server/server.ts`. If you think you do not need it you can delete it.
+By default, Next will start a server with `next start`. However it's possible to launch Next with a [custom server](https://nextjs.org/docs/pages/building-your-application/configuring/custom-server). To switch to the custom server setup remove the `start` and `dev` scripts from `package.json` and rename `start:custom-server` and `dev:custom-server` to `start` and `dev`.
 
 ## Generate icons from svg
 
@@ -112,15 +118,18 @@ This project uses [emotion](https://emotion.sh/docs/introduction) and [chakra-ui
 Any overriden Chakra components should be added in the `src/themes/components` directory. Also make sure to add the component in the object in `index.ts`, with the correct component name.
 
 ### Structuring the Chakra component file
+
 In order to know how to structure the component file, it's best to look at the [Chakra Docs for the component](https://chakra-ui.com/docs/data-display/divider) and click on the ["View theme source" button](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/divider.ts) on the top of the page.
 
 In general you will see an object with a few properties being exported:
-* **baseStyle**: Being any styles applied to all components
-* **defaultProps**: Any chakra props that should be set by default (eg `variant` or `backgroundColor`)
-* **variants**: A key value object with all variants as the key, and the object being the style for that variant (see the button in this repository as an example)
-* **sizes**: A key value object with all sizes as the key, and the object being the style for that size.
+
+- **baseStyle**: Being any styles applied to all components
+- **defaultProps**: Any chakra props that should be set by default (eg `variant` or `backgroundColor`)
+- **variants**: A key value object with all variants as the key, and the object being the style for that variant (see the button in this repository as an example)
+- **sizes**: A key value object with all sizes as the key, and the object being the style for that size.
 
 ### Note on component with different parts
+
 Sometimes you might come across a component which has multiple parts, for example [the `List` component](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/list.ts). You will recognize these components by the `parts` property. For the `List` component these parts are `container`, `item` and `icon`. The only thing you should know is that for these type of components, you need to reference the part as well. For `baseStyle` this is the first level of the object, for `variants` and `sizes` this is nested inside the variant/size name. Like so:
 
 ```js
@@ -141,10 +150,13 @@ Sometimes you might come across a component which has multiple parts, for exampl
 ```
 
 ## Using NextJS on Windows
+
 A web.config has been added to allow the project to be hosted on a Windows server through ISSNode, the web.config needs the `index.js` as a pointer/handler to run the next server. So do not delete this if you plan on running it on an ISSNode. Don't forget to this line to the `package.json`:
+
 ```json
 { "main": "index.js" }
 ```
 
 ## Misc
+
 - A generic robots.txt has been added that disallows EVERY bot, it is removed in the azure-pipelines.yml on the main branch

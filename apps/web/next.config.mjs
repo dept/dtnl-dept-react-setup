@@ -1,9 +1,11 @@
+// @ts-check
 /** @type {import('next').NextConfig} */
 
 import dotenv from 'dotenv';
 
 import { headers } from './config/next-headers.mjs';
 import { plugins } from './config/next-plugins.mjs';
+import path from 'path';
 
 dotenv.config();
 
